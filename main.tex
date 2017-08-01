@@ -1,0 +1,63 @@
+\documentclass[print,title,oneside]{text}
+
+\title{Introduction to Analysis}
+\author{Jonathan Gleason}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+Trigger warning:  Mathematics contained herein.
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\chapterimage{norm.jpg} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+\newpage
+
+\include{preface}
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+\pagenumbering{arabic}
+
+\include{number}
+
+\include{basics}
+
+\include{topology}
+
+\include{uniform}
+
+\include{integration}
+
+\include{differentiation}
+
+\appendix % Cannot go in apd.
+\part*{Appendices} % Will throw errors when used in combination with \includeonly
+
+\include{apd}
+
+\stopcontents % To remove bibliography and indices not appear in Appendices ToC
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY AND INDEX
+%----------------------------------------------------------------------------------------
+
+\printbibliography
+
+\printindex
+\printindex[notation]
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

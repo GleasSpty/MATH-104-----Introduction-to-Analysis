@@ -1,0 +1,2140 @@
+\chapter{Basic set theory}
+
+\section{What is a set?}\label{sbsA.1.1}
+
+When writing the text, it was important to me to be able to reduce all of the content here to essentially `nothing'.  By this, I mean that (i)~if you grant me that naive logical deduction that your brain tells you is should be true is valid; and (ii)~if you allow me to make use of the naive concept of a `set', then you can prove everything in these notes.
+
+When I say ``naive concept of a `set'{}'', I am referring to the idea that, if you have a collection of things, whatever they may be, you are allowed to give that collection of things a name (e.g.~``$X$''), and now $X$ is a new thing that we may talk about, the \emph{set} of the aforementioned things.  From this perspective, you might say that the naive notion of a set is more a linguistic tool than anything else.  Indeed, because of this, for the most part, we will completely ignore any set-theoretic concerns in these notes, but before we do just blatantly ignore any potential issues, we should first probably (attempt to) justify this dismissal.
+
+Intuitively, a set is just a thing that `contains' a bunch of other things, but this itself is of course not a precise mathematical definition.  Ultimately, I claim there there is no need to have such a precise definition, but let's suppose for the moment that we would like to define what a set is.  One way to do this would be to attempt to develop an axiomatic set theory, but there is a certain `circularity' problem in doing this.
+
+The term ``axiomatic set theory'' here refers to any collection of axioms which attempt to make precise the intuitive idea of a set.  In a given theory, however, the symbols which we make use of to write down the axioms themselves form a \emph{set}.  The point is that, in attempting to write down a mathematically precise definition of a set, one must make use of the naive notion of a set.
+
+Of course this example might not be very convincing.  Why not just not think of all the symbols together and just think of them individually?  It is true that if you fudge things around a bit you may be able to convince yourself that you're not really making use of the naive notion of a set here.  That being said, even if you can convince yourself that you can get around the problem of first requiring a `set' of symbols, sooner or later, in attempting to make sense out of an axiomatic set theory, you will need to make use of the naive notion of a set.
+
+Because of this, we consider the idea of a set to be so fundamental as to be undefinable, and we simply assume that we can freely work with this intuitive idea of a collection of things all thought of as one thing, namely a set.
+
+One has to be careful however.  Naive set theory has paradoxes, a famous example of which is Russel's Paradox\index{Russel's Paradox}.  Consider for example the set\footnote{Hopefully you have seen notation like this before.  If not, really quickly skip ahead to \crefnameref{sbsA.1.2} to look up the meaning of this notation.}
+\begin{equation}\label{A.1.1}
+X\coloneqq \left\{ Y:Y\notin Y\right\} .
+\end{equation}
+Is $X\in X$?  One resolution of this paradox is that it is nonsensical to construct the set of \emph{all} things satisfying a certain property.  Whenever you construct a set in this manner, your objects have to be already `living inside' some other set.  For example, we can write
+\begin{equation}
+X\coloneqq \left\{ Y\in U:Y\notin Y\right\}
+\end{equation}
+for some fixed set $U$.\footnote{``$U$'' is for ``universe''.}  Russel's Paradox now becomes the statement that $X\notin U$.
+
+This is still somehow not enough.  For example, if you turn to \cref{exm1.2.2}, the category of sets, you'll see that we do need to make use of the notion of the collection of ``all sets'', and we've just said that we are not allowed to quantify over \emph{everything}, but only over things that are elements of a fixed set.  One way to do this is to fix a set $U$ which is closed under all the usual operations of set theory,\footnote{One way in which to make this precise is what is called a \emph{Grothendieck universe}\index{Grothendieck universe}.  The details of this will not matter for us, but if you're curious feel free to Google the term.} and then to interpret statements that refer to something like ``All sets such that\textellipsis '' as in fact meaning ``All elements of $U$ such that\textellipsis ''.  Upon doing this, the construction involved in Russel's Paradox is perfectly valid, and indeed, does give us a new set, and the `paradox' itself now simply becomes the argument that this new set is not an element of $U$.\footnote{One nice thing about this approach of avoiding paradoxes is that \emph{everything} is still a set, that is, there is no need to make this awkward distinction between `actual' sets and what would be referred to as \emph{proper classes}
+\index{Proper class}.}
+
+The content of this section was meant only to convince you that (i)~there is no way of getting around the fact that the idea of collecting things together is undefinably fundamental, and that (ii)~ultimately this naive idea is not paradoxical.
+
+Disclaimer:  I am neither a logician nor a set-theorist, so take what I say with a grain of salt.
+
+\section{The absolute basics}\label{sbsA.1.2}
+
+\subsection{Some comments on logical implication}
+
+For us, the term \emph{statement}\index{Statement} will refer to something that is either true or false.  The word \emph{iff}\index{Iff} is short-hand for the phrase \emph{if and only if}.  So, for example, if $A$ and $B$ are statements, then the sentence ``$A$ iff $B$.'' is logically equivalent to the two sentences ``$A$ if $B$.'' and ``$A$ only if $B$.''.  In symbols, we write $B\Rightarrow A$\index[notation]{$B\Rightarrow A$} and $A\Rightarrow B$\index[notation]{$A\Rightarrow B$} respectively.  The former logical implication is perhaps more obvious; the other might be slightly trickier to translate from the English to the mathematics.  The way you might think about it is this:  if $A$ is true, then, because $A$ is true \emph{only if} $B$ is true, it must have been the case that $B$ was true too.  Thus, ``$A$ only if $B$.'' is logically equivalent to ``$A$ implies $B$.''.  We then write ``$A\Leftrightarrow B$\index[notation]{$A\Leftrightarrow B$} as alternative notation for the English ``$A$ iff $B$''.
+
+If $A$ and $B$ are statements, then $A\Rightarrow B$ is a statement:  $\text{True}\Rightarrow \text{True}$ is considered true, $\text{True}\Rightarrow \text{False}$ is considered false, $\text{False}\Rightarrow \text{True}$ is considered true, and $\text{False}\Rightarrow \text{False}$ is considered true.  Hopefully the first two of these make sense, but how does one understand why it should be the case that $\text{False}\Rightarrow \text{True}$ is true?  To see this, I think it helps to first note the following.\footnote{The symbol ``$\forall$\index[notation]{$\forall$}'' in English reads ``for all''.  Similarly, the symbol ``$\exists$\index[notation]{$\exists$}'' is read as ``there exists''.}
+\begin{textequation}[A.1.3]
+``$\forall x\in X,\ \mcal{P}(x)$.'' is logically equivalent to ``$x\in X\Rightarrow \mcal{P}(x)$.'',
+\end{textequation}
+where $\mcal{P}(x)$ is a statement that depends on $x$.
+
+Now consider the following example in English.
+\begin{textequation}
+Every pig on Mars owns a shotgun.
+\end{textequation}
+Is this statement true or false?  Under the (hopefully legitimate assumption) that there is no pig on Mars at all, my best guess is that most native English speakers would say that this is a true statement.  In any case, this is mathematics, not linguistics, and for the sake of definiteness, we simply declare a statement such as this to be \emph{vacuously true} (unless of course there are pigs on Mars, in which case we would need to determine if they all owned shotguns).  This example is meant to convince you that, in the case that $X$ is empty, it is reasonable to declare the statement $\forall x\in X,P(x)$ to be true for tautological reasons.
+
+Now, appealing back to \eqref{A.1.3}, hopefully it now also seems reasonable to declare statements of the form $\text{False}\Rightarrow B$ to be true (where $B$ is any statement), likewise for tautological reasons.
+
+If we know a certain statement to be true, there are several other statements that we know automatically to be true.  For example, if $A$ is true, then $\neg \neg A$ is automatically true.\footnote{$\neg A$\index[notation]{$\neg A$}, read ``not $A$``, is a statement which is false if $A$ is true and false if $A$ is true.}  Another important example of this is given by the \emph{contrapositive}.
+\begin{dfn}{Converse, inverse, and contrapositive}{Converse}
+Let $A$ and $B$ be statements.  Then,
+\begin{enumerate}
+\item the \emph{converse}\index{Converse} of the statement $A\Rightarrow B$ is the statement $B\Rightarrow A$;
+\item the \emph{inverse}\index{Inverse} of the statement $A\Rightarrow B$ is $\neg A\rightarrow \neg B$; and
+\item the \emph{contrapositive}\index{Contrapositive} of the statement $A\Rightarrow B$ is $\neg B\rightarrow \neg A$.
+\end{enumerate}
+\begin{rmk}
+Referring back to our earlier comments on the phrase ``iff'', if ever you want to prove ``$A$ iff $B$'', you must prove $A\Rightarrow B$ (i.e.~``$A$ only if $B$.'') as well as its \emph{converse}, $B\Rightarrow A$ (i.e.~$A$ if $B$).
+\end{rmk}
+\end{dfn}
+\begin{prp}{}{prpA.2.4}
+Let $A$ and $B$ be statements.  Then, $A\Rightarrow B$ is true iff its contrapositive $\neg B\Rightarrow \neg A$ is true.
+\begin{proof}
+$(\Rightarrow )$ Suppose that $A\Rightarrow B$ is true.  We would like to show that $\neg B\Rightarrow \neg A$.  So, suppose that $\neg B$ is true.  We would then like to prove $\neg A$.  We proceed by contradiction:  suppose that $A$ is true.  Then, as $A\Rightarrow B$, it must be that $B$ is true:  a contradiction of the fact that we have assumed that $\neg B$ is true.  Therefore, our assumption that $A$ is true must have been false.  Thus, it must be that $\neg A$ is true.
+
+\blankline
+\noindent
+$(\Leftarrow )$ As the contrapositive of the contrapositive is the original statement, this follows from $(\Rightarrow )$.
+\end{proof}
+\end{prp}
+\begin{exm}{}{}
+Let $P$ be the statement ``If it is raining, then it is wet.''.
+
+The converse of $P$ is ``If it is wet, then it is raining.''.
+
+The inverse of $P$ is ``If it is not raining, then it is not wet.''.
+
+The contrapositive of $P$ is ``If it is not wet, then it is not raining.
+
+Hopefully this makes it clear how the converse can be false even if the original statement is true.  Also be sure to understand in this example how the contrapositive is indeed equivalent to the original statement.
+\end{exm}
+
+Given that a statement is true iff its contrapositive is true, it is important to know how to correctly negate statements (and of course this is important to know for other reasons as well).
+\begin{exm}{}{}
+Let $\mcal{P}(x)$ be a statement that depends on $x$.
+\begin{enumerate}
+\item ``$\neg (\forall x,\ \mcal{P}(x))$'' is equivalent to ``$\exists x,\ \neg \mcal{P}(x)$''.
+\item ``$\neg (\exists x,\ \mcal{P}(x))$'' is equivalent to ``$\forall x,\ \neg \mcal{P}(x)$''.
+\item ``$\neg (A\text{ and }B)$'' is equivalent to ``$\neg A\text{ or }\neg B$''.
+\item ``$\neg (A\text{ or }B)$'' is equivalent to ``$\neg A\text{ and }\neg B$''.
+\end{enumerate}
+\begin{rmk}
+For example, suppose you want to prove the statement ``Every positive integer is even.'' is \emph{false}.  To do this, you want to exhibit a positive integer which is not even.  Explicitly, the original statement is ``$\forall x\in \Z ^+,\ x\text{ is even.}$'', and so its negation is ``$\exists x\in \Z ^+,\ x\text{ is not even.}$''.  For some reason, this tends to trip students up when I ask them to show that a statement is false:  to prove that statements of this form\footnote{That is, of the form ``$\forall x,\ \mcal{P}(x)$''.  Of course, not every statement is of this form, and so proving a statement is false doesn't necessarily mean you have to give a counter-example (for example, if I ask you to prove that $\abs{N}=\abs{\R}$ is false, it would not make sense to give a counter-example).} are false, you \emph{must} exhibit a counter-example---explaining why a counter-example should exist, without \emph{proving}\footnote{It is almost always the case that the easiest way to prove a counter-example exists is simply to write one down.} one exists, is not enough.  For example, don't say ``The statement ``Every partially-ordered set is totally-ordered.'' is false because there is an extra condition in the definition of totally-ordered.''---in this case, you \emph{must} give an example of a partially-ordered set which is not totally-ordered.\footnote{See \cref{dfnA.1.24,TotalOrder}.}
+\end{rmk}
+\end{exm}
+
+\subsection{A bit about proofs}\label{sbsABitAboutProofs}
+
+Proofs are absolutely fundamental to mathematics.  Indeed, you might say that mathematics \emph{is} the study of those truths which are provable.\footnote{In contrast to those truths are which true by observation.  For example, while the statements ``$x\in \R$ implies $x^2\geq 0$.'' and ``The mass of the electron is $\SI{9.10938356(11)e-31}{\kilogram}$.'' are both true, they are true in fundamentally different ways---the former is true because we can prove it and the latter is true because we measure it.}  But what actually \emph{is} a proof?
+
+A proof is essentially just a particularly detailed argument that a statement is true.  The question then is ``How much detail?''.  Well, an extremist might say that a proof should be detailed enough so as to be verifiable by a computer---if a computer can verify it using axioms alone, then there can be no doubt at all as to the truth of the statement.  Doing this in practice, however, well, would be a little bit insane---no one (or almost no one) writes proofs in this amount of detail.
+
+The objective then I would say it to provide enough detail so as to convince \emph{your target audience} that enough detail could be filled in, at least \emph{in principle}, so as to be verified by a computer, if a member of your target audience really wanted to take (waste?) their time doing so.  This is why two different proofs of the same statement, one several pages long and another a paragraph long, can both be considered equally valid proofs:  one proof could have been written to be accessible to undergraduates and the other to be accessible to professional mathematicians.  As a student, however, I would recommend you consider your target audience to be \emph{yourself}.  You should put down enough detail so that, if you came back to your proof after a year of not thinking about it, you should be able to follow your work no problem.  In particular, if you're ever writing a proof and you wonder ``Is this valid?'', the answer is ``No, it's not valid.''---you need to add more detail until there is \emph{no doubt} whatsoever that your argument is correct.  Tricking me (or yourself) into thinking you know the details when in fact you do not is not the way to go about learning mathematics.
+
+Okay, so enough with this wishy-washy philosophical BS.  I should probably at least give you some \emph{concrete} advice about proof-writing.  I think probably most of proof-writing should be learned by doing, but I suppose I can say at least a couple of things.\footnote{Keep in mind that in the following subsubsections we will often make use of examples to illustrate concepts that we technically have not yet developed the mathematics for yet.  First of all, you needn't worry, as because we are just using the examples for the purposes of illustration, this doesn't make our development circular.  Secondly, if you can't follow an example because you haven't seen it before, don't worry---just get what you can out of it and move on.}\footnote{If you are fine with proofs, you can probably safely skip to the next subsection, \crefnameref{sbsSets}.}
+
+\subsubsection{Iff}
+
+We mentioned the meaning of the word ``iff'' in the previous section, and we wound up giving an example of a proof which involved the phrase (\cref{prpA.2.4}).  Allow us to elaborate.
+\begin{displayquote}
+If ever asked to prove a statement of the form ``$A$ iff $B$'', you need to prove \emph{two things}:  first, assuming $A$, you prove $B$; then, assuming $B$, you prove $A$.
+\end{displayquote}
+See \cref{prpA.2.4} for a concrete example of this.
+
+\subsubsection{The following are equivalent}
+
+The phrase ``The following are equivalent.'' is similar to the phrase ``iff'', but is used when dealing with more than two statements.  For example, \cref{exr1.2.15} reads
+\begin{displayquote}
+Let $m,n\in \Z$.  Then, the following are equivalent.
+\begin{enumerate}
+\item \label{tfae.i}$m<n$.
+\item \label{tfae.ii}$m\leq n-1$.
+\item \label{tfae.iii}$m+1\leq n$.
+\end{enumerate}
+\end{displayquote}
+To prove this, you need to prove that \cref{tfae.i} iff \cref{tfae.ii}, \cref{tfae.i} iff \cref{tfae.iii}, and \cref{tfae.ii} iff \cref{tfae.iii}---this is exactly what it means for all the three statements to be logically-equivalent to one another.  On the face of it, it seems like this would mean we would have to do $2\times 3=6$ proofs.  Not so.  In fact, it is enough to prove \cref{tfae.i} implies \cref{tfae.ii}, \cref{tfae.ii} implies \cref{tfae.iii}, and \cref{tfae.iii} implies \cref{tfae.i}.  Using these three implications alone, you can go from any one statement to any other.  For example, \cref{tfae.ii} implies \cref{tfae.i} because, if \cref{tfae.ii}, then \cref{tfae.iii}, and hence \cref{tfae.i}.
+
+\subsubsection{For all\textellipsis}
+
+If the statement you are trying to prove is of the form ``$\forall X\in X,\ \mcal{P}(x)$'', you should almost certainly start your proof with something like ``Let $x\in X$ be arbitrary.''  You then prove $\mcal{P}(x)$ itself.  Pretty self-explanatory.
+
+\subsubsection{The contrapositive and proof by contradiction}
+
+\emph{Proof by contradiction} and \emph{proof by contraposition} are two closely related proof techniques.  In fact, in a sense to be explained below, they're the \emph{same} proof technique.  Before we get there, however, let us first explain what these two techniques refer to.
+
+First, we explain ``contradiction''.  Assume you want to prove the statement ``$A$ implies $B$.''.  Of course, you first assume that $A$ is true.  You now try to prove that $B$ is true.  Sometimes doing this directly can prove difficult, and in such cases, you can try what is referred to as \emph{proof by contradiction}\index{Proof by contradiction}:  Suppose that $\neg B$ is true.  Now, using $A$ \emph{and} $\neg B$, try to prove something you already know to be false.  As the \emph{only} assumption you made was $\neg B$, that assumption must have been incorrect, and therefore $\neg \neg B$ is true, and hence $B$ is true.\footnote{This logic implicitly uses what is called the \emph{Principle of the Excluded Middle}\index{Principle of the Excluded Middle}, which says that, if $A$ is a statement, then $A$ is true or $A$ is false.  Some mathematicians reject this as valid (or so Wikipedia claims).  They are crazy.  Such crazy mathematicians thus cannot use proofs by contradiction.  Pro-tip:  don't be crazy.}
+
+On the other hand, \emph{proof by contraposition}\index{Proof by contraposition} refers to nothing more than an application of \cref{prpA.2.4}.  That is, if you would like to prove that ``$A$ implies $B$'', you instead prove that ``$\neg B$ implies $\neg A$''.
+
+All that remains in this subsubsection is an explanation of the relationship between proof by contraposition and proof by contradiction.  As this relationship is not particularly important, feel free to skip to the next subsubsection.
+
+Superficially, proof by contradiction and proof by contraposition appear to be distinct, but related techniques.  On the other hand, they are equivalent in a sense to be described as follows.\footnote{The explanation of exactly in what sense these two proof techniques are equivalent is not particularly useful.  Certainly, I find it highly unlikely that what follows in this subsubsection will be of significant use in actual proof writing.  Thus, feel free to skip to the end of the following proof unless you are particularly curious.}  First of all, we have to be precise about what we mean by ``proof by contradiction'' and ``proof by contraposition''.  The precise statement of ``proof by contraposition'' is given in \cref{prpA.2.4}:  ``$A$ implies $B$'' is equivalent to ``$\neg B$ implies $\neg A$''.  On the other hand, the precise statement of ``proof by contradiction'' is given in the following statement.
+\begin{prp}{}{prpA.2.7}
+Let $A$ and $B$ be statements.  Then, $A\Rightarrow B$ is true iff $(A\text{ and }\neg B)\Rightarrow \text{False}$ is true.
+\begin{proof}
+$(\Rightarrow )$ Suppose that $A\Rightarrow B$ is true.   We would like to show that $(A\text{ and }\neg B)\Rightarrow \text{False}$.  So, suppose that $A$ and $\neg B$ are true.  As $A\Rightarrow B$ is true, it follows that $B$ is true.  But then, $B$ and $\neg B$ are true, and hence $\text{False}$.
+
+\blankline
+\noindent
+$(\Leftarrow )$ Suppose that $(A\text{ and }\neg B)\Rightarrow \text{False}$ is true.  Taking the contrapositive, it follows that $\neg A$ or $B$ is true.  We would like to show that $A\Rightarrow B$ is true.  Taking the contrapositive again, it suffices to show that $\neg B\Rightarrow \neg A$.  So, suppose $\neg B$.  We wish to prove $\neg A$.  However, as we know that $\neg A$ or $B$ is true, it in fact must be the case that $\neg A$ is true. 
+\end{proof}
+\end{prp}
+If you examine the proofs of \cref{prpA.2.4} and \cref{prpA.2.7},\footnote{The precise statements of ``proof by contraposition'' and ``proof by contradiction'' respectively.} you will find respectively that the former makes use of proof by contradiction and that the latter makes use of proof by contraposition.  It is in this sense that they are equivalent proof techniques.
+
+Okay, so up until now, this has all be pretty precise, but I would like to give an intuitive explanation as to the difference between the two.  Every proof by contraposition and be reduced to a proof by contradiction in the following way:  assume your hypotheses $A$, proceed by contradiction and assume $\neg B$, and proceed to prove $\neg A$:  contradiction.  The key is that in a proof by contraposition your contradiction is of the form $A$ and $\neg A$, whereas with proof by contradiction you obtain more general contradictions.  Thus, while superficially proof by contradiction might seem much stronger, it is in fact not actually so.  This is similar to how "the Principle of Strong Induction seems stronger than (just) the Principle of Induction, but in fact they are equivalent statements---see below.
+
+Finally, we end with a quick comment on usage.  First of all, it is very easy to rephrase a proof by contraposition as a proof by contradiction (as explained above), and so, if you like, you needn't worry about proof by contraposition at all.  Furthermore, proof by contradiction tends to be most useful when ``$B$'' in ``$A$ implies $B$.'' is somehow `already negated'.  For example, in the proof of \namerefpcref{CantorsCardinalityTheorem}, we wish to show that there is no surjection from $X$ to $2^X$.  Here, we could proceed by contradiction, and say ``Suppose there exists a surjection $f\colon X\rightarrow 2^X$.'', and then use this to produce a contradiction.\footnote{We don't quite phrase it like that, but this is essentially what we do.} 
+
+\subsubsection{Without loss of generality\textellipsis}
+
+You will often see the phrase ``Without loss of generality\textellipsis'' used in proofs.  It is easiest to demonstrate what this means, and how to use it yourself, with an example.
+
+The definition of integral (\cref{dfnA.1.69}) reads
+\begin{displayquote}
+A rg $\coord{X,+,0,\cdot}$ is \emph{integral} iff it has the property that, whenever $x\cdot y=0$, it follows that either $x=0$ or $y=0$.
+\end{displayquote}
+So, imagine you were doing a proof, and you know that $\coord{X,+,0,\cdot}$ was an integral rg,\footnote{You shouldn't need to know what a rg is to understand the explanation of ``Without loss of generality\textellipsis ''.} and that $x\cdot y=0$ for $x,y\in X$.  The definition of integral implies that $x=0$ or $y=0$.  \emph{At this point, you could say}, ``Without loss of generality, suppose that $x=0$.''.  You then continue the proof using the fact that $x=0$.
+
+Logically, you would first have to assume that $x=0$, finish the proof in that case, and then go back to the case where $y=0$, and finish the proof again.  However, if the proofs are essentially identical\footnote{Obviously, if the proof needed to do the case $x=0$ is significantly different from the proof needed to do the case $y=0$ (i.e.~is more than just a letter swap $x\leftrightarrow y$), you should not use this phrase and instead write up the proofs of both cases individually.} in these two cases, you are `allowed' to cut your work in half with the phrase ``Without loss of generality\textellipsis ''---there is no point in repeating the same logic with a different letter twice.
+
+\subsubsection{If XYZ we are done, so suppose that \texorpdfstring{$\neg$}{not}XYZ}
+
+As with ``Without loss of generality\textellipsis '', the use of this phrase is easiest to demonstrate with an example.
+
+The definition of prime (\cref{Prime}) reads
+\begin{displayquote}
+Let $p\in \Z$.  Then, $p$ is \emph{prime}\index{Prime} iff \textellipsis whenever $p\mid (mn)$, it follows that $p\mid m$ or $p\mid n$.\footnote{We have omitted part of the definition in the ``\textellipsis'' that is irrelevant for us at the moment.}
+\end{displayquote}
+So, let $p\in \Z$ and suppose that you want to prove that $p$ is prime.  To prove this condition, you would say ``Let $m,n\in \Z$ and suppose that $p\mid (mn)$.''  From here, you now want to prove that $p\mid m$ or $p\mid n$.  At this point, you can say ``If $p\mid m$ we are done, so suppose that $p\nmid m$.''.
+
+Hopefully, the logic of this is pretty self-explanatory.  If it helps, however, you can view this as essentially the same as proof by contradiction.  If we were to proceed by contradiction, instead we would say ``Suppose that $p\nmid m$ and $p\nmid n$.'', and from that deduce a contradiction.  Instead, in this case, we shall assume $p\nmid m$, and use that to prove that $p\mid m$.
+
+\subsubsection{Proving two sets are equal}
+
+A lot of proofs require you to show that two different sets are in fact one in the same.  The way to prove this is made precise with \cref{exrA.2.10}.  In the meantime, however, we can say the following.
+\begin{displayquote}
+Let $S$ and $T$ be sets and suppose that you want to prove that $S=T$.  You then need to prove \emph{two} things:  if $s\in S$, then $s\in T$; and if $t\in T$, then $t\in S$.
+\end{displayquote}
+This logic is very much identical to that used for proving ``iff'' statements.
+
+\subsubsection{Induction}
+
+\paragraph{Induction} Let $\mcal{P}_m$ be a statement for $m\in \N$.  The \term{Principle of Induction}\index{Principle of Induction} says that
+\begin{displayquote}
+	If (i)~$\mcal{P}_0$ is true and (ii)~$\mcal{P}_m\Rightarrow \mcal{P}_{m+1}$ is true for all $m\in \N$, then $\mcal{P}_m$ is true for all $m\in \N$.\footnote{(i)~is referred to as the \term{initial case} or the \term{initial step}, and (ii)~is referred to as the \term{inductive step}.}
+\end{displayquote}
+The logic is as follows.  Suppose we want to prove $\mcal{P}_3$.  Then, because $\mcal{P}_0$ and $\mcal{P}_0\Rightarrow \mcal{P}_1$, it follows that $\mcal{P}_1$.\footnote{Incidentally, the passage from ``$A$ and $A\Rightarrow B$'' to $B$ is called \emph{modus ponens}\index{Modus ponens}, which itself is short for ``modus pōnendō pōnēns'', which is Latin for (literally) ``the method to be affirmed, affirms''.}  Then, because $\mcal{P}_1$ and $\mcal{P}_1\Rightarrow \mcal{P}_2$, it follows that $\mcal{P}_2$.  Then, because $\mcal{P}_2$ and $\mcal{P}_2\Rightarrow \mcal{P}_3$, it follows that $\mcal{P}_3$.  Of course, nothing is special about $m=3$, and so this logic can be used to prove $\mcal{P}_m$ for all $m\in \N$.\footnote{Though it won't be able to prove $\mcal{P}_{\infty}$!  For example, a common fake proof that $\uppi$ is rational essentially proves by induction that, for all $m\in \Z ^+$, the decimal approximation of $\uppi$ with $m$ digits is rational, and `therefore' $\uppi$ is rational.  Sorry, but that's not how induction works.}
+
+You can also use similar logic to define things.  For example, you might define a bijection $f\colon \N \rightarrow \N \times \N$ by
+\begin{equation}
+\begin{split}
+f(0) & \coloneqq \coord{0,0} \\
+f(m+1) & \coloneqq \begin{cases}\coord{f(m)_x-1,f(m)_y+1} & \text{if }f(m)_x\geq 1 \\ \coord{f(m)_x+f(m)_y+1,0} & \text{otherwise.\footnotemark}\end{cases}
+\end{split}
+\end{equation}\footnotetext{The picture is that you go `down the diagonal', unless you `hit the edge', in which case you `hop to the top of the next diagonal'.}
+
+\paragraph{Strong Induction} Equally as valid, for the exact same reason, is what is sometimes referred to the \term{Principle of Strong Induction}\index{Principle of Strong Induction}, which says that
+\begin{displayquote}
+	If (i)~$\mcal{P}_0$ is true and (ii)~$(\forall 0\leq k\leq m,\ \mcal{P}_k)\Rightarrow \mcal{P}_{m+1}$ is true for all $m\in \N$, then $\mcal{P}_m$ is true for all $m\in \N$.
+\end{displayquote}
+The key difference between this and `regular' induction is that, in the induction step, you don't just assume $\mcal{P}_m$, but instead, you assume $\mcal{P}_0$, and $\mcal{P}_1$, and $\mcal{P}_2$, and \textellipsis $\mcal{P}_m$.  Superficially, this does indeed seem stronger,\footnote{Because during the inductive step, you don't get to assume just the single statement $\mcal{P}_m$, but rather the $m+1$ statements $\mcal{P}_0$, and $\mcal{P}_1$, and $\mcal{P}_2$, and \textellipsis $\mcal{P}_m$.} but in fact `regular' induction and strong induction are equivalent, though sometimes it can be quite convenient to be make use of all of $\mcal{P}_0,\ldots ,\mcal{P}_m$ instead of just $\mcal{P}_m$.
+
+For example, suppose that you want to prove that every positive integer greater-than-or-equal to $2$ is divisible by some prime.  In this case, the initial step is simply to prove that ``$2$ is divisible by some prime.''.  This is of course trivial:  $2$ is divisible by $2$, which is prime.  Here's where things get a bit different, however:  for the inductive step, assume that $2,3,4,\ldots ,m$ are all divisible by some prime.  Using this, we want to show that $m+1$ is divisible by some prime.  Well, either $m+1$ is prime itself, in which case $m+1$ is divisible by $m+1$, or it is not prime, in which case $m+1$ is divisible by some integer $k$ with $2\leq k\leq m$.  By the induction hypothesis, $k$ is divisible by some prime, and hence $m+1$ is in turn divisible by some prime.
+
+Note that we will not usually make a distinction between `regular' induction and strong induction in these notes.  When using either method, we shall simply say something like ``We proceed by induction\textellipsis ''.
+
+\paragraph{Well-founded induction} The most powerful form of induction which subsumes all other `types' of induction is known as \emph{well-founded induction}.  As it is less elementary than what we have discussed thus far, we leave a detailed discussion of this until \cref{sbsWellFoundedInduction}.  We can, however, at least say a little for the time being..
+
+The basic idea is to replace the set with which you index your statements (previously $\N$) with a more general type of set $X$.  It turns out that the only structure on $\N$ relevant to induction is the ordering, and so you don't just replace $\N$ with a set $X$, you replace $\coord{\N ,\leq}$ with a pair $\coord{X,\preceq}$, where $X$ is a set and $\preceq$ is a \emph{relation} (\cref{Relation}) on $X$.  It turns out that (\cref{WellFoundedInduction}) the only property of $\leq$ on $\N$ that was necessary for induction to work is what is called \emph{well-foundedness} (\cref{MaximalAndMinimal}), which states that every nonempty subset has a minimal element (\cref{MaximalAndMinimal}).
+
+The \term{Principle of Well-Founded Induction}\index{Principle of Well-Founded Induction} then says that
+\begin{displayquote}
+	If for every $x_0\in X$, $(\forall x<x_0,\mcal{P}_x)\Rightarrow \mcal{P}_{x_0}$, then $\mcal{P}_x$ is true for all $x\in X$.
+\end{displayquote}
+
+If you ever want to perform an induction-like argument, but it's not working because you have more than countably-infinite many statements, try well-founded induction.
+
+Finally, we mention that there is a method of proof called \emph{transfinite induction}\index{Transfinite induction}.  It is technically a special case of well-founded induction, but much more common.\footnote{For some reason, not too many people seem to know of well-founded induction.}  Roughly speaking, transfinite induction is to well-ordered as well-founded induction is to well-founded.  We refrain from discussing it because (i) we don't need to---well-founded induction is stronger and (ii) the usual way it's stated requires the development of what are called \emph{ordinals}\index{Ordinal}), which would take us quite astray.  Still, you should be aware of it so you can go and learn it if you ever feel this will be useful to you (if you become a mathematician, it almost certainly will be at some point).
+
+\subsection{Sets}\label{sbsSets}
+
+The idea of a set is something that contains other things.
+\begin{textequation}
+If $X$ is a \emph{set} which contains an \emph{element} $x$, then we write $x\in X$\index[notation]{$x\in X$}.\footnotemark Two sets are equal iff they contain the same elements.
+\end{textequation}\footnotetext{Sometimes we will also write $X\ni x$\index[notation]{$X\ni x$} if it happens to be more convenient to write it in that order (for example, in $\R \ni x\mapsto x^2$).}
+\begin{dfn}{Empty-set}{}
+The \emph{empty-set}\index{Empty-set}, $\emptyset$\index[notation]{$\emptyset$}, is the set $\emptyset \coloneqq \{ \}$.
+\begin{rmk}
+That is, $\emptyset$ is the set which contains no elements.
+\end{rmk}
+\end{dfn}
+\begin{rmk}
+If ever you see an equals sign with a colon in front of it (e.g.~in ``$\emptyset \coloneqq \{ \}$''), it means that the equality is true \emph{by definition}.  This is used in definitions themselves, but also outside of definitions to serve as a reminder as to why the equality holds.\index[notation]{$\coloneqq $}
+\end{rmk}
+\begin{dfn}{Subset}{}
+Let $X$ and $Y$ be sets.  Then, $X$ is a \emph{subset}\index{Subset} of $Y$, written $X\subseteq Y$\index[notation]{$X\subseteq Y$}, iff whenever $x\in X$ it is also the case that $x\in Y$.
+\begin{rmk}
+You should note that many authors use the notation ``$X\subset Y$'' simply to indicate that $X$ is a (\emph{not-necessarily-proper}) subset of $Y$.
+\end{rmk}
+\end{dfn}
+\begin{rmk}
+Generally speaking we put slashes through symbols to indicate that the statement that would have been conveyed without the slash is false.  For example, $x\notin X$ means that $x$ is not an element of $X$, the statement that $X\not \subseteq Y$ means that $X$ is not a subset of $Y$, etc..
+\end{rmk}
+\begin{exr}{}{exrA.2.10}
+Let $X$ and $Y$ be sets.  Show that $X=Y$ iff $X\subseteq Y$ and $Y\subseteq X$.
+\end{exr}
+\begin{dfn}{Proper subset}{ProperSubset}
+Let $X$ be a subset of $Y$.  Then, $X$ is a \emph{proper subset}\index{Proper subset} of $Y$, written $X\subset Y$\index[notation]{$X\subset Y$}, iff there is some $y\in Y$ that is not also in $X$.
+\end{dfn}
+\begin{rmk}
+Let $X$ be a set, let $\mcal{P}$ be a property that an element in $X$ may or may not satisfy, and let us write $\mcal{P}(x)$ iff $x$ satisfies the property $\mcal{P}$.  Then, the notation
+\begin{equation*}
+\left\{ x\in X:\mcal{P}(x)\right\}
+\end{equation*}
+is read ``The set of all elements in $X$ such that $\mcal{P}(x)$.'' and represents a set whose elements are precisely those elements of $X$ for which $\mcal{P}$ is true.  Sometimes this is also written as
+\begin{equation*}
+\left\{ x\in X|\mcal{P}(x)\right\} ,
+\end{equation*}
+but my personal opinion is that this can look ugly (or even slightly confusing) if, for example, $\mcal{P}(x)$ contains an absolute value in it, e.g.
+\begin{equation*}
+\left\{ x\in \R |\abs{x}<1\right\} .
+\end{equation*}
+\end{rmk}
+\begin{dfn}{Complement}{}
+Let $X$ and $Y$ be sets.  Then, the \emph{complement}\index{Complement} of $Y$ in $X$, $X\setminus Y$\index[notation]{$X\setminus Y$}, is
+\begin{equation}
+X\setminus Y\coloneqq \{ x\in X:x\notin Y\} .
+\end{equation}
+If $X$ is clear from context, sometimes we write $Y^{\comp}\coloneqq X\setminus Y$\index[notation]{$Y^{\comp}$}.
+\end{dfn}
+\begin{dfn}{Union and intersection}{}
+Let $A,B$ be subsets of a set $X$.  Then, the \emph{union}\index{Union} of $A$ and $B$, $A\cup B$\index[notation]{$A\cup B$}, is
+\begin{equation}
+A\cup B\coloneqq \left\{ x\in X:x\in A\text{ or }x\in B\right\} .
+\end{equation}
+The \emph{intersection}\index{Intersection} of $A$ and $B$, $A\cap B$\index[notation]{$A\cap B$}, is
+\begin{equation}
+A\cap B\coloneqq \left\{ x\in X:x\in A\text{ and }x\in B\right\} .
+\end{equation}
+\begin{rmk}
+More generally, if $\collection{S}$ is a collection\footnote{Technically, the term \emph{collection}\index{Collection} is just synonymous with the term ``set'', though it tends to be used in cases when the elements of the set itself are to be thought of as other sets (e.g.~here where the elements of $\collection{S}$ are subsets of $X$).} of subsets of $X$, then the \emph{union} and \emph{intersection} of all sets in $\collection{S}$ are defined by
+\begin{equation}
+\bigcup _{S\in \collection{S}}S\coloneqq \left\{ x\in X:\exists S\in \collection{S}\text{ such that }x\in S\text{.}\right\}
+\end{equation}
+and
+\begin{equation}
+\bigcap _{S\in \collection{S}}S\coloneqq \left\{ x\in X:\forall S\in \collection{S},\ x\in S\text{.}\right\} .
+\end{equation}
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Disjoint and intersecting}{}
+Let $A,B$ be subsets of a set $X$.  Then, $A$ and $B$ are \emph{disjoint}\index{Disjoint} iff $A\cap B=\emptyset$.  $A$ and $B$ \emph{intersect}\index{Intersect} (or \emph{meet}\index{Meet}) iff $A\cap B\neq \emptyset$.
+\end{dfn}
+\begin{exr}{De Morgan's Laws}{DeMorgansLaws}\index{De Morgan's Laws}
+Let $\collection{S}$ be a collection of subsets of a set $X$.  Show that
+\begin{equation}
+\left( \bigcup _{S\in \collection{S}}S\right) ^{\comp}=\bigcap _{S\in \collection{S}}S^{\comp}\text{ and }\left( \bigcap _{S\in \collection{S}}S\right) ^{\comp}=\bigcup _{S\in \collection{S}}S^{\comp}.
+\end{equation}
+\end{exr}
+\begin{exr}{}{}
+Let $X$ be a set and let $S,T\subseteq X$.  Show that $S\setminus T=S\cap T^{\comp}$.
+\end{exr}
+
+The union and intersection of two sets are ways of constructing new sets, but one important thing to keep in mind is that, a priori, the two sets $A$ and $B$ are assumed to be contained within another set $X$.  But how do we get entirely new sets without already `living' inside another?  There are several ways to do this.
+\begin{dfn}{Cartesian-product}{CartesianProduct}
+Let $X$ and $Y$ be sets.  Then, the \emph{Cartesian-product}\index{Cartesian-product} of $X$ and $Y$, $X\times Y$\index[notation]{$X\times Y$}, is
+\begin{equation}
+X\times Y\coloneqq \left\{ \coord{x,y}:x\in X,y\in Y\right\} .
+\end{equation}
+\begin{rmk}
+If you really insist upon everything being defined in terms of sets we can take
+\begin{equation}
+\coord{x,y}\index[notation]{$\coord{x,y}$}\coloneqq \left\{ x,\{ x,y\} \right\} .
+\end{equation}
+The reason we use the notation $\coord{x,y}$ as opposed to the probably more common notation $(x,y)$ is to avoid confusion with the notation for open intervals.
+\end{rmk}
+\begin{rmk}
+If $Y=X$, then it is common to write $X^2\coloneqq X\times X$, and similarly for products of more than two sets (e.g.~$X^3\coloneqq X\times X\times X$).  Elements in finite products are called \emph{tuples}\index{Tuple} or sometimes \emph{lists}\index{List}.  For example, the elements of $X^2$ are $2$-tuples (or just \emph{ordered pairs}\index{Ordered pair}), the elements in $X^3$ are $3$-tuples, etc..\footnote{If you really want to be pedantic about things, you might complain ``OMG what is this crazy new symbol `$3$'!?  We haven't defined the naturals yet!''.  In this case, you should merely interpret $X^3$ as short-hand for $X\times X\times X$.  Similar comments apply throughout this appendix.}
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Disjoint-union}{DisjointUnion}
+Let $X$ and $Y$ be sets.  Then, the \emph{disjoint-union}\index{Disjoint-union} of $X$ and $Y$, $X\sqcup Y$\index[notation]{$X\sqcup Y$}, is
+\begin{equation}
+X\sqcup  Y\coloneqq \left\{ \coord{a,m}:m\in \{ 0,1\} ,\ a\in X\text{ if }m=0,\ a\in Y\text{ if }m=1\right\} .
+\end{equation}
+\begin{rmk}
+Intuitively, this is supposed to be a copy of $X$ together with a copy of $Y$.  $a$ can come from either set, and the $0$ or $1$ tells us which set $a$ is supposed to come from.  Thus, we think of $X\subseteq X\sqcup Y$ as $X=\left\{ \coord{a,0}:a\in X\right\}$ and $Y\subseteq X\sqcup Y$ as $Y\left\{ \coord{a,1}:a\in Y\right\}$.
+\end{rmk}
+\end{dfn}
+The key difference between the union and disjoint-union is that, in the case of the union of $A$ and $B$, an element that $x$ is both in $A$ and in $B$ is a \emph{single} element in $A\cup B$, whereas in the disjoint-union there will be two copies of it:  one in $A$ and one in $B$.  Hopefully the next example will help clarify this.
+\begin{exm}{Union vs.~disjoint-union}{}
+Define $A\coloneqq \{ a,b,c\}$ and $B\coloneqq \{ c,d,e,f\}$.  Then, $A\cup B=\{ a,b,c,d,e,f\}$.  On the other hand, $A\sqcup B=\{ a,b,c_A,c_B,d,e,f\}$, where $A\sqcup B\supseteq A=\{ a,b,c_A\}$ and $A\sqcup B\supseteq B=\{ c_B,d,e,f\}$.
+\end{exm}
+\begin{dfn}{Power set}{}
+Let $X$ be a set.  Then, the \emph{power set}\index{Power set} of $X$, $2^X$\index[notation]{$2^X$}, is the set of all subsets of $X$,
+\begin{equation}
+2^X\coloneqq \left\{ A:A\subseteq X\right\} .
+\end{equation}
+\begin{rmk}
+We will discuss the motivation for this notation in the next subsection (see \cref{exrA.1.26x}).
+\end{rmk}
+\end{dfn}
+
+\section{Relations, functions, and orders}
+
+Having defined Cartesian products, we can now make the following definition.
+\begin{dfn}{Relation}{}
+A \emph{relation}\index{Relation} between two sets $X$ and $Y$ is a subset $R$ of $X\times Y$.
+\begin{rmk}
+For a given relation $R$, we write $x\sim _Ry$\index[notation]{$x\sim _Ry$}, or just $x\sim y$\index[notation]{$x\sim y$} if $R$ is clear from context, iff $\coord{x,y}\in R$.  Often we will simply refer to the relation by the symbol $\sim$ instead of $R$.
+\end{rmk}
+\begin{rmk}
+It is important to be able to understand how to translate between the two different notations for writing a relation.  In one direction, if you know $R\subseteq X\times Y$, then $x\sim y$ iff $\coord{x,y}\in R$, as already mentioned.  In the other direction, if you know $\sim$, then $R=\left\{ \coord{x,y}\in X\times Y:x\sim y\right\}$.
+\end{rmk}
+\begin{rmk}
+If $X=Y$, we will say that $\sim$ is a relation \emph{on} $X$.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Composition}{Composition}
+Let $X$, $Y$, and $Z$ be sets, and let $R$ be a relation on $X$ and $Y$, and let $S$ be a relation on $Y$ and $Z$.  Then, the \emph{composition}\index{Composition}, $S\circ R$\index[notation]{$S\circ R$}, of $R$ and $S$ is the relation on $X$ and $Z$ defined by
+\begin{equation}
+\begin{multlined}
+S\circ R\coloneqq \left\{ \coord{x,z}\in X\times Z:\right. \\ \left. \exists y\in Y\text{ such that }\coord{x,y}\in R\text{ and }\coord{y,z}\in S\text{.}\right\} .
+\end{multlined}
+\end{equation}
+\begin{rmk}
+If $R$ is a relation on $X$ (so that $R\circ R$ makes sense), for $k\in \N$, we shall abbreviate $R^k\coloneqq \underbrace{R\circ \cdots \circ R}_k$\index[notation]{$R^k$}, with $R^0\coloneqq \{ \coord{x,x}\in X\times X:x\in X\}$.\footnote{$R^0$ is of course the identity function on $X$---see \cref{IdentityFunction}.}
+\end{rmk}
+\begin{rmk}
+You will see in the next definition that a function is in fact just a very special type of relation, in which case, this composition is exactly the composition that you (hopefully) know and love.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{exrA.3.4}
+Let $R$, $S$, and $T$ be relations between $X$ and $Y$, $Y$ and $Z$, and $Z$ and $W$ respectively.  Show that
+\begin{equation}
+(T\circ S)\circ R=T\circ (S\circ R).
+\end{equation}
+\end{exr}
+While the appropriate generality in which to make the next definitions of restriction and corestriction is for arbitrary relations, the intuition you should use to understand the concepts will almost certainly come from your understanding of functions (and we will have little to no need to make use of these concepts in this amount of generality), so feel free to first read the definition of a function (\cref{Function}) and related concepts and then come back to this if at first this seems confusing.
+\begin{dfn}{Restriction and corestriction}{RestrictionAndCorestriction}
+Let $f$ be a relation between two sets $X$ and $Y$, let $S\subseteq X$, and let $T\subseteq Y$.  Then, the \emph{restriction}\index{Restriction} of $f$ to $S$, $\restr{f}{S}$\index[notation]{$\restr{f}{S}$}, is a relation between $S$ and $Y$ defined by
+\begin{equation}
+\restr{f}{S}\coloneqq f\circ \left\{ \coord{s,x}\in S\times X:s=x\right\} .\footnote{Here, $\left\{ \coord{s,x}\in S\times X:s=x\right\}$ is of course to be interpreted as a relation between $S$ and $X$.}
+\end{equation}
+The \emph{corestriction}\index{Corestriction} of $f$ to $T$, $\corestr{f}{T}$\index[notation]{$\corestr{f}{T}$}, is a relation between $X$ and $T$ defined by
+\begin{equation}
+\corestr{f}{T}\coloneqq \left\{ \coord{y,t}\in Y\times T:y=t\right\} \circ f.\footnote{Similarly as before, $\left\{ \coord{y,t}\in Y\times T:y=t\right\}$ is to be interpreted as a relation between $Y$ and $T$.}
+\end{equation}
+If $g=\restr{f}{S}$, then we will also say that $f$ \emph{extends}\index{Extend} $g$.  If $g=\corestr{f}{T}$, then we will also say that $f$ \emph{coextends}\index{Coextend} $g$.
+\begin{rmk}
+As mentioned before, to understand this, it probably helps to think of what these concepts mean in the case that the relation is in fact a function (note that a function is just a special type of relation---see \cref{Function}).  For example, if we have the function $f\colon \R \rightarrow \R$ defined by $f(x)\coloneqq x^2$, then we can obtain a new function $\restr{f}{(-1,1)}\colon (-1,1)\rightarrow \R$ by restricting to $(-1,1)\subseteq \R$, and that new function is still given by the same `rule', $f(x)\coloneqq x^2$---the only thing that has changed is the domain.\footnote{I realize we are making use of notation we have not yet technically.  This is not a problem from a mathematical perspective as I am only trying to explain.  From a pedagogical perspective, hopefully I'm not making use of anything unfamiliar to you---if so, flip ahead.}
+
+Corestriction, on the other hand, is when we change the codomain of the relation.  For example, we can corestrict this same function to $\R _0^+$ to obtain the function $\corestr{f}{\R _0^+}\colon \R \rightarrow \R _0^+$, once again, still with the `rule' $f(x)\coloneqq x^2$.\footnote{The term ``corestriction'' is incredibly uncommon, as one often simply changes the codomain of the function without explicitly mentioning so.  This is technically sloppy, but almost never actually causes problems.  Still, it is important to realize that functions with different codomains are always different functions.}
+\end{rmk}
+\begin{rmk}
+These concepts will almost always arise in the case where the relation $f$ is in fact a function.  One reason we state the definitions in this more general case, besides just to be more general, is that \emph{the corestriction of a function is not always going to be a new function}.  For example, if we again define $f\colon \R \rightarrow \R$ by $f(x)\coloneqq x^2$, $\corestr{f}{(-1,1)}$ is a relation that is no longer a function---the reason is that, for example, $\coord{2,y}\notin \corestr{f}{(-1,1)}$ for any $y\in (-1,1)$.  This is easy, but quite subtle, and not super important, so don't worry if this doesn't make sense to you at the moment.  In fact, the corestriction of a function to $T\subseteq Y$ is another function iff $T$ is contained in the image of $f$.
+\end{rmk}
+\end{dfn}
+
+There are several different important types of relations.  Perhaps the most important is the notion of a function.
+\begin{dfn}{Function}{Function}
+A \emph{function}\index{Function} from a set $X$ to a set $Y$ is a relation $\sim _f$ that has the property that for each $x\in X$ there is exactly one $y\in Y$ such that $x\sim _fy$.  For a given function $\sim _f$, we denote by $f(x)$\index[notation]{$f(x)$} that unique element of $Y$ such that $x\sim _ff(x)$.  $X$ is the \emph{domain}\index{Domain (of a function)} of $f$ and $Y$ is the \emph{codomain}\index{Codomain (of a function)} of $f$.  The notation $f\colon X\rightarrow Y$\index[notation]{$f\colon X\rightarrow Y$} means ``$f$ is a function from $X$ to $Y$.''.  The set of all functions from $X$ to $Y$ is denoted $Y^X$\index[notation]{$Y^X$}.
+\begin{rmk}
+The motivation for this notation is that, if $X$ and $Y$ are finite sets, then the cardinality (see \crefnameref{chp1}) of the set of all functions from $X$ to $Y$ is $\abs{Y}^{\abs{X}}$.
+\end{rmk}
+\begin{rmk}
+The arrow ``$\mapsto$''\index[notation]{$\mapsto$} can be used to define a function with necessarily giving it a name.  For example, one can write
+\begin{equation}
+\R \ni x\mapsto 3x^2-5\in \R
+\end{equation}
+as notation for the function $f\colon \R \rightarrow \R$ defined by $f(x)\ceqq 3x^2-5$.  Of course, this is convenient if it is unnecessary to give a specific name.
+\end{rmk}
+\begin{rmk}
+The ``$x$'' in ``$f(x)$'' is sometimes referred to as the \emph{argument}\index{Argument} of the function.
+\end{rmk}
+\end{dfn}
+\begin{ntn}{Placeholders for arguments}{}
+Let $f$ be a function.  A lot of the time, if we want to refer to $f$, we just say, well, ``$f$''.  Besides this, however, we also frequently write ``$f(x)$''.  Strictly speaking, this is incorrect---the function itself is $x\mapsto f(x)$, whereas $f(x)$ is the value of the function $f$ at $x$ in the domain.  In practice, however, it is very common to write ``$f(x)$'' to denote the function itself, and not just a particular value.
+	
+We may also use the symbols ``$\blankdot$'' or ``$\blank$'' to indicate the argument of a function.  For example, we might denote a function using the notation $\braket{\blankdot ,\blankdot}\colon V\times V\rightarrow \K$\index[notation]{$f(\blankdot )$} or $\braket{\blank ,\blank}\colon V\times V\rightarrow \K$\index[notation]{$f(\blank )$}.  This notation means that ``$\braket{\blankdot ,\blankdot}$'' is the name of a function, and furthermore, we denote its value at the element $\coord{v_1,v_2}\in V\times V$ as ``$\braket{v_1,v_2}$''.  Thus, the dots tell you where to `plug in' the variables.  Similarly for ``$\blank$''.
+\end{ntn}
+\begin{exm}{Identity function}{IdentityFunction}
+For every set $X$, there is a function, $\id _X:X\rightarrow X$\index[notation]{$\id _X$}, the \emph{identity function}\index{Identity function}, defined by
+\begin{equation}
+\id _X(x)\coloneqq x.
+\end{equation}
+\end{exm}
+\begin{dfn}{Inverse function}{}
+Let $f\colon X\rightarrow Y$ and $g\colon Y\rightarrow X$ be functions.  Then, $g$ is a \emph{left-inverse}\index{Left-inverse (of a function)} of $f$ iff $g\circ f=\id _X$; $g$ is a \emph{right-inverse}\index{Right-inverse (of a function)} of $f$ iff $f\circ g=\id _Y$; $g$ is a \emph{two-sided-inverse}\index{Two-sided-inverse (of a function)}, or just \emph{inverse}\index{Inverse (of a function)}, iff $g$ is both a left- and right-inverse of $f$.
+\begin{exr}[breakable=false]{}{}
+Let $g$ and $h$ be two (two-sided)-inverses of $f$.  Show that $g=h$.
+\end{exr}
+Because of the uniqueness of two-sided-inverses, we may write $f^{-1}$\index[notation]{$f^{-1}$} for the unique two-sided-inverse of $f$.
+\end{dfn}
+\begin{exr}{}{}
+Provide examples to show that left-inverses and right-inverses need not be unique.
+\end{exr}
+\begin{exr}{}{exrA.1.23}
+Let $X$ be a nonempty set.
+\begin{enumerate}
+\item \label{enmA.1.23.i}Explain why there is \emph{no} function $f\colon X\rightarrow \emptyset$.
+\item \label{enmA.1.23.ii}Explain why there is \emph{exactly one} function $f\colon \emptyset \rightarrow X$.
+\item \label{enmA.1.23.iii}How many functions are there $f\colon \emptyset \rightarrow \emptyset$?
+\end{enumerate}
+\end{exr}
+\begin{dfn}{Image}{}
+Let $f\colon X\rightarrow Y$ be a function and let $S\subseteq X$.  Then, the \emph{image}\index{Image} of $S$ under $f$, $f(S)$, is
+\begin{equation}
+f(S)\coloneqq \left\{ f(x):x\in S\right\} .
+\end{equation}
+The \emph{range}\index{Range} of $f$, $f(X)$, is the image of $X$ under $f$.
+\begin{rmk}
+We may also write $\Ima (f)\coloneqq f(X)$\index[notation]{$\Ima (f)$} for the range of $f$.  If we simply say ``image of $f$'', you should interpret this to mean ``image of $X$ under $f$'', i.e., the range $f(X)$.
+\end{rmk}
+\begin{rmk}
+Note the difference between range and codomain.  For example, consider the function $f\colon \R \rightarrow \R$ defined by $f(x)\coloneqq x^2$.  Then, the codomain is $\R$ but the range is just $[0,\infty )$.  In fact the range and codomain are the same precisely when $f$ is surjective (see \cref{exrA.1.32}.\cref{exrA.1.32.ii}).
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Preimage}{}
+Let $f\colon X\rightarrow Y$ be a function and let $T\subseteq Y$.  Then, the \emph{preimage} of $T$ under $f$, $f^{-1}(T)$, is
+\begin{equation}
+f^{-1}(T)\coloneqq \left\{ x\in X:f(x)\in T\right\} .
+\end{equation}
+\end{dfn}
+\begin{exr}{}{}
+Let $f\colon X\rightarrow Y$ be a function and let $T\subseteq Y$.  Show that $f^{-1}(T^{\comp})=f^{-1}(T)^{\comp}$.  For $S\subseteq X$, find examples to show that we need not have either $f(S^{\comp})\subseteq f(S)^{\comp}$ nor $f(S)^{\comp}\subseteq f(S^{\comp})$.
+\end{exr}
+\begin{dfn}{Injectivity, surjectivity, and bijectivity}{}
+Let $f\colon X\rightarrow Y$ be a function.  Then,
+\begin{enumerate}
+\item (Injective) $f$ is \emph{injective}\index{Injective} iff for every $y\in Y$ there is at most one $x\in X$ such that $f(x)=y$.
+\item (Surjective) $f$ is \emph{surjective}\index{Surjective} iff for every $y\in Y$ there is at least one $x\in X$ such that $f(x)=y$.
+\item (Bijective) $f$ is \emph{bijective}\index{Bijective} iff for every $y\in Y$ there is exactly one $x\in X$ such that $f(x)=y$.
+\end{enumerate}
+\begin{rmk}
+It follows immediately from the definitions that a function $f\colon X\rightarrow Y$ is bijective iff it is both injective and surjective.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{exrA.1.32}
+Let $f\colon X\rightarrow Y$ be a function.
+\begin{enumerate}
+\item \label{exrA.1.32.i}Show that $f$ is injective iff whenever $f(x_1)=f(x_2)$ it follows that $x_1=x_2$.
+\item \label{exrA.1.32.ii}Show that $f$ is surjective iff $f(X)=Y$.
+\end{enumerate}
+\end{exr}
+\begin{exm}{The domain and codomain matter}{exmA.1.45}
+Consider the `function' $f(x)\coloneqq x^2$.  Is this `function' injective or surjective?  Defining functions like this may have been kosher back when you were doing mathematics that wasn't actually mathematics, but no longer.  The question does not make sense because you have not specified the domain or codomain.  For example, $f\colon \R \rightarrow \R$ is neither injective nor surjective, $f\colon \R _0^+\rightarrow \R$ is injective but not surjective, $f\colon \R \rightarrow \R _0^+$ is surjective but not injective, and $f\colon \R _0^+\rightarrow \R _0^+$ is both injective and surjective.  Hopefully this example serves to illustrate:  functions are not (just) `rules'---if you have not specified the domain and codomain, then \emph{you have not specified the function}.
+\end{exm}
+\begin{exr}{}{}
+Let $f\colon X\rightarrow Y$ be a function between nonempty sets.  Show that
+\begin{enumerate}\label{exrA.1.9}
+\item \label{enmA.1.9.i}$f$ is injective iff it has a left inverse;
+\item \label{enmA.1.9.ii}$f$ is surjective iff it has a right inverse; and
+\item \label{enmA.1.9.iii}$f$ is bijective iff it has a (two-sided) inverse.
+\end{enumerate}
+\begin{rmk}
+By \cref{exrA.1.23}.\cref{enmA.1.23.ii}, there \emph{is} exactly one function from $\emptyset$ to $\{ \emptyset \}$.  This function is definitely injective as every element in the codomain has \emph{at most one} preimage.  On the other hand, there is \emph{no} function from $\{ \emptyset \}$ to $\emptyset$ (by \cref{exrA.1.23}.\cref{enmA.1.23.i}), and so certainly no left-inverse to the function from $\emptyset$ to $\{ \emptyset \}$.  This is why we require the sets to be nonempty.
+\end{rmk}
+\end{exr}
+\begin{exr}{}{exrA.1.30}
+Let $f\colon X\rightarrow Y$ be a function, and let $\collection{S}$ and $\collection{T}$ be a collection of subsets of $X$ and $Y$ respectively.  Show that the following statements are true.
+\begin{enumerate}
+\item \label{enmA.1.30.i}$f^{-1}\left( \bigcup _{T\in \collection{T}}T\right) =\bigcup _{T\in \collection{T}}f^{-1}(T)$.
+\item \label{enmA.1.30.ii}$f^{-1}\left( \bigcap _{T\in \collection{T}}T\right) =\bigcap _{T\in \collection{T}}f^{-1}(T)$.
+\item \label{enmA.1.30.iii}$f\left( \bigcup _{S\in \collection{S}}S\right) =\bigcup _{S\in \collection{S}}f(S)$
+\item \label{enmA.1.30.iv}$f\left( \bigcap _{S\in \collection{S}}S\right) \subseteq \bigcap _{S\in \collection{S}}f(S)$.
+\end{enumerate}
+Find an example to show that we need not have equality in \cref{enmA.1.30.iv}.  On the other hand, show that \cref{enmA.1.30.iv} is true if $f$ is injective.
+\end{exr}
+\begin{exr}{}{exrA.1.10}
+Show that
+\begin{enumerate}
+\item the composition of two injections is an injection;
+\item the composition of two surjections is a surjection; and
+\item the composition of two bijections is a bijection.
+\end{enumerate}
+\end{exr}
+\begin{exr}{}{exrA.1.47}
+Let $f\colon X\rightarrow Y$ be a function, let $S\subseteq X$, and let $T\subseteq Y$.  Show that the following statements are true.
+\begin{enumerate}
+\item \label{enmA.1.47.i}$f\left( f^{-1}(T)\right) \subseteq T$, with equality for all $T$ iff $f$ is surjective.
+\item \label{enmA.1.47.ii}$f^{-1}\left( f(S)\right) \supseteq S$, with equality for all $S$ iff $f$ is injective.
+\end{enumerate}
+Find examples to show that we need not have equality in general.
+\begin{rmk}
+Maybe this is a bit silly, but I remember which one is which as follows.  First of all, write these both using $\subseteq$, not $\supseteq$, that is, $S\subseteq f^{-1}(f(S))$ and $f(f^{-1}(S))\subseteq S$.  Then, the ``$-1$'' is always closest to the symbol that represents being `smaller' (that is ``$\subseteq$'').  It is easy to remember which conditions imply equality if you remember that surjective functions have right-inverses and injective functions have left-inverse.\footnote{Modulo the stupid case when the domain is the empty-set---see the remark in \cref{exrA.1.9}.}
+\end{rmk}
+\end{exr}
+\begin{exr}{}{exrA.1.27}
+Let $X$ and $Y$ be sets, and let $x_0\in X$ and $y_0\in Y$.  If there is some bijection from $X$ to $Y$, show that in fact there is a bijection from $X$ to $Y$ which sends $x_0$ to $y_0$.
+\end{exr}
+\begin{exr}{}{exrA.1.26x}
+Let $X$ be a set.  Construct a bijection from $2^X$, the power set of $X$, to $\{ 0,1\}^X$, the set of functions from $X$ into $\{ 0,1\}$.
+\begin{rmk}
+This is the motivation for the notation $2^X$ to denote the power set.
+\end{rmk}
+\end{exr}
+
+\subsection{Arbitrary disjoint-unions and products}
+
+\begin{dfn}{Disjoint-union (of a collection)}{DisjointUnionCollection}
+Let $\collection{X}$ be an indexed collection\footnote{By \emph{indexed collection}\index{Indexed collection} we mean a set in which elements are allowed to be repeated.  So, for example, $\collection{X}$ is allowed to contain two copies of $\N$.  The reason for the term ``\emph{indexed} collection'' is that indices are often used to distinguish between the two identical copies, e.g.,~$\collection{Y}=\{ \N _1,\N _2\}$---as sets are not allowed to `repeat' elements, we add the indices so that, strictly speaking, $\N _1\neq \N _2$ as elements of $\collection{X}$, even though they represent the same set.  (If this is confusing, don't think about it too hard---it's just a set where elements are allowed to be repeated.)} of sets.  Then, the \emph{disjoint-union}\index{Disjoint-union} over all $X\in \collection{X}$, $\coprod _{X\in \collection{X}}X$\index[notation]{$\coprod _{X\in \collection{X}}X$}, is
+\begin{equation}
+\coprod _{X\in \collection{X}}X\coloneqq \{ \coord{x,X}:X\in \collection{X}\, x\in X\} .
+\end{equation}
+\begin{rmk}
+The intuition and way to think of notation is just the same as it was in the simpler case of the disjoint-union of two sets (\cref{DisjointUnion}).
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Restrictions (of functions defined on a dis\-joint-union)}{}
+Let $\collection{X}$ be an indexed collection of sets, let $Y$ be a set, and let $f\colon \coprod _{X\in \collection{X}}X\rightarrow Y$ be a function.  Then, the \emph{restriction of $f$ to $X$}\index{Restriction (disjoint-union)}, $\restr{f}{X}:X\rightarrow Y$\index[notation]{$\restr{f}{X}$}, is defined by
+\begin{equation}
+\restr{f}{X}(x)\coloneqq f(\coord{x,X}).
+\end{equation}
+In particular, the \emph{inclusion}\index{Inclusion (disjoint-union)} is defined to be
+\begin{equation}
+\iota _X\coloneqq \restr{[\id _{\coprod _{X\in \collection{X}}}]}{X},
+\end{equation}
+that is, the restriction of the identity $\id _{\coprod _{X\in \collection{X}}X}:\coprod _{X\in \collection{X}}X\rightarrow \coprod _{X\in \collection{X}}X$.
+\begin{rmk}
+While from a set-theoretic perspective, this is just a special case of restriction (see \cref{RestrictionAndCorestriction}), we state it separately because we wish to draw an analogy with projections (see \cref{Components}), a concept which is not a special case of something we have seen before. 
+\end{rmk}
+\end{dfn}
+
+\begin{dfn}{Cartesian-product (of a collection)}{CartesianProductCollection}
+Let $\collection{X}$ be an indexed collection of sets.  Then, the \emph{Cartesian-product}\index{Cartesian-product} over all $X\in \collection{X}$, $\prod _{X\in \collection{X}}X$\index[notation]{$\prod _{X\in \collection{X}}X$}, is
+\begin{equation}
+\prod _{X\in \collection{X}}X\coloneqq \left\{ f\colon \collection{X}\rightarrow \coprod _{X\in \collection{X}}X:f(X)\in X\right\} .
+\end{equation}
+\begin{rmk}
+Admittedly this notation is a bit obtuse.  The Cartesian-product is still supposed to be thought of a collection of ordered-`pairs', except now the pairs aren't just pairs, but can be $3$, $4$, or even infinitely many `coordinates'.  The coordinates are indexed by elements of $\collection{X}$, and the $X$-coordinate for $X\in \collection{X}$ must lie in $X$ itself.  Thus, for example, $X_1\times X_2=\prod _{X\in \collection{X}}X$ for $\collection{X}=\{ X_1,X_2\}$.  The key that is probably potentially the most confusing is that the elements of $\collection{X}$ are playing more than one role:  on one hand, they index the coordinates, and on the other hand, they are the set in which the coordinates take their values.  Hopefully keeping in mind the case $\collection{X}=\{ X_1,X_2\}$ helps this make sense.  So, for example, in the statement ``$f(X)\in X$'', on the left-hand side, $X$ is being thought of as an `index', and on the right-hand side it is being thought of as the `space' in which a coordinate `lives'.  This is thus literally just the statement that the $X$-coordinate of $f\in \prod _{X\in \collection{X}}X$ must be an element of the set $X$.
+\end{rmk}
+\begin{rmk}
+For $x\in \prod _{X\in \collection{X}}X$, we write $x_X\coloneqq x(X)$ for the \emph{$X$-component}\index{Component (Cartesian-product)} or \emph{$X$-coordinate}\index{Coordinate (Cartesian-product)}.
+\end{rmk}
+\begin{rmk}
+For $x\in \collection{I}$, we may also suggestively write
+\begin{equation}
+\langle x_i:i\in \collection{I}\langle \ceqq x,
+\end{equation}
+analogous to how one writes $\coord{x,y}\in X\times Y$ for elements in a Cartesian product of two sets.  (We have only changed the letter of our indexing set\footnote{Like the term ``collection'', the term \term{indexing set} is technically just synonymous with the word ``set''.  There is nothing mathematically different about it.  This term is only used to clarify to the human readers out there how one should intuitively think of the set, specifically that it is a set whose elements are being used to ``index'' other things.} for legibility.)	
+\end{rmk}
+\begin{rmk}
+For a function defined on a Cartesian product, say $f\colon X\times Y\rightarrow Z$, we shall write $f(x,y)\ceqq f(\coord{x,y})$\index[notation]{$f(x,y)$}.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Components (of functions into a product)}{Components}
+Let $\collection{X}$ be an indexed collection of sets, let $Y$ be a set, and let $f\colon Y\rightarrow \prod _{X\in \collection{X}}X$ be a function.  Then, the \emph{$X$-component}\index{Component (of a function into a product)}, $f_X:Y\rightarrow X$\index[notation]{$f_X$}, is defined by
+\begin{equation}
+f_X(y)\coloneqq f(y)_X.
+\end{equation}
+In particular, the \emph{projection}\index{Projection (Cartesian-product)}, $\pi _X$\index[notation]{$\pi _X$}, is defined to be
+\begin{equation}
+\pi _X\coloneqq [\id _{\prod _{X\in \collection{X}}X}]_X,
+\end{equation}
+that is, it is the $X$-component of the identity $\id _{\prod _{X\in \collection{X}}X}:\prod _{X\in \collection{X}}X\rightarrow \prod _{X\in \collection{X}}X$.
+\begin{rmk}
+For example, in the case $f\colon Y\rightarrow X_1\times X_2$, then $f(y)=\coord{f_1(y),f_2(y)}$.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{exrA.1.28}
+Let $\collection{I}$ and $X$ be sets.
+\begin{enumerate}
+\item \label{exrA.3.41(i)}Find a bijection
+\begin{equation}
+\collection{I}\times X\rightarrow \coprod _{i\in \collection{I}}X.
+\end{equation}
+\item \label{exrA.3.41(ii)}Find a bijection
+\begin{equation}
+X^{\collection{I}}\rightarrow \prod _{i\in \collection{I}}X.
+\end{equation}
+\end{enumerate}
+\begin{rmk}
+\cref{exrA.3.41(i)} says that if all the sets appearing in a disjoint-union are the same, then that disjoint-union is `the same as' the Cartesian product of the indexing set and the single set appearing in the disjoint union.
+		
+Similarly, \cref{exrA.3.41(ii)} says that if all the sets appearing in are Cartesian-product are the same, then it is `the same as' the set of all functions from the indexing set to the single set appearing in the product.
+\end{rmk}
+\end{exr}
+
+\horizontalrule
+
+Before introducing other important special cases of relations, we must first introduce several properties of relations.
+\begin{dfn}{}{}
+Let $\sim$ be a relation on a set $X$.
+\begin{enumerate}
+\item (Reflexive) $\sim$ is \emph{reflexive}\index{Reflexive} iff $x\sim x$ for all $x\in X$.
+\item (Symmetric) $\sim$ is \emph{symmetric}\index{Symmetric} iff $x_1\sim x_2$ is equivalent to $x_2\sim x_1$ for all $x_1,x_2\in X$.
+\item (Transitive) $\sim$ is \emph{transitive}\index{Transitive} iff $x_1\sim x_2$ and $x_2\sim x_3$ implies $x_1\sim x_3$.
+\item (Antisymmetric) $\sim$ is \emph{antisymmetric}\index{Antisymmetric} iff $x_1\sim x_2$ and $x_2\sim x_1$ implies $x_1=x_2$.\footnote{Admittedly the terminology here with ``symmetric'' and ``antisymmetric'' is a bit unfortunate.}
+\item (Total) $\sim$ is \emph{total}\index{Total} iff for every $x_1,x_2\in X$, $x_1\sim x_2$ or $x_2\sim x_1$.
+\end{enumerate}
+\end{dfn}
+
+\subsection{Equivalence relations}
+
+\begin{dfn}{Equivalence relation}{}
+An \emph{equivalence relation}\index{Equivalence relation} on a set $X$ is a relation on $X$ that is reflexive, symmetric, and transitive.
+\end{dfn}
+\begin{exm}{Integers modulo $m$}{exmA.1.53}
+Let $m\in \Z ^+$ and let $x,y\in \Z$.  Then, $x$ and $y$ are \emph{congruent modulo $m$}, written $x\cong y\bpmod{m}$, iff $x-y$ is divisible by $m$.
+\begin{exr}{}{}
+Check that $\cong \bpmod{m}$ is an equivalence relation.
+\end{exr}
+For example, $3$ and $10$ are congruent modulo $7$, $1$ and $-3$ are congruent modulo $4$, $-2$ and $6$ are congruent modulo $8$, etc..
+\begin{rmk}
+We will see a `better' way of viewing the integers modulo $m$ in \cref{exmA.1.117}.  It is better in the sense that it is much more elegant and concise, but requires a bit of machinery and will probably not be as transparent if you have never seen it before.  Thus, it is probably more enlightening, at least the first time, to see things spelled out in explicit detail.
+\end{rmk}
+\end{exm}
+\begin{dfn}{Equivalence class}{}
+Let $\sim$ be an equivalence relation on a set $X$ and let $x_0\in X$.  Then, the \term{equivalence class}\index{Equivalence class} of $x_0$, $[x_0]_\sim$\index[notation]{$[x_0]_\sim$}, is
+\begin{equation}\label{A.1.10}
+[x_0]_\sim \coloneqq \left\{ x\in X:x\sim x_0\right\} =\left\{ x\in X:x_0\sim x\right\} .
+\end{equation}
+\begin{rmk}
+If $\sim$ is clear from context, we may simply write $[x_0]\ceqq [x_0]_{\sim}$\index[notation]{$[x_0]$}.
+\end{rmk}
+\begin{rmk}
+We may also on occasion write $x_0/\sim \ceqq [x_0]_{\sim}$\index[notation]{$x_0/\sim$} for the equivalence class.
+\end{rmk}
+\begin{rmk}
+In words, the equivalence class of $x_0$ is the set of elements equivalent to $x$.
+\end{rmk}
+\begin{rmk}
+Note that the second equation of \eqref{A.1.10} uses the symmetry of the relation.
+\end{rmk}
+\end{dfn}
+\begin{exm}{Integers modulo $m$}{exmA.1.57}
+This is a continuation of \cref{exmA.1.53}.  For example, the equivalence class of $5$ modulo $6$ is
+\begin{equation}
+[5]_{\cong \bpmod{6}}=\left\{ \ldots ,-1,5,11,17,\ldots \right\} ,
+\end{equation}
+the equivalence class of $-1$ modulo $8$ is
+\begin{equation}
+[1]_{\cong \bpmod{8}}=\left\{ \ldots ,-17,-9,-1,7,15,\ldots \right\} ,
+\end{equation}
+etc..
+\end{exm}
+An incredibly important property of equivalence classes is that they form a partition of the set.
+\begin{dfn}{Partition}{dfnA.1.11}
+Let $X$ be a set.  Then, a \emph{partition}\index{Partition} of $X$ is a collection $\collection{X}$ of subsets of $X$ such that
+\begin{enumerate}
+\item \label{A.1.11.1}$X=\bigcup _{U\in \collection{X}}U$; and
+\item \label{A.1.11.2}for $U_1,U_2\in \collection{X}$ either $U_1=U_2$ or $U_1$ is disjoint from $U_2$.
+\end{enumerate}
+\end{dfn}
+\begin{prp}{}{prpA.1.12}
+Let $\sim$ be an equivalence relation on a set $X$ and let $x_1,x_2\in X$.  Then, either (i)~$x_1\sim x_2$ or (ii)~$[x_1]_\sim$ is disjoint from $[x_2]_\sim$.
+\begin{proof}
+If $x_1\sim x_2$ we are done, so suppose that this is not the case.  We wish to show that $[x_1]_\sim$ is disjoint from $[x_2]_\sim$, so suppose that this is not the case.  Then, there is some $x_3\in X$ with $x_1\sim x_3$ and $x_3\sim x_2$.  Then, by transitivity $x_1\sim x_2$:  a contradiction.  Thus, it must be the case that $[x_1]_\sim$ is disjoint from $[x_2]_\sim$.
+\end{proof}
+\end{prp}
+\begin{crl}{}{crlA.1.13}
+Let $X$ be a set and let $\sim$ be an equivalence relation on $X$.  Then, the collection $\collection{X}\coloneqq \left\{ [x]_\sim :x\in X\right\}$ is a partition of $X$.
+\begin{proof}
+The previous proposition, \cref{prpA.1.12}, tells us that $\collection{X}$ has property \cref{A.1.11.2} of the definition of a partition, \cref{dfnA.1.11}.  Property \cref{A.1.11.1} follows from the fact that $x\in [x]_\sim$, so that indeed
+\begin{equation}
+X=\bigcup _{x\in X}[x]_\sim =\bigcup _{U\in \collection{X}}U.
+\end{equation}
+\end{proof}
+\end{crl}
+Conversely, a partition of a set defines an equivalence relation.
+\begin{exr}{}{exrA.1.41}
+Let $X$ be a set, let $\collection{X}$ be a partition of $X$, and define $x_1\sim x_2$ iff there is some $U\in \collection{X}$ such that $x_1,x_2\in U$.  Show that $\sim$ is an equivalence relation.
+\end{exr}
+\begin{exm}{Integers modulo $m$}{exmA.1.63}
+This in turn is a continuation of \cref{exmA.1.57}.  The equivalence classes modulo $4$ are
+\begin{equation}
+\begin{split}
+[0]_{\cong \bpmod{4}} & =\left\{ \ldots ,-8,-4,0,4,8,\ldots \right\} \\
+[1]_{\cong \bpmod{4}} & =\left\{ \ldots ,-7,-3,1,5,9,\ldots \right\} \\
+[2]_{\cong \bpmod{4}} & =\left\{ \ldots ,-6,-2,2,6,10,\ldots \right\} \\
+[3]_{\cong \bpmod{4}} & =\left\{ \ldots ,-5,-1,3,7,11,\ldots \right\} .
+\end{split}
+\end{equation}
+You can verify directly that (i)~each integer appears in at least one of these equivalence classes and (ii)~that no integer appears in more than one.  Thus, indeed, the set $\left\{ [0]_{\cong \bpmod{4}},[1]_{\cong \bpmod{4}},[2]_{\cong \bpmod{4}},[3]_{\cong \bpmod{4}}\right\}$ is a partition of $\Z$.
+\end{exm}
+
+Given a set $X$ with an equivalence relation $\sim$, we obtain a new set $X/\sim$, the collection of all equivalence classes of elements in $X$ with respect to $\sim$.
+\begin{dfn}{Quotient set}{dfnA.1.42}
+Let $\sim$ be an equivalence relation on a set $X$.  Then, the \emph{quotient of $X$ with respect to $\sim$}\index{Quotient set}, $X/\sim$, is defined by
+\begin{equation}
+X/\sim \coloneqq \left\{ [x]_\sim :x\in X\right\} .
+\end{equation}
+The function $\q :X\rightarrow X/\sim$ defined by $\q (x)\coloneqq [x]_\sim$ is the \emph{quotient function}\index{Quotient function}.
+\end{dfn}
+Of course the quotient function is surjective.  What's perhaps a bit more surprising is that \emph{every} surjective function can be viewed as the quotient function with respect to some equivalence relation.
+\begin{exr}{}{exrA.1.81}
+Let $\q :X\rightarrow Y$ be surjective and for $x_1,x_2\in X$, define $x_1\sim _{\q}x_2$\index[notation]{$\sim _{\q}$} iff $x_1,x_2\in \q ^{-1}(y)$ for some $y\in Y$.  Show that (i)~$\sim _{\q}$ is an equivalence relation on $X$ and (ii)~that $\q (x)=[x]_{\sim _{\q}}$.
+\end{exr}
+\begin{exm}{Integers modulo $m$}{exmA.1.69}
+This in turn is a continuation of \cref{exmA.1.63}.  For example, the quotient set mod $5$ is
+\begin{equation}
+\begin{split}
+\Z /\cong \bpmod{5} & =\left\{ [0]_{\cong \bpmod{5}},[1]_{\cong \bpmod{5}},[2]_{\cong \bpmod{5}},\right. \\ & \qquad \left. [3]_{\cong \bpmod{5}},[4]_{\cong \bpmod{5}}\right\} .
+\end{split}
+\end{equation}
+\end{exm}
+
+It is quite common for us, after having defined the quotient set, to want to define operations on the quotient set itself.  For example, we would like to be able to add integers modulo $24$ (we do this when telling time).  In this example, we could make the following definition.
+\begin{equation}
+[x]_{\cong \bpmod{24}}+[y]_{\cong \bpmod{24}}\coloneqq [x+y]_{\cong \bpmod{24}}.
+\end{equation}
+This is okay, but before we proceed, we have to check that this definition is \emph{well-defined}.  That is, there is a potential problem here, and we have to check that this potential problem doesn't actually happen.  I will try to explain what the potential problem is.
+
+Suppose we want to add $3$ and $5$ modulo $7$.  On one hand, we could just do the obvious thing $3+5=8$.  But because we are working with \emph{equivalence classes}, I should just as well be able to add $10$ and $5$ and get the same answer.  In this case, I get $10+5=15$.  At first glance, it might seem we got different answers, but, alas, while $8$ and $15$ are not the same integer, they `are' the same \emph{equivalence class} modulo $7$.
+
+In symbols, if I take two integers $x_1$ and $x_2$ and add them, and you take two integers $y_1$ and $y_2$ \emph{with $y_1$ equivalent to $x_1$ and $y_2$ equivalent to $x_2$}, it had better be the case that $x_1+x_2$ is equivalent to $y_1+y_2$.  That is, the answer should not depend on the ``representative'' of the equivalence class we chose to do the addition with.
+\begin{exm}{Integers modulo $m$}{}
+This in turn is a continuation of \cref{exmA.1.69}.  Let $m\in \Z ^+$, let $x_1,x_2\in \Z$, and define
+\begin{equation}
+[x_1]_{\cong \bpmod{m}}+[x_2]_{\cong \bpmod{m}}\coloneqq [x_1+x_2]_{\cong \bpmod{m}}.
+\end{equation}
+We check that this is well-defined.  Suppose that $y_1\cong x_1\bpmod{m}$ and $y_2\cong x_2\bpmod{m}$.  We must show that $x_1+x_2\cong y_1+y_2\bpmod{m}$.  Because $y_k\cong x_k\bpmod{m}$, we know that $y_k-x_k$ is divisible by $m$, and hence $(y_1-x_1)+(y_2-x_2)=(y_1+y_2)-(x_1+x_2)$ is divisible by $m$.  But this is just the statement that $x_1+x_2\cong y_1+y_2\bpmod{m}$, exactly what we wanted to prove.
+\begin{exr}[breakable=false]{}{}
+Define multiplication modulo $m$ and show that is is well-defined.
+\end{exr}
+\end{exm}
+
+\subsection{Preorders}
+
+\begin{dfn}{Preorder}{dfnA.1.19}
+A \emph{preorder}\index{Preorder} on a set $X$ is a relation $\leq$ on $X$ that is reflexive and transitive.  A set equipped with a preorder is a \emph{preordered set}\index{Preordered set}.
+\begin{rmk}
+The notation $x_1<x_2$\index[notation]{$x_1<x_2$} is shorthand for ``$x_1\leq x_2$ and $x_1\neq x_2$''.
+\end{rmk}
+\begin{rmk}
+Note that an equivalence relation is just a very special type of preorder.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{}
+Find an example of
+\begin{enumerate}
+\item a relation that is both reflexive and transitive (i.e.~a preorder);
+\item a relation that is reflexive but not transitive;
+\item a relation that is not reflexive but transitive; and
+\item a relation that is neither reflexive nor transitive.
+\end{enumerate}
+\end{exr}
+The notion of an \emph{interval} is obviously important in mathematics and you almost have certainly encountered them before in calculus.  We give here the abstract definition (see \cref{prp3.3.70} to see that this agrees with what you are probably familiar with).
+\begin{dfn}{Interval}{Interval}
+Let $\coord{X,\leq}$ be a preordered set and let $I\subseteq X$.  Then, $I$ is an \emph{interval}\index{Interval} iff for all $x_1,x_2\in I$ with $x_1\leq x_2$, whenever $x_1\leq x\leq x_2$, it follows that $x\in I$.
+\begin{rmk}
+In other words, $I$ is an interval iff everything in-between two elements of $I$ is also in $I$.
+\end{rmk}
+\begin{rmk}
+As you are probably aware, the following notation is common.
+\begin{subequations}
+\begin{align}
+[x_1,x_2] & \coloneqq \{ x\in X:x_1\leq x\leq x_2\} \\
+(x_1,x_2) & \coloneqq \{ x\in X:x_1<x<x_2\} \\
+[x_1,x_2) & \coloneqq \{ x\in X:x_1\leq x<x_2\} \\
+(x_1,x_2] & \coloneqq \{ x\in X:x_1<x\leq x_2\} .
+\end{align}
+\end{subequations}
+The first and second are called respectively \emph{closed intervals}\index{Closed interval} and \emph{open intervals}\index{Open interval}.  Terminology for the third and fourth is less common, but you might call them respectively the \emph{half-closed-open intervals}\index{Half-closed-open interval} and \emph{half-open-closed intervals}\index{Half-open-closed interval}.
+
+Feel free to check that these sets are all in fact intervals.\footnote{Warning:  Though there can be intervals not of this form---see \cref{exm3.3.71}.}
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Monotone}{dfnA.1.21}
+Let $X$ and $Y$ be preordered sets and let $f\colon X\rightarrow Y$ be a function.  Then, $f$ is \emph{nondecreasing}\index{Nondecreasing} iff $x_1\leq x_2$ implies that $f(x_1)\leq f(x_2)$.  If the second inequality is strict for distinct $x_1$ and $x_2$, i.e.~if $x_1<x_2$ implies $f(x_1)<f(x_2)$, then $f$ is \emph{increasing}\index{Increasing}.  If the inequality is in the other direction, i.e.~if $x_1\leq x_2$ implies $f(x_1)\geq f(x_2)$, then $f$ is \emph{nonincreasing}\index{Nonincreasing}.  If it is both strict and reversed, i.e.~if $x_1<x_2$ implies $f(x_1)>f(x_2)$, then $f$ is \emph{decreasing}\index{Decreasing}.  $f$ is \emph{monotone} iff it is either nondecreasing or nonincreasing and $f$ is \emph{strictly monotone} iff it is either increasing or decreasing.
+\begin{rmk}
+Note that the $\leq$ that appears in $x_1\leq x_2$ is \emph{different} than the $\leq$ that appears in $f(x_1)\leq f(x_2)$:  the former is the preorder on $X$ and the latter is the preorder on $Y$.  We will often abuse notation in this manner.
+\end{rmk}
+\end{dfn}
+
+In this course, we will almost always be dealing with preordered sets whose preorder is in addition antisymmetric (or are equivalence relations).
+\begin{dfn}{Partial-order}{dfnA.1.24}
+A \emph{partial-order}\index{Partial-order} is an antisymmetric preorder.  A set equipped with a partial-order is a \emph{partially-ordered set}\index{Partially-ordered set} or a \emph{poset}\index{Poset}.
+\end{dfn}
+There are two preorders that you can define on any set.  They are not terribly useful, except perhaps for producing counter-examples.
+\begin{exm}{Discrete and indiscrete (orders}{exmA.1.95}
+	Let $X$ be a set.  Declare $x_1\leq _{\mrm{D}}x_2$ iff $x_1=x_2$.  That is, $x\leq _{\mrm{D}}x$ is true, and nothing else.
+	\begin{exr}[breakable=false]{}{}
+		Show that $\coord{X,\leq _{\mrm{D}}}$ is a partial-order.
+		\begin{rmk}
+			$\leq _{\mrm{D}}$ is the \emph{discrete-order}\index{Discrete-order} on $X$.
+		\end{rmk}
+	\end{exr}
+	
+	Now declare $x_1\leq _{\mrm{I}}x_2$ for all $x_1,x_2\in X$.  That is, $x_1\leq _{\mrm{I}}x_2$ is \emph{always} true.
+	\begin{exr}[breakable=false]{}{}
+		Show that $\coord{X,\leq _{\mrm{I}}}$ is a total preorder that is not antisymmetric in general.
+		\begin{rmk}
+			In particular, this shows that there are total preorders which are not partial-orders (\cref{dfnA.1.24}).
+		\end{rmk}
+		\begin{rmk}
+			$\leq _{\mrm{I}}$ is the \emph{indiscrete-order}\index{Indiscrete-order} on $X$.
+		\end{rmk}
+	\end{exr}
+	\begin{rmk}
+		For the etymology of the terminology, see \cref{DiscreteTopology,dfnIndiscreteTopology}.
+	\end{rmk}
+\end{exm}
+A much more useful collection of examples of partially-ordered sets is that are those exhibited as power-sets.
+\begin{exm}{Power set}{}
+The archetypal example of a partially-ordered set is given by the power set.  Let $X$ be a set and for $U,V\in 2^X$, define $U\leq V$ iff $U\subseteq V$.
+\begin{exr}{}{exrA.1.26}
+Check that $\coord{2^X,\leq}$ is in fact a partially-ordered set.
+\end{exr}
+\end{exm}
+\begin{exr}{}{}
+What is an example of a preorder that is not a partial-order?
+\end{exr}
+
+While we will certainly be dealing with nontotal partially-ordered sets, totality of an ordering is another property we will commonly come across.
+\begin{dfn}{Total-order}{TotalOrder}
+A \emph{total-order}\index{Total-order} is a total partial-order.  A set equipped with a total-order is a \emph{totally-ordered set}\index{Totally-ordered set}.
+\end{dfn}
+\begin{exr}{}{}
+What is an example of a partially-ordered set that is not a totally-ordered set.
+\end{exr}
+
+And finally we come to the notion of well-ordering, which is an incredibly important property of the natural numbers.
+\begin{dfn}{Well-order}{}
+A \emph{well-order}\index{Well-order} on a set $X$ is a total-order that has the property that every nonempty subset of $X$ has a smallest element.  A set equipped with a well-order is a \emph{well-ordered set}\index{Well-ordered set}. 
+\end{dfn}
+In fact, we do not need to assume a priori that the order is a total-order.  This follows simply from the fact that every nonempty subset has a smallest element.
+\begin{prp}{}{prpA.1.51}
+Let $X$ be a partially-ordered set that has the property that every nonempty subset of $X$ has a smallest element.  Then, $X$ is totally-ordered (and hence well-ordered).
+\begin{proof}
+Let $x_1,x_2\in X$.  Then, the set $\{ x_1,x_2\}$ has a smallest element.  If this element is $x_1$, then $x_1\leq x_2$.  If this element is $x_2$, then $x_2\leq x_1$.  Thus, the order is total, and so $X$ is totally-ordered.
+\end{proof}
+\end{prp}
+\begin{exr}{}{}
+What is an example of a totally-ordered set that is not a well-ordered set?
+\end{exr}
+
+\subsection{Well-founded induction}\label{sbsWellFoundedInduction}
+
+In the very beginning of this chapter when discussing proof techniques (\cref{sbsABitAboutProofs}), we mentioned \emph{well-founded induction}.  It is time we return to this and make the statement precise.
+\begin{dfn}{Well-founded}{WellFounded}
+	Let $X$ be a set and let $\preceq$ be a relation on $X$.  Then, $\coord{X,\preceq}$ is \emph{well-founded} iff every nonempty subset of $X$ has a minimal element.
+\end{dfn}
+The relationship between being well-ordered and well-founded is as follows.
+\begin{prp}{}{}
+	Let $X$ be a set and let $\preceq$ be a relation on $X$.  Then, $\coord{X,\preceq}$ is a well-ordered set iff $\preceq$ is a well-founded total-order.
+	\begin{proof}
+		$(\Rightarrow )$ Suppose that $\coord{X,\preceq}$ is a well-ordered set.  Then, $\preceq$ is well-founded because minima are minimal.  Let $x_1,x_2\in X$.  Then, $\{ x_1,x_2\}$ is nonempty, and so has a minimum, say $x_1$.  Then, $x_1\preceq x_2$, and so $\preceq$ is total.
+		
+		\blankline
+		\noindent
+		$(\Leftarrow )$ Suppose that $\preceq$ is a well-founded total-order.  Let $S\subseteq X$ be nonempty.  Then, $S$ has a minimal element $s_0\in S$.  We wish to show that $s_0$ is a minimum of $S$.  So, let $s\in S$.  We wish to show that $s_0\preceq s$.  By totality, either $s_0\preceq s$ or $s\preceq s_0$.  In the former case, we are done.  In the latter case, by minimality, we have $s=s_0$.  By reflexivity (total-orders are reflexive), this would imply $s_0\preceq s$, and we are done.
+	\end{proof}
+\end{prp}
+We are ultimately interested in well-foundedness itself because of its relevance to the most powerful form of induction (I know of).
+\begin{thm}{Well-founded Induction}{WellFoundedInduction}\index{Well-founded Induction}
+	Let $X$ be a set, let $\preceq$ be a well-founded relation on $X$, and let $\mcal{P}\colon X\rightarrow \{ 0,1\}$.  Then, if $\mcal{P}(y)=1$ for all $y\preceq x$, $y\neq x$, implies that $\mcal{P}(x)=1$, it follows that $\mcal{P}(x)=1$ for all $x\in X$.
+	\begin{rmk}
+		Of course, we are thinking of $\mcal{P}(x)$ as a statement that may or may not be true for a given $x$, and $\mcal{P}(x)=1$ corresponds to it being true and $\mcal{P}(x)=0$ corresponds to it being false.
+	\end{rmk}
+	\begin{rmk}
+		Note how this gives us `normal' induction in case $X\ceqq \N$ and $\preceq \ceqq \leq$.  Indeed, it similarly generalizes transfinite induction (whatever that is).
+	\end{rmk}
+	\begin{proof}
+		Suppose that $\mcal{P}(y)=1$ for all $y\preceq x$, $y\neq x$, implies that $\mcal{P}(x)=1$.  Define $S\ceqq \{ x\in X:\mcal{P}(x)=0\}$.  We wish to show that $S$ is empty.  We proceed by contradiction:  suppose that $S$ is nonempty.  Then, $S$ has a minimal element $s_0\in S$.  Let $y\in X$ be such that $y\preceq s_0$ and $y\neq s_0$.  If $y\in S$, then by minimality, we would have $y=s_0$, which is not the case.  Thus, $y\notin S$, and hence $\mcal{P}(y)=1$.  Thus, by hypotheses, $\mcal{P}(s)=1$:  a contradiction.
+	\end{proof}
+\end{thm}
+
+\subsection{Zorn's Lemma}
+
+We end this subsection with an incredibly important result known as \emph{Zorn's Lemma}.  At the moment, it's importance might not seem obvious, and perhaps one must see it in action in order to appreciate its significance.  For the time being at least, let me say this:  if ever you are trying to produce something maximal by adding things to a set one-by-one (e.g.~if you are trying to construct a basis by picking linearly-independent vectors one-by-one), but you are running into trouble because, somehow, this process will never stop, not even if you `go on forever':  give Zorn's Lemma a try.
+\begin{dfn}{Upper-bound and lower-bound}{}
+Let $\coord{X,\leq}$ be a preordered set, let $S\subseteq X$, and let $x\in X$.  Then, $x$ is an \emph{upper-bound}\index{Upper bound} iff $s\leq x$ for all $s\in S$.  $x$ is a \emph{lower-bound}\index{Lower-bound} iff $x\leq s$ for all $s\in S$.
+\end{dfn}
+\begin{dfn}{Maximum and minimum}{}
+Let $\coord{X,\leq}$ be a preordered set and let $x\in X$.  Then, $x$ is a \emph{maximum}\index{Maximum} of $X$ iff $x$ is an upper-bound of all of $X$.  $x$ is a \emph{minimum}\index{Minimum} of $X$ iff $x$ is a lower-bound of all of $X$.
+\end{dfn}
+\begin{dfn}{Maximal and minimal}{}
+Let $\coord{X,\leq}$ be a preordered set, let $S\subseteq X$, and let $x\in S$.  Then, $x$ is \emph{maximal}\index{Maximal} in $S$ iff whenever $y\in S$ and $y\geq x$, it follows that $x=y$.  $x$ is \emph{minimal}\index{Minimal} in $S$ iff whenever $y\in S$ and $y\leq x$ it follows that $x=y$.
+\begin{rmk}
+In other words, maximal means that there is no element in $S$ strictly greater than $x$ (and similarly for minimal).  Contrast this with maxi\emph{mum} and mini\emph{mum}:  if $x$ is a maximum of $S$ it means that $y\leq x$ for all $y\in S$ (and analogously for minimum).
+\end{rmk}
+\begin{rmk}
+Note that, in a \emph{partially}-ordered set anyways, maximum elements are always maximal (see \cref{exrA.1.103}, but not conversely (and similarly for minimum and minimal) (see \cref{exmA.1.103}).
+\end{rmk}
+\end{dfn}
+\begin{exm}{Maximum vs.~maximal}{exmA.1.103}
+To understand the difference between maximal and maximum, consider the following diagram.\footnote{This diagram is meant to define a poset in which $E\leq C$, $E\leq D$, $C\leq A$, $C\leq B$, $D\leq A$, and $D\leq B$ (of course, these aren't the only relations---for example, we also mean to imply that $C\leq C$, that $E\leq A$, etc.).}
+\begin{equation}
+\begin{tikzcd}
+A & & B \\
+C \ar[u] \ar[rru] & & D \ar[llu] \ar[u] \\
+  & E \ar[lu] \ar[ru] &
+\end{tikzcd}
+\end{equation}
+Then, $A$ and $B$ are both \emph{maximal}, because nothing is strictly larger than them.  On the other hand, neither of them are \emph{maximum} (and in fact, there is no maximum), because neither of them is larger than everything ($A$ is not larger than $B$ and $B$ is not larger than $A$).  Of course, the difference between minimal and minimum is exactly analogous.
+\end{exm}
+\begin{exr}{}{exrA.1.103}
+Let $X$ be a \emph{partially}-ordered set and let $S\subseteq X$.
+\begin{enumerate}
+\item Show that every maximum of $S$ is maximal in $S$.
+\item Show that $S$ has at most one maximum element.
+\item Come up with an example of $X$ and $S$ where $S$ has two distinct maximal elements.
+\end{enumerate}
+\end{exr}
+\begin{dfn}{Downward-closed and upward-closed}{}
+Let $X$ be a preordered set and let $S\subseteq X$.  Then, $S$ is \emph{downward-closed}\index{Downward closed} in $X$ iff whenever $x\leq s\in S$ it follows that $x\in S$.  $S$ is \emph{upward-closed}\index{Upward closed} in $X$ iff whenever $x\geq s\in S$ it follows that $x\in S$.
+\end{dfn}
+\begin{prp}{}{prpA.1.56}
+Let $X$ be a well-ordered set and let $S\subset X$ be downward-closed in $X$.  Then, there is some $s_0\in X$ such that $S=\left\{ x\in X:x<s_0\right\}$.
+\begin{proof}
+As $S$ is a proper subset of $X$, $S^{\comp}$ is nonempty.  As $X$ is well-ordered, it follows that $S^{\comp}$ has a smallest element $s_0$.  We claim that $S=\left\{ x\in X:x<s_0\right\}$.  First of all, let $x\in X$ and suppose that $x<s_0$.  If it were \emph{not} the case that $x\in S$, then $s_0$ would no longer be the smallest element in $S^{\comp}$.  Hence, we must have that $x\in S$.  Conversely, let $x\in S$.  By totality, either $x\leq s_0$ or $s_0\leq x$.  As $x\in S$ and $s_0\in S^{\comp}$, we cannot have that $x=s_0$, so in fact, in the former case, we would have $x<s_0$, and we are done, so it suffices to show that $s_0\leq x$ cannot happen.  If $s_0\leq x$, then because $S$ is downward-closed in $X$ and $x\in S$, it would follows that $s_0\in S$:  a contradiction.  Therefore, it cannot be the case that $s_0\leq x$.
+\end{proof}
+\end{prp}
+\begin{thm}{Zorn's Lemma}{ZornsLemma}\index{Zorn's Lemma}
+Let $X$ be a partially-ordered set.  Then, if every well-ordered subset has an upper-bound, then $X$ has a maximal element.
+\begin{proof}\footnote{Proof adapted from \cite{Grayson}.}
+\Step{Make hypotheses}
+Suppose that every well-ordered subset has an upper bound.  We proceed by contradiction:  suppose that $X$ has no maximal element.
+
+\Step{Show that every well-ordered subset has an upper-bound \emph{not} contained in it}
+Let $S\subseteq X$ be a well-ordered subset, and let $u$ be some upper-bound of $S$.  If there were no element in $X$ strictly greater than $u$, then $u$ would be a maximal element of $X$.  Thus, there is some $u'>u$.  It cannot be the case that $u'\in S$ because then we would have $u'\leq u$ because $u$ is an upper-bound of $S$.  But then the fact that $u'\leq u$ and $u\leq u'$ would imply that $u=u'$:  a contradiction.  Thus, $u'\notin S$, and so constitutes an upper-bound not contained in $S$.
+
+\Step{Define $u(S)$}
+For each well-ordered subset $S\subseteq X$, denote by $u(S)$ some upper-bound of $S$ not contained in $S$.
+
+\Step{Define the notion of a $u$-set}
+We will say that a well-ordered subset $S\subseteq X$ is a $u$-set iff $x_0=u\left( \left\{ x\in S:x<x_0\right\} \right)$ for all $x_0\in S$.
+
+\Step{Show that for $u$-sets $S$ and $T$, either $S$ is downward-closed in $S$ or $T$ is downward closed in $S$}[ZornsLemma.5]
+Define
+\begin{equation}
+D\coloneqq \bigcup _{\substack{A\subseteq X \\ A\text{ is downward-closed in }S \\ A\text{ is downward-closed in }T}}A.
+\end{equation}
+That is, $D$ is the union of all sets that are downward-closed in both $S$ and $T$.
+
+We first check that $D$ itself is downward-closed in both $S$ and $T$.  Let $d\in D$, let $s\in S$, and suppose that $s\leq d$.  As $d\in D$, it follows that $d\in A$ for some $A\subseteq X$ downward-closed in both $S$ and $T$.  As $A$ is in particular downward-closed in $S$, it follows that $s\in D$, and so $D$ is downward-closed in $S$.  Similarly it is downward-closed in $T$.
+
+If $D=S$, then $S=D$ is downward-closed in $T$, and we are done.  Likewise if $D=T$.  Thus, we may as well assume that $D$ is a proper subset of both $S$ and $T$.  Then, by \cref{prpA.1.56}, there are $s_0\in S$ and $t_0\in T$ such that $\{ s\in S:s<s_0\} =D=\{ t\in T:t<t_0\}$.  Because $S$ and $T$ are $u$-sets, it follows that
+\begin{equation}
+s_0=u\left( \{ s\in S:s<s_0\} \right) =u\left( \{ t\in T:t<t_0\} \right) =t_0.
+\end{equation}
+Define $D\cup \{ s_0\} \eqqcolon D'\coloneqq D\cup \{ t_0\}$.
+Let $d\in D'$, let $s\in S$, and suppose that $s\leq d$.  Either $d=s_0$ or $d\in D$.  In the latter case, $d<s_0$.  Either way, $d\leq s_0$, and so we have that $s\leq d\leq s_0$, and so either $s=s_0$ or $s<s_0$; either way, $s\in D'$.  The conclusion is that $D'$ is downward-closed in $S$.  It is similarly downward-closed in $T$.  By the definition of $D$, we must have that $D'\subseteq D$:  a contradiction.  Thus, it could not have been the case that $D$ was a proper subset of both $S$ and $T$.
+
+\Step{Define $U$}
+Define
+\begin{equation}
+U\coloneqq \bigcup _{\substack{S\subseteq X \\ S\text{ is a }u\text{-set}}}S.
+\end{equation}
+We show that $U$ is a $u$-set in the next step.  Here, we argue that this is sufficient to complete the proof.
+
+Define $U'\coloneqq U\cup \{ u(U)\}$.  We wish to check that $U'$ is likewise a $u$-set.  First note that $U'$ is still a well-ordered subset of $X$.  Now let $x_0\in U'$.  We wish to show that $x_0=u\left( \left\{ x\in U':x<x_0\right\} \right)$.  Note that $\left\{ x\in U':x<x_0\right\} =\left\{ x\in U:x<x_0\right\}$.  Hence, because $U$ is a $u$-set, $u\left( \left\{ x\in U':x<x_0\right\} \right) =x_0$, as desired.
+
+Thus, as $U'$ is a $u$-set, from the definition of $U$, we will have $U'\subseteq U$:  a contradiction, which will complete the proof.  Thus, it does indeed suffice to show that $U$ is a $u$-set.
+
+\Step{Finish the proof by showing that $U$ is a $u$-set}
+We first need to check that $U$ is well-ordered.  Let $A\subseteq U$ be nonempty.  For $S\subseteq X$ a $u$-set, define $A_S\coloneqq A\cap S$.  For each $A_S$ that is nonempty, denote by $a_S$ the smallest element in $A_S$ (which exists as $S$ is in particular well-ordered).  Let $T\subseteq X$ be some other $u$-set.  Then, by \cref{ZornsLemma.5}, without loss of generality, $S$ is downward-closed in $T$.  In particular, $S\subseteq T$ so that $a_S\in T$.  Hence, $a_T\leq a_S$.  Then, because $S$ is downward-closed in $T$, $a_T\in S$, and hence $a_T\leq a_S$, and hence $a_T=a_S$.  We claim that this unique element is a smallest element of $A$.
+
+To see this, let $a\in A$.  $a$ is then in particular an element of $U$, and there is some $u$-set $S$ such that $a\in S$.  Then, $a\in A_S\coloneqq A\cap A$, and hence $a_S\leq a$.
+
+Let $u_0\in U$.  All that remains to be shown is that $u_0=u\left( \{ x\in U:x<u_0\} \right)$.  To do this, we first show  that every $u$-set is downward-closed in $U$.
+
+Let $S\subseteq X$ be a $u$-set, let $s\in S$, let $x\in U$, and suppose that $x\leq s$.  As $x\in U$, there is some $u$-set $T$ such that $x\in T$.  Then, by \cref{ZornsLemma.5} again, either $S$ is downward-closed in $T$ or $T$ is downward-closed in $S$.  If the former case, then we have that $x\in S$ because $x\leq s$.  On the other hand, in the latter case, we have that $x\in S$ because $x\in T\subseteq S$.
+
+Now we finally return to showing that $u_0=u\left( \{ x\in U:x<u_0\} \right)$.  By definition of $U$, $u_0\in S$ for some $u$-set $S$, and therefore, $u_0=u\left( \{ x\in S:x<u_0\} \right)$.  Therefore, it suffices to show that if $x\in U$ is less than $u_0$, then it is in $S$ (because then $\{ x\in S:x<u_0\} =\{ x\in U:x<u_0\}$)
+u.  This, however, follows from the fact that $S$ is downward-closed in $U$.
+\end{proof}
+\end{thm}
+
+\section{Sets with algebraic structure}
+
+\begin{dfn}{Binary operation}{}
+A \emph{binary operation}\index{Binary operation} $\cdot$ on a set $X$ is a function $\cdot :X\times X\rightarrow X$.  It is customary to write $x_1\cdot x_2\coloneqq \cdot (x_1,x_2)$ for binary operations.
+\begin{rmk}
+Sometimes people say that \emph{closure} is an axiom.  This is not necessary.  That a binary operation on $X$ takes values \emph{in} $X$ implicitly says that the operation is closed.  That doesn't mean that you never have to check closure, however.  For example, in order to verify that the even integers $2\Z$ are a subrng (see \cref{dfnA.1.86}) of $\Z$, you do have to check closure---you need to check this in order that $+\colon 2\Z \times 2\Z \rightarrow 2\Z$ be a binary operation on $2\Z$ (and similarly for $\cdot$).
+\end{rmk}
+\end{dfn}
+\begin{dfn}{}{}
+Let $\cdot$ be a binary relation on a set $X$.
+\begin{enumerate}
+\item (Associative) $\cdot$ is \emph{associative}\index{Associative} iff $(x_1\cdot x_2)\cdot x_3=x_1\cdot (x_2\cdot x_3)$ for all $x_1,x_2,x_3\in X$.
+\item (Commutative) $\cdot$ is \emph{commutative}\index{Commutative} if $x_1\cdot x_2=x_2\cdot x_1$ for all $x_1,x_2\in X$.
+\item (Identity) An \emph{identity} of $\cdot$ is an element $1\in X$ such that $1\cdot x=x=x\cdot 1$ for all $x\in X$.
+\item (Inverse) If $\cdot$ has an identity and $x\in X$, then an \emph{inverse} of $x$ is an element $x^{-1}\in X$ such that $x\cdot x^{-1}=1=x^{-1}\cdot x$.
+\end{enumerate}
+\end{dfn}
+
+We first consider sets equipped just a single binary operation.
+\begin{dfn}{Magma}{}
+A \emph{magma}\index{Magma} is a set equipped with a binary operation.
+\end{dfn}
+\begin{exr}{}{exrA.1.34}
+Let $\coord{X,\cdot }$ be a magma and let $x_1,x_2,x_3\in X$.  Show that $x_1=x_2$ implies $x_1\cdot x_3=x_2\cdot x_3$.
+\begin{rmk}
+My hint is that the solution is so trivial that it is easy to overlook.
+\end{rmk}
+\begin{rmk}
+This is what justifies the `trick' (if you can call it that) of doing the same thing to both sides of an equation that is so common in algebra.
+\end{rmk}
+\begin{rmk}
+Note that the converse is not true in general.  That is, we can have $x_1\cdot x_2=x_1\cdot x_3$ with $x_2\neq x_3$.
+\end{rmk}
+\end{exr}
+\begin{dfn}{Semigroup}{Semigroup}
+A \emph{semigroup}\index{Semigroup} is a magma $\coord{X,\cdot}$ such that $\cdot$ is associative.
+\end{dfn}
+\begin{dfn}{Monoid}{Monoid}
+A \emph{monoid}\index{Monoid} $\coord{X,\cdot ,1}$ is a semigroup $\coord{X,\cdot}$ equipped with an identity $1\in X$.
+\end{dfn}
+\begin{exr}{Identities are unique}{exrA.1.77}
+Let $X$ be a monoid and let $1,1'\in X$ be such that $1\cdot x=x=x\cdot 1$ and $1'\cdot x=x=x\cdot 1'$ for all $x\in X$.  Show that $1=1'$.
+\end{exr}
+\begin{dfn}{Group}{Group}
+A \emph{group}\index{Group} is a monoid $\coord{X,\cdot ,1}$ equipped with a function $\blank ^{-1}:X\rightarrow X$ so that $x^{-1}$ is an inverse of $x$ for all $x\in X$.
+\begin{rmk}
+Usually this is just stated as ``$X$ has inverses.''.  This isn't wrong, but this way of thinking about things doesn't generalize to universal algebra or category theory quite as well.  The way to think about this is that, inverses, like the binary operation (as well as the identity) is \emph{additional structure}.  This is in contrast to the axiom of associativity which should be thought of as a \emph{property} satisfied by an \emph{already existing} structure (the binary operation).
+\end{rmk}
+\begin{rmk}
+Usually we write $\coord{X,\cdot ,1,\blank ^{-1}}$ to denote a group $X$ with binary operation $\cdot$ with identity $1$ and with the inverse of $x\in X$ being given by $x^{-1}$.  However, especially if the group is commutative, it is also common to write $\coord{X,+,0,-}$ to denote the same thing.  In this case, what we previously would have written as $x^3$, would now be written as $3x$.  It is important to realize that, even though the symbols being used are different, the axioms they are required to satisfy are exactly the same---the change in notation serves no other purpose other than to be suggestive.
+\end{rmk}
+\end{dfn}
+\begin{exr}{Inverses are unique}{exrA.1.79}
+Let $X$ be a group, let $x\in X$, and let $y,z\in X$ both be inverses of $x$.  Show that $y=z$.
+\end{exr}
+\begin{exr}{}{}
+Let $\coord{X,\cdot,1,\blank ^{-1}}$ be a group and let $x_1,x_2,x_3\in X$.  Show that if $x_1\cdot x_2=x_1\cdot x_3$, then $x_2=x_3$.
+\begin{rmk}
+Thus, the converse to \cref{exrA.1.34} holds in the case of a group.
+\end{rmk}
+\end{exr}
+\begin{dfn}{Homomorphism (of magmas)}{HomomorphismOfMagmas}
+Let $X$ and $Y$ be magmas and let $f\colon X\rightarrow Y$ be a function.  Then, $f$ is a \emph{homomorphism}\index{Homomorphism (of magmas)} iff $f(x_1\cdot x_2)=f(x_1)\cdot f(x_2)$ for all $x_1,x_2\in X$.
+\begin{rmk}
+Informally, we say that ``$f$ \emph{preserves}'' the binary operation.
+\end{rmk}
+\begin{rmk}
+Note that, once again, the $\cdot$ in $f(x_1\cdot x_2)$ is \emph{not} the same as the $\cdot$ in $f(x_1)\cdot f(x_2)$.  Confer the remark following the definition of a nondecreasing function, \cref{dfnA.1.21}.
+\end{rmk}
+\begin{rmk}
+There are similar definitions for monoids and groups, with extra conditions because of the extra structure.  For monoids,\footnote{And more generally any magma with identity.} we additionally require that $\phi (1)=1$.  For groups, in turn additionally require that $\phi (x^{-1})=\phi (x)^{-1}$.  This is why we might say ``homomorphism of monoids'' instead of just ``homomorphism''---we are clarifying that we are additionally requiring this extra condition.
+\end{rmk}
+\end{dfn}
+
+We now move on to the study of sets equipped with \emph{two} binary operations.
+\begin{dfn}{Rg}{Rg}
+A \emph{rg}\index{Rg} is a set equipped with two binary operations $\coord{X,+,\cdot}$ such that
+\begin{enumerate}
+\item $\coord{X,+}$ is a commutative monoid,
+\item $\coord{X,\cdot}$ is a semigroup, and
+\item $\cdot$ \emph{distributes}\index{Distributive} over $+$, that is, $x_1\cdot (x_2+x_3)=x_1\cdot x_2+x_1\cdot x_3$ and $(x_1+x_2)\cdot x_3=x_1\cdot x_3+x_2\cdot x_3$ for all $x_1,x_2,x_3\in X$.
+\end{enumerate}
+\begin{rmk}
+In other words, writing out what it means for $\coord{X,+}$ to be a commutative monoid and for $\coord{X,\cdot}$ to be a a semigroup, these three properties are equivalent to
+\begin{enumerate}
+\item $+$ is associative,
+\item $+$ is commutative,
+\item $+$ has an identity,
+\item $\cdot$ is associative,
+\item $\cdot$ distributes over $+$.
+\end{enumerate}
+\end{rmk}
+\begin{rmk}
+For $x\in X$ and $m\in \Z ^+$, we write $m\cdot x\coloneqq \underbrace{x+\cdots +x}_{m}$.  Note that we do \emph{not} make this definition for $m=0\in \N$.  An empty-sum is \emph{always} $0$ (by definition), but $0\cdot x$ need not be $0$ in a general rg (see the tropical integers in \cref{exm1.3.2}).
+\end{rmk}
+\begin{rmk}
+Whenever we say that a rg is commutative, we mean that the \emph{multiplication} is commutative (this should be obvious---addition is always commutative).  Instead of saying referring to things as ``commutative rgs'' etc.~we will often shorten this to ``crg''\index{Crg}\index{Crig}\index{Cring}\index{Crng} etc..
+
+As commutativity is such a nice property to have, elements which commute with everything have a special name:  $x\in X$ is \term{central}\index{Central} iff $x\cdot y=y\cdot x$ for all $y\in X$.
+\end{rmk}
+\begin{rmk}
+I have actually never seen the term rg used before.  That being said, I haven't seen \emph{any} term to describe such an algebraic object before.  Nevertheless, I have seen both the terms rig and rng before (see below), and, well, given those terms, ``rg'' is pretty much the only reasonable term to give to such an algebraic object.  We don't have a need to work with rgs directly, but we will work with both rigs and rngs, and so it is nice to have an object of which both rigs and rngs are special cases.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Rng}{dfnA.1.86}
+A \emph{rng}\index{Rng} is a rg such that $\coord{X,+,0,-}$ is a commutative group, that is, a rg that has additive inverses.
+\end{dfn}
+\begin{exr}{}{exrA.1.43}
+Let $\coord{X,+,0-,\cdot}$ be a rng and let $x_1,x_2\in X$.  Prove the following properties.
+\begin{enumerate}
+\item $0\cdot x_1=0$ for all $x_1\in X$.
+\item $(-x_1)\cdot x_2=-(x_1\cdot x_2)$ for all $x_1,x_2\in X$.
+\end{enumerate}
+\end{exr}
+\begin{exm}{A rg that is not a rng}{}
+The even natural numbers $2\N$ with their usual addition and multiplication is also an example of a rg that is not a rng.
+\end{exm}
+\begin{dfn}{Rig}{dfnA.1.33}
+A \emph{rig}\index{Rig} is a rg such that $\coord{X,\cdot ,1}$ is a monoid, that is, a rg that has a multiplicative identity.
+\begin{rmk}
+In a rig $R$, we write
+\begin{equation}\label{eqnA.1.34}
+R^{\times}\coloneqq \left\{ r\in R:r\text{ has a multiplicative inverse.}\right\} .
+\end{equation}\index[notation]{$R^{\times}$}
+$R^{\times}$ is a group with respect to the ring multiplication and is known as the \emph{group of units}\index{Group of units} in $R$.
+\end{rmk}
+\begin{rmk}
+Just as the empty sum is defined to be $0$ in a rg (see the remark in \cref{Rg}), the empty product is defined to be $1$ in a rig.\footnote{Of course, similar conventions apply for all types of algebraic objects (in particular, for monoids), but we shall not keep repeating this.}
+\end{rmk}
+\begin{rmk}
+I believe it is more common to refer to rigs as \emph{semirings}.  I dislike this terminology because it suggests an analogy with semigroups, of which there is none.  The term rig is also arguably more descriptive---even if you didn't know what the term meant, you might have a good chance of guessing, especially if you had seen the term rng before.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Characteristic}{}
+Let $\coord{X,+,0,\cdot ,1}$ be a rig.  Then, either (i)~there is some $m\in \Z ^+$ such that $m\cdot 1=0\in X$ or (ii)~there is no such $m$.  In the former case, the smallest positive integer such that $\underbrace{1+\dots +1}_m=0\in X$ is the \emph{characteristic}\index{Characteristic (of a rig)}, and in the latter case the \emph{characteristic} is $0$.  We denote the characteristic by $\Char (X)$.
+\begin{rmk}
+For example, the characteristic of $\Z /m\Z$ is $m$, whereas the characteristic of $\Z$ is $0$.
+\end{rmk}
+\end{dfn}
+\begin{exm}{A rg that is not a rig}{}
+The even natural numbers $2\N$ with their usual addition and multiplication is a rg that is not a rig.
+\end{exm}
+\begin{dfn}{Ring}{}
+A \emph{ring}\index{Ring} is a rg that is both a rig and a rng.
+\begin{rmk}
+The motivation for the terminology is as follows.  Historically, the term ``ring'' was the first to be used.  It is not uncommon for authors to use the term ring to mean both our definition and our definition minus the requirement of having a multiplicative identity.  To remove this ambiguity in terminology, we take the term ``ring'' to imply the existence of the identity and the removal of the ``i'' from the word is the term used for objects which do not necessarily have an identity.  Similarly, thinking of the ``n'' in ``ring'' as standing for ``negatives'', a rig is just a ring that does not necessarily posses additive inverses.
+\end{rmk}
+\begin{rmk}
+Note that it follows from \cref{exrA.1.43} that $-1\cdot x=-x$ for all $x\in X$, $X$ a ring.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{exrA.1.130}
+Let $X$ be a ring and suppose that $0=1$.  Show that $X=\{ 0\}$.
+\begin{rmk}
+This is called the \emph{zero cring}\index{Zero cring}.
+\end{rmk}
+\end{exr}
+\begin{dfn}{Integral}{dfnA.1.69}
+A rg $\coord{X,+,0,\cdot}$ is \emph{integral}\index{Integral} iff it has the property that, whenever $x\cdot y=0$, it follows that either $x=0$ or $y=0$.
+\begin{rmk}
+Usually the adjective ``integral'' is applied only to crings, in which case people refer to this as an \emph{integral domain}\index{Integral domain} instead of an integral cring.  As the natural numbers have this property (i.e.~$xy=0\Rightarrow x=0\text{ or }y=0$) I wanted an adjective that would describe rgs with this property and ``integral'' was an obvious choice because of common use of the term ``integral domain''.\footnote{The adjective ``integral'' itself also appears in the context of schemes, and the usage there is consistent with the usage here (in a sense that will be obvious on the off-chance you know what a scheme is).}  It is then just more systematic to refer to them as integral crings instead of integral domains.  This is usually not an issue because it is not very common to work with rigs or rgs.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Skew-field}{}
+A \emph{skew-field}\index{Skew-field} is a ring $\coord{X,+,0,-\cdot ,1}$ such that $\coord{X\setminus \{ 0\} ,\cdot ,1,\blank ^{-1}}$ is a group.
+\begin{rmk}
+In other words, a skew-field is a ring in which every nonzero element has a multiplicative inverse.
+\end{rmk}
+\begin{rmk}
+This condition makes just as much sense for rigs as it does for rings, however, to the best of my knowledge there is no accepted term for rigs in which every nonzero element has a multiplicative inverse (and as we shall have no need for such objects, we refrain from introducing a term ourselves).
+\end{rmk}
+\begin{rmk}
+Sometimes people use the term \emph{division ring}\index{Division ring} instead of skew-field.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{}
+Show that all skew-fields are integral.
+\end{exr}
+\begin{dfn}{Field}{Field}
+A \emph{field}\index{Field} is a commutative skew-field.
+\end{dfn}
+\begin{exr}{}{}
+Let $F$ be a field with positive characteristic $p$.  Show that $p$ is prime.
+\end{exr}
+\begin{dfn}{Homomorphism (of rgs)}{HomomorphismOfRgs}
+Let $\coord{X,+,\cdot}$ and $\coord{Y,+,\cdot}$ be rgs and let $f\colon X\rightarrow Y$ be a function.  Then,$f$ is a \emph{homomorphism}\index{Homomorphism (of rgs)} iff $f$ is both a homomorphism (of magmas) from $\coord{X,+}$ to $\coord{Y,+}$ and from $\coord{X,\cdot}$ to $\coord{Y,\cdot}$.
+\begin{rmk}
+Explicitly, this means that
+\begin{equation}
+f(x+y)=f(x)+f(y),f(0)=0,\text{ and }f(xy)=f(x)f(y).
+\end{equation}
+\end{rmk}
+\begin{rmk}
+Similarly as in the definition of monoid homomorphisms \cref{HomomorphismOfMagmas}, we add corresponding extra conditions about preserving identities and inverses for rigs, rngs, and rings.\footnote{But \emph{not} fields.  This is why the definitions are stated in such a way that the additive inverses for rings are regarded as \emph{structure}, whereas the multiplicative inverses for fields are regarded as \emph{properties}---homomorphisms should preserve all ``structure''.  This is a subtle and, for now, unimportant point, and so if this doesn't make sense, you can ignore it for the time being.}
+\end{rmk}
+\end{dfn}
+
+\subsection{Quotient groups and quotient rngs}
+
+It is probably worth noting that this subsubsection is of relatively low priority.  We present this information here essentially because it gives a more unified, systematic, sophisticated, and elegant way to view things presented in other places in the notes, but it is also not really strictly required to understand these examples.
+
+If you have never seen quotient rngs before, it may help to keep in the back of your mind a concrete example as you work through the definitions.  We recommend you keep in mind the example $R\coloneqq \Z$ and $I\coloneqq m\Z$ (all multiplies of $m$) for some $m\in \Z ^+$.  In this case, the quotient $R/I$ is (supposed to be, and in fact will turn-out to be) the integers modulo $m$.  While this is a quotient rng, it is also of course a quotient group (just forget about the multiplication), so this example may also help you think about quotient groups as well.
+
+Before we get started with the precise mathematics, let's talk about the intuition.\footnote{I think it's fair to say that quotient algebraic structures are among the most difficult things students encounter when first beginning algebra, and so it is worthwhile to take some extra time to step back and think about what one is actually trying to accomplish.}  At a naive level, if you ask yourself ``How does one obtain $\Z /m\Z$ from $\Z$?'', while I suppose you might come up with other answers, the `correct' one is that ``You obtain $\Z /m\Z$ from $\Z$ by `setting $m=0$'.''.  The intuition and motivation for quotient rings is \emph{how to make precise the intuition of `setting things equal to zero'}.
+
+For reasons of `consistency', you'll see that you can't \emph{just} set $m=0$.  If you set $m=0$, you must also set $m+m=2m=0$, and so on.  Thus, if you want to set $m=0$, in fact you must set all multiples of $m$ equal to zero.  In general, the sets of objects which are you `allowed' to set equal to zero at once are called \emph{ideals}.  Thus, $\{ m\}$ itself is not an ideal because it would be `inconsistent' to only set $m=0$.  Instead, you take the `ideal generated by $m$', which turns out to be $m\Z$, and set all elements of $m\Z$ equal to zero.  If $R$ is a rng and $I\subseteq R$ is an ideal, then $R/I$ is the notation we use to represent the rng obtained from $R$ by `setting' every element of $I$ equal to $0$.
+
+As we shall use quotient groups to define quotient rngs, we do them first.  The first thing to notice is that every subgroup of a group induces an equivalence relation.
+\begin{prp}{Cosets (in groups)}{Cosets}
+Let $G$ be a group, let $H\subseteq G$, and define
+\begin{equation}\label{eqnA.4.31}
+g_1\cong g_2\bpmod{H}\text{ iff }g_2^{-1}g_1\in H\text{ for }g_1,g_2\in G.
+\end{equation}
+Then, $\cong \bpmod{H}$ is an equivalence relation iff $H$ is a subgroup of $G$.
+
+Furthermore, in the case this is an equivalence relation,
+\begin{equation}
+[g]_{\cong \bpmod{H}}=gH.
+\end{equation}
+\begin{rmk}
+To clarify, $[g]_{\cong \bpmod{H}}$ is the equivalence class of $g$ with respect to $\cong \bpmod{H}$ and $gH\ceqq \{ gh:h\in H\}$.
+\end{rmk}
+\begin{rmk}
+The equivalence class of $g$ with respect $\cong \bpmod{H}$ is the \emph{left $H$-coset}\index{Left coset}.  The set of all left $H$-cosets is denoted by $G/H\ceqq G/\sim _{\cong \bpmod{H}}=\left\{ gH:g\in G\right\}$\index[notation]{$G/H$}.
+\end{rmk}
+\begin{rmk}
+By changing the definition of the equivalent relation to ``\textellipsis iff $g_1g_2^{-1}\in H$'', then we obtain the corresponding definition of \emph{right $H$-cosets}\index{Right coset}, given explicitly by $Hg$.  The set of all right $H$-cosets is denoted by $H\backslash G$\index[notation]{$H\backslash G$}.\footnote{This notation is technically ambiguous with the notation used for relative set complementation, however, in practice there will never be any confusion.  Furthermore, if you pay extra special attention to the spacing, this uses the symbol \texttt{\textbackslash backslash} where set complementation uses the symbol \texttt{\textbackslash setminus}.}  Of course, in general if the binary operation is not commutative, then $gH\neq Hg$.
+\end{rmk}
+\begin{proof}
+$(\Rightarrow )$ Suppose that $\cong \bpmod{H}$ is an equivalence relation.  Let $g_1,g_2\in S$.  As $g_i\cong g_i\bpmod{H}$, we have that $g_i^{-1}g_i=1\in H$.  Then, $1^{-1}g_i=g_i\in H$, and so $g_i\cong 1\bpmod{H}$.  By symmetry, $1\cong g_i\bpmod{S}$, and so $g_i^{-1}1=g_i^{-1}\in H$.  We then have that $g_1\cong 1\bpmod{H}$ and $1\cong g_2\bpmod{H}$, and hence, by transitivity,
+\begin{equation}
+g_1\cong g_2\bpmod{H},
+\end{equation}
+and hence $g_2^{-1}g_1\in H$.  Thus, $H$ is indeed a subgroup of $G$.
+
+\blankline
+\noindent
+$(\Leftarrow )$ Suppose that $H$ is a subgroup of $G$.  Then, $1\in H$, and so $g^{-1}g=1\in H$, and so $g\cong g\bpmod{H}$.  That is, $\cong \bpmod{H}$ is reflexive.  If $g_1\cong g_2\bpmod{S}$, then $g_2^{-1}g_1\in H$, then $g_1^{-1}g_2=(g_2^{-1}g_1)^{-1}\in H^{-1}=H$, and so $g_2\cong g_1\bpmod{H}$.  Thus, $\cong \bpmod{S}$ is symmetric.  If $g_1\cong g_2\bpmod{S}$ and $g_2\cong g_3\bpmod{H}$, then $g_2^{-1}g_1,g_3^{-1}g_2\in H$, and so $g_3^{-1}g_1=(g_3^{-1}g_2)(g_2^{-1}g_1)\in HH\subseteq H$, and so $g_1\cong g_3\bpmod{H}$.  Thus, $\cong \bpmod{H}$ is transitive, hence an equivalence relation.
+
+\blankline
+\noindent
+We now prove the ``Furthermore\textellipsis '' part.  Certainly, as $(gh)^{-1}g=h^{-1}g^{-1}g=h^{-1}\in H$, $g\cong gh\bpmod{H}$ for all $h\in H$.  On the other hand, if $g_1\cong g_2\bpmod{H}$, then $g_2^{-1}g_1\in H$, and so $g_2^{-1}g_1=h$ for some $h\in H$, so that $g_1=g_2h$.  Thus, $[g]_{\cong \bpmod{H}}=gH$.
+\end{proof}
+\end{prp}
+For a subgroup $H$ of $G$, $G/H$ will always be a set.  However, in good cases, it will be more than just a set---it will be a group in its own right.
+\begin{dfn}{Ideals and quotient groups}{IdealsAndQuotientGroups}
+Let $G$ be a group, let $H\subseteq G$ be a subgroup, and let $g_1,g_2\in G$.  Define
+\begin{equation}
+(g_1H)\cdot (g_2H)\coloneqq (g_1g_2)H.
+\end{equation}
+$H$ is an \emph{ideal}\index{Ideal (in a group)} iff this is well-defined on the quotient set $G/H$.  In this case, $G/H$ is itself a group, the \emph{quotient group}\index{Quotient group} of $G$ modulo $H$.
+\begin{rmk}
+Recall that (\cref{Cosets}) $gH$ is the equivalent class of $g$ modulo $H$, and so, in particular, these definitions involve picking representatives of equivalence classes.  Thus, in order for these operations to make sense, they must be well-defined.  In general, they will not be well-defined, and we call $H$ an \emph{ideal} precisely in the `good' case where these operations make sense.
+\end{rmk}
+\begin{rmk}
+In the spirit of \cref{Cosets}, you should really be thinking of $H$ as a \emph{subset} that has the property that $\cong \bpmod{H}$ (defined by \eqref{eqnA.4.31}) is an equivalence relation.  Of course, this is perfectly equivalent to being a subgroup, but that's not the reason we care---we care because it gives us an equivalence relation.  This distinction will be more important for rings.
+\end{rmk}
+\begin{rmk}
+In the context of groups, it is \emph{much} more common to refer to ideals as \emph{normal subgroups}\index{Normal subgroup}.  As always, we choose the terminology we do because it is more universally consistent, even if less common.
+\end{rmk}
+\end{dfn}
+There is an easy condition to check that in order to determine whether a given subgroup is in fact an ideal that does not require checking the well-definedness directly.
+\begin{exr}{}{}
+Let $G$ be a group and let $H\subseteq G$ be a subset.  Show that $H$ is an ideal iff (i)~it is a subgroup and (ii)~$gHg^{-1}\subseteq H$ for all $g\in G$.
+\end{exr}
+
+And now we turn to quotient rngs, whose development is completely analogous.
+\begin{prp}{Cosets (in rngs)}{CosetsInRngs}
+Let $R$ be a group, let $S\subseteq R$, and define
+\begin{equation}
+r_1\cong r_2\bpmod{S}\text{ iff }-r_2+r_1\in S\text{ for }r_1,r_2\in R.
+\end{equation}
+Then, $\cong \bpmod{S}$ is an equivalence relation iff $S$ is a subgroup of $\coord{R,+,0,-}$.
+
+Furthermore, in the case this is an equivalence relation,
+\begin{equation}
+[r]_{\cong \bpmod{S}}=r+S.
+\end{equation}
+\begin{rmk}
+To clarify, $[r]_{\cong \bpmod{S}}$ is the equivalence class of $r$ with respect to $\cong \bpmod{S}$ and $r+S\ceqq \{ r+s:s\in S\}$.
+\end{rmk}
+\begin{rmk}
+The equivalence class of $r$ with respect $\cong \bpmod{S}$ is the \emph{left $S$-coset}.  The set of all left $S$-cosets is denoted by $R/S\ceqq R/\sim _{\cong \bpmod{S}}=\left\{ r+S:r\in R\right\}$\index[notation]{$R/S$}.
+\end{rmk}
+\begin{rmk}
+By changing the definition of the equivalent relation to ``\textellipsis iff $r_1-r_2\in S$'', then we obtain the corresponding definition of \emph{right $S$-cosets}, given explicitly by $S+r$.  In this case, however, the binary operation in question ($+$) is commutative, and so $r+S=S+r$, that is, the left and right cosets coincide, and so we can simply say \emph{coset}\index{Coset}.  In particular, there is no need to talk about the set of right $S$-cosets, which would have been denoted $S\backslash R$.
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}{}{}
+Prove this yourself.
+\begin{rmk}
+Hint:  Use the proof of \cref{Cosets} as a guide.
+\end{rmk}
+\end{exr}
+\end{proof}
+\end{prp}
+You can check that $m\Z$ is indeed a subrng of $\Z$ and that $\Z /m\Z$ consists of just $m$ cosets:
+\begin{equation}
+0+m\Z ,1+m\Z ,\ldots ,(m-1)+m\Z,
+\end{equation}
+though you are probably more familiar just writing this as
+\begin{equation}
+0\bpmod{m},1\bpmod{m},\ldots ,m-1\bpmod{m}.
+\end{equation}
+Of course, however, $\Z /m\Z$ is more than just a set, it has a ring structure of its own, and in good cases, $R/S$ will obtain a canonical ring structure of its own as well.
+\begin{dfn}{Ideals and quotient rngs}{IdealsAndQuotientRngs}
+Let $R$ be a rng, let $S\subseteq \coord{R,+,0,-}$ be a subgroup, and let $r_1,r_2\in R$.  Define
+\begin{equation}
+(r_1+S)+(r_2+S)\coloneqq (r_1+r_2)+S
+\end{equation}
+and
+\begin{equation}
+(r_1+S)\cdot (r_2+S)\coloneqq (r_1\cdot r_2)+S.
+\end{equation}
+$S$ is an \emph{ideal}\index{Ideal (in a ring)} iff both of these operations are well-defined.  In this case, $R/S$ is the \emph{quotient rng}\index{Quotient rng} of $R$ modulo $S$.
+\begin{rmk}
+I mentioned in a remark of the definition of quotient groups \cref{IdealsAndQuotientGroups} that you should really be thinking of the condition there that ``$H\subseteq G$ a subgroup'' as the condition that $\cong \bpmod{H}$ be well-defined.  This shows its relevance here as, in the spirit of \cref{CosetsInRngs}, the appropriate condition is \emph{not} ``$S\subseteq R$ a subrng'' but instead that ``$S\subseteq \coord{R,0,+,-}$ be a subgroup''.  This is particularly important if you're working with rings, as in this case, the `correct' definition of subring requires that subrings include $1$, however, if an ideal $I$ contains $1$, then $I=R$.\footnote{Because, by the absorption property, $r=r\cdot 1\in I$ for all $r\in R$.}  Thus, if you write ``$S\subseteq R$ a subring'' instead of ``$S\subseteq \coord{R,+,0,-}$ a subgroup'', your definition would imply that the only ideal in $R$ is $R$ itself!\footnote{In case it's not obvious, that would constitute a particularly shitty definition.}
+\end{rmk}
+\end{dfn}
+Just as before, we have an easy way of checking whether a given subring is in fact an ideal.
+\begin{exr}{}{}
+Let $R$ be a rng and let $S\subseteq R$ be a subset.  Show that $S$ is an ideal iff (i)~it is a subrng and (ii)~$r\in R$ and $s\in S$ implies that $r\cdot s,s\cdot r\in S$.
+\begin{rmk}
+The second property is sometimes called ``absorbing'', because elements in the ideal `absorb' things into the ideal when you multiply them.
+\end{rmk}
+\end{exr}
+\begin{exm}{Integers modulo $m$}{exmA.1.117}
+Let $m\in \Z ^+$.
+\begin{exr}[breakable=false]{}{}
+Show that $m\Z$ is an ideal in $\Z$.
+\end{exr}
+Then, the \emph{integers modulo $m$}\index{Integers modulo $m$} are defined to be the quotient cring $\Z /m\Z$.
+\end{exm}
+
+\cleardoublepage
+\chapter{Basic category theory}
+
+First of all, a disclaimer:  it is probably not best pedagogically speaking to start with even the very basics of category theory.  While in principle anyone who has the prerequisites for these notes knows everything they need to know to understand category theory, it may be difficult to understand the motivation for things without a collection of examples to work with in the back of your mind.  Thus, if anything in this section does not make sense the first time you read through it, you should not worry---it will only be a problem if you do not understand ideas here as they occur in the text.  In fact, it is probably perfectly okay to completely skip this section and reference back to it as needed.  In any case, our main motivation for introducing category theory in a subject like this is simply that we would like to have more systematic language and notation.
+
+\section{What is a category?}
+
+In mathematics, we study many different types of objects:  sets, preordered sets, monoids, rngs, topological spaces, schemes, etc..\footnote{No, you are not expected to know what all of these are.}  In all of these cases, however, we are not only concerned with the objects themselves, but also with maps between them that `preserve' the relevant structure.  In the case of a set, there is no extra structure to preserve, and so the relevant maps are \emph{all} the functions.  In contrast, however, for topological spaces, we will see that the relevant maps are not all the functions, but instead all \emph{continuous} functions.\footnote{You might say that the entire point of the notion of a topological space is it is one of the most general contexts in which the notion of continuity makes sense.  We will see exactly how this works later in the body of the text.}  Similarly, the relevant maps between monoids are not all the functions but rather the \emph{homomorphisms}.  The idea then is to come up with a definition that deals with both the objects and the relevant maps, or morphisms, simultaneously.  This is the motivating idea of the definition of a category.
+\begin{dfn}{Category}{}
+A \emph{category}\index{Category} $\cat{C}$ is
+\begin{data}
+\item a collection $\Obj (\cat{C})$\index[notation]{$\Obj (\cat{C})$}, the \emph{objects}\index{Objects} of $\cat{C}$; together with
+\item for each $A,B\in \Obj (\cat{C})$, a collection $\Mor _{\cat{C}}(A,B)$\index[notation]{$\Mor _{\cat{C}}(A,B)$}, the \emph{morphisms}\index{Morphisms} from $A$ to $B$ in $\cat{C}$;\footnote{No, we do not require that $\Mor _{\cat{C}}(A,B)$ be a (small) set.  (This comment is really intended for those who have seen this definition elsewhere---often times authors fix a universe $U$, whose elements are referred to as the \emph{small sets}\index{Small set}, and in the definition of a category they require that the morphisms form small sets---we make no such requirement.)}
+\item for each $A,B,C\in \Obj (\cat{C})$, a function $\circ :\Mor _{\cat{C}}(B,C)\times \Mor _{\cat{C}}(A,B)\rightarrow \Mor _{\cat{C}}(A,C)$ called \emph{composition}\index{Composition};
+\item and for each $A\in \Obj (\cat{C})$ a distinguished element $\id _{A}\in \Mor _{\cat{C}}(A,A)$, the \emph{identity}\index{Identity (in a category)} of $A$;
+\end{data}
+such that
+\begin{enumerate}
+\item $\circ$ is `associative', that is, $f\circ (g\circ h)=(f\circ g)\circ h$ for all morphisms $f,g,h$ for which these composition make sense,\footnote{In case you're wondering, the quotes around ``associative'' are used because usually the word ``associative'' refers to a property that a binary operation has.  A binary operation on a set $S$ is, by definition, a function from $X\times X$ into $X$.  Composition however in general is a function from $X\times Y$ into $Z$ for $X\coloneqq \Mor _{\cat{C}}(B,C)$, $Y\coloneqq \Mor _{\cat{C}}(A,B)$ and $Z\coloneqq \Mor _{\cat{C}}(A,C)$, and hence not a binary operation.} and
+\item $f\circ \id _A=f=\id _A\circ f$ for all $A\in \Obj (\cat{C})$.
+\end{enumerate}
+\begin{rmk}
+We write
+\begin{equation}
+\Mor _{\cat{C}}\ceqq \bigsqcup _{A,B\in \Obj (\cat{C})}\Mor _{\cat{C}}(A,B)
+\end{equation}\index[notation]{$\Mor _{\cat{C}}$}
+for the collection of all morphisms in $\cat{C}$.
+\end{rmk}
+\begin{rmk}
+The term \term{map}\index{Map} is often used synonymously with the term ``morphism'', though perhaps in a more casual manner.  For example, it is not uncommon to see people say ``linear map'' instead of ``map of vector spaces'' or ``map in the category of vector spaces''.
+\end{rmk}
+\begin{rmk}
+If the category $\cat{C}$ is clear from context, we may simply write $\Mor (A,B)$\index[notation]{$\Mor (A,B)$}.
+\end{rmk}
+\begin{rmk}	We mentioned above that the morphisms relevant to topological spaces are the continuous functions.  Of course, nothing about the definition of a category \emph{requires} this be the case---you could just as well consider the category whose objects are vector spaces and whose morphisms are \emph{all} functions---it just turns out that these weird examples aren't particularly useful.
+\end{rmk}
+\end{dfn}
+The intuition here is that the objects $\Obj (\cat{C})$ are the objects you are interested in studying (for example, topological spaces), and for objects $A,B\in \Obj (\cat{C})$, the morphisms $\Mor _{\cat{C}}(A,B)$ are the maps relevant to the study of the objects in $\cat{C}$ (for example, continuous functions from $A$ to $B$).  For us, it will usually be the case that every element of $\Obj (\cat{C})$ is a set equipped with extra structure (e.g.~a binary operation) and the morphisms are just the functions that `preserve' this structure (e.g.~homomorphisms).  In fact, there is a term for such categories---see \cref{ConcreteCategory}.
+
+At the moment, this might seem a bit abstract because of the lack of examples.  As you continue through the main text, you will encounter more examples of categories, which will likely elucidate this abstract definition.  However, even already we have a couple basic examples of categories.
+\begin{exm}{The category of sets}{exm1.2.2}\index{Category of sets}
+The category of sets is the category $\Set$\index[notation]{$\Set$}
+\begin{enumerate}
+\item whose collection of objects $\Obj (\Set )$ is the collection of all sets,\footnote{See \cref{sbsA.1.1} for clarification as to what we actually mean by the phrase ``all sets''.};
+\item with morphism set $\Mor _{\Set}(X,Y)$ precisely the set of all functions from $X$ to $Y$;
+\item whose composition is given by ordinary function composition; and
+\item whose the identities are given by the identity functions.
+\end{enumerate}
+\end{exm}
+We also have another example at our disposal, namely the category of preordered sets.
+\begin{exm}{The category of preordered sets}{}\index{Category of preordered sets}
+The category of preordered sets is the category $\Pre$\index[notation]{$\Pre$}
+\begin{enumerate}
+\item whose collection of objects $\Obj (\Pre )$ is the collection of all preordered sets;
+\item with morphism set $\Mor _{\Pre}(X,Y)$ precisely the set of all nondecreasing functions from $X$ to $Y$;
+\item whose composition is given by ordinary function composition; and
+\item whose identities are given by the identity functions.
+\end{enumerate}
+\end{exm}
+The idea here is that the only structure on a preordered set is the preorder, and that the precise notion of what it means to `preserve' this structure is to be nondecreasing.  Of course, we could everywhere replace the word ``preorder'' (or its obvious derivatives) with ``partial-order'' or ``total-order'' and everything would make just as much sense.  Upon doing so, we would obtain the category of partially-ordered sets and the category of totally-ordered sets respectively.
+
+We also have the category of magmas.
+\begin{exm}{The category of magmas}{TheCategoryOfMagmas}\index{Category of magmas}
+The category of magmas is the category $\Mag$\index[notation]{$\Mag$}
+\begin{enumerate}
+\item whose collection of objects $\Obj (\Mag )$ is the collection of all magmas;
+\item with morphism set $\Mor _{\Mag}(X,Y)$ precisely the set of all homomorphisms from $X$ to $Y$;
+\item whose composition is given by ordinary function composition; and
+\item whose identities are given by the identity functions.
+\end{enumerate}
+\end{exm}
+Similarly, the idea here is that the only structure here is that of the binary operation (and possibly an identity element) and that it is the homomorphisms which preserve this structure.  Of course, we could everywhere here replace the word ``magma'' with ``semigroup'', ``monoid'', ``group'', etc.~and everything would make just as much sense.  Upon doing so, we would obtain the categories of semigroups, the category of monoids, and the category of groups respectively.
+
+Finally we have the category of rgs.
+\begin{exm}{The category of rgs}{}\index{Category of rgs}
+The category of rgs is the category $\Rg$\index[notation]{$\Rg$}
+\begin{enumerate}
+\item whose collection of objects $\Obj (\Rg )$ is the collection of all rgs;
+\item with morphism set $\Mor _{\Rg}(X,Y)$ is precisely the set of all homomorphisms from $X$ to $Y$;
+\item whose composition is given by ordinary function composition; and
+\item and whose identities are given by the identity functions.
+\end{enumerate}
+\begin{rmk}
+The same as before, we could have everywhere replaced the word ``rg'' with ``rig'', ``rng'', or ``ring''.  These categories are denoted $\Rig$\index[notation]{$\Rig$}, $\Rng$\index[notation]{$\Rng$}, and $\Ring$\index[notation]{$\Ring$} respectively.
+\end{rmk}
+\end{exm}
+
+As mentioned previously, it should almost always be the case that the examples of categories we encounter are of this form, that is, in which the objects are ``sets equipped with extra structure'' and the morphisms are ``functions which `preserve' this structure''.  The term for such categories is \emph{concrete}.
+\begin{dfn}{Concrete category}{ConcreteCategory}
+Let $\cat{C}$ be a category.  Then, $\cat{C}$ is \emph{concrete}\index{Concrete category} iff for all $A,B\in \Obj (\cat{C})$, $\Mor _{\cat{C}}(A,B)\subseteq \Mor _{\Set}(A,B)$.
+\begin{rmk}
+Warning:  Strictly speaking, this doesn't actually make sense as $A$ and $B$ are not actually sets.  Implicit in this is that we are additionally given a way of regarding objects of $\cat{C}$ as sets.  For example, in the case of the category of vector spaces, we regard a vector space as a set simply by ``forgetting'' the addition and scaling operations.  To better understand this, it might help to see an example of a nonconcrete category---see the following example.
+\end{rmk}
+\end{dfn}
+While not terribly important for us, as you might now be wondering ``What could a nonconcrete category possibly look like?'', we present the following example.
+\begin{exm}{A category that is not concrete}{}
+Let $\coord{X,\leq}$ be a preordered set and define $\cat{C}_X$ to be the category
+\begin{enumerate}
+\item with collection of objects $\Obj (\cat{C}_X)\coloneqq X$;
+\item with morphism set $\Mor _{\cat{C}_X}(x,y)$  taken to be a singleton iff $x\leq y$ and empty otherwise---in the case that $x\leq y$, let us write $x\rightarrow y$ for the unique element of $\Mor _{\cat{C}_X}(x,y)$;
+\item with composition defined by $(y\rightarrow z)\circ (x\rightarrow y)\coloneqq x\rightarrow z$; and
+\item with identity $\id _x\coloneqq x\rightarrow x$.
+\end{enumerate}
+\begin{exr}{}{}
+Check that $\cat{C}_X$ is in fact a category.
+\begin{rmk}
+Note how the axiom of reflexivity corresponds to the identities and the axiom of transitivity corresponds to composition.
+\end{rmk}
+\end{exr} 
+\end{exm}
+
+\section{Some basic concepts}
+
+The real reason we introduce the definition of a category in notes like these is that it allows us to introduce consistent notation and terminology throughout the text.  Had we forgone even the very basics of categories, we would still be able to do the same mathematics, but the notation and terminology would be much more ad hoc.
+\begin{dfn}{Domain and codomain}{}
+Let $f\colon A\rightarrow B$ be a morphism in a category.  Then, the \emph{domain}\index{Domain (of a morphism)} of $f$ is $A$ and the \emph{codomain}\index{Codomain (of a morphism)} of $f$ is $B$.
+\begin{rmk}
+Of course, these terms generalize the notions of domain and codomain for sets.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Endomorphism}{Endomorphism}
+Let $\cat{C}$ be a category and let $A\in \Obj (\cat{C})$.  Then, an \emph{endomorphism}\index{Endomorphism} is a morphism $f\in \Mor _{\cat{C}}(A,A)$.  We write $\End _{\cat{C}}(A)\coloneqq \Mor _{\cat{C}}(A,A)$\index[notation]{$\End _{\cat{C}}(A)$} for the collection of endomorphisms on $A$.
+\begin{rmk}
+In other words, ``endomorphism'' is just a fancy name for a morphism with the same domain and codomain.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Isomorphism}{Isomorphism}
+Let $f\colon A\rightarrow B$ be a morphism in a category.  Then, $f$ is an \emph{isomorphism}\index{Isomorphism} iff it is invertible, i.e., iff there is a morphism $g\colon B\rightarrow A$ such that $g\circ f=\id _A$ and $f\circ g=\id _B$.  In this case, $g$ is an \emph{inverse} of $f$.  The collection of all isomorphisms from $A$ to $B$ is denoted by $\Iso _{\cat{C}}(A,B)$\index[notation]{$\Iso _{\cat{C}}(A,B)$}.
+\end{dfn}
+\begin{exr}{}{Inverses are unique}
+Let $f\colon A\rightarrow B$ be a morphism in a category and let $g,h \colon B\rightarrow A$ be two inverses of $f$.  Show that $g=h$.
+\begin{rmk}
+As a result of this exercise, we may denote \emph{the} inverse of $f$ by $f^{-1}$.\footnote{If inverses were not unique, then the notation $f^{-1}$ would be ambiguous:  what inverse would we be referring to?}
+\end{rmk}
+\end{exr}
+\begin{exr}{}{exr2.1.3}
+Show that a morphism in $\Set$ is an isomorphism iff it is bijective.
+\end{exr}
+\begin{exr}{}{}
+Show that a morphism in $\Mag$ is an isomorphism iff (i)~it is bijective, (ii)~it is a homomorphism, and (iii)~its inverse is a homomorphism.
+\end{exr}
+\begin{exr}{}{exrA.2.11x}
+Show that the inverse of a bijective homomorphism of magmas is itself a homomorphism.
+\begin{rmk}
+Thus, if you want to show a function is an isomorphism of magmas, in fact you only need to check (i)~and (ii)~of the previous exercise, because then you get (iii)~for free.  (Of course, essentially the very same thing happens in $\Rg$ as well.)
+\end{rmk}
+\end{exr}
+\begin{dfn}{Isomorphic}{dfnA.2.10}
+Let $A,B\in \Obj (\cat{C})$ be objects in a category.  Then, $A$ and $B$ are \emph{isomorphic}\index{Isomorphic} iff there is an isomorphism from $A$ to $B$.  In this case, we write $A\cong _{\cat{C}}B$\index[notation]{$A\cong _{\cat{C}}B$}, or just $A\cong B$\index[notation]{$A\cong B$} if the category $\cat{C}$ is clear from context.
+\end{dfn}
+\begin{exr}{}{exrA.2.11}
+Let $\cat{C}$ be a category.  Show that $\cong _{\cat{C}}$ is an equivalence relation on $\Obj (\cat{C})$.
+\end{exr}
+\begin{dfn}{Automorphisms}{}
+Let $\cat{C}$ be a category and let $A\in \Obj (\cat{C})$.  Then, an \emph{automorphism}\index{Automorphism} $f\colon A\rightarrow A$ is a morphism which is both an endomorphism and an isomorphism.  We write $\Aut _{\cat{C}}(A)\coloneqq \Iso _{\cat{C}}(A,A)$\index[notation]{$\Aut _{\cat{C}}(A)$} for the collection of automorphisms of $A$.
+\begin{rmk}
+The automorphisms of $A$ are often thought of as the \emph{symmetries} of $A$.
+\end{rmk}
+\end{dfn}
+The following result can be seen as a reason why the concepts of monoid and group are so ubiquitous in mathematics.
+\begin{prp}{}{prpB.2.9}
+Let $\cat{C}$ be a category and let $A\in \Obj (\cat{C})$.  Then,
+\begin{enumerate}
+\item $\coord{\End _{\cat{C}}(A),\circ ,\id _A}$ is a monoid; and
+\item $\coord{\Aut _{\cat{C}}(A),\circ ,\id _A,\blank ^{-1}}$ is a group.
+\end{enumerate}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{prp}
+
+Finally, we end this section with a concrete example of isomorphism.
+\begin{exm}{}{}
+The category we work in is $\Grp$.  Thus, we are going to present an example of two different groups which are isomorphic in $\Grp$.
+
+On one hand, we have $\coord{\Z /2\Z,+,0,-}$, which if you have been reading along in the appendix, should be relatively familiar to you by now.\footnote{Note that, we can regard $\Z /2\Z$ as a ring, explicitly $\coord{\Z /2\Z ,+,0,-,\cdot}$, but we don't.  We're \emph{forgetting} about the extra binary operation, and upon doing so, we obtain the group $\coord{\Z /2\Z ,+,0,-}$.}.  Regardless, however, we list the addition table for $\Z /2\Z$ for absolute concreteness.
+\begin{equation}\label{eqnA.2.17}
+\begin{array}{r|cc}
++ & 0 & 1 \\ \hline
+0 & 0 & 1 \\
+1 & 1 & 0
+\end{array}
+\end{equation}
+
+On the other hand, let's define a group you haven't seen before, $C_2\coloneqq \{ 1,-1\}$ with binary operation defined by
+\begin{equation}\label{eqnA.2.18}
+\begin{array}{r|cc}
+\cdot & 1 & -1 \\ \hline
+1 & 1 & -1 \\
+-1 & -1 & 1
+\end{array}.
+\end{equation}
+(Feel free to check that this does indeed satisfy the axioms of a group (in fact, commutative group) if you like, but this is not so crucial .)
+
+Now, the key to notice is the following: aside from a relabeling of symbols, \emph{the tables in \eqref{eqnA.2.17} and \eqref{eqnA.2.18} are identical}.  Explicitly, the relabeling is $0\mapsto 1$, $1\mapsto -1$, and $+\mapsto \cdot$.  The precise way of saying this is:  the function $\phi \colon \Z /2\Z \rightarrow C_2$ defined by $\phi (0)\coloneqq 1$ and $\phi (1)\coloneqq -1$ \emph{is an isomorphism in $\Grp$} (or, to say the same thing in slightly different language, \emph{is an isomorphism of groups}).
+
+While not always literally true, depending on your category, I think at an intuitive level it is safe to think of two objects that are isomorphic as being `the same' up to a relabeling of the elements.  This is why, in mathematics, it is very common to not distinguish between objects which are isomorphic.  This would be like making a distinction between the two equations $x^2+5x-3=0$ and $y^2+5y-3=0$ in elementary algebra:  the name of the variable in question doesn't have any serious effect on the mathematics---it's just a name.
+\end{exm}
+
+We end this subsection with relatively tricky concepts, that of \emph{embedding} and \emph{quotient}.  Roughly speaking, you might say that ``embedding'' is the categorical generalization of the concept of a subset.  In a general category with objects $A$ and $B$, the statement $A\subseteq B$ just doesn't make sense---we need $A$ and $B$ to be sets to even posit the question ``Is $A$ a subset of $B$?''.  But even in concrete categories, where $A\subseteq B$ \emph{does} make sense, simply being a subset of an object is the `wrong' notion---see \cref{exmA.2.20}.  The basic idea which we want to make precise then is that, in addition to $A$ being a subset of $B$, the structure on $A$ is somehow the structure `inherited' from $B$.
+
+The first thing to realize is that if we are to be categorical about things (by which I mean that the \emph{morphisms} are to play a central role), is that we shouldn't try to generalize the concept of ``subset'' to objects, but rather, to morphisms.  That is to say, the objective should be to figure out what it means for a \emph{morphism} to be an embedding.  So, let $f\colon A\rightarrow B$ be a morphism in a concrete category.\footnote{We take our category to be concrete because, to the best of my knowledge, there is no definition of embedding/quotient that is satisfactory for all (not-necessarily-concrete) categories.}  In order to be an embedding, $f$ has to be at the very least an embedding of the underlying sets, that is, $f$ should be injective.  We need more than this however:\footnote{See \cref{exm3.1.36}.}  if $C$ is another object `contained' in $A$, by which I mean there is a morphism $g\colon C\rightarrow A$, then, just as I can consider a subset of a subset as a subset,\footnote{That is, if $X$ is a subset of $Y$ and $Y$ is a subset of $Z$, then of course I can consider $X$ as a subset of $Z$ as well.} if $f$ is to be an embedding, I should be able to consider $C$ directly as being `contained' in $B$, that is, $f\circ g$ should be a morphism as well.  This is made precise with the following definition (as well as the `dual' concept of \emph{quotient}).
+\begin{dfn}{Embedding and quotient}{EmbeddingAndQuotient}
+Let $\cat{C}$ be a concrete category, let $A,B\in \Obj (\cat{C})$, and let $f\in \Mor _{\cat{C}}(A,B)$.
+\begin{enumerate}
+\item $f$ is an \emph{embedding}\index{Embedding (category theory)} iff $f$ is injective and whenever a function $g\colon C\rightarrow A$ is such $f\circ g\in \Mor _{\cat{C}}(C,B)$ (with $C\in \Obj (\cat{C})$), it follows that $g\in \Mor _{\cat{C}}(C,A)$.
+\item $f$ is a \emph{quotient}\index{Quotient (category theory)} iff $f$ is surjective and whenever a function $g\colon B\rightarrow C$ is such that $g\circ f\in \Mor _{\cat{C}}(A,C)$ (with $C\in \Obj (\cat{C})$), it follows that $g\in \Mor _{\cat{C}}(B,C)$.
+\end{enumerate}
+\end{dfn}
+Now that we have the precise definition in hand, we can \emph{prove} that being an injective morphism is not enough.
+\begin{exm}{A nondecreasing injective function that is not an embedding}{exmA.2.20}
+Define $X\coloneqq \{ A,B\}$ equipped with the trivial partial-order\footnote{That is, $A\leq A$, $B\leq B$, and nothing else.} and define $Y\coloneqq \{ 1,2\}$ with the only nontrivial relation being $1\leq 2$.
+
+Define $f\colon X\rightarrow Y$ by $f(A)\coloneqq 1$ and $f(B)\coloneqq 2$.  If $x_1\leq x_2$ in $X$, then in fact we must have that $x_1=x_2$ (because it's the trivial order), and so of course $f(x_1)\leq f(x_2)$ (in fact, we have equality.  Thus, $f$ is nondecreasing.  It is also certainly injective (in fact, bijective).
+
+We wish to show that $f$ is not an embedding.  Define $g\colon Y\rightarrow X$ by $g(A)\coloneqq 1$ and $g(B)\coloneqq 2$.  Then, $f\circ g=\id _Y$ is certainly nondecreasing (i.e.~a morphism in $\Pre$), but yet $g$ is not nondecreasing.  Hence, $f$ is not an embedding.
+\begin{rmk}
+Though you may be able to follow the proof, it's also important to understand why $f$ \emph{shouldn't} be an embedding.  That is to say, while it may be true that our definition has the property that $f$ is not an embedding, furthermore, any definition we might have come up with should have this property.  The reason is that, if you consider $X$ as a subset of $Y$ (via $f$), then the order on $Y$ would dictate that $A\leq B$ (because $f(A)\leq f(B)$), which is not the case.  In this case, the `structure' on $X$ is \emph{not} that inherited from $Y$ via $f$.
+\end{rmk}
+\end{exm}
+On the other hand, we do have the following.
+\begin{exr}{}{exrA.2.21}
+Let $\cat{C}$ be either the category $\Set$, $\Rg$, or $\Mag$.
+\begin{enumerate}
+\item Show that a morphism in $\cat{C}$ is an embedding iff it is injective.
+\item Show that a morphism in $\cat{C}$ is a quotient iff it is surjective.
+\end{enumerate}
+\end{exr}
+\begin{exr}{}{exrA.2.22}
+\begin{enumerate}
+\item Show that a morphism $f$ in $\Pre$ is an embedding iff it is injective and has the property that $f(x_1)\leq f(x_2)$ iff $x_1\leq x_2$.
+\item Show that a morphism $f$ in $\Pre$ is a quotient iff it is surjective and has the property that $f(x_1)\leq f(x_2)$ iff $x_1\leq x_2$.
+\end{enumerate}
+\end{exr}
+
+\cleardoublepage
+\chapter{Basic number theory}
+
+Note that, unlike the previous two appendices, this one requires some prerequisites from the main text.  In particular, you should have technically read through the section defining the integers.\footnote{Though I realize that, in practice, it's quite likely you'll be able to understand the contents of this appendix without having seen a formal development of the integers.}
+
+On one hand, these are note on \emph{analysis}, and so it might seem a bit odd to include an appendix on number theory.  On the other hand, there are places throughout the notes where we will need to make use of elementary number theoretic concepts (e.g,~prime numbers, divisibility, greatest common divisors, etc.).  There's a good chance you probably know a lot of this already, but in the spirit of building \emph{everything} from the ground-up, these basic concepts deserve to be treated somewhere. 
+
+The first thing we must do is what is called the \emph{Division Algorithm}, and it is simply a precise statement of how division (with remainder) works.
+\begin{thm}{Division Algorithm}{DivisionAlgorithm}
+Let $m\in \Z$ and let $n\in \Z ^+$.  Then, there are unique integers $q,r\in \Z$ such that
+\begin{enumerate}
+\item $m=qn+r$; and
+\item $0\leq r<n$.
+\end{enumerate}
+\begin{rmk}
+$m$ is the \emph{dividend}\index{Dividend}, $n$ is the \emph{divisor}\index{Divisor}, $q$ is the \emph{quotient}\index{Quotient}, and $r$ is the \emph{remainder}\index{Remainder}.
+\end{rmk}
+\begin{proof}
+Define $S\coloneqq \left\{ m-nx\in \N :x\in \Z\right\}$.
+\begin{exr}{}{}
+Show that $S$ is nonempty.
+\begin{wrn}
+Warning:  It is not as simply as just `plugging-in' $x=0$---$m$ itself may not be a natural number.
+\end{wrn}
+\end{exr}
+As $S$ is nonempty, because $\N$ is well-ordered, it must have a smallest element.  Call that element $r=m-nq\in \N$.  We thus immediately have that $m=nq+r$.  As $r\in \N$, $r\geq 0$.  We must check that $r<n$.
+
+We proceed by contradiction:  suppose that $r\geq n$.  Then, $r-n=m-n(q+1)\in S$ is smaller than $r$ because $n>0$, a contradiction of the fact that $r$ was the \emph{smallest} element of $S$.  Therefore, $r<n$.
+
+We now must prove uniqueness.  Let $q',r'\in \Z$ be such that (i)~$m=nq'+r'$ and (ii)~$0\leq r'<n$.  Without loss of generality, suppose that $q'\geq q$.  Rearranging $nq+r=m=nq'+r'$ gives $r-r'=n(q'-q)$.  If $q'=q$, then from this it follows likewise that $r'=r$, and we are done, so suppose that $q'\neq q$.  As we have assumed that $q'\geq q$, we must have that $q'>q$, and so $q'-q\geq 1$.  It follows that $r-r'=n(q'-q)\geq n$, a contradiction of the fact that $r<n$.  Thus, it must have been the case that $q'=q$ and $r'=r$.
+\end{proof}
+\end{thm}
+
+The next thing we must investigate are the fundamental concepts of divides, irreducibility, and prime.
+\begin{dfn}{Divides}{Divides}
+Let $m,n\in \Z$.  Then, $m$ \emph{divides}\index{Divides} $n$, written $m\mid n$\index[notation]{$m\mid n$}, iff there is some $k\in \Z$ such that $n=mk$.
+\begin{rmk}
+We also say that $n$ is a \emph{multiple}\index{Multiple} of $m$ or that $m$ is a \emph{factor}\index{Factor} of $n$.  Note that the set of all multiples of $n$ is just $n\Z \coloneqq \left\{ nk:k\in \Z \right\}$, so alternatively this definition can be written as ``$m$ divides $n$ iff $m\in n\Z$.''.  This will be important when you go to generalize this concept to other rings (or even other rgs, I suppose, though I've never seen this done).
+\end{rmk}
+\begin{rmk}
+Though we technically don't know what division is yet, rearranging this suggestively as $\frac{n}{m}=k$, we see that this definition is just the statement that $n$ divided by $m$ is an integer.
+\end{rmk}
+\end{dfn}
+This actually gives us our first `natural' example of a preorder that is not a partial-order.
+\begin{exr}{}{exr1.2.34}
+Show that $\coord{\Z ,\mid}$ is a preorder that is not a partial-order.
+\end{exr}
+
+Among other reasons, the concept of divisibility is important because it allows us to define the notion of \emph{primality}
+\begin{dfn}{Prime}{Prime}
+Let $p\in \Z$.  Then, $p$ is \emph{prime}\index{Prime} iff
+\begin{enumerate}
+\item \label{Prime.i}$p\neq 0$;
+\item \label{Prime.ii}$p\notin \Z ^{\times}$; and
+\item \label{Prime.iii}whenever $p\mid (mn)$, it follows that $p\mid m$ or $p\mid n$.
+\end{enumerate}
+\begin{rmk}
+Recall (\cref{dfnA.1.33}) that $R^{\times}$ is the group of units in the rig $R$, that is, the elements which have a multiplicative inverse.  For $\Z$, we have $\Z ^{\times}=\{ 1,-1\}$, and so this is just a fancy way of saying ``$p$ is irreducible iff $p\neq \pm 1$ and whenever $p=mn$, it follows that$m=\pm 1$ or $n=\pm 1$.''.  The important condition here is thus the second one---the first serves only to rule out the `stupid' case of $\pm 1$ being irreducible.
+\end{rmk}
+\begin{rmk}
+Using the remark of the previous definition (\cref{Divides}), note that this can be written as ``$p$ is prime iff whenever $mn\in p\Z$, it follows that $m\in p\Z$ or $n\in p\Z$.''.  Same as before, this will be important when generalizing this concept to other rings.
+\end{rmk}
+\begin{rmk}
+This is probably not the definition you are used to.  The definition you are used to is what is called \emph{irreducible} (see the next definition (\cref{Irreducible})).  It turns out that they are equivalent for $\Z$\footnote{And I suppose, more generally, for what are called \emph{GCD domains}\index{GCD domain}.} (\cref{prp1.2.36}), though \emph{this will fail for general rings}.  We make our terminology the way we do so that it agrees with the more general case (where the concepts are indeed distinct ones).
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Irreducible}{Irreducible}
+Let $p\in \Z$.  Then, $p$ is \emph{irreducible}\index{Irreducible} iff
+\begin{enumerate}
+\item \label{Irreducible.ix}$p\neq 0$;
+\item \label{Irreducible.i}$p\notin \Z ^{\times}$; and
+\item \label{Irreducible.ii}whenever $p=mn$, it follows that $m\in \Z ^{\times}$ or $n\in \Z ^{\times}$.
+\end{enumerate}
+\begin{rmk}
+The first two conditions are simply to rule out `stupid' cases.  The important condition is the last one and, in English, says that (a nonzero nonunit) is irreducible iff it cannot be factored as the product of two nonunits.
+\end{rmk}
+\end{dfn}
+Our first objective is to show that these two definitions are equivalent.  Before we do so, however, we're going to need a couple of extra tools, one of which is the \emph{greatest common divisor}.
+\begin{dfn}{Greatest common divisor}{GreatestCommonDivisor}
+Let $m,n\in \Z$, not both $0$, and let $d\in \Z$.  Then, $d$ is a \emph{greatest common divisor}\index{Greatest common divisor} of $m$ and $n$ iff
+\begin{enumerate}
+\item $d\mid m$;
+\item $d\mid n$; and
+\item if $k\mid m,n$, then $k\mid d$.
+\end{enumerate}
+If $m=0=n$, then we declare the greatest common divisor to be $0$.\footnote{In this case, everything is a common divisor, and in particular, there is no greatest one.  For the sake of definiteness the, we simply define the only greatest common divisor of $0$ and $0$ to be $0$.}
+\begin{rmk}
+That is to say, a greatest common divisor of $m$ and $n$ is a maximum (that is, the \emph{greatest}) of the set $\{ k\in \Z :k\mid m,n\}$ (that is, the set of \emph{common divisors}), with respect to the preorder defined by $\mid$ (\cref{exr1.2.34}).
+\end{rmk}
+\begin{rmk}
+Note that the word ``greatest'' here really refers to the preorder defined by $\mid$, \emph{not} the preorder defined by $\leq$.  The reason for this is that the relation $\mid$ makes sense in any crg, whereas the `normal' $\leq$ constitutes extra structure that is lacking in many important examples of crgs.
+\end{rmk}
+\begin{rmk}
+Note that great common divisors are \emph{not} unique.  For example, both $+6$ and $-6$ are greatest common divisors of $12$ and $30$.  In the special case of $\Z$, greatest common divisors do come in pairs, and so there is a canonical one, namely, the positive one (in the example, $+6$).  Some authors, especially if they intend to work mostly or exclusively with $\Z$, would only consider $6$ as a greatest common divisor or $12$ and $30$.  As per usual, however, we prefer to keep our definitions in a form that generalizes as easy as possible.
+\end{rmk}
+\end{dfn}
+We similarly have a `dual' concept.
+\begin{dfn}{Least common multiple}{LeastCommonMultiple}
+Let $m,n\in \Z$ and let $l\in \Z$.  Then, $l$ is a \emph{least common multiple}\index{Least common multiple} of $m$ and $n$ iff
+\begin{enumerate}
+\item $m\mid l$;
+\item $n\mid l$; and
+\item if $m,n\mid k$, then $l\mid k$.
+\end{enumerate}
+\end{dfn}
+It turns out that any two integers have a greatest common divisor, though this is not immediate.
+\begin{thm}{B\'{e}zout's Identity}{BezoutsIdentity}\index{B\'{e}zout's Identity}
+Let $m,n\in \Z$.  Then, there exists a unique positive greatest common divisor $d\in \Z ^+$ of $m$ and $n$.  Furthermore, $d$ is the smallest positive integer which can be written as an integral linear combination of $m$ and $n$, that is, it is the smallest positive element of the set
+\begin{equation}
+\{ xm+yn:x,y\in \Z \} .
+\end{equation}
+\begin{rmk}
+As previously mentioned, greatest common divisors are not actually unique.  Thus, to get uniqueness, we need to impose the extra condition of ``positive''.  This won't make sense in general of course, but it makes sense in $\Z$, which is our primary cring of interest at the moment.  We shall thus write $d=\gcd (m,n)$\index[notation]{$\gcd (m,n)$} for the unique positive greatest common divisor when working in $\Z$.  Similarly, there is a unique nonnegative least common multiple of $m$ and $n$, which we denote by $\lcm (m,n)$\index[notation]{$\lcm (m,n)$}.
+\end{rmk}
+\begin{wrn}
+Warning:  Existence of greatest common divisors fails in general integral crings.  In particular, this statement is not immediate---some proving is most definitely required.
+\end{wrn}
+\begin{rmk}
+The reason this is sometimes referred to as an ``identity'' is because the second part of the statement says in particular that $d=xm+yn$ for some $x,y\in \Z$.
+\end{rmk}
+\begin{rmk}
+The intuition for the second part is that, any common divisor of $m,n\in \Z$ must divide $xm+yn$ for $x,y\in \Z$, and so in particular the greatest common divisor cannot be strictly `larger' than any element of this form.  One might thus conjecture that the smallest element of this form is a greatest common divisor, and in fact, this is precisely the case.
+\end{rmk}
+\begin{proof}
+\Step{Define $d$}
+Define $D\coloneqq \{ xm+yn\in \Z ^+:x,y\in \Z \}$.
+\begin{exr}{}{}
+Show that $D$ is nonempty.
+\end{exr}
+As $D$ is nonempty, it in particular has a smallest element, $d=x_dm+y_dn\in D$.  We wish to show that $d$ is the greatest common divisor of $m$ and $n$.
+
+\Step{Show that every element of $D$ is a multiple of $d$}
+Let $a\in D$.  By the \nameref{DivisionAlgorithm}, there are unique $q,r\in \Z$ such that $a=qd+r$ and $0\leq r<d$.  It suffices to show that $r=0$.  We proceed by contradiction:  suppose that $r>0$.  Note that, $a$ is an integral linear combination of $m$ and $n$ and so is $qd$, and hence $r=a-qd$ is likewise an integral linear combination of $m$ and $n$.  Hence, as $r>0$, $r\in D$.  As $r<d$, this is a contradiction of the fact that $d$ was the smallest element of $D$.
+
+\Step{Deduce that $d$ is a common divisor of $m$ and $n$}
+By $m\leftrightarrow n$ symmetry, it suffices to prove that $d$ is a divisor of $m$.  If $m=0$, then of course $d$ is a divisor of $m$ ($m=0=d\cdot 0$).  On the other hand, if $m>0$, then $m=1\cdot m+0\cdot n\in D$, and if $m<0$, then $-m=-1\cdot m+0\cdot n\in D$.  In either case, by the previous step, $\pm m$ id a multiple of $d$, and so $d$ is a divisor of $m$.
+
+\Step{Show that $d$ is the \emph{greatest} common divisor of $m$ and $n$}
+Let $d'\in \Z$ be another common divisor of $m$ and $n$.  As $d=x_dm+y_dn$, it follows that $d'$ in turn divides $d$, as desired.
+
+\Step{Show uniqueness}
+Redefine notation and let $d'\in \Z$ be another positive greatest common divisor of $m$ and $n$.  As $d$ is a \emph{greatest} common divisor and $d'$ is a common divisor, $d'\mid d$.  Similarly, as $d'$ is a \emph{greatest} common divisor and $d$ is a divisor, $d\mid d'$.  
+\begin{exr}{}{}
+Show that this implies that $d'=\pm d$.
+\end{exr}
+As $d$ and $d'$ are both positive, we must then have that $d'=d$, as desired.
+\end{proof}
+\end{thm}
+The case when $\gcd (m,n)=1$ is particularly important, and this even has a name of its own.
+\begin{dfn}{Relatively prime}{RelativelyPrime}
+Let $m,n\in \Z$.  Then, $m$ and $n$ are \emph{relatively prime} iff $\gcd (m,n)=1$.
+\begin{rmk}
+Put another way, this means that $m$ and $n$ have no common factors.  For us, this comes up for example in the uniqueness of the fraction representing a rational number---see \cref{prp1.3.4}.
+\end{rmk}
+\end{dfn}
+One reason this is important is the following.
+\begin{prp}{Euclid's Lemma}{EuclidsLemma}
+Let $m,n,o\in \Z$.  Then, if $m$ and $n$ are relatively prime and $m\mid (no)$, then $m\mid o$.
+\begin{proof}
+Suppose that $m$ and $n$ are relatively prime and $m\mid (no)$.  By \nameref{BezoutsIdentity}, there are $x,y\in \Z$ such that $1=xm+yn$.  From the definition of divisibility, there is some $k\in \Z$ such that $no=mk$.  Multiplying through by $y$ and using the previous equation, we get
+\begin{equation}
+ymk=yno=(1-xm)o,
+\end{equation}
+and so $o=m(yk+ox)$.  Thus, $m\mid o$, as desired.
+\end{proof}
+\end{prp}
+
+Now we finally return to the issue of the equivalence of irreducibility and primality in $\R$.
+\begin{prp}{}{prp1.2.36}
+Let $p\in \Z$.  Then, $p$ is prime iff it is irreducible.
+\begin{wrn}
+Warning:  As was previously mentioned, this result \emph{does not generalize} to other rings.  On the other hand, prime \emph{always}\footnote{``Always'' meaning ``in integral crings.''.  You definitely need integrality--for example, $3\in \Z /4\Z$ is irreducible, but, as $3$ divides $0=2\cdot 2$ and $3$ doesn't divide $2$, $3$ is not prime.} implies irreducible, and the converse holds if the integral cring is something called a \emph{GCD domain}.\footnote{Though it seems that irreducible iff prime holds even in some rings that are not GCD domains---see \url{http://math.stackexchange.com/questions/1244890/}.}
+\end{wrn}
+\begin{proof}
+$(\Rightarrow )$ Suppose $p$ is prime.  $p$ is by definition not $0$ and not a unit, and so we only need to check \cref{Irreducible.ii} of \cref{Irreducible}.  So, let $m,n\in \Z$ be such that $p=mn$.  Then, in particular, $p\mid (mn)$,\footnote{$mn=p\cdot 1$.} and so as $p$ is prime, $p\mid m$ or $p\mid n$.  Without loss of generality, suppose that $p\mid m$.  We can then write $m=pk$ for some $k\in \Z$, and so $p=mn$ reads $p=pkn$.  Rearranging gives $p(1-kn)=0$, and so as $\Z$ is integral and $p\neq 0$, $1-kn=0$, that is, $kn=1$, or in other words, $n$ is a unit.
+
+\blankline
+\noindent
+$(\Leftarrow )$ Suppose that $p$ is irreducible.  $p$ is by definition not $0$ and not a unit, and so we only need to check \cref{Prime.iii} of \cref{Prime}.  So, let $m,n\in \Z$ and suppose that $p\mid (mn)$.  Define $d\coloneqq \gcd (pn,mn)$.  Of course $n$ is a common divisor of $pn$ and $mn$.  By hypothesis, however, $p$ is likewise a common divisor of both $pn$ and $mn$.  Hence, $p\mid d$ and $n\mid d$, so that $pk=d=nl$ for some $k,l\in \Z$.  As $d=pk$ divides $pn$, it follows that $k\mid n$.  The equation $pk=nl$ then gives\footnote{We need $k\neq 0$ to `cancel' it.  If $k=0$, then $d=0$, which forces $pn=0=mn$, which forces $n=0$ (because $p\neq 0$).  Then, $p\mid n$, and we are done.  Thus, we can assume that $k\neq 0$.} $p=\frac{n}{k}l$.\footnote{As we don't technically have multiplicative inverses yet, you should regard $\frac{n}{k}$ as short-hand for the unique integer which satisfies $p=k\frac{n}{k}$.}  As $p$ is irreducible, we must then have that either $\frac{n}{k}$ or $l$ is a unit, i.e.~$\pm 1$.  In the first case, $l=\pm p$, and so, as $d=nl$ divides $mn$, $l$ divides $m$, and hence $p=\pm l$ divides $m$.  On the other hand, in the second case, $\frac{n}{k}=\pm p$, and so $n=p\cdot (\pm k)$, that is, $p\mid n$.
+
+If $p\mid m$, we are done, so suppose this is not the case.  As $p$ is irreducible, This means that there is some $k\in \Z$ such that $mn=pk$.
+\end{proof}
+\end{prp}
+
+\cleardoublepage
+\chapter{Linear algebra}
+
+As explained at the beginning of this appendix and elsewhere, when all was said and done, I very much wanted to be able to say ``We did everything from scratch.''.  Linear algebra, while not analysis proper, does make an appearance throughout the main text, especially in the chapter on differentiation (\cref{chp5x}).  Thus, in the spirit of reductionism ad infinitum, it is necessary to include a treatment of linear algebra somewhere in these notes, and I felt as if an appendix was an appropriate location to place such relevant facts.
+
+That said, in practice, while linear algebra is not technically a prerequisite for these notes, the overwhelming majority of students reading these notes will have at least a passing familiarity with the basic concepts of linear algebra.  Thus, it doesn't make sense to go into an incredible amount of depth.  The purpose of this appendix then is to really more provide a reference to the relevant facts (and show that everything can in fact be done from scratch), rather than to teach linear algebra per se.
+
+In any case, let us begin.
+
+\section{Basic definitions}
+
+Linear algebra is the study of vector spaces.\footnote{Or possibly \emph{finite-dimensional} vector spaces if you prefer---it's not as if there is a strict definition of what the term ``linear algebra'' refers to.}  If $V$ is a vector space, the elements of $V$ are typically referred to as \emph{vectors}.  This is slightly unfortunate terminology, which, while second nature to mathematicians, can be a bit confusing for beginning students because \emph{the elements of $V$ are not necessarily `actual vectors'}.  For example, the set of real-valued functions on a set can be made into a vector space, and certainly functions themselves are not traditionally thought of as ``vectors''.  Thus, to avoid any possible confusion or ambiguity, I will be careful to make the following distinction.
+\begin{displayquote}
+Elements of a general vector space will simply be referred to as \emph{vectors}.  Elements of the specific vector space $\R ^d$ will be referred to as \emph{column vectors}\index{Column vector}.\footnote{More precisely, we will use this terminology when regarding $\R ^d$ as an object in $\Vect _{\R}$, the category of vector spaces over $\R$---see \cref{TheCategoryOfVectorSpaces}.}
+\end{displayquote}
+
+Of fundamental importance in linear algebra is the relationship between the abstract and the concrete.  Of course, the set of all column vectors (with a fixed number of components) forms a vector space, and matrices define linear transformations.  In the other direction, given a vector space $V$,\footnote{Over $\R$, for the moment.} for every choice of a basis $\basis{B}$ of $V$, there is a unique isomorphism $V\rightarrow \R ^d$ that satisfies such and such properties.\footnote{See \cref{thmD.1.7} below for the precise statement.}  Thus, having fixed a basis, one can associate \emph{column vectors to vectors} and \emph{matrices to linear transformations}.  I mention this now only to help solidify the distinction between vectors (in a general vector space) and column vectors (and also to foreshadow one of the more important results in elementary linear algebra)---you are not supposed to know what any of this precisely means just yet.  In brief:
+\begin{displayquote}
+Vectors are to column vectors as linear transformations are to matrices.
+\end{displayquote}
+
+Okay, now that that caveat is out of the way, let us return to the definition of a vector space.  A vector space is (i) a set, the elements of which are called \emph{vectors}\footnote{Though are most definitely not necessarily ``actual'' column vectors---we just spent the last couple of paragraphs harping on this point.}; together with (ii) rules for adding and scaling the vectors.\footnote{Subject to various axioms of course.}  This is the intuition anyways.  In this way, the definition of vector spaces in general is an abstraction of the set of column vectors $\R ^d$ that you know and love.  This is not unlike how we `abstracted' the definition of a general topological space (\cref{TopologicalSpace}) from the properties of open sets in $\R ^d$ (\cref{exr3.4.14,exr3.4.7,thm3.4.34,thm3.4.36}).
+
+To specify the scaling operation, however, we first need to say what the ``scalars'' are.  For vector spaces, the scalars are taken to be a field.  That said, the axioms of a vector spaces make no references to the existence of multiplicative inverses, and so in fact the definition makes just as much sense if you allow your field to be a more general ring.  This is what is called an \emph{$R$-module}.  As there is no reason to needlessly throw away this extra generality,\footnote{Except for perhaps, you know, pedagogy.} we present the definition in this form.
+\begin{dfn}{$R$-module}{RModule}
+Let $R$ be a ring.  Then, an \emph{$R$-module} \index{$R$-module} is
+\begin{data}
+\item a commutative group $\coord{M,+,0,-}$; together with
+\item a function $\cdot \colon R\times M\rightarrow M$;
+\end{data}
+such that
+\begin{enumerate}
+\item $(\alpha _1\alpha _2)\cdot v=\alpha _1\cdot (\alpha _2\cdot v)$;
+\item $1\cdot v=v$;
+\item $(\alpha _1+\alpha _2)\cdot v=\alpha _1\cdot v+\alpha _2\cdot v$; and
+\item $\alpha \cdot (v_1+v_2)=\alpha \cdot v_1+\alpha \cdot v_2$;
+\end{enumerate}
+for all $\alpha ,\alpha _1,\alpha _2\in R$ and $v,v_1,v_2\in M$.
+\begin{rmk}
+See \cref{prpD.1.3} for an equivalent slicker but less transparent definition.  In general in mathematics, it is often the case that there are two (or more) ways to think of something---one is the conceptually concise, slick, but not very explicit way; and the other is not as elegant but easier to work with in practice.  This definition is of the latter type and the statement in \cref{prpD.1.3} of the former.
+\end{rmk}
+\begin{rmk}
+In elementary linear algebra textbooks, this is often listed as eight (or more) axioms.  This is quite a bit, and I think it is easy to remember them as follows:  four of those axioms are simply equivalent to the statement that $\coord{M,+,0,-}$ is a commutative group, two of them are distributive axioms, and the other two are natural ``compatibility'' axioms between the multiplication in $R$ and $\cdot$.
+\end{rmk}
+\begin{rmk}
+In fact, phrasing the definition in this way makes sense even more generally for rigs---see \cref{prpD.1.3} for an explanation of why it is `natural' to specialize to rings.
+\end{rmk}
+\begin{rmk}
+This is sometimes referred to as a \emph{left} $R$-module because the ``scalars'' appear on the left.  Of course, rewriting things a bit, it is easy enough to write down the definition of a \emph{right} $R$-module as well.  There really isn't any serious difference between the two definitions, but one convention can be more convenient than the other in certain contexts.\footnote{This is not unlike how it is sometimes convenient to write composition in \emph{postfix notation}\index{Postfix notation}:  $f\cdot g\ceqq g\circ f$.}
+\end{rmk}
+\begin{rmk}
+In case you're wondering why we're not using the letter $m$ for elements of $M$ (like we would use $r$ for elements of a ring $R$), it's because I really would like to reserve the symbol ``$m$'' for elements of $\N$ (or $\Z$).
+\end{rmk}
+\end{dfn}
+Our first order of business is to give another equivalent definition of an $R$-module (\cref{prpD.1.3}).  Before we get there, however, we must prove some basic facts about $R$-modules that follow immediately from the axioms (as well as \cref{prpD.1.2}).
+\begin{exr}{}{exrD.1.2}
+Let $R$ be a ring and let $M$ be an $R$-module.
+\begin{enumerate}
+\item Show that $0=0\cdot v$ for all $v\in M$.
+\item Show that $-v=(-1)\cdot v$ for all $v\in M$.
+\end{enumerate}
+\end{exr}
+\begin{prp}{}{prpD.1.2}
+Let $M$ be a commutative group.  Then, $\coord{\End _{\Grp}(M),+,0,-,\circ ,\id _M}$ is a ring.
+\begin{rmk}
+Recall that (\cref{Endomorphism,TheCategoryOfMagmas}) $\End _{\Grp}(M)$ is the set of all group homomorphisms (\cref{HomomorphismOfMagmas}) from $M$ to itself.
+\end{rmk}
+\begin{rmk}
+$+$ is defined ``pointwise'', that is, $[\phi +\psi ](v)\ceqq \phi (v)+\psi (v)$.  Similarly, $0$ here denotes the \emph{function} that is $0$ for all $v$.
+\end{rmk}
+\begin{proof}
+$\coord{\End _{\Grp}(M),+,0,-}$ is a commutative group because $\coord{M,+,0,-}$ is (write out the verification of the axioms yourself if you don't believe me).  $\coord{\End _{\Grp}(M),\circ ,\id _M}$ is a monoid by \cref{prpB.2.9}.  From the definition of a ring \cref{Rg}, we see that it only remains to check that $\circ$ distributes over $+$, and so, we check.
+\begin{equation}
+\begin{split}
+\left[ \phi \circ (\psi +\chi )\right] (v) & \ceqq \phi \left( [\psi +\chi ](v)\right) \ceqq \phi \left( \psi (v)+\chi (v)\right) \\
+& =\footnote{Because $\phi$ is a homomorphism.}\phi (\psi (v))=\phi (\chi (v)) \\
+& \eqqc [\phi \circ \psi ](v)+[\phi \circ \chi ](v)\eqqc \left[ \phi \circ \psi +\phi \circ \chi\right] (v).
+\end{split}
+\end{equation}
+As this is true for all $v$, in fact, the functions themselves must be equal, that is $\phi \circ (\psi +\chi )=\phi \circ \psi +\phi \circ \chi$.  Similarly,
+\begin{equation}
+\begin{split}
+\left[ (\psi +\chi )\circ \phi \right] (v) & \ceqq [\psi +\chi ]\left( \phi (v)\right) \ceqq \psi (\phi (v))+\chi (\phi (v)) \\
+& \eqqc [\psi \circ \phi ](v)+[\chi \circ \phi ](v)\eqqc \left[ \psi \circ \phi +\chi \circ \phi \right] (v),
+\end{split}
+\end{equation}
+as desired.
+\end{proof}
+\end{prp}
+\begin{thm}{}{prpD.1.3}
+Let $R$ be a ring.
+\begin{enumerate}
+\item \label{prpD.1.3.i}Let $M$ be a commutative group and let $\rho \colon R\rightarrow \End _{\Grp}(M)$ be a ring homomorphism.  Then, $\coord{M,\cdot _{\rho}}$ is an $R$-module, where $\cdot _{\rho}\colon R\times M\rightarrow M$ is defined by
+\begin{equation}
+\alpha \cdot _{\rho}v\ceqq \rho _{\alpha}(v).\footnote{We have writen $\rho _{\alpha}(v)\ceqq [\rho (\alpha )](v)$, as I find this notation more transparent---for each $\alpha$, you obtain a group homomorphism called $\rho _{\alpha}\colon M\rightarrow M$, and so $\rho _{\alpha}(v)$ is the value of that group homomorphism at $v\in M$.  We use similar notation throughout.}
+\end{equation}
+\item \label{prpD.1.3.ii}Let $\coord{M,\cdot}$ be an $R$-module.  Then, $\rho _{\cdot}\colon R\rightarrow \End _{\Grp}(M)$, defined by,
+\begin{equation}
+[\rho _{\cdot}]_{\alpha}(v)\ceqq \alpha \cdot v
+\end{equation}
+is a ring homomorphism.
+\end{enumerate}
+Furthermore, these two constructions are inverse two each other, that is, $\cdot _{\rho _{\cdot}}=\cdot$ and $\rho _{\cdot _{\rho}}=\rho$.
+\begin{rmk}
+This remark is more important than usual so pay attention.  This result is the precise statement of the fact that we could have equivalently defined an $R$-module to be a pair $\coord{M,\rho}$, where $M$ is a commutative group and $\rho \colon R\rightarrow \End _{\Grp}(M)$ is a ring homomorphism.  This is hugely important as it says that, in language which you will eventually encounter (though not in these notes), \emph{$R$-modules are `the same' as ``representations'' of $R$}.\footnote{In fact, ``$\rho$'' is for \emph{representation}.}
+\end{rmk}
+\begin{rmk}
+Note that $\End _{\Grp}(M)$ is in fact a ring by the previous result.
+\end{rmk}
+\begin{rmk}
+Note that, by \cref{prpD.1.2}, $\End _{\Grp}(M)$ is a \emph{ring}, not just a \emph{rig}, and so it is natural to require that $R$ likewise be a ring, not just a rig.
+\end{rmk}
+\begin{proof}
+\cref{prpD.1.3.i} For the sake of brevity, we shall simply write $\cdot \ceqq \cdot _{\rho}$.  We must verify the four axioms in \cref{RModule}.  So, let $\alpha ,\alpha _1,\alpha _2\in R$ and $v,v_1,v_2\in M$.  Then,
+\begin{equation}
+\begin{split}
+(\alpha _1\alpha _2)\cdot v & \ceqq \rho _{\alpha _1\alpha _2}(v)=\footnote{As $\rho$ is a ring homomorphism, it ``preserves'' multiplication.}[\rho _{\alpha _1}\circ \rho _{\alpha _2}](v)\ceqq \rho _{\alpha _1}\left( \rho _{\alpha _2}(v)\right) \\
+& \ceqq \rho _{\alpha _1}(\alpha _2\cdot v)\ceqq \alpha _1\cdot (\alpha _2\cdot v).
+\end{split}
+\end{equation}
+As $\rho _1=\id _M$ (as it is a ring homomorphism, it must ``preserve'' the multiplicative identity), we have that $1\cdot v\ceqq \rho _1(v)=\id _M(v)=v$. As for the first distributive axiom, we have
+\begin{equation}
+\begin{split}
+(\alpha_1+\alpha _2)\cdot v & \ceqq \rho _{\alpha _1+\alpha _2}(v)=\footnote{As $\rho$ is a ring homomrphism, it ``preserves'' addtion.}[\rho _{\alpha _1}+\rho _{\alpha _2}](v)\ceqq \rho _{\alpha _1}(v)+\rho _{\alpha _2}(v) \\
+& \eqqc \alpha _1\cdot v+\alpha _2\cdot v.
+\end{split}
+\end{equation}
+Finally, for the second distributive axiom, we have
+\begin{equation}
+\alpha \cdot (v_1+v_2)\ceqq \rho _{\alpha}(v_1+v_2)=\footnote{Becasue $\rho _{\alpha}$ itself is a group homomorphism.}\rho _{\alpha}(v_1)+\rho _{\alpha}(v_2)\eqqc \alpha \cdot v_1+\alpha \cdot v_2.
+\end{equation}
+
+\blankline
+\noindent
+\cref{prpD.1.3.ii} For the sake of brevity, we shall simply write $\rho \ceqq \rho _{\cdot}$.  First of all, note that each $\rho _{\alpha}$ is in fact a group homomorphism because $\alpha \cdot (v_1+v_2)=\alpha \cdot v_1+\alpha \cdot v_2$ for all $v_1,v_2\in M$.  We first check that $\rho$ preserve addition.
+\begin{equation}
+\begin{split}
+\rho _{\alpha _1+\alpha _2}(v) & \ceqq (\alpha _1+\alpha _2)\cdot v=\alpha _1\cdot v+\alpha _2\cdot v\eqqc \rho _{\alpha _1}(v)+\rho _{\alpha _2}(v) \\
+& \eqqc [\rho _{\alpha _1}+\rho _{\alpha _2}](v),
+\end{split}
+\end{equation}
+and so $\rho _{\alpha _1+\alpha _2}=\rho _{\alpha _1}+\rho _{\alpha _2}$.  Similarly, $\rho$ preserves the additive identity and additive inverses by \cref{exrD.1.2}.  Likewise, $\rho$ preserves multiplication as $(\alpha _1\alpha _2)\cdot v=\alpha _1\cdot (\alpha _2\cdot v)$.  Finally, $\rho$ preserves the multiplicative identity as $1\cdot v=v$.
+
+\blankline
+\noindent
+It remains to check that these constructions are inverse to each other.  This is quite easy and is just a matter of unraveling the definitions.
+\begin{equation}
+\alpha \cdot _{\rho _{\cdot}}v\ceqq [\rho _{\cdot}]_{\alpha}(v)\ceqq \alpha \cdot v,
+\end{equation}
+and so $\alpha _{\rho _{\cdot}}=\cdot$.  Similarly,
+\begin{equation}
+[\rho _{\cdot _{\rho}}]_{\alpha}(v)\ceqq \alpha \cdot _{\rho}v\ceqq \rho _{\alpha}(v),
+\end{equation}
+and hence $[\rho _{\cdot _{\rho}}]_{\alpha}=\rho _{\alpha}$ for all $\alpha \in R$, and hence $\rho _{\cdot _{\rho}}=\rho$.
+\end{proof}
+\end{thm}
+Now that we've seen two equivalent definitions of $R$-module, we actually get to the definition of a vector space.
+\begin{dfn}{Vector space}{VectorSpace}
+A \emph{vector space}\index{Vector space} over $F$ is an $F$-module where $F$ is a field.
+\begin{rmk}
+Elements of $F$ are called \emph{scalars}\index{Scalar}.  Elements of $V$ are called \emph{vectors}\index{Vector}.
+\end{rmk}
+\begin{rmk}
+I can't guarantee that I won't use the terms ``scalar'' and ``vector'' in the context of $R$-modules, $R$ not-necessarily-a-field, though this is not standard.
+\end{rmk}
+\end{dfn}
+
+Having defined a type of mathematical object, we are now morally obligated to specify what the relevant notion of morphism is.
+\begin{dfn}{Linear transformation}{LinearTransformation}
+Let $R$ be a ring, let $M$ and $N$ be $R$-modules, and let $T\colon M\rightarrow N$ be a function.  Then, $T$ is an \emph{$R$-linear transformation}\index{Linear transformation} iff
+\begin{enumerate}
+\item \label{LinearTransformation.i}$T\colon M\rightarrow N$ is a group homomorphism; and
+\item \label{LinearTransformation.ii}$T(\alpha \cdot v)=\alpha \cdot T(v)$ for all $\alpha \in R$ and $v\in V$.
+\end{enumerate}
+\begin{rmk}
+Explicitly, \cref{LinearTransformation.i} means that $T(v_1+v_2)=T(v_1)+T(v_2)$ for all $v_1,v_2\in M$.
+\end{rmk}
+\begin{rmk}
+If $R$ is clear from context as it often is, we shall simply say \emph{linear transformation}.
+\end{rmk}
+\begin{rmk}
+A synonym for $R$-linear transformation is \emph{$R$-module homomorphism}\index{$R$-module homomorphism}.
+\end{rmk}
+\end{dfn}
+With a working notion of morphism in hand, we obtain corresponding categories.
+\begin{exm}{The category of $R$-modules}{TheCategoryOfRModules}\index{Category of $R$-modules}
+Let $R$ be a ring.  Then, the category of $R$-modules is the category $\Mod{R}$\index[notation]{$\Mod{R}$}
+\begin{enumerate}
+\item whose collection of objects $\Obj (\Mod{R})$ is the collection of all $R$-modules;
+\item with morphism set $\Mor _{\Mod{R}}(M,N)$ precisely the set of all linear transformations from $M$ to $N$;
+\item whose composition is given by ordinary function composition; and
+\item whose the identities are given by the identity functions.
+\end{enumerate}
+\end{exm}
+\begin{exm}{The category of vector spaces}{TheCategoryOfVectorSpaces}\index{Category of vector spaces}
+Let $F$ be a field.  Then, the category of vector spaces over $F$ is the category $\Vect _F$\index[notation]{$\Vect _F$}
+\begin{enumerate}
+\item whose collection of objects $\Obj (\Vect _F )$ is the collection of all vector spaces over $F$;
+\item with morphism set $\Mor _{\Vect _F}(V,W)$ precisely the set of all linear transformations from $V$ to $W$;
+\item whose composition is given by ordinary function composition; and
+\item whose the identities are given by the identity functions.
+\end{enumerate}
+\end{exm}
+
+\section{Basic concepts}
+
+In the previous section, we gave two equivalent definitions of $R$-modules, and likewise gave the definition of a linear transformation.  We now turn to the basic theory $R$-modules and linear transformations.
+
+\subsection{Submodules and quotient modules}
+
+If you've studied linear algebra before, you're almost certainly familiar with the concept of a \emph{subspace}.  In the more general context of $R$-modules, this concept is instead usually called \emph{submodule}
+\begin{dfn}{Submodule}{Submodule}
+Let $R$ be a ring and let $\coord{M,\cdot}$ be an $R$-module.  Then, a \emph{submodule}\index{Submodule} of $M$ is a subset $N\subseteq M$ such that $\coord{N,\cdot}$ is an $R$-module.
+\begin{rmk}
+That is, a submodule is a subset that is also an $R$-module (with respect to the same scaling operation).
+\end{rmk}
+\end{dfn}
+A priori, to show that $\coord{N,\cdot}$ is an $R$-module, there are quite a few axioms one would have to check.  Fortunately, in practice, it is relatively easy to check whether or not something is a submodule.
+\begin{prp}{}{}
+Let $R$ be a ring, let $M$ be an $R$-module, and let $N\subseteq M$.  Then, $N$ is a submodule iff
+\begin{enumerate}
+\item $0\in N$;
+\item $v_1,v_2\in N$ implies $v_1+v_2\in N$; and
+\item $v\in N$ implies $\alpha \cdot v\in N$ for all $\alpha \in R$.
+\end{enumerate}
+\begin{rmk}
+The first condition here is just to excluded the stupid case of the empty-set.  Thus, In other words, a nonempty subset of $M$ is a submodule iff it is closed under addition and scaling.
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{prp}
+`Dual' to the concept of submodule is that of \emph{quotient module}, something you likely did not encounter in a first course on linear algebra.  We won't have much use for this concept, but it feels wrong to talk about submodules with no mention of quotient modules.
+
+Quotient objects are actually relatively difficult the first time one encounters them.  However, the intuition is essentially always the same---whether for quotient groups, quotient rings, quotient modules, etc.---and we have already discussed this intuition before \cref{Cosets}, and so don't repeat this intuition here.  Finally, I want to add that the ratio of difficulty to usefulness (for us) regarding the material on quotient modules here is pretty large, and so I might even go so far as to recommend you skip the quotient stuff---it's really here for the sake of completeness, not pedagogy.\footnote{In fact, I would not expect anyone to be able to fully understand this material from what little I have written about it, but that's okay, because that's not why it's here.}
+\begin{prp}{Cosets (in $R$-modules)}{CosetsInRModules}
+Let $R$ be a ring, let $M$ be an $R$-module, let $N\subseteq M$, and define
+\begin{equation}
+v_1\cong v_2\bpmod{N}\text{ iff }-v_2+v_1\in N\text{ for }v_1,v_2\in M.
+\end{equation}
+Then, $\cong \bpmod{N}$ is an equivalence relation iff $\coord{N,+,0,-}$ is a subgroup of $\coord{M,+,0,-}$.
+
+Furthermore, in the case this is an equivalence relation,
+\begin{equation}
+[v]_{\cong \bpmod{N}}=v+N.
+\end{equation}
+\begin{rmk}
+To clarify, $[v]_{\cong \bpmod{N}}$ is the equivalence class of $v$ with respect to $\cong \bpmod{N}$ and $v+N\ceqq \{ v+w:w\in N\}$.
+\end{rmk}
+\begin{rmk}
+The equivalence class of $v$ with respect $\cong \bpmod{N}$ is the \emph{left $N$-coset}.  The set of all left $N$-cosets is denoted by $M/N\ceqq M/\sim _{\cong \bpmod{N}}=\left\{ v+N:v\in M\right\}$\index[notation]{$M/N$}.
+\end{rmk}
+\begin{rmk}
+By changing the definition of the equivalent relation to ``\textellipsis iff $v_1-v_2\in N$'', then we obtain the corresponding definition of \emph{right $N$-cosets}, given explicitly by $N+v$.  In this case, however, the binary operation in question ($+$) is commutative, and so $r+S=S+r$, that is, the left and right cosets coincide, and so we can simply say \emph{coset}.  In particular, there is no need to talk about the set of right $N$-cosets, which would have been denoted $N\backslash M$.
+\end{rmk}
+\begin{rmk}
+Note how this result itself says nothing about the action of $R$.  The action of $R$ itself will definitely play a role in the next definition, however, when we attempt to make the set of cosets $M/N$ itself into an $R$-module.
+\end{rmk}
+\end{prp}
+\begin{dfn}{Quotient modules}{QuotientModules}
+Let $R$ be a ring, let $\coord{M,\cdot}$ be an $R$-module, let $N\subseteq \coord{M,0,+,-}$ be a subgroup, and let $v,v_1,v_2\in M$ and $\alpha \in R$.  Define
+\begin{equation}
+(v_1+N)+(v_2+N)\coloneqq (v_1+v_2)+N\text{ and }\alpha \cdot (v+N)\ceqq \alpha \cdot v+N.
+\end{equation}
+$N$ is an \emph{ideal}\index{Ideal (in an $R$-module)} iff both of these operations are well-defined.  In this case, $M/N$ is the \emph{quotient module}\index{Quotient module} of $M$ modulo $N$.
+\begin{rmk}
+The term ``ideal'' is never used in this context.  This is because, by the the following result, this condition is equivalent to being a submodule, and so people use only term the ``submodule''.
+\end{rmk}
+\begin{rmk}
+By now, as we've seen the concepts of subobject and quotient object of algebraic structures pop up on several occasions, you might be wondering whether one can develop theory that would generalize and be capable of tackling all these cases at once (so that we don't have to separately define ``quotient group'', ``quotient rng'', ``quotient module'', etc.).  Of course the answer is ``Yes, there is such a generalization.'', and this generalization is known as \emph{general algebra}\index{General algebra} or \emph{universal algebra}\index{Universal algebra}.  As this is an introductory \emph{analysis} text, it would be insane to develop any of this theory at all.  Indeed, all of the algebra we're doing is being done for tangential reasons as it is.
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{}
+Let $R$ be a ring, let $M$ be an $R$-module, and let $N\subseteq M$ be a subset.  Show that $N$ is an ideal iff it is a submodule.
+\begin{rmk}
+Hereafter, we shall adhere to the standard convention and only use the term ``submodule'' in this context.
+\end{rmk}
+\end{exr}
+
+A fact with which you are likely familiar is that, to each linear transformation, are associated two submodules, a submodule of the domain and a submodule of the codomain.  A fact with which you are unlikely familiar is that there are likewise two \emph{quotient} modules associated to each linear transformation as well.  One of the submodules is just the image, something you (hopefully) are already quite comfortable with.  The other three, however, we should probably define.
+\begin{dfn}{Kernel}{Kernel}
+Let $T\colon M\rightarrow N$ be a linear transformation.  Then, the \emph{kernel}\index{Kernel} of $T$, $\Ker (T)$\index[notation]{$\Ker (T)$}, is defined by
+\begin{equation}
+\Ker (T)\ceqq \left\{ v\in M:T(v)=0\right\} .
+\end{equation}
+\begin{rmk}
+If the term ``kernel'' is unfamiliar to you, perhaps the term \emph{null-space}\index{Null-space} is.  While I prefer to try to reserve the term ``null-space'' for matrices and ``kernel'' for linear transformations, they are essentially the same thing.
+\end{rmk}
+\begin{rmk}
+Note the \emph{capital} ``$\mrm{K}$'' in ``$\Ker$''.    I don't promise you that everyone will be strict about this, but it is common to use a capital letter to refer to the kernel as an object (set) and to use a lowercase letter to refer to the corresponding map $\Ker (T)\xrightarrow{\ker (T)}M$\index[notation]{$\ker (T)$}.  In this context, this distinction is a pedantic one, but it's a distinction that will matter in more general contexts.
+\end{rmk}
+\end{dfn}
+\begin{prp}{}{}
+Let $T\colon M\rightarrow N$ be a linear transformation.  Then,
+\begin{enumerate}
+\item $\Ker (T)\subseteq M$ is a submodule; and
+\item $\Ima (T)\subseteq N$ is a submodule.
+\end{enumerate}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{prp}
+We now turn to the two quotient modules.
+\begin{dfn}{Coimage}{Coimage}
+Let $T\colon M\rightarrow N$ be a linear transformation.  Then, the \emph{coimage}\index{Coimage} of $T$, $\Coima (T)$\index[notation]{$\Coima (T)$} is defined by
+\begin{equation}
+\Coima (T)\ceqq M/\Ker (T).
+\end{equation}
+\end{dfn}
+\begin{dfn}{Cokernel}{Cokernel}
+Let $T\colon M\rightarrow N$ be a linear transformation.  Then, the \emph{cokernel}\index{Cokernel} of $T$, $\Coker (T)$\index[notation]{$\Coker (T)$} is defined by
+\begin{equation}
+\Coker (T)\ceqq N/\Ima (T).
+\end{equation}
+\end{dfn}
+Thus, to each linear transformation is associated a submodule of the domain and a submodule of the codomain (the kernel and image respectively).  Quotienting by these respective submodules gives you a quotient of the domain and a quotient of the codomain (the coimage and cokernel respectively).
+
+\subsection{Linear-independence, spanning, bases, and dimension}
+
+If you've studied linear algebra before, you'll almost certainly recall that the concepts of linear-independence, spanning, and basis are of fundamental importance.  We next turn to the study of these concepts.
+\begin{dfn}{Linear-combination}{LinearCombination}
+Let $R$ be a ring and let $M$ be an $R$-module.  Then, a \emph{linear-combination}\index{Linear-combination} of $v_1,\ldots ,v_m\in M$ is an element in $M$ of the form $\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m$ for $\alpha _1,\ldots ,\alpha _m\in R$.
+\end{dfn}
+\begin{dfn}{Linear-independence}{LinearIndependence}
+Let $R$ be a ring, let $M$ be an $R$-module, and let $S\subseteq M$.  Then, $S$ is \emph{linearly-independent}\index{Linearly-independent} iff for all $m\in \Z ^+$, $\alpha _1,\ldots ,\alpha _m\in R$, and $v_1,\ldots ,v_m\in S$,
+\begin{equation}
+\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m=0\text{ implies }\alpha _1=0,\ldots ,\alpha _m=0.
+\end{equation}
+$S$ is \emph{linearly-dependent}\index{Linearly-dependent} iff it is not linearly-independent.
+\begin{wrn}
+Warning:  For vector spaces, linear-\emph{dependence} is equivalent to the statement that some element of $S$ can be written as a (finite)\footnote{We say ``finite'' here only for emphasis---an infinite linear combination doesn't make sense.  To take an infinite linear combination, one would need to take a limit, and this does not make sense unless we specify a topology.} linear-combination of other elements of $S$, but this is \emph{not} true for $R$-modules in general---see the following example.\footnote{If you think of the proof, you'll note that at some point you'll have to \emph{divide} by one of the coefficients.}  Instead, what is true is that linear-dependence is equivalent to the statement that some nonzero scalar multiple of some element of $S$ can be written as a linear-combination of other elements of $S$.
+\end{wrn}
+\end{dfn}
+\begin{exm}{}{}
+Take $R\ceqq \Z$, $M\ceqq \Z$, and $m\cdot n\ceqq mn$.  Then, the set $\{ 2,3\}$ is linearly-\emph{dependent} as $3\cdot 2+(-2)\cdot 3=0$, but yet $2$ is not a linear-combination of other elements of $\{ 2,3\}$:  this would mean that $2$ is a multiple of $3$, but of course it's not.
+\end{exm}
+
+We're currently heading towards the definition of dimension, and hence of basis.  You might recall that a basis is a linearly-independent \emph{spanning} set, which brings us to the following result.
+\begin{thm}{Span}{Span}
+	Let $R$ be a ring, let $M$ be an $R$-module, and let $S\subseteq M$.  Then, there is a unique submodule of $M$, the \emph{span}\index{Span} of $S$, $\Span (S)$\index[notation]{$\Span (S)$}, such that
+	\begin{enumerate}
+		\item $S\subseteq \Span (S)$; and
+		\item if $N\subseteq M$ is another submodule containing $S$, it follows that $\Span (S)\subseteq N$.
+	\end{enumerate}
+	Furthermore, explicitly, $\Span (S)$ is the set of all linear-combinations of elements of $S$.
+	\begin{rmk}
+		In the context of $R$-modules, this is usually referred to as the submodule \emph{generated} by $S$.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove this yourself.
+		\end{exr}
+	\end{proof}
+\end{thm}
+
+\begin{thm}{}{thmD.1.7}
+Insert abstract concrete correspondence here.
+
+TO DO
+\end{thm}

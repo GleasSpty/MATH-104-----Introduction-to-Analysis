@@ -1,0 +1,1825 @@
+\chapter{Differentiation}\label{chp5x}
+
+Finally we are ready to begin our study of differentiation.  We could have started this awhile ago, but we really needed certain facts about continuity, uniform convergence, and even integration, before we could address all the facts we care about related to differentiation.  This thus led us to a relatively broad study of the most general spaces\footnote{Meh, basically anyways} in which these notions makes sense.  For the time being, however, we return to $\R ^d$.
+
+\section{Tensors and abstract index notation}
+
+\begin{displayquote}
+Throughout this chapter, all vector spaces will be finite-dimensional and \emph{real}.  For the remainder of this \emph{section}, $V$ and $W$ will always denote such vector spaces.  We omit proofs in this section under the assumption that you have either already seen the results or can prove them on your own if you so desired.
+\end{displayquote}
+
+We plan to do differentiation in $\R ^d$, and to do this (instead of just in $\R$), it will be useful to know some basic facts about linear algebra.  The real motivation for taking this small side route is that we want to use Penrose's \emph{abstract index notation}.\footnote{This is conceptually different, but mechanically very similar to Einstein's index notation.  You might say that abstract index notation is choice-free Einstein index notation (the choice of course being a choice of basis).}
+
+\begin{displayquote}
+If you don't understand the details of this section your first time through, that's fine.  Learn what you can, and then come back as you need to when the concepts come up in the actual differentiation part of the chapter.
+\end{displayquote}
+
+We first discuss the \emph{dual space} and \emph{tensor product}.
+\begin{dfn}{Dual space}{DualSpace}
+The \emph{dual space}\index{Dual space} of $V$, $V^{\dagger}$, is defined to be
+\begin{equation}
+V^{\dagger}\coloneqq \Mor _{\Vect _{\R}}(V,\R ).
+\end{equation}
+$V^{\dagger}$ has the structure of a vector space by defining addition and scalar multiplication pointwise.  The elements of $V^{\dagger}$ are \emph{linear functionals}\index{Linear functionals} or \emph{covectors}\index{Covector}.
+\begin{rmk}
+Though we have not precisely defined in yet, the category $\Vect _F$\index[notation]{$\Vect _F$}, for $F$ a field, is the category whose objects are vector spaces over $F$ and whose morphisms are linear transformations.  Thus, $\Mor _{\Vect _{\R}}(V,\R )$ is our fancy-schmancy notation for the vector space of linear functions from $V$ into $\R$.
+\end{rmk}
+\begin{rmk}
+In other words, the elements of $V^{\dagger}$ take in elements of $V$ and spit out numbers.  This is actually not that foreign of a concept---for example, the derivative takes in a vector (the direction in which to differentiate) and spits out a number (the directional derivative in that direction).
+\end{rmk}
+\begin{rmk}
+We reserve the notation $V^*$ for the \emph{conjugate-dual} (something we won't see in these notes)---this is why we write $V^{\dagger}$ instead of $V^*$.
+\end{rmk}
+\begin{rmk}
+If $V$ comes with a topology, you're only going to want to look at the \emph{continuous} linear functionals.  Of course, you can look at all of them (including the discontinuous ones), but this is probably not going to be as useful.
+\end{rmk}
+\end{dfn}
+Of critical importance is that the dual of the dual is the original vector space.\footnote{Careful:  It will frequently be the case that $V^{\dagger}$ \emph{is} isomorphic to $V$, but in a noncanonical way.  On the other hand $(V^{\dagger})^{\dagger}$ and $V$ are \emph{canonically isomorphic}.  The way to make this intuition precise requires more category theory than is probably helpful.  Suffice it to say, the idea is to show that the `constructions' (read ``functors'') are isomorphic, not just the objects themselves.}
+\begin{prp}{}{prp5.1.4}
+The map $V\ni v\mapsto \phi _v\in (V^\dagger )^\dagger$, where $\phi _v:V\rightarrow \R$ is defined by
+\begin{equation}
+\phi _v(\omega )\coloneqq \omega (v)
+\end{equation}
+is an isomorphism.
+\begin{wrn}
+Warning:  This is \emph{false} in infinite dimensions.  You will see that we show that this map is injective and linear, and so by the Rank-Nullity Theorem (something specific to finite-dimensions) is an isomorphism.
+\end{wrn}
+\end{prp}
+\begin{dfn}{Tensor product}{TensorProduct}
+Let $V$ and $W$ be finite-dimensional real vector spaces.  Then, the \emph{tensor product}\index{Tensor product (of vector spaces)} of $V$ and $W$, $V\otimes W$\index[notation]{$V\otimes W$} is defined to be the set of all functions $T:V^{\dagger}\times W^{\dagger}\rightarrow \R$ such that
+\begin{enumerate}
+\item for each fixed $\omega \in V^{\dagger}$, the map $\eta \mapsto T(\omega ,\eta )$ is linear; and
+\item for each fixed $\eta \in W^{\dagger}$, the map $\omega \mapsto T(\omega ,\eta )$ is linear.
+\end{enumerate}
+Let $v\in V$ and $w\in W$.  Then, the \emph{tensor product}\index{Tensor product (of tensors)}, $v\otimes w\in V\otimes W$\index[notation]{$v\otimes w$}, is defined by
+\begin{equation}
+[v\otimes w](\omega ,\eta )\coloneqq \omega (v)\eta (w).
+\end{equation}
+\begin{rmk}
+To clarify, there are tensor products of \emph{vector spaces}, and then there are tensor products of \emph{vectors themselves}.  The tensor product of two vectors `lives in' the tensor product of the corresponding vector spaces.  And in fact, \emph{everything} in $V\otimes W$, while \emph{not} of the form $v\otimes w$ itself necessarily, can be written as a finite sum of elements of this form---see \cref{prp5.1.8} below.  (Elements of the form $v\otimes w$ are sometimes called \emph{pure} or \emph{simple}, as opposed to, e.g.~, $v_1\otimes w_1+v_2\otimes w_2$).
+\end{rmk}
+\begin{rmk}
+In other words, $V\otimes W$ is the set of all \emph{bilinear}\index{Bilinear} maps on $V^{\dagger}\times W^{\dagger}$, where bilinear means that, if you fix all arguments except one, you obtain a linear map.
+\end{rmk}
+\begin{rmk}
+In practice, I find it easier to think of the tensor product as the vector space spanned by guys of the form $v\otimes w$ (as opposed to bilinear maps on the cartesian product of the duals---ick).
+\end{rmk}
+\begin{rmk}
+This is neither the most general nor the most elegant definition of the tensor product.  The `right' way to define the tensor product is, as usual, by finding the properties which uniquely characterize it.  Maybe I will update the notes at a later date to include this, but my personal feeling right now is that this would take us a bit too far astray (after all, we're not studying linear algebra or tensors for their own sake---for us, they're just tools to do calculus).
+\end{rmk}
+\end{dfn}
+\begin{prp}{}{prp5.1.8}
+$V\otimes W$ is the span of $\{ v\otimes w:v\in V,\ w\in W\}$.
+\end{prp}
+\begin{dfn}{Tensor}{Tensor}
+A \emph{tensor}\index{Tensor} of rank $\coord{k,l}$ over $V$ is an element of
+\begin{equation}
+\underbrace{V\otimes \cdots \otimes V}_k\otimes \underbrace{V^{\dagger}\otimes \cdots \otimes V^{\dagger}}_l
+\end{equation}
+$k$ is the \emph{contravariant rank}\index{Contravariant rank} and $l$ is the \emph{covariant rank}\index{Covariant rank}.  If $l=0$, then the tensor is \emph{contravariant}\index{Contravariant tensor}, and if $k=0$, then the tensor is \emph{covariant}\index{Covariant tensor}.  If $T$ is a tensor of rank $\coord{k,l}$, then we shall write
+\begin{equation}
+T\indices{^{a_1\cdots a_k}_{b_1\cdots b_l}}
+\end{equation}
+to help remind us what type of tensor this is.\footnote{Don't let the indices mislead you---there are no choices being made.  Everything is ``coordinate-free'', even later when we start manipulating the indices themselves---it's still all coordinate-free.}
+\begin{rmk}
+\emph{Do not be sloppy by not staggering your indices!}  If you do, you will eventually make a mistake.  For example, later we will be raising and lowering indices.  Suppose I start with $T^{ab}$, I lower to obtain $T_b^a$, and then I raise again to obtain $T^{ba}$---I should obtain the same thing, but in general $T^{ab}\neq T^{ba}$, and so I have an error.  It may seem obvious to the point of being silly when I point it out like this, but this is a mistake that is easy to make if there is a big long computation in between the raising and lowering (especially if it's more than just $a$ and $b$ floating around).  And of course, you will never have this problem if you stagger:  $T^{ab}$ goes to $T\indices{^a_b}$ goes back to $T^{ab}$.
+\end{rmk}
+\begin{rmk}
+I claim that this is likewise not that foreign of a concept.  In fact, there are so many examples you are familiar with that I don't even want to put them in a remark, so see the next example.
+\end{rmk}
+\end{dfn}
+\begin{exm}{}{}
+Disclaimer:  While none of the examples themselves make use of things we haven't done yet, some of the notation does (e.g.~$v^a\omega _a$).  Read onwards and come back later if this really bothers you.
+\begin{enumerate}
+\item Vectors (written $v^a$) themselves are tensors of type $\coord{1,0}$.
+\item Covectors (or linear functionals) (written $\omega _a$) are of type\footnote{By definition.  The term ``covector'' is our word for a tensor of type $\coord{0,1}$, or in other words, an element of $V^{\dagger}$ (i.e.~a linear functional).} $\coord{0,1}$.  For $\omega$ a linear functional and $v$ a vector, $\omega (v)$ is written as $v^a\omega _a$.
+\item The dot product (written temporarily as $g_{ab}$) is an example of a tensor of type $\coord{0,2}$---it takes in two vectors and spits out a number, written $v\cdot w=v^aw^bg_{ab}$.
+\item Linear transformations (written $T\indices{^a_b}$) are tensors of type $\coord{1,1}$---it takes in a single vector and spits out another vector (written $v^a\mapsto T\indices{^a_b}v^b$).  Note that it is $T\indices{^a_b}$ and not $T\indices{_b^a}$---your convention could go either way, but in the convention we choose the indices that are contracted during composition are closer together.
+\end{enumerate}
+\end{exm}
+
+There are three key constructions involving tensors that we will need, the \emph{tensor product}, \emph{contraction}, and the \emph{dual vector}.  The tensor product we have already done in \cref{TensorProduct},\footnote{Well, I suppose we have to define the tensor products of \emph{arbitrary} tensors, as opposed to just vectors, but the definition in general is just an extension of the one we've already written down.} and so we simply explain the how to write the tensor product in index notation.
+\begin{displayquote}
+The tensor product of $[T_1]\indices{^{a_1\ldots a_{k_1}}_{b_1\ldots b_{l_1}}}$ and $[T_2]\indices{^{a_1\ldots a_{k_2}}_{b_1\ldots b_{l_2}}}$ is denoted
+\begin{equation}
+[T_1]\indices{^{a_1\ldots a_{k_1}}_{b_1\ldots b_{l_1}}}[T_2]\indices{^{a_1\ldots a_{k_2}}_{b_1\ldots b_{l_2}}}.
+\end{equation}
+That is, you literally just juxtapose them.
+\end{displayquote}
+We now turn to \emph{contraction}.
+\begin{dfn}{Contraction}{Contraction}
+Let
+\begin{equation}
+T\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}\coloneqq [v_1]^{a_1}\cdots [v_k]^{a_k}[\omega _1]_{b_1}\cdots [\omega _l]_{b_l}
+\end{equation}
+be a tensor of rank $\coord{k,l}$ (recall (\cref{prp5.1.8}) that every tensor can be written as a sum of tensors of this form).  Then, the \emph{contraction}\index{Contraction} of $T$ along the $a_i$ and $b_j$ index is defined to be
+\begin{equation}
+\begin{split}
+\MoveEqLeft
+T\indices{^{a_1\ldots a_{i-1}a_{i+1}\ldots a_k}_{b_1\ldots b_{j-1}b_{j+1}\ldots b_l}}\coloneqq \\ 
+& \qquad \omega _j(v_i)\cdot [v_1]^{a_1}\cdots [v_{i-1}]^{a_{i-1}}[v_{i+1}]^{a_{i+1}}\cdots [v_k]^{a_k} \\ & \qquad \qquad [\omega _1]_{b_1}\cdots [\omega _{j-1}]_{b_{j-1}}[\omega _{j+1}]_{b_{j+1}}\cdots [\omega _l]_{b_l}.
+\end{split}
+\end{equation}
+The contraction of tensor that is a sum of simple tensors is defined to be the sum of the contraction of those simple tensors.
+\begin{rmk}
+In general, the way one can `decompose' a general tensor as a sum of simple ones is not unique, so we must technically check that this is well-defined.
+\end{rmk}
+\begin{rmk}
+This might \emph{look} atrocious, but it's actually quite simple.  Covectors take in vectors and spit out numbers, and so the contraction of a tensor product in its $a_i$ and $b_j$ index is formed by plugging in the $i^{\text{th}}$ vector into the $j^{\text{th}}$ covector.
+\end{rmk}
+\begin{rmk}
+Keep in mind that you can \emph{only} contract upper-indices (contravariant) with lower (covariant) ones.
+\end{rmk}
+\begin{rmk}
+A couple of examples:  The only possible contraction of the tensor $v^a\omega _b$ is written $v^a\omega _a$ and this of course is just $\omega (v)$.  If $T\indices{^a_b}$ is a linear transformation and $v^a$ is a vector, then the contraction $T\indices{^a_b}v^b$ is just $T(v)$, that is, the image of $v$ under the linear transformation $T$.  Similarly, if $S\indices{^a_b}$ and $T\indices{^a_b}$ are two linear transformations, then their composition $T\circ S$ in index notation is given by $T\indices{^a_c}S\indices{^c_b}$.\footnote{Note how this is similar to how multiplication of matrices looks likes in terms of the entries:  $[AB]_{ij}=\sum _{k=1}^dA_{ik}B_{kj}$.}
+\end{rmk}
+\begin{rmk}
+The index $k$ in $[v_k]^{a_k}$ is part of the name of the vector---the entire name is $v_k$, and then the notation $[v_k]^{a_k}$ reminds us that $v_k$ is a $\coord{1,0}$-tensor, i.e.~just a vector.
+\end{rmk}
+\end{dfn}
+We need one more ingredient before we can get to actual differentiation, namely that of a \emph{metric}.
+\begin{dfn}{Metric (on a vector space)}{MetricVectorSpace}
+A \emph{metric}\index{Metric (on a vector space)} $g$\footnote{The ``g'' is for gravity (in general relativity, gravity is modeled as a metric on space-time).} on $V$ is a covariant tensor of rank $2$ such that
+\begin{enumerate}
+\item \label{MetricVectorSpace.Symmetry}(Symmetry) $g(v_1,v_2)=g(v_2,v_1)$; and
+\item \label{MetricVectorSpace.Nonsingularity}(Nonsingularity)\index{Nonsingular (metric)} the map from $V$ to $V^{\dagger}$ defined by $v\mapsto g(v,\blankdot )$, where $g(v,\blankdot )$ is the linear functional which sends $w$ to $g(v,w)$, is an isomorphism of vectors spaces.
+\end{enumerate}
+\begin{rmk}
+If $v^a$ is a vector, then we write $v_a\coloneqq g_{ab}v^b$.  $v_a$ is the \emph{dual vector}\index{Dual vector} (which itself is not a vector---it's a covector) of $v^a$.  \emph{Nonsingualirty} is key because it allows us to reverse this process.  If $\omega _a$ is a covector, then because the map $v^a\mapsto v_a$ is an \emph{isomorphism}, there is a unique vector, written $\omega ^a$, that is equal to $\omega _a$ under this map.
+\end{rmk}
+\begin{rmk}
+\cref{MetricVectorSpace.Symmetry} can be written $g_{ab}=g_{ba}$.  Also note that $g(v_1,v_2)=[v_1]^a[v_2]^bg_{ab}$.
+\end{rmk}
+\begin{rmk}
+The idea of a notion of a metric on a vector space and a metric on a set (in the context of uniform space theory) have little to nothing to do with each other.  It is merely a coincidence of terminology that is so ingrained that even I dare not go against it.
+\end{rmk}
+\begin{rmk}
+The term ``metric'' in this sense of the word should really not be thought of as a sort of distance, but rather as a sort of dot product.  Indeed, you can verify that the dot product is a metric, and furthermore, in a sense that we don't bother to make precise, every positive-definite metric (on a vector space) is equivalent to the usual euclidean dot product.  There is \emph{some} connection with the other notion of metric, however---positive-definite metrics give us norms (the square-root $g(v,v)$), which in turn gives us a metric (in the other sense).
+\end{rmk}
+\begin{rmk}
+Nonsingularity is usually replaced with the requirement that $g(v,w)=0$ for all $w$ implies that $v=0$ (called \emph{nondegeneracy}\index{Nondegenrate (metric)}.  In finite dimensions, this is equivalent to nonsingularity (by the Rank-Nullity Theorem).  In infinite dimensions, however, they are not equivalent, and it is nonsingularity that we want (so that we can raise and lower indices).
+\end{rmk}
+\end{dfn}
+It's worth noting that, everything \emph{except} raising and lowering indices we can do without a metric.  To raise and lower indices, we do need that \emph{extra} structure.  In particular, if you pick a different metric, then your meaning of $v_a$ will change even though the metric does not appear explicitly in this notation.
+
+In summary:
+\begin{enumerate}
+\item The tensor product of two vectors $v^a$ and $w^a$, written $v^aw^b$, is defined to be the bilinear map that sends the pair of covectors $\coord{\omega _a,\eta _a}$ to $(\omega _av^a)(\eta _aw^a)$.  In practice, it's not particularly helpful to think of what this is\footnote{When you add $2$ to $3$ do you think about $2$ being an equivalence class of sets with respect to the equivalence relation of isomorphism in the category of sets?  Here, I'll help you out:  No, you do not.}---in practice what matters is can you manipulate them.
+\item A general tensor of rank $\coord{k,l}$ is an element in the tensor product of $k$ copies of $V$ with $l$ copies of $V^{\dagger}$.
+\item The definition of the tensor product of vectors can be extended to the tensor product of any tensors.  In index notation, this is denoted simply by juxtaposition.
+\item We can contract indices.
+\item If we have a metric, we can also raise and lower indices.
+\end{enumerate}
+
+\section{The definition}
+
+One thing that I personally found conceptually confusing with differentiation in $\R ^d$ itself that was elucidated for me when passing to the study of more general manifolds was the distinction between a \emph{vector} and a \emph{point}.  The problem in $\R ^d$ of course is that the space of points and the space of factors are effectively the same thing, they are both given by a $d$-tuple of real numbers, when in fact, they are really playing quite different roles.  The points tell you ``where'' we are and the vectors tell you ``what direction'' to go in.  In a general manifold, the points that tell you ``where'' form the points of the space itself and the vectors do \emph{not} live in the entire space itself, but rather the tangent spaces.
+
+Thus, while we have no intention of doing manifold theory in general,\footnote{In contrast to topology, for example, you do have to prove essentially all of your results in $\R ^d$ first and \emph{then} extend them to arbitrary manifolds, whereas in principle you can prove all the results about topology you ever wanted without even mentioning $\R$.  This is one reason among others why we do general topology but not manifold theory.} we will make use of some suggestive notation that comes from the theory.
+\begin{displayquote}
+Throughout this chapter, the symbol $\R ^d$ will be used to denote $d$-dimensional euclidean space \emph{as a metric space}.  For each $x\in \R ^d$, we define $\tangent{\R ^d}[x]$, the \emph{tangent space at $x$ in $\R ^d$}\index{Tangent space} to be the \emph{metric vector space} $\R ^d$ (with metric being the dot product).\footnote{Careful:  the word ``metric'' here is being used in two totally different senses.  I know the terminology is perverse, but don't look at me!  I'm not the one that came-up with it.}  Furthermore, we declare that $\tangent{\R ^d}[x_1]\neq \tangent{\R ^d}[x_2]$ for $x_1\neq x_2$.\footnote{There are many ways to do this, but one way, for example, is to take $\tangent{\R ^d}[x]\coloneqq \R ^d\times \{ x\}$.}  We will often, but not always, use abstract index notation for vectors $v^a\in \tangent{\R ^d}[x]$ to help remind us that they are to be thought of as vectors instead of points.
+\end{displayquote}
+In particular, as sets, we might have that $\R ^d=\tangent{\R ^d}[x]$, but that's it---the two objects don't even live in the same category, and so it doesn't even make sense to ask whether there is some isomorphism between them (unless you forget some of the structure, in which case you're actually changing the object).  For example, $\R ^d$ is just a metric space---you cannot add any two of its elements.  Tangent vectors, elements of $\tangent{\R ^d}[x]$, on the other hand, we can add just fine.
+
+To clarify, this is not actually how the definition goes in general.  The general definition of the tangent space requires us to first be able to talk about manifolds, which in turn requires us to know how differentiation in $\R ^d$ works, which of course we have not done yet.  Thus, we are making use of this notation only to help clarify the study of differentiation in $\R ^d$.  In principle, once enough of this theory has been developed so that we can talk about tangent spaces in general, we would replace the above with the `actual' definition.
+
+This speak of tangent spaces allows us to make an important definition.
+\begin{dfn}{Tensor field}{TensorField}
+A \emph{tensor field}\index{Tensor field} of rank $\coord{k,l}$ is a function on $\R ^d$ whose value at $x$ is a rank $\coord{k,l}$ tensor on $\tangent{\R ^d}[x]$.  A tensor field $T\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}$ is \emph{continuous}\index{Continuous (tensor)} iff $[v_1]^{b_1}\cdots [v_l]^{b_l}[\omega _1]_{a_1}\cdots [\omega _k]_{a_k}T\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}$ is continuous for all vectors $[v_1]^a,\ldots ,[v_l]^a$ and covectors $[\omega _1]_a,\ldots ,[\omega _k]_a$.
+\begin{rmk}
+It's just an assignment of a tensor to every point in $\R ^d$.  For example, a vector field is an assignment of a vector to every point.
+\end{rmk}
+\end{dfn}
+
+\subsection{The definition itself}
+
+Finally, with this (hopefully elucidating) notation in hand, we can define the derivative.
+\begin{dfn}{Directional derivative}{DirectionalDerivative}
+Let $D\subseteq \R ^d$,\footnote{``$D$'' is for ``domain''.} let $f\colon D\rightarrow \R$, let $x\in \Int (D)$, and let $v\in \tangent{\R ^d}[x]$.  Then, the \emph{directional derivative}\index{directional derivative} of $f$ at $x$ in the direction $v$, $\D _vf(x)$\index[notation]{$\D _vf(x)$}, is defined by
+\begin{equation}\label{DifferenceQuotient}
+\D _vf(x)\coloneqq \lim _{\varepsilon \to 0^+}\frac{f(x+\varepsilon v)-f(x)}{\varepsilon}.
+\end{equation}
+If this limit exists, then $f$ is \emph{differentiable at $x$ in the direction $v^a$}.
+
+The expression inside the limit on the right-hand side of \eqref{DifferenceQuotient} is the \emph{difference quotient}\index{Difference quotient}.
+\begin{rmk}
+Note that the limit a taken as $\varepsilon \to 0^+$, and not as $\varepsilon \to 0$.  This has the advantage that it allows us to talk about the directional derivative of functions like $x\mapsto \abs{x}$:  its directional derivative in the direction of $+1$ is $1$ and its directional derivative in the direction of $-1$ is (also) $1$.  If we had written ``$\varepsilon \to 0$'', neither of these directional derivatives would exist.  Furthermore, for differentiable functions (\cref{Differentiable}), this won't actually matter (that is, the two definitions will agree).
+\end{rmk}
+\begin{rmk}
+Note that we \emph{only} define the directional derivative at points on the interior of the domain.  The reason we do this is because otherwise we cannot guarantee that $x+\varepsilon v$ is in the domain of $f$ for even a single $\varepsilon >0$, so that $f(x+\varepsilon v)$ does not make sense, in which case it is nonsensical to ask whether the limit of the difference quotient exists or not.
+\end{rmk}
+\begin{rmk}
+For some reason, people tend to write $\lim _{h\to 0^+}$\footnote{Well, actually they probably write $\lim _{h\to 0}$, with the $^+$, but that is not the difference I mean to point out at the moment.} in this definition instead of $\lim _{\varepsilon \to 0^+}$.  Not sure why.  $\varepsilon$ is used for `small' numbers everywhere else in analysis.  Moreover, what happens if your function is called $h$ (not that uncommon of a name for a function)?  What are you going to do?  Write $h(x+hv)$?  Ew.
+\end{rmk}
+\end{dfn}
+\begin{dfn}{Differentiable at a point}{DifferentiableAtAPoint}
+Let $D\subseteq \R ^d$, let $f\colon D\rightarrow \R$ and let $x\in \Int (D)$.  Then, $f$ is \emph{differentiable}\index{Differentiable (function at a point)} at $x$ iff
+\begin{enumerate}
+\item $\D _vf(x)$ exists for all $v\in \tangent{\R ^d}[x]$;
+\item the map $\tangent{\R ^d}[x]\ni v\mapsto \D _vf(x)$ is linear; and
+\item the map $\tangent{\R ^d}[x]\ni v \mapsto \D _vf(x)$ is continuous.\footnote{Actually, in finite dimensions, continuity follows from linearity for free (though we will not check this).  We state this explicitly because you will want to do so when you generalize to infinite dimensions, where you won't get continuity for free.}
+\end{enumerate}
+\begin{wrn}
+Warning:  Note in particular that ``differentiable at $x$'' does not mean ``differentiable at $x$ in the direction $v$ for all $v\in \tangent{\R ^d}[x]$''.  This seems obvious now when you're staring at the definition, but it is a point easy to miss later on.
+\end{wrn}
+\begin{wrn}
+Warning:  This is \emph{not} the universally accepted definition of differentiability.  This is (almost)\footnote{To make matters of terminology even more confusing, there is at least one source \cite[pg.~117]{Drabek} which uses the term ``Gâteaux differentiable'' to refer to not almost but \emph{exactly} what we have defined above.} what is referred to as \emph{Gâteaux differentiability}\index{Gâteaux differentiable} as opposed to a stronger definition called \emph{Fréchet differentiability}.  We say ``almost'' because we \emph{require that the map $v^a\mapsto \D _vf(x)$ be linear (and continuous)}, whereas Gâteaux differentiability merely requires the existence of $\D _vf(x)$ for all $v\in \tangent{\R ^d}[x]$.  (Thus, our definition is slightly stronger.)  On the other hand, a function $f$ is said to be \emph{Fréchet differentiable}\index{Fréchet differentiable} at $x\in \Int (D)$ iff there exists a unique linear transformation $\dif _x\colon \tangent{\R ^d}[x]\rightarrow \R$ such that
+\begin{equation}
+\lim _{v\to 0}\frac{\abs*{f(x+v)-f(x)-\abs{v}\dif _x(v)}}{\abs{v}}=0.
+\end{equation}
+We chose the definition we did because, IMHO, it is easier and more natural, than Fréchet differentiability.\footnote{Though we couldn't settle for just Gâteaux differentiability because we need the map $v\mapsto \D _vf(x)$ to be linear if we are to do tensor calculus (otherwise the derivative itself won't be a tensor).}  That being said, it does have its pathologies.  Of particular note is that \emph{there are differentiable functions that are not continuous}---see \cref{exm6.2.15}.  Fortunately, this cannot happen in one dimension---see \cref{prp6.5.1}.
+\end{wrn}
+\begin{rmk}
+Of course, there exist examples in which the directional derivative is \emph{not} linear (otherwise we would not have made this an assumption)---see the following example (\cref{exm6.2.10}).  In particular, if we say that $f$ is differentiable at $x$, then \emph{we are assuming the directional derivative is linear}, not only that it exists.
+
+Despite this pathology, fortunately, the derivative is nonnegative homogeneous, a fact particularly relevant in one-dimension---see one of the remarks in \cref{Derivative}.
+\end{rmk}
+\begin{exr}[breakable=false]{}{exr6.2.7}
+Let $D\subseteq \R ^d$, let $f\colon D\rightarrow \R$, let $x\in D$, let $v\in \tangent{\R ^d}[x]$, and let $\alpha \in \R _0^+$.  Show that, if $\D _vf(x)$ exists, then $\D _{\alpha v}f(x)$ exists and furthermore that
+\begin{equation}
+\D _{\alpha v}f(x)=\alpha \D _vf(x).
+\end{equation}
+\begin{rmk}
+Note that this is \emph{false} in general if $\alpha <0$.  For example, consider what happens to $\D _{\alpha 1}\abs{x}$ at $x=0$ for $\alpha =-1$.
+\end{rmk}
+\end{exr}
+\end{dfn}
+\begin{dfn}{Differentiable}{Differentiable}
+Let $D\subseteq \R ^d$ and let $f\colon D\rightarrow \R$.  Then, $f$ is \emph{differentiable}\index{Differentiable (function)} (on $D$) iff there is an open neighborhood $U\supseteq D$ and a $g\colon U\rightarrow \R$ such that $g$ is differentiable at $x$ for all $x\in U$ and $f=\restr{g}{D}$.
+\begin{rmk}
+In brief, we say that ``$f$ extends to a differentiable function on an open neighborhood of $D$.'', or sometimes even less precisely, ``$f$ is differentiable on a neighborhood of $D$.''.
+\end{rmk}
+\begin{wrn}
+Warning:  ``differentiable on $D$'' does not mean ``differentiable at every $x\in \Int (D)$''.  Instead, this is only true if $D$ is open.  To see why we take this as the definition, for example, if $D\ceqq \{ \coord{x,0}\in \R ^2:x\in \R\}$, then $\Int (D)=\emptyset$, but yet we don't want it to be the case that \emph{every} function on $D$ is differentiable.  This is just suggestive, however.  The real reason I took this definition is because now $C^{\infty}(D)$ (see \cref{CinftyRd}) should agree with what diffeology says it should be.\footnote{Very roughly speaking, topological manifolds are to topology as smooth manifolds are to diffeology.  The only point of relevance here is that diffeology gives a way of defining smooth functions (see a remark in \cref{DerivativeTensor}) on \emph{any} subset of $\R ^d$, not must submanifolds.}
+\end{wrn}
+\begin{rmk}
+As the directional derivative is only defined for points on the interior of a set, it is immediate that we had to reduce the definition of ``differentiable'' to the case of when the domain is an open set.  As discussed in the previous warning, the way we chose to do this is to take differentiable to mean ``differentiable in an open neighborhood''.  An alternative, perhaps more obvious choice was to require that $f$ be differentiable at all $x\in \Int (D)$, though, as briefly mentioned before, this is not desirable.  In any case, see \cref{exm6.5.37} for a `naturally-occurring' example of where these two definitions differ.
+\end{rmk}
+\begin{rmk}
+Perhaps to guide your intuition in the case that $D$ is not open, you will check in \cref{exr6.2.14} that a function on a closed interval $[a,b]$ is differentiable iff it is is differentiable in the interior and the one-sided derivatives at $a$ and $b$ exist.
+\end{rmk}
+\end{dfn}
+\begin{prp}{Derivative (of a function)}{Derivative}
+Let $D\subseteq \R ^d$ and let $f\colon D\rightarrow \R$.  Then, if $f$ is differentiable, then there is a unique covector field on $D$, $\nabla _af$\index[notation]{$\nabla _af$}, the \emph{derivative}\index{Derivative} of $f$, such that $v^a\nabla _af(x)=\D _vg(x)$ for all differentiable extensions $g$ of $f$, all $x\in D$, and all $v\in \tangent{D}[x]$.
+
+$f$ is \emph{continuously-differentiable}\index{Continuously-differentiable} iff $\nabla _af$ is continuous.\footnote{Recall that (\cref{TensorField}) this means that $v^a\nabla _af$ is continuous for all vectors $v^a$.}
+\begin{rmk}
+Thus far, we have only defined $\tangent{\R ^d}[x]$, and not $\tangent{D}[x]$\index[notation]{$\tangent{D}[x]$} for $D\subset \R ^d$.  Here, $\tangent{D}[x]$ is defined by
+\begin{equation}
+\tangent{D}[x]\ceqq \left\{ v\in \tangent{\R ^d}[x]:x+\varepsilon v\in D\text{ for all }\varepsilon >0\text{ sufficiently small.}\right\} .\footnote{That is, $v\in \tangent{D}[x]$ iff there is some $\varepsilon _0>0$ such that $x+\varepsilon v\in D$ for all $\varepsilon _0\geq \varepsilon >0$.}
+\end{equation}
+Note that this will \emph{not} be a vector space in general (e.g.~$\tangent{[0,1]}{0}=[0,\infty )$).
+\end{rmk}
+\begin{rmk}
+In particular, if $D$ is open, then we have that $v^a\nabla _af(x)=\D _vf(x)$ for all $x\in D$ and all $v\in \tangent{\R ^d}[x]$.  In other words, the derivative of $f$ at a point $x\in D$ is the continuous linear map that sends a tangent vector to the directional derivative of $f$ in the direction of that tangent vector.  In order to make sense of this, however, we need to be working in an open set, and this statement here says that the answer we get is independent of how we extend to an open neighborhood of the domain.
+\end{rmk}
+\begin{rmk}
+The notation $v^a\nabla _af$ is obviously suggestive.  Hopefully it reminds you of the fact from multivariable calculus that the directional derivative of a function $f$ in the direction $\vec{v}$ is given by the dot product of $\vec{v}$ with the gradient of $f$:  $\vec{v}\cdot \vec{\nabla}f$.\footnote{Contraction of indices should always be thought of as a sort of dot product.}  For fixed $f$ and $x$, the map $v^a\mapsto [v^a\nabla _af](x)$ is linear in $v^a$, and so defines a \emph{linear functional}, that is to say, $\nabla _af(x)\in \tangent{\R ^d}[x]^{\dagger}$, or equivalently, that $\nabla _af$ is a covector field on $\R ^d$.  This covector field is the \emph{derivative}\footnote{That is to say, $\nabla _af$ is the derivative and $v^a\nabla _af$ is the derivative in the direction of $v^a$ (or the directional derivative in the direction of $v^a$).} or \emph{gradient}\index{Gradient} of $f$ at $x$.
+\end{rmk}
+\begin{rmk}
+If our function is differentiable in one dimension, we \emph{always} take $v^a=1\in \tangent{\R}[x]\cong _{\Vect _{\R}}\R$ and write
+\begin{equation}
+\tfrac{\dif}{\dif x}f(x)\coloneqq \nabla f(x)\ceqq v^a\nabla _af(x),
+\end{equation}
+for every other directional derivative may be obtained from this single number by scaling (e.g.~the directional derivative for $v=-3$ will be $-3\cdot \frac{\dif}{\dif x}f(x)$).  If we want to use the symbol $\frac{\dif}{\dif x}f(x)$ to refer to the function $x\mapsto \frac{\dif}{\dif x}f(x)$, then we may write $\restr{\frac{\dif}{\dif x}}{x=c}f(x)$ to refer to the value of this function at $c$.
+\end{rmk}
+\begin{rmk}
+Perhaps more accurate notation would have been $[v^a\nabla _af](x)$, that is, $v^a\nabla _af$ is a function (in the case that $f$ is differentiable anyways), and so $v^a\nabla _af(x)$ is the value of $v^a\nabla _af$ at $x$, as opposed to, the derivative of the function $f(x)$, which is just $0$ of course.\footnote{I know to some this may seem pedantic, but $f$ is the function and $f(x)$ is the value at $x$ of the function, so that $f(x)$ is just a number.}  The point is:  you must compute the derivative, and \emph{then} plug-in $x$.  It might seem silly in such a simple context, but in much more complicated contexts I myself have made this very mistake.  For example, suppose you are computing a functional derivative (to find a Noether charge, say) of some action functional in physics, and you want to see that this quantity is conserved `on-shell' (i.e.~when the equations of motion hold)---you cannot use the equations of motion before you finish computing the Noether charge `off-shell':  that's cheating (and more importantly, possibly just plain wrong)!\footnote{Once again, if the physics analogy is meaningless to you, just ignore it.}
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove the result yourself.
+\end{exr}
+\end{proof}
+\end{prp}
+We can use the definition of the derivative of a function to define the derivative for \emph{all} tensor fields.  The idea is that, by plugging in enough vectors and covectors, all tensor fields reduce to just a function.
+\begin{dfn}{Derivative (of a tensor)}{DerivativeTensor}
+Let $D\subseteq \R^d$, let $T\indices{^{a_1\dots a_k}_{b_1\dots b_l}}$ be a tensor field of rank $\coord{k,l}$ on $D$, and let $x\in \Int (D)$.  Then, $T\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}$ is \emph{differentiable}\index{Differentiable (tensor field at a point)} at $x$ iff for all covectors $\omega _1,\ldots ,\omega _k$ and all vectors $v_1,\ldots ,v_l$, the function $[\omega _1]_{a_1}\cdots [\omega _k]_{a_k}[v_1]^{b_1}\cdots [v_l]^{b_l}T\indices{^{a_1\dots a_k}_{b_1\dots b_l}}\colon D\rightarrow \R$ is differentiable at $x$.  $T\indices{^{a_1\dots a_k}_{b_1\dots b_l}}$ is \emph{differentiable}\index{Differentiable (tensor field)} (on $D$) iff for all covectors $\omega _1,\ldots ,\omega _k$ and all vectors $v_1,\ldots ,v_l$, the function $[\omega _1]_{a_1}\cdots [\omega _k]_{a_k}[v_1]^{b_1}\cdots [v_l]^{b_l}T\indices{^{a_1\dots a_k}_{b_1\dots b_l}}\colon D\rightarrow \R$ is differentiable.
+	
+In this case, the \emph{derivative}\index{Derivative (of a tensor field)}, $\nabla _aT\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}$, of $T\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}$ is defined by
+\begin{equation}
+\begin{multlined}
+v^a[\omega _1]_{a_1}\cdots [\omega _k]_{a_k}[v_1]^{b_1}\cdots [v_l]^{b_l}\nabla _aT\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}= \\ v^a\nabla _a\left( [\omega _1]_{a_1}\cdots [\omega _k]_{a_k}[v_1]^{b_1}\cdots [v_l]^{b_l}T\indices{^{a_1\ldots a_k}_{b_1\ldots b_l}}\right) 
+\end{multlined}
+\end{equation}
+for all covectors $\omega _1,\ldots ,\omega _k$ and all vectors $v,v_1,\ldots ,v_l$.
+\begin{rmk}
+This looks a lot more atrocious than it is.  All we are doing is reducing tensor fields to functions, and then applying the definitions we know for functions.  So, for example, consider a tensor field $T\indices{^{ab}_c}$ of rank $\coord{2,1}$.  For every choice of vector $[v_1]^a$ and choice of two covectors $[\omega _1]_a,[\omega _2]_a$, we obtain a \emph{function}, $[v_1]^a[\omega _1]_b[\omega _2]_cT\indices{^{bc}_a}$.  The tensor $T\indices{^{ab}_c}$ is then \emph{differentiable} if \emph{every} one of these functions is differentiable, and in this case, the derivative is a tensor field that now takes in \emph{two} vectors $v^a,[v_1]^a$ and two covectors $[\omega _1]_a,[\omega _2]_a$, and spits out the function $v^a\nabla _b\left( [v_1]^b[\omega _1]_c[\omega _2]_dT\indices{^{cd}_b}\right)$.  If this still seems like a bit hard to swallow, see \cref{GradientDivergenceCurlAndLaplacian} for some examples with which you are likely already familiar.
+\end{rmk}
+\begin{rmk}
+Thus, this in particular shifts the covariant rank of a tensor up by $1$, that is, the derivative of a tensor of rank $\coord{k,l}$ is of rank $\coord{k+1,l}$ (for example, as functions are just $\coord{0,0}$ tensors, it takes functions to covector fields).
+\end{rmk}
+\begin{rmk}
+Perhaps the most significant aspect of this definition is that we now know how to take higher derivatives of a function $f$, e.g.~$\nabla _a\nabla _bf$.  If all higher derivatives of $f$ exist, then $f$ is \emph{infinitely-differentiable}\index{Infinitely-differentiable}.  If all higher derivatives of $f$ exist \emph{and} they are continuous, then $f$ is \emph{smooth}\index{Smooth}.\footnote{Yes, there is a difference.  In fact, infinitely-differentiable functions need not even be continuous---see \cref{exm6.2.15}.}
+\end{rmk}
+\end{dfn}
+
+\begin{exr}{}{exr6.2.14}
+Let $a,b\in \R$ and let $f\colon [a,b]\rightarrow \R$.  Show that $f$ is differentiable iff $\restr{f}{(a,b)}$ is differentiable, $\D _1f(a)$ exists, and $\D _{-1}f(b)$ exists.
+\end{exr}
+\begin{exm}{A function which is Gâteaux differentiable but not differentiable}{exm6.2.10}\footnote{This example comes from Ted Shifrin's \href{http://math.stackexchange.com/questions/694486/show-that-the-directional-derivative-is-linear-by-definition}{math.stackexchange answer}.}
+In other words, we seek a function all of whose directional derivatives exist at a point, but for which the map $v\mapsto \D _vf(x)$ is not linear.\footnote{Actually, what we really want to `break' is $\D _{v_1+v_2}f(x)=\D _{v_1}f(x)+\D _{v_2}f(x)$.  For one, $\D _{\alpha v}f(x)=\alpha \D _vf(x)$ \emph{is} true for $\alpha >0$, and it's relatively easy to find a counter-example of $\alpha <0$---see \cref{exr6.2.7}.}
+
+Define $f\colon \R ^2\rightarrow \R$ by
+\begin{equation}
+f(\coord{x,y})\coloneqq \begin{cases}0 & \text{if }\coord{x,y}=\coord{0,0} \\ \frac{x^2y}{x^2+y^2} & \text{otherwise.}\end{cases}
+\end{equation}
+Let $v\coloneqq \coord{v_x,v_y}\in \tangent{\R ^d}[\coord{0,0}]$ be nonzero (the directional derivative in the direction of the zero vector is always---gasp---zero).  Then,
+\begin{equation}
+\frac{f(\coord{0,0}+\varepsilon v)-f(\coord{0,0})}{\varepsilon}=\frac{\frac{(\varepsilon v_x)^2(\varepsilon v_y)}{(\varepsilon v_x)^2+(\varepsilon v_y)^2}}{\varepsilon}=\frac{v_x^2v_y}{v_x^2+v_y^2}.
+\end{equation}
+In particular, the limit of this as $\varepsilon \to 0^+$ always exist.  On the other hand, the map
+\begin{equation}
+v\mapsto \frac{v_x^2v_y}{v_x^2+v_y^2}\eqqcolon \D _vf(\coord{0,0})
+\end{equation}
+is certainly not linear.  For example,
+\begin{equation}
+\D _{\coord{1,1}}f(\coord{0,0})=\frac{1}{2}\neq 0+0=\D _{\coord{1,0}}f(\coord{0,0})+\D _{\coord{0,1}}f(\coord{0,0}).
+\end{equation}
+\end{exm}
+In fact, things that are arguably even worse than this can happen---it can happen that all directional derivatives exist \emph{and} furthermore the map that seconds a vector to the directional derivative in that direction is linear, but yet the function not even be continuous.  Unfortunately, we will have to postpone such a counter-example until after having defined the exponential function---see \cref{exm6.2.15}
+
+And now we present some familiar examples of derivatives of tensors.
+\begin{exm}{Gradient, divergence, curl, and laplacian}{GradientDivergenceCurlAndLaplacian}
+The gradient, divergence, curl, and laplacian from multivariable calculus are all just special cases of derivatives of tensors (along with other tensorial constructions such as contraction).
+
+Throughout this example, let $f$ be a smooth function on $\R ^d$ and let $v^a$ be a vector field on $\R ^d$. 
+
+The \emph{gradient} of $f$ is simply $\nabla _af$.  You've already seen this guy.
+
+The \emph{divergence}\index{Divergence} of $v^a$ is $\nabla _av^a$.  Note how in multivariable calculus you might write this as $\vec{\nabla}\cdot \vec{v}$, the `dot product' of the gradient with the vector field $\vec{v}$.  The index contraction here hopefully makes obvious how this is the divergence that you know and (maybe) love.
+
+The \emph{curl} is trickier, but this is not surprising, as it was trickier than the rest in multivariable calculus as well.  First of all, the curl of a vector field is in general \emph{not} a vector field---this is very specific to three-dimensions, essentially because the cross-product is specific to three-dimensions.  In general, it is also more convenient to define the curl of a \emph{covector} field instead of a vector field.\footnote{They are essentially equivalent, however, as you can translate back and forth by raising and lowering indices.}  For us, the \emph{curl}\index{Curl} of a covector field $\omega _a$ will be defined to be $\nabla _a\omega _b-\nabla _b\omega _a$.\footnote{To get back a vector field \emph{in three-dimensions} you have to in turn contract this with $\epsilon ^{abc}$, where $\epsilon ^{abc}$ is the unique completely antisymmetric contravariant tensor of rank $3$ of trace $1$.  ``Completely antisymmetric'' means if you flip any two indices you pick-up a minus sign (e.g.~$\epsilon ^{abc}=-\epsilon ^{bac}$; ``of trace $1$'' means $\epsilon _{abc}\epsilon ^{abc}=1$.  The reasons you don't get back a vector in higher dimensions is because in higher dimensions this becomes $\epsilon ^{a_1\ldots a_d}$, and then you will have instead a contravariant tensor of rank $d-2$.}  For what it's worth, in higher dimensions, mathematicians don't call this the curl---they call it the \emph{exterior derivative}\index{Exterior derivative}.\footnote{Not sure what's ``exterior'' about it though.}
+
+The \emph{laplacian}\index{Laplacian} of a function is the divergence of the gradient---literally (modulo the raising of an index), that is, the laplacian of $f$ is $\nabla _a\nabla ^af$.
+\end{exm}
+
+\section{A smooth version of \texorpdfstring{$\Mor _{\Top}(\R ^d,\R )$}{Mor Top(Rd,R)}:  \texorpdfstring{$C^{\infty}(\R ^d)$}{Cinfty (Rd)}}
+
+Our goal in this section is to find a notion of convergence (i.e.~a topology) that has the property that if a net of \emph{smooth} functions converges to another  function, then the limit function is necessarily smooth.  The statement that $\Mor _{\Top}(\R ^d,\R )$ is complete from the last chapter (\cref{thm4.5.6}) says that if a net of continuous functions converges with respect to the topology on $\Mor _{\Top}(\R ^d,\R )$ (i.e.~converges uniformly on quasicompact subsets), the the limit function is likewise necessarily continuous function.\footnote{In fact, it says more than this---if your net is Cauchy, then it has a limit and that limit is continuous.}  Unfortunately, this fails \emph{miserably} if we replace ``continuous'' with the word ``smooth''.  In fact, we have have a sequence of \emph{smooth} functions which converge uniformly to a function that is \emph{differentiable-nowhere}.\footnote{Though it is of course necessarily continuous by completeness of $\Mor _{\Top}(\R ^d,\R )$.}  To construct such a counter-example, we will have to wait until we have access to trigonometric functions\footnote{Perhaps one can construct an example without them, but the standard example does use them.}---see \cref{SmoothUniformBad}.  There is a `simple' solution however---if your derivatives are continuous, and you want them to converge to something continuous, just force them to converge uniformly as well.
+\begin{dfn}{$C^\infty (\R ^d)$}{CinftyRd}
+$C^\infty (\R ^d)$\index[notation]{$C^\infty (\R ^d)$} seminormed algebra space whose underlying set is the collection of all smooth real-valued functions, whose algebra structure\footnote{Recall that an algebra (\cref{Algebra}) is a vector space that is also a ring subject to a compatibility condition.  In other words, you can add things, you can multiply things, and you can multiply by scalars.} is given by the pointwise operations, and for each quasicompact $K\subseteq \R ^d$, $m\in \N$, and $[v_1]^a,\ldots ,[v_m]^a\in \R ^d$ there is a seminorm $\norm_{K,v_1,\ldots ,v_m}$ defined by
+\begin{equation}
+\norm[f]_{K,v_1,\ldots ,v_m}\coloneqq \sup _{x\in K}\left| [v_1]^{a_1}\cdots [v_m]^{a_m}\nabla _{a_1}\cdots \nabla _{a_m}f(x)\right| .
+\end{equation}
+\begin{rmk}
+$C ^{\infty}(\R ^d,\R ^m)$ is the set of all smooth functions from $\R ^d$ into $\R ^m$.  The differences:  (i)~there is now no longer any multiplication, and (ii)~in the definition of the seminorm you interpret the absolute value as the euclidean norm in $\R ^m$.
+\end{rmk}
+\begin{rmk}
+We have not defined it, but in the category of manifolds, $\Man$, it will turn out that $C^\infty (\R ^d,\R ^m)\coloneqq \Mor _{\Man}(\R ^d,\R ^m)$.\footnote{The objects in $\Man$ are manifolds, not men.  Don't objectify people.  It's wrong.}
+\end{rmk}
+\begin{rmk}
+For what it's worth, the ``$\infty$'' here is referring to the existence of infinitely many derivatives, and the ``$C$'' is for ``continuous'' (the derivatives are required to be continuous).
+\end{rmk}
+\begin{rmk}
+This is why smooth functions are sometimes referred to as \emph{$C^{\infty}$ functions}---see \cref{Ckfunction}.
+\end{rmk}
+\end{dfn}
+\begin{prp}{}{CInftyConvergence}
+Let $\lambda \mapsto f_\lambda \in C^{\infty}(\R ^d)$ be a net and let $f_\infty \in C^{\infty}(\R ^d)$.  Then, $\lambda \mapsto f_\lambda$ converges to $f_\infty$ (is Cauchy) in $C^{\infty}(\R ^d)$ iff $\lambda \mapsto [v_1]^{a_1}\cdots [v_m]^{a_m}\nabla _{a_1}\cdots \nabla _{a_m}f_\lambda$ converges to $[v_1]^{a_1}\cdots [v_m]^{a_m}\nabla _{a_1}\cdots \nabla _{a_m}f_\infty$ (is Cauchy) in $\Mor _{
+\Top}(\R ^d,\R )$ for all $m\in \N$ and $[v_1]^a,\ldots ,[v_m]^a\in \R ^d$.
+\begin{rmk}
+You might say that the definition of the seminorms was made the way they were so that this is the case.
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{prp}
+\begin{thm}{}{CInftyComplete}
+$C^{\infty}(\R ^d)$ is complete.
+\begin{proof}
+Let $\lambda \mapsto f_\lambda \in C^{\infty}(\R ^d)$ be Cauchy.  By the previous result,
+\begin{equation}
+\lambda \mapsto [v_1]^{a_1}\cdots [v_m]^{a_m}\nabla _{a_1}\cdots \nabla _{a_m}f_\lambda
+\end{equation}
+is Cauchy in $\Mor _{\Top}(\R ^d,\R )$ for all $m\in \N$ and $v_1,\ldots ,v_m\in \R ^d$, and so, for each $m\in \N$ and $v_1,\ldots ,v_m\in \R ^d$, there is some $g_{v_1,\ldots ,v_m}\in \Mor _{\Top}(\R ^d,\R )$ such that $\lambda \mapsto [v_1]^{a_1}\cdots [v_m]^{a_m}\nabla _{a_1}\cdots \nabla _{a_m}f_\lambda$ converges to $g_{v_1,\ldots ,v_m}$ in $\Mor _{\Top}(\R ^d,\R )$.
+\begin{exr}[breakable=false]{}{}
+Complete the proof by showing that
+\begin{equation}
+g_{v_1,\ldots ,v_m}=[v_1]^{a_1}\cdots [v_m]^{a_m}\nabla _{a_1}\cdots \nabla _{a_m}g.
+\end{equation}
+\end{exr}
+\end{proof}
+\end{thm}
+
+We defined above in \cref{CinftyRd} $C^{\infty}(\R ^d)$.  In fact, there is a $C^k(\R ^d)$ for all $k\in \N \cup \{ \infty \}$ (and even something special generally written as $m=\omega$).  We won't really be using this terminology much ourselves, but it's quite common, and so you should be aware of what it means.
+\begin{dfn}{$C^k$ function}{Ckfunction}
+Let $D\subseteq \R ^d$ and let $f\colon D\rightarrow \R$.  Then, for $k\in \N$, $f$ is \emph{$C^k$}\index{$C^k$ function} iff the first $k$ derivatives of $f$ exist and extend to continuous functions on $D$.  $f$ is \emph{$C^{\infty}$}\index{$C^{\infty}$ function} iff $f$ is smooth.  $f$ is \emph{$C^{\omega}$}\index{$C^{\omega}$ function} iff $f$ is analytic.
+\begin{rmk}
+Note that \emph{analytic} has not yet been defined---see \cref{Analytic}.  In brief, a function is analytic iff it is equal to its Taylor series (\cref{TaylorSeries}) in a neighborhood of each interior point.
+\end{rmk}
+\begin{rmk}
+I am not 100\% positive about this, but I believe that the symbol $\omega$ is used here as this is generally the symbol used to denote the smallest infinite ordinal.\footnote{We of course haven't defined ordinals, and we have no plans to do so, but in brief, ordinals are to well-ordered sets as cardinals are to sets.  That is, ordinals are equivalence classes of well-ordered sets with respect to the equivalence relation of isomorphism in the category of well-ordered sets.}
+\end{rmk}
+\end{dfn}
+
+\section{Calculus}
+
+\subsection{Tools for calculation}
+
+And now we come to the results which you are probably most familiar with from calculus.
+\begin{prp}{Algebraic Derivative Theorems\hfill}{AlgebraicDerivativeTheorems}\index{Algebraic Derivative Theorems}
+Let $f,g\colon \R ^d\rightarrow \R$ be differentiable.\footnote{Everything works just as well (with the same proof) if you just assume it is differentiable in some direction at some point, but the notation is more tedious.} and let $\alpha \in \R$.  Then,
+\begin{enumerate}
+\item \label{AlgebraicDerivativeTheorems.Linearity}(Linearity) $\nabla _a(f+g)=\nabla _af+\nabla _ag$;
+\item \label{AlgebraicDerivativeTheorems.Homogeneity}(Homogeneity) $\nabla _a(\alpha f)=\alpha \nabla _af$;
+\item \label{AlgebraicDerivativeTheorems.ProductRule}(Product Rule)\index{Product Rule}$\nabla _a(fg)=(\nabla _af)g+f(\nabla _ag)$;\footnote{I would get in the habit of not mixing-up the order of $f$ and $g$ (e.g.~by writing $(\nabla _af)g+(\nabla _ag)f$ or something of the like).  It won't matter for us, but it can and will latter when you're working with things that are not commutative (the cross-product of vectors is probably the most elementary example).} and
+\item \label{AlgebraicDerivativeTheorems.QuotientRule}(Quotient Rule)\index{Quotient Rule} $\nabla _a\left( \frac{f}{g}\right) =\frac{(\nabla _af)g-f(\nabla _ag)}{g^2}$ whenever $g\neq 0$.
+\end{enumerate}
+\begin{rmk}
+The first three are true just as well for $f$ and $g$ arbitrary tensor fields, with essentially the same exact proofs (the juxtaposition denotes the tensor product of course).  The Quotient Rule does not make sense, however, as in general you cannot invert tensors.
+\end{rmk}
+\begin{proof}
+\cref{AlgebraicDerivativeTheorems.Linearity} and \cref{AlgebraicDerivativeTheorems.Homogeneity} follows straight from the corresponding results above limits---see \cref{AlgebraicLimitTheorems}.\cref{enmAlgebraicLimitTheorems.i} and \cref{AlgebraicLimitTheorems}.\cref{enmAlgebraicLimitTheorems.ii}.
+
+As for \cref{AlgebraicDerivativeTheorems.ProductRule}, we have
+\begin{equation}
+\begin{multlined}
+\frac{f(x+hv)g(x+hv)-f(x)g(x)}{h}=\footnote{We added and subtracted $f(x)g(x+hv)$.} \\ \left( \frac{f(x+hv)-f(x)}{h}\right) g(x+hv)+f(x)\left( \frac{g(x+hv)-g(x)}{h}\right) ,
+\end{multlined}
+\end{equation}
+and so taking limits gives us the Product Rule.
+
+Similarly, the proof of the Quotient Rule amounts to just algebraic manipulation of the difference quotient:
+\begin{equation}
+\frac{\frac{f(x+hv)}{g(x+hv)}-\frac{f(x)}{g(x)}}{h}=\frac{\left( \frac{f(x+hv)-f(x)}{h}\right) g(x)-f(x)\left( \frac{g(x+hv)-g(x)}{h}\right)}{g(x+hv)g(x)}.
+\end{equation}
+\end{proof}
+\end{prp}
+\begin{prp}{Chain Rule}{ChainRule}\index{Chain rule}
+Let $f^\alpha :\R ^d\rightarrow \R ^m$ and $g^\mu :\R ^m\rightarrow \R ^n$ be differentiable.\footnote{The $\mu$ index is used to remind us that $g^\mu$ lives in a $\R ^n$ (as opposed to $\R ^m$ or $\R ^d$).}  Then,
+\begin{equation}
+\nabla _a[g\circ f]^\mu (x)=\nabla _\alpha g^\mu (f(x))\nabla _af^\alpha (x).
+\end{equation}
+\begin{rmk}
+One of the things I really love about index notation is that it almost dictates what the answer has to be---how many ways can you? construct a tensor with one $\R ^d$ covariant index and one $\R ^n$ contravariant index using only $f^\alpha$, $g^\mu$, and their derivatives?
+\end{rmk}
+\begin{wrn}
+This is currently incorrect as stated!  One needs to assume Fréchet differentiability for this to be true.  For example, as suggested on \href{http://math.stackexchange.com/questions/705847/counterexample-for-the-chain-rule-for-the-gateaux-derivative}{math.stackexchange}, define $f\colon \R \rightarrow \R ^2$ by $f(t)\ceqq \coord{t,2t^2}$ and $g\colon \R ^2\rightarrow \R$ by
+\begin{equation}
+g(x,y)\ceqq \begin{cases}\sin (1/y) & \text{if }x>0\text{ and }x^2<y<3x^2 \\ 0 & \text{otherwise.}\end{cases}
+\end{equation}
+Then, $f$ is smooth and $\nabla _ag(0,0)=0$, but yet $g\circ f$ is not even continuous at $0$ (much less is it differentiable, and even much less do we have such an equality).
+\end{wrn}
+\begin{proof}
+To prove this, by the definition of the derivative of tensors, we need to show that
+\begin{equation}
+\omega _\mu \nabla _a[g\circ f]^\mu (x)=\omega _\mu \nabla _\alpha g^\mu (f(x))\nabla _af^\alpha (x)
+\end{equation}
+for all covectors (living in $\R ^n$) $\omega _\mu$.  In particular, it suffices to prove the result for $g\colon \R ^m\rightarrow \R$ (because now $\omega _\mu g^\mu :\R ^m\rightarrow \R$).
+
+Let $v^a$ be a constant vector field on $\R ^d$.  Then, what we actually want to show is
+\begin{equation}
+v^a\nabla _a[g\circ f](x)=\left( \nabla _\alpha g(f(x))\right) \left( v^a\nabla _af^\alpha (x)\right) ,
+\end{equation}
+as $v^a$ is arbitrary.  On one hand
+\begin{equation}\label{5.2.18}
+v^a\nabla _a[g\circ f](x)=\lim _{h\to 0}\frac{g\left( f(x+hv)\right) -g(f(x))}{h}
+\end{equation}
+and on the other hand
+\begin{equation}
+\left( \nabla _\alpha g(f(x))\right) \left( v^a\nabla _af^\alpha (x)\right) =\lim _{h\to 0}\frac{1}{h}\left[ g\left( f(x)+hv^a\nabla _af(x)\right) -g(f(x))\right]
+\end{equation}
+Thus, we want to show that
+\begin{equation}
+f(x+hv)=f(x)+hv^a\nabla _af(x)\text{ as }h\to 0,
+\end{equation}
+but of course this is just the very definition of the derivative.
+\end{proof}
+\end{prp}
+
+\subsection{The Mean Value Theorem}
+
+One of the most important theorems of traditional calculus is of course the \emph{Mean Value Theorem}.  We first prove a couple of results, important in their own right, leading up to it.
+\begin{dfn}{Local extrema}{LocalExtrema}
+Let $f\colon X\rightarrow \R$ be a function from a topological space into $\R$ and let $x_0\in X$.  Then, $x_0$ is a \emph{local maximum}\index{Local maximum} of $f$ iff there is some open neighborhood $U$ of $x_0$ such that (i)~$f(x_0)=\sup _{x\in U}\{ f(x)\}$ and (ii)~$x_0$ is the \emph{unique} such point in $U$.\footnote{So for example, constant functions have no local maxima.}  $x_0$ is a \emph{local minimum}\index{Local minimum} of $f$ iff there is some open neighborhood $U$ of $x_0$ such that (i)~$f(x_0)=\inf _{x\in U}\{ f(x)\}$ and (ii)~$x_0$ is the \emph{unique} such point in $U$.  $x_0$ is a \emph{local extremum}\index{Local extremum} of $f$ iff it is either a local maximum or a local minimum.
+\end{dfn}
+\begin{prp}{First Derivative Test}{FirstDerivativeTest}\index{First Derivative Test}
+Let $D\subseteq \R ^d$, let $x_0\in \Int (D)$, and let $f\colon D\rightarrow \R$ be differentiable at $x_0$.  Then, if $x_0$ is a local extremum of $f$, then $\nabla _af(x_0)=0$.
+\begin{rmk}
+Sometimes this is also referred to as \emph{Fermat's theorem}\index{Fermat's theorem}.  Evidently, it was not the last result of his life.
+\end{rmk}
+\begin{rmk}
+The first derivative alone, however, cannot detect the difference between local minima and maxima.  For that we need the \emph{\nameref{HigherDerivativeTest}}, a stronger version of Second Derivative Test, with which you are likely more familiar---see \cref{HigherDerivativeTest}.
+\end{rmk}
+\begin{proof}
+Suppose that $f$ is differentiable at $x_0$ and $x_0$ is a local extremum of $f$.  Let $U$ be an open neighborhood about $x_0$ so that $x_0$ is either a maximum or minimum in $U$.  We proceed by contradiction:  suppose that $\nabla _af(x_0)\neq 0$.  Then, there is some $v^a\in \tangent{\R ^d}[x_0]$ such that $v^a\nabla _af(x_0)\neq 0$.  Without loss of generality, suppose that $v^a\nabla _af(x_0)>0$.  Then, there is some $h>0$ such that $x_0+hv,x_0-hv\in U$ and
+\begin{equation}
+\frac{f(x_0+hv)-f(x_0)}{h}\eqqcolon K>0\text{ and }\frac{f(x_0-hv)-f(x_0)}{-h}\eqqcolon L>0,
+\end{equation}
+and so
+\begin{equation}
+f(x_0+hv)=f(x_0)+hK>f(x_0)\text{ and }f(x_0-hv)=f(x_0)-hL<f(x_0),
+\end{equation}
+so that $f(x_0)$ can be neither a maximum nor a minimum in $U$:  a contradiction.
+\end{proof}
+\end{prp}
+In fact, there is a generalization of the First Derivative Test, which is essentially just the precise statement that allows one to use the method of \emph{Lagrange multipliers}.
+\begin{thm}{Lagrange Multiplier Theorem}{LagrangeMultiplierTheorem}\index{Lagrange Multiplier Theorem}
+Let $D\subseteq \R ^d$, let $x_0\in \Int (D)$, and let $f,g\colon D\rightarrow \R$ be differentiable at $x_0$ with $\nabla _ag(x_0)\neq 0$.  Then, if $x_0\in g^{-1}(0)$ is a local extremum of $\restr{f}{g^{-1}(0)}$, then there is a unique $\lambda \in \R$ such that $\nabla _af(x_0)=\lambda \nabla _ag(x_0)$.
+\begin{rmk}
+$\lambda$ is the \emph{Lagrange multiplier}\index{Lagrange multiplier}.
+\end{rmk}
+\begin{rmk}
+$f$ and $g$ should be thought of as playing different roles here.  In this situation, we are thinking of $g$ as a `constraint', and $f$ itself as the thing we are maximizing or minimizing.\footnote{Well, of course the statement of the theorem doesn't care what you're trying to do, but in practice this is used when you're trying to maximize $f$ subject to the constraint $g$.}  For example, if $g\colon \R ^3\rightarrow \R$ is defined by $g(x,y,z)\ceqq x^2+y^2+z^2-1$, then the ``constraint'' $g(x,y,z)=0$ in this case is the condition that $x^2+y^2+z^2=1$, that is, the condition that $\coord{x,y,z}$ be the unit sphere.  This would be applicable if, for example, you are trying to find the maximum of $f$ not on all of $\R ^3$, but instead only on the unit sphere.
+\end{rmk}
+\begin{rmk}
+When you turn to study manifolds, you will learn that the condition here that $\nabla _ag(x_0)\neq 0$ amounts to the statement that $0$ is a ``regular value'' of $g$, whence it follows that the preimage of $0$, $g^{-1}(0)$, is a submanifold.
+\end{rmk}
+\begin{rmk}
+The basic idea here is that the conditions imply that $\nabla _af(x_0)$ and $\nabla _ag(x_0$ are both orthogonal to $\tangent{g^{-1}(0)}[x_0]$, and as the space of vectors orthogonal to this tangent space is only one-dimensional, $\nabla _af(x_0)$ and $\nabla _ag(x_0)$ must be scalar multiples of one another.
+\end{rmk}
+\begin{proof}
+We leave the proof as an exercise.
+\begin{exr}{}{}
+Prove the result yourself.
+\begin{rmk}
+Hint:  Probably shouldn't be an exercise---see \cite[Theorem 5.8.3]{Sally}.
+\end{rmk}
+\end{exr}
+\end{proof}
+\end{thm}
+\begin{exm}{}{}
+Suppose we want to maximize the function $f\colon \R ^2\rightarrow \R$ defined by $f(x,y)\ceqq x+y$ on the unit circle in $\R ^2$.  The relevant constraint function is $g\colon \R ^2\rightarrow \R$, $g(x,y)\ceqq x^2+y^2-1$.
+
+The \nameref{LagrangeMultiplierTheorem} says that if $\coord{x,y}$ is to be a local maximum on the unit circle, then there must be a unique real number $\lambda$ such that
+\begin{equation}
+\coord{1,1}_a=\nabla _af(x,y)=\lambda \nabla _ag(x,y)=\coord{2\lambda x,2\lambda y}_a.
+\end{equation}
+Thus, we must have that $2\lambda x=1=2\lambda y$.  As $x^2+y^2=1$, it follows that $\frac{1}{4\lambda ^2}+\frac{1}{4\lambda ^2}=1$, and so $\lambda =\pm \frac{1}{\sqrt{2}}$.\footnote{If you're confused about the lack of uniqueness here, this is because we don't yet know what $\coord{x,y}$ is.  For a \emph{given} $\coord{x,y}$, there is going to be a unique $\lambda$.  However, at the moment we are \emph{solving} for $\coord{x,y}$, and there is going to be more than one solution, and hence more than one Lagrange multiplier (one for each solution of $\coord{x,y}$).}  Plugging this back into the equations $2\lambda x=1=2\lambda y$ gives us
+\begin{equation}
+\coord{x,y}=\coord*{\tfrac{1}{\sqrt{2}},\tfrac{1}{\sqrt{2}}}\text{ or }\coord{x,y}=\coord*{\tfrac{1}{\sqrt{2}},\tfrac{1}{\sqrt{2}}}.
+\end{equation}
+\end{exm}
+
+\begin{thm}{Mean Value Theorem}{MeanValueTheorem}\index{Determinant Mean Value Theorem}
+Let $f,g,h\colon [a,b]\rightarrow \R$ be differentiable,\footnote{In your calculus class, you may have seen it required that $f,g,h$ are continuous on $[a,b]$ and differentiable on $(a,b)$.  However, recall that (see the definition, \cref{Differentiable}) a function being differentiable means that it is differentiable on a neighborhood of the domain.  In particular, our hypothesis implies that $f,g,h$ are all continuous on $[a,b]$.}, and define $D\colon [a,b]\rightarrow \R$ by
+\begin{equation}
+D(x)\ceqq \det \left( \begin{bmatrix}f(x) & g(x) & h(x) \\ f(a) & g(a) & h(a) \\ f(b) & g(b) & h(b)\end{bmatrix}\right) .
+\end{equation}
+Then, there is some $c\in (a,b)$ such that $\nabla D(c)=0$.
+\begin{rmk}
+There are three successive special cases of this, listing in the following three remarks.
+\end{rmk}
+\begin{rmk}
+Taking $h(x)\ceqq 1$ yields the following special case:
+
+Let $f,g\colon [a,b]\rightarrow \R$ be continuous and differentiable.  Then, there is some $c\in (a,b)$ such that
+\begin{equation}\label{eqn6.4.16}
+\nabla f(c)(g(b)-g(a))=\nabla g(c)(f(b)-f(a)).
+\end{equation}
+
+This is sometimes referred to as the \emph{Ratio Mean Value Theorem}\index{Ratio Mean Value Theorem} or \emph{Cauchy's Mean Value Theorem}\index{Cauchy's Mean Value Theorem}.
+\end{rmk}
+\begin{rmk}
+Taking $g(x)\ceqq x$ in Cauchy's Mean Value Theorem yields the following special case:
+
+Let $f\colon [a,b]\rightarrow \R$ be continuous and differentiable  Then, there is some $c\in (a,b)$ such that
+\begin{equation}\label{eqn6.4.17}
+\nabla f(c)=\frac{f(b)-f(a)}{b-a}.
+\end{equation}
+
+This is usually referred to itself as just the \emph{Mean Value Theorem}\index{Mean Value Theorem}, in which case the most general version is referred to as the \emph{Determinant Mean Value Theorem}.  If we want to distinguish (and it's not immediately obvious from context), to clarify, we will refer to this case as the \emph{Classical Mean Value Theorem}\index{Classical Mean Value Theorem}.
+\end{rmk}
+\begin{rmk}
+If $f(a)=f(b)$ in the Classical Mean Value Theorem, then we obtain the following special case:
+
+Let $f\colon [a,b]\rightarrow \R$ be continuous and differentiable.  Then, if $f(a)=f(b)$, then there is some $c\in (a,b)$ such that
+\begin{equation}
+\nabla f(c)=0.
+\end{equation}
+
+This special case is known as \emph{Rolle's Theorem}\index{Rolle's Theorem}.
+\end{rmk}
+\begin{rmk}
+In the Ratio Mean Value Theorem, if $g(a)\neq g(b)$ and $\nabla g(c)\neq 0$, then we can rearrange \eqref{eqn6.4.16} to read
+\begin{equation}
+\frac{\nabla f(c))}{\nabla g(c)}=\frac{f(b)-f(a)}{g(b)-g(a)}.
+\end{equation}
+\end{rmk}
+\begin{rmk}
+The right-hand side of \eqref{eqn6.4.17} is called the \emph{average slope}\index{Average slope} of $f$ on $[a,b]$.  Hence the name \emph{Mean} Value Theorem.
+\end{rmk}
+\begin{rmk}
+Intuitively, the Classical Mean Value Theorems says that if over a given period of time your \emph{average speed} was $v$, then in fact at some point your \emph{instantaneous} speed must have been $v$.  Rolle's Theorem can of course be understood as the special case of this in which $v=0$.
+
+You can likewise interpret the Ratio Mean Value Theorem as saying something similar for the curve $t\mapsto \coord{f(t),g(t)}$.  On the other hand, I am not aware of any intuition (or use, for that matter) of the Determinant Mean Value Theorem.
+\end{rmk}
+\begin{rmk}
+This essentially does not generalize at all to higher dimensions.  It just fails outright if you increase the dimension of the codomain---see \cref{exm6.4.8}.  On the other hand, there is the question of what should the statement of the Mean Value Theorem even be if you increase the dimension of the domain---what is the average slope over a square, for example?  What you can do is state the result in terms of curves between points in $\R ^d$, but this is really just the one-dimensional statement here for the composition of the function with the curve (which of course itself is a function from a closed interval in $\R$ to $\R ^d$).
+\end{rmk}
+\begin{proof}
+$D$ is continuous on $[a,b]$, and therefore, by the \nameref{ExtremeValueTheorem}, attains a maximum and a minimum somewhere on $[a,b]$.  Suppose that both the maximum and minimum were achieved at the endpoints.  As $D(a)=0=D(b)$, this would imply that $0$ was both a minimum and a maximum for $D$ on $[a,b]$, which in turn would imply that $D (x)=0$ for all $x\in [a,b]$.  In particular, $\nabla D(c)=0$ for any $c\in (a,b)$.  On the other hand, if at least one of the maximum and the minimum where attained at $c\in (a,b)$, then it would be a local extremum, and so by the \nameref{FirstDerivativeTest}, we would have that $\nabla D(c)=0$.
+\end{proof}
+\end{thm}
+
+\begin{exm}{A function continuous and differentiable on ${[a,b]}$ into $\R ^2$ for which the \nameref{MeanValueTheorem} fails}{exm6.4.8}
+Define $f_1,f_2:[-1,1]\rightarrow \R$ by
+\begin{equation}
+f_1(x)\coloneqq x^2\text{ and }f_2(x)\coloneqq x^3
+\end{equation}
+and $f\colon [-1,1]\rightarrow \R ^2$ by
+\begin{equation}
+f(x)\coloneqq \coord{f_1(x),f_2(x)}.
+\end{equation}
+We show there is no $c\in (-1,1)$ such that
+\begin{equation}\label{6.4.10}
+\nabla f(c)=\frac{f(1)-f(-1)}{1-(-1)}.
+\end{equation}
+$f_1(-1)=1$ and $f_1(1)=1$, and on the other hand, $f_2(-1)=-1$ and $f_2(1)=1$.  Therefore, the right-hand side of this equation becomes
+\begin{equation}
+\frac{f(1)-f(-1)}{1-(-1)}=\coord{0,1}.
+\end{equation}
+If \eqref{6.4.10} were to hold, then we must have that $f_1'(c)=0$, which forces $c=0$.  But then, $f_2'(c)=0\neq 1$.
+\end{exm}
+
+\begin{exr}{}{}
+Let $f\colon [a,b]\rightarrow \R$ be continuous and differentiable.  Show that the following are true.
+\begin{enumerate}
+\item If $\nabla f(c)=0$ for all $c\in (a,b)$, then $f$ is constant on $[a,b]$.
+\item if $\nabla f(c)>0$ for all $c\in (a,b)$, then $f$ is increasing on $[a,b]$.
+\item If $\nabla f(c)<0$ for all $c\in (a,b)$, then $f$ is decreasing on $[a,b]$.
+\end{enumerate}
+\end{exr}
+Be careful though:  we can deduce nothing if the derivative is positive at a point alone.
+\begin{exm}{A point at which the derivative is positive but has no neighborhood in which the function is increasing}{}
+Define $f\colon \R \rightarrow \R$ by
+\begin{equation}
+f(x)\coloneqq \begin{cases}x-\tfrac{1}{4} & \text{if }x\in \Q \\ x^2 & \text{if }x\in \Q ^{\comp}.\end{cases}
+\end{equation}
+We first show that the derivative at $\frac{1}{2}$ is $1$.
+\begin{equation}
+\frac{f(\tfrac{1}{2}+\varepsilon )-f(\tfrac{1}{2})}{\varepsilon}=\begin{cases}\frac{\left( (\tfrac{1}{2}+\varepsilon )-\tfrac{1}{4}\right) -\tfrac{1}{4}}{\varepsilon} & \text{if }\varepsilon \in \Q \\ \frac{\left( \tfrac{1}{2}+\varepsilon \right) ^2-\tfrac{1}{4}}{\varepsilon} & \text{if }x\in \Q ^{\comp}\end{cases}=\begin{cases}1 & \text{if }\varepsilon \in \Q \\ 1+\varepsilon & \text{if }\varepsilon \in \Q ^{\comp}.\end{cases}
+\end{equation}
+Hence, we do indeed have that
+\begin{equation}
+\lim _{\varepsilon \to 0^+}\frac{f(\tfrac{1}{2}+\varepsilon )-f(\tfrac{1}{2})}{\varepsilon}=1>0.
+\end{equation}
+On the other hand, let $U$ be any open neighborhood of $\frac{1}{2}$ and let $\varepsilon >0$ be \emph{rational} and such that $\varepsilon +\frac{1}{2}\in U$.  Now choose $0<\delta <\varepsilon$ \emph{irrational} and such that $\delta +\delta ^2>\varepsilon$.\footnote{Why does such a $\delta$ exist?}  Then, despite the fact that $\frac{1}{2}+\delta <\frac{1}{2}+\varepsilon$, we nevertheless have that
+\begin{equation}
+f(\tfrac{1}{2}+\delta )=(\tfrac{1}{2}+\delta )^2=\tfrac{1}{4}+\delta +\delta ^2>\tfrac{1}{4}+\varepsilon =f(\tfrac{1}{2}+\varepsilon ).
+\end{equation}
+\end{exm}
+
+The (Ratio) Mean Value Theorem has an important `corollary'\footnote{In quotes because it's not \emph{that} immediate.} that you probably recall from elementary calculus:  \emph{L'Hôpital's Rule}.
+\begin{thm}{L'Hôpital's Rule}{LHopitalsRule}
+Let $f,g\colon (a,b)\rightarrow \R$ be differentiable.  Then, (i)~$g(x),\nabla g(x)\neq 0$ for all $x$ in some neighborhood of $b$, (ii)~if $\lim _{x\to b}\abs{f(x)}=0=\lim _{x\to b}\abs{g(x)}$ or $\lim _{x\to b}\abs{g(x)}=\infty$, and (iii)~the limit $\lim _{x\to b}\frac{\nabla f(x)}{\nabla g(x)}$ exists, then
+\begin{equation}
+\lim _{x\to b}\frac{f(x)}{g(x)}=\lim _{x\to b}\frac{\nabla f(x)}{\nabla g(x)}.
+\end{equation}
+\begin{rmk}
+Note that L'Hôpital's Rule is applicable even if you only have $\lim _{x\to b}\abs{g(x)}=\infty$, that is, you do \emph{not} need $\lim _{x\to b}\abs{f(x)}=\infty$.  It's just that, in this case, L'Hôpital's Rule is not necessary as we already know the limit in this case is $0$.
+\end{rmk}
+\begin{proof}
+Suppose that (i)~$g(x),\nabla g(x)\neq 0$ for all $x$ in some neighborhood of $b$, (ii)~if $\lim _{x\to b}\abs{f(x)}=0=\lim _{x\to b}\abs{g(x)}$ or $\lim _{x\to b}\abs{g(x)}=\infty$, and (iii)~the limit $\lim _{x\to b}\frac{\nabla f(x)}{\nabla g(x)}$ exists.
+
+For the remainder of the proof, let us replace $a$ with a value sufficiently close to $b$ such that $g(x),\nabla g(x)\neq 0$ for all $x\in (a,b)$.  It follows that, if $x,y\in (a,b)$ are distinct, then $g(x)-g(y)\neq 0$, because otherwise the \nameref{MeanValueTheorem} would imply that $\nabla g(x)$ vanishes somewhere.
+
+Let us write
+\begin{equation}
+L\ceqq \lim _{x\to b}\frac{\nabla f(x)}{\nabla g(x)}.
+\end{equation}
+
+Now, for every $x\in (a,b)$, define
+\begin{equation}
+m(x)\ceqq \inf _{t\in (x,b)}\frac{\nabla f(t)}{\nabla g(t)}\in [-\infty ,\infty )\text{ and }M(x)\ceqq \inf _{t\in (x,b)}\frac{\nabla f(t)}{\nabla g(t)}\in (-\infty ,\infty ]
+\end{equation}
+Note that $\lim _{x\to b}m(x)=L=\lim _{x\to b}M(x)$ by \cref{prp3.3.52} ($\limsup$ and $\liminf$ agree with the limit if it exists).  Thus, by the \namerefpcref{SqueezeTheoremForFunctions}, it suffices to show that $m(x)\leq \frac{f(x)}{g(x)}\leq M(x)$ for all $x\in (a,b)$.
+
+For every $y\in (x,b)$, the Ratio Mean Value Theorem says that
+\begin{equation}\label{eqn6.4.35}
+\frac{f(x)-f(y)}{g(x)-g(y)}=\frac{\nabla f(c)}{\nabla g(c)}
+\end{equation}
+for some $c\in (x,y)$.  It follows that
+\begin{equation}
+m(x)\leq \frac{f(x)-f(y)}{g(x)-g(y)}\leq M(x)
+\end{equation}
+for all $y\in (x,b)$.\footnote{The basic idea of the entire proof was that (i)~it suffices to show that $m(x)\leq \frac{f(x)}{g(x)}\leq M(x)$ and (ii)~this holds by the Ratio Mean Value Theorem and the fact that $f(y)$ and $g(y)$ are `negligible'.  Thus, the remainder of the proof boils down to showing that $f(y)$ and $g(y)$ are `negligible' in an appropriate sense.}
+
+If $\lim _{y\to b}\abs{f(y)}=0=\lim _{y\to b}\abs{g(y)}$, then taking the limit of \eqref{eqn6.4.35} as $y\to b$ gives $m(x)\leq \frac{f(x)}{g(x)}\leq M(x)$, as desired.
+
+So, suppose that $\lim _{y\to b}\abs{g(y)}=\infty$.  We have that
+\begin{equation}
+m(x)\leq \frac{f(x)-f(y)}{g(x)-g(y)}=\frac{\tfrac{f(y)}{g(y)}-\tfrac{f(x)}{g(y)}}{1-\tfrac{g(x)}{g(y)}}\leq M(x),
+\end{equation}
+and so in this case we have
+\begin{equation}
+L=\limsup _{x\to b}m(x)\leq \limsup _{x\to b}\frac{f(x)}{g(x)}\leq \limsup _{x\to b}M(x)=L.\footnote{We must use $\limsup$ becasue we do not know a priroi that this limit exists.}
+\end{equation}
+It follows that $\limsup _{x\to b}\frac{f(x)}{g(x)}=L$.  Similarly, $\liminf _{x\to b}\frac{f(x)}{g(x)}=L$, and hence $\lim _{x\to b}\frac{f(x)}{g(x)}$ exists and is equal to $L$ by \cref{prp3.3.52}.
+\end{proof}
+\end{thm}
+
+We mentioned in a remark of the \namerefpcref{IntermediateValueTheorem} that functions which are derivatives also possess the intermediate value property, even though they need not be continuous.  This is another `corollary' of the Mean Value Theorem, and is known as \emph{Darboux's Theorem}.
+\begin{thm}{Darboux's Theorem}{DarbouxsTheorem}\index{Darboux's Theorem}.
+Let $D\subseteq \R$ and let $f\colon D\rightarrow \R$ be differentiable.  Then, $\nabla f\colon \Int (D)\rightarrow \R$ has the intermediate value property.
+\begin{rmk}
+Because of this result, sometimes functions which possess the intermediate value property are called \emph{Darboux continuous}\index{Darboux continuous}.  However, Darboux continuous functions need not actually be continuous (\cref{exr6.4.40}), and so I recommend to just use the term ``intermediate value theorem'' instead (this term is also just more descriptive).
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\begin{rmk}
+Hint:  Another exercise that probably should not be.  Check out \cite[pg.~144]{Pugh}.
+\end{rmk}
+\end{exr}
+\end{proof}
+\end{thm}
+\begin{exr}{}{exr6.4.40}
+Find an example of a function $f\colon \R \rightarrow \R$ that has the intermediate value property but is not continuous.
+\begin{rmk}
+You probably did something similar in \cref{exr3.8.32}.  The difference is that now you are being asked to find such a function in $\R$.  Before, you could `cheat' by using other topological spaces.
+\end{rmk}
+\end{exr}
+\begin{exr}{}{}
+Is this true in $\R ^d$ for $d\geq 2$?  More precisely, is it the case that $\R ^d\ni x\mapsto v(x)^a\nabla _af(x)$ has the intermediate value property for all smooth vector fields $x\mapsto v(x)^a$?
+\end{exr}
+
+\subsection{The Fundamental Theorem of Calculus}
+
+So there is this theorem.  It's kind of important.  Maybe you've even heard of it.  It's called the \emph{Fundamental Theorem of Calculus} and it asserts that
+\begin{equation}
+f(x)=\int _a^x\dif x\, \tfrac{\dif}{\dif x}f(x).
+\end{equation}
+Well, sort of.  If we're not careful about what we mean, this can completely fail..  That's right---your calculus teachers \emph{lied to you}.  You should sue them.\footnote{I'm exaggerating for dramatic effect.  (So dramatic, isn't it?)  When you first took calculus, the idea that a derivative would be defined only almost-everywhere was probably just not a thing.}
+\begin{exm}{A uniformly-continuous function on {$[0,1]$} that is $0$ at $0$, $1$ at $1$, but whose derivative is $0$ almost-everywhere---the Devil's Staircase}{}
+We've seen this bad boy before---see \cref{CantorFunction}.\footnote{There, it was used to generate an example of a uniform-homeomorphism of $\R$ that preserves neither measurability not measure $0$.}  The construction is relatively long, and so we don't repeat it here, but if it helps you remember, it's that function which is constant on the components of the complement of the Cantor Set in $[0,1]$.  In fact, as the Cantor Set has measure $0$, it follows from this fact that the derivative of the Devil's Staircase is $0$ almost-everywhere.  Hence, on one hand we have that $\int _0^1\dif x\, \frac{\dif}{\dif x}f(x)=0$, but on the other hand we have $f(1)-f(0)=1$.  Turns out that a lot can happen on a set of measure $0$!
+
+In fact, you can modify this by adding $x$ to obtain a \emph{uniform-homeomorphism} (the Cantor Function---see the same example, \cref{CantorFunction}) which has derivative $1$ almost-everywhere, but yet goes from $0$ to \emph{not} $1$, but $2$, on $[0,1]$.  The point is, you can have \emph{ridiculously nice} functions for which the Fundamental Theorem of Calculus fails.
+\end{exm}
+Actually, this shouldn't come as that much of a surprise.\footnote{By now, you should pretty much expect many things that seem to be completely reasonable to be utterly false.  For example, check out the function that is infinitely-differentiable but not continuous---\cref{exm6.2.15}.}  For one thing, pretty much everything you integrate in standard calculus classes is a polynomial, a trig function, an exponential function, an inverse of one of these, or a function formed from these by addition multiplication etc..  That is, you only deal with incredibly nice functions all the time.  While the Devil's Staircase is actually relatively nice as far as all continuous functions go (it's uniformly-continuous), it certainly isn't smooth everywhere.
+
+Also, it's worth mentioning that we cheated a bit for these counter-examples:  the Devil's Staircase is \emph{not} differentiable on $[0,1]$---it is only differentiable almost-everywhere.  It's important that we allow this, however.  Remember, we want to go \emph{both} ways:  given an integrable function, we want to use the integral to (hopefully) generate a function that is an antiderivative\footnote{That is, a function that has the property that when you differentiate it, you get back the original function.}; and conversely given a differentiable function, we want to use the integral to (hopefully) recover the original function as the integral of the derivative.  The point is that, in one of these cases, the input is an integrable function which gets stuck inside an integral, in which case things only matter \emph{up to measure zero}.
+
+To clarify:  if $F(x)\coloneqq \int _a^x\, \dif t\, f(t)$, we could never hope to have that $\frac{\dif}{\dif x}F(x)=f(x)$ for \emph{all} $x$\footnote{Take any function $f$, any point $x\in \R$, and any `value' $y\in \R$---you can redefine $f$ to be equal to $y$ at $x$, and you will have no effect on its integral, so that $F(x)$ will not change, but $f(x)$ will, and so we will no longer have that $\frac{\dif}{\dif x}F(x)=f(x)$.}---instead, we can only hope this to be true almost-everywhere.  Fortunately enough, this much is true.
+\begin{thm}{Fundamental Theorem of Calculus---Part I}{FTCI}\index{Fundamental Theorem of Calculus}
+Let $f\colon [a,b]\rightarrow \R$ be integrable.  Then,
+\begin{equation}
+\frac{\dif}{\dif x}\int _a^x\dif t\, f(t)=f(x)
+\end{equation}
+for almost-all $x\in [a,b]$.
+\begin{rmk}
+In other words, ``The derivative of the integral is the original function.''.
+\end{rmk}
+\begin{proof}
+We leave this an an exercise for the reader.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\begin{rmk}
+Hint:  This is definitely in the category of ``This really shouldn't be an exercise, but it is anyways because Jonny ran out of time.''.  Pugh (\cite{Pugh}) actually proves something stronger than this on pg.~396, so your hint is to look there.
+\end{rmk}
+\end{exr}
+\end{proof}
+\end{thm}
+In the direction in which your `'input' is a differentiable function, of course, there is (seemingly) nothing to worry about because we are a priori assuming that the function is differentiable \emph{everywhere} (not just almost-everywhere), and in this case, we have the following.
+\begin{thm}{Fundamental Theorem of Calculus---Part II}{FTCII}\index{Fundamental Theorem of Calculus}
+Let $f\colon [a,b]\rightarrow \R$ be continuous and differentiable and let $x\in [a,b]$.  Then, if $t\mapsto \frac{\dif}{\dif t}f(t)$ is integrable on $(a,b)$, then
+\begin{equation}
+f(x)-f(a)=\int _a^x\dif t\, \tfrac{\dif}{\dif t}f(t).
+\end{equation}
+\begin{rmk}
+In other words, ``The integral of the derivative is the original function.''.
+\end{rmk}
+\begin{rmk}
+In particular, the following is true:  Given $f\colon (a,b)\rightarrow \R$ integrable and $F\colon [a,b]\rightarrow \R$ \emph{any} continuous differentiable function that satisfies $\frac{\dif}{\dif x}F(x)=f(x)$ for all $x\in (a,b)$, then $\int _a^b\dif t\, f(t)=F(b)-F(a)$.  This is how it is most often used in calculus---you find some such $F$ and then compute $F(b)-F(a)$ to compute the integral.
+\end{rmk}
+\begin{rmk}
+If $\frac{\dif}{\dif x}F(x)=f(x)$, then $F$ is an \emph{antiderivative}\index{Antiderivative} or \emph{Primitive}\index{Primitive} of $f$.  The practical use of this result, as described in the previous remark, is that you can compute integrals by finding an antiderivative of the integrand.
+\end{rmk}
+\begin{proof}\footnote{Proof adapted from \cite[pg.~149]{BigRudin}.}
+Suppose that $x\mapsto \frac{\dif}{\dif x}f(x)$ is integrable on $(a,b)$.  Without loss of generality, assume that $x=b$.  Let $\varepsilon >0$.  Then, by \namerefpcref{CaratheodoryVitaliTheorem}, there is a lower-semicontinuous function $g\colon (a,b)\rightarrow \R$ such that (i)~$\frac{\dif}{\dif t}f\leq g$ and (ii)
+\begin{equation}
+\int _a^b\dif t\, g(t)<\int _a^b\dif t\, \tfrac{\dif}{\dif t}f(t)+\varepsilon .
+\end{equation}
+By replacing $g$ with $g+\delta$ for sufficiently small $\delta$, we may without loss of generality assume that $\frac{\dif}{\dif t}f<g$.  For $\eta >0$, define $F_\eta :[a,b]\rightarrow \R$ by
+\begin{equation}\label{Rudin3}
+F_\eta (x)\coloneqq \int _a^x\dif t\, g(t)-f(x)+f(a)+\eta (x-a).
+\end{equation}
+By lower-semicontinuity and the definition of the derivative, for each $x\in [a,b)$, there is some $\delta _x>0$ such that
+\begin{equation}
+g(t)>\tfrac{\dif}{\dif t}f(x)\text{ and }\frac{f(t)-f(x)}{t-x}<\tfrac{\dif}{\dif }f(x)+eta
+\end{equation}
+for all $t\in (x,x+\delta _x)$.  Thus, for $t\in (x,x+\delta _x$, we have
+\begin{equation}\begin{split}
+F_\eta (t)-F_\eta (x) & =\int _x^t\dif s\, g(s)-[f(t)-f(x)]+\eta (t-x) \\
+& >(t-x)\tfrac{\dif}{\dif t}f(x)-(t-x)\left[ \tfrac{\dif}{\dif t}f(x)+\eta \right] +\eta (t-x)=0.
+\end{split}
+\end{equation}
+Define $x_\eta \coloneqq \sup \{ t\in [a,b]:F_\eta (t)=0\}$.  By continuity, $F_\eta (x_\eta )=0$,   It then follows from the previous inequality that $F_\eta (b)\geq 0$.  As $\eta$ is arbitrary, it follows \eqref{Rudin3} that
+\begin{equation}
+f(b)-f(a)\leq \int _a^b\dif t\, g(t)<\int _a^b\dif t\tfrac{\dif}{\dif t}f(t)+\varepsilon ,
+\end{equation}
+and so
+\begin{equation}
+f(b)-f(a)\leq \int _a^b\dif t\, \tfrac{\dif}{\dif t}f(t).
+\end{equation}
+Replacing everywhere in this argument $f$ with $-f$ gives us
+\begin{equation}
+-f(b)-(-f(a))\leq -\int _a^b\dif t\, \tfrac{\dif}{\dif t}f(t).
+\end{equation}
+Combining these two inequalities, we obtain
+\begin{equation}
+f(b)-f(a)=\int _a^b\dif t, \tfrac{\dif}{\dif t}f(t).
+\end{equation}
+\end{proof}
+\end{thm}
+
+Though we obviously can't yield the full computational power of this theorem you probably remember as we don't yet have in hand most of the functions that likely pervaded your calculus course, we do have access to one type of function that we can show an example with:  polynomials.
+\begin{exm}{}{exm6.4.48}
+Define $D\coloneqq \left\{ \coord{x,y}\in [0,1]\times [0,1]:y\leq x\right\}$ and $f\colon D\rightarrow \R$ by $f(x,y)\coloneqq x^3y$.  Let us attempt to compute $\int _D\dif \coord{x,y}\, f(x,y)$.
+
+The Fundamental Theorem of Calculus is fantastic, but it really is a one-dimensional result.  To reduce the computation of this integral to one-dimension, we apply \namerefpcref{FubinisTheorem}.
+
+We first verify the hypotheses of \nameref{FubinisTheorem}.  As $D\subseteq [0,1]\times [0,1]$, $f$ is continuous, and $[0,1]\times [0,1]$ is quasicompact, by the \namerefpcref{ExtremeValueTheorem}, $f$ is bounded on $D$, and so, as $D$ has finite measure, $f$ is integrable on $D$.
+
+One problem still remains:  \nameref{FubinisTheorem} only tells us how to integrate over \emph{rectangles} (i.e.~sets of the form $S_1\times S_2$).  To get around this, we extend $f$ to all of $[0,1]\times [0,1]$ so that it is $0$ on $([0,1]\times [0,1])\setminus D$.  Then, we use the fact that $\int _D\dif \coord{x,y}\, f(x,y)=\int _{[0,1]\times [0,1]}\dif \coord{x,y}\, \chi _D(x,y)f(x,y)$.  Note that, for a fixed $x\in [0,1]$, $\left\{ y\in [0,1]:\coord{x,y}\in D\right\} =[0,x]$.  Hence,
+\begin{equation}
+\begin{split}
+\int _D\dif \coord{x,y}\, f(x,y) & =\int _{[0,1]\times [0,1]}\dif \coord{x,y}\, \chi _D(x,y)f(x,y) \\
+& =\int _0^1\dif x\, \int _0^1\dif y\, \chi _{[0,x]}(y)f(y) \\
+& \eqqcolon \int _0^1\dif x\, \int _0^x\dif y\, x^3y \\
+& =\int _0^1\dif x\, x^3\left( \bounds{\tfrac{1}{2}y^2}{0}{x}\right) \\
+& =\tfrac{1}{2}\int _0^1\dif x\, x^5=\tfrac{1}{2}\left( \bounds{\tfrac{1}{6}x^6}{0}{1}\right) =\tfrac{1}{12}.
+\end{split}
+\end{equation}
+\begin{rmk}
+One thing to take note of that is not stressed in elementary multivariable calculus courses is the distinction between the ``double integral'' and the ``iterated integrals''.  The ``double integral'', $\int _D\dif \coord{x,y}\, f(x,y)$, is (usually) the thing you are ultimately interested in computing---it is of course just a \emph{single} integral, just generally in higher dimensions.  To compute such integrals, you apply Fubini to reduce the problem to the computation of several single-variable integrals, that is, the ``iterated integrals''.  In this case, the ``iterated integrals'' are \emph{tools} used in the calculation of the thing you ultimately care about.
+\end{rmk}
+\end{exm}
+
+\subsection{Change of variables}
+
+I think it's fair to say that the Fundamental Theorem of Calculus is the chief tool of computation in elementary calculus.  It does not work alone, however.  No doubt you'll recall many tricks for `massaging' integrals into a form that is easier, or just plain possible, to compute.  One of the first such tools one learns to aid in the computation of integrals you probably know as \emph{$u$-substitution}.  This is just the one-dimensional version of the more general Change of Variables Theorem you are likewise probably familiar with.
+\begin{thm}{Change of Variables Theorem}{ChangeOfVariablesTheorem}\index{Change of Variables Theorem}
+Let $U\subseteq \R ^d$ be open, let $\phi \colon U\rightarrow \phi (U)$ be a $C^1$ diffeomorphism onto its image, and let $f\colon \phi (U)\rightarrow \R$ be integrable.  Then,
+\begin{equation}
+\int _{\phi (U)}\dif x\, f(x)=\int _U\dif x\, \abs*{\det \left( \nabla _a\phi (x)^b\right) }f(\phi (x)).
+\end{equation}
+\begin{rmk}
+A \emph{$C^k$ diffeomorphism}\index{$C^k$ diffeomorphism} is a function $f$ such that (i)~$f$ is bijective, (ii)~$f$ is $C^k$, and (iii)~$f^{-1}$ is $C^k$---see \cref{Ckfunction}.  Diffeomorphisms wind-up being the isomorphisms in the category of manifolds, but as we don't touch the category of manifolds ourselves, we leave this definition `unofficial' and only in a remark.
+\end{rmk}
+\begin{rmk}
+The derivative $\tangent{\R ^d}[x]\ni v^a\mapsto v^b\nabla _bf(x)^a\in \tangent{\R ^d}[f(x)]$ is a linear transformation, and so it makes sense to take its determinant.  In fact, the determinant of the derivative has a name---the \emph{jacobian}\index{Jacobian}.
+\end{rmk}
+\begin{rmk}
+Recall that (\cref{exr5.1.254}) $\meas (T(S))=\abs{\det (T)}\meas (S)$ for $S\subseteq \R ^d$ and $T\colon \R ^d\rightarrow \R ^d$ a linear transformation.  In this sense, the absolute value of the determinant is a measure\footnote{No pun intended.  Seriously---the term ``measure'' here is not being used in a technical sense.} of how much a linear transformation scales measure.  It thus makes sense that the absolute value of the jacobian would make an appearance here.
+\end{rmk}
+\begin{rmk}
+Note that you need $\phi$ to be \emph{bijective} (onto its image).  My impression is that this point is not typically stressed in elementary calculus courses, especially in single variable calculus.  You have to be careful however.  For example, note what happens if you try to naively substitute $u\ceqq x^2$ into the integral $\int _{-1}^1\dif x\, x^2$---even if you notice that it is wrong to change both limits to $1^2=1=(-1)^2$, you should still get the wrong answer.
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\begin{rmk}
+Hint:  This should not be an exercise, but see \cite[Theorem 6.7.1]{Sally}.
+\end{rmk}
+\end{exr}
+\end{proof}
+\end{thm}
+
+\subsection{Functions defined by their derivatives:  \texorpdfstring{$\exp$}{exp}, \texorpdfstring{$\sin$}{sin}, and \texorpdfstring{$\cos$}{cos}}\label{sbs6.4.4}
+
+So, we've proven several properties about how to manipulate derivatives, but what is there to differentiate?  Polynomials?  That's no fun.  Let's find a function even easier to differentiate.  In fact, let's see if we can find a function that is equal to its own derivative
+\begin{equation}
+\tfrac{\dif}{\dif x}f(x)=f(x).
+\end{equation}
+Don't be a smart-ass---zero doesn't count.  Of course, you already know the answer---or so you think you do.  Can you define $\exp (x)$?  For what it's worth, you do have the tools to do so at this point, but it's quite likely that someone told you once upon a time that $\e \approx 2.718\ldots $ and then $\exp (x)\coloneqq \e ^x$.  If it's not clear to you at this point that this is just complete and utter nonsense, then apparently I'm not very good at writing mathematical exposition.\footnote{Or maybe you're just stupid.  (Disclaimer:  That was a joke.)}  What you could do, however, is define $\exp$ by its power-series, $\exp (x)\coloneqq \sum _{m\in M}\frac{x^m}{m!}$, but where did that formula come from?  Your ass?  No.  The proper way to define the exponential function is that it is the unique function from $\R$ to $\R$ that (i)~is equal to its own derivative and (ii)~is $1$ at $0$.\footnote{The unique function that that is equal to its own derivative and is equal to $0$ at $0$ is the function that is everywhere $0$.  $1$ is the next most obvious choice, as opposed to, say $\sqrt{\uppi}$.}  Of course, as always, we can't just go around asserting things like this exist willy-nilly.  Who can even comprehend the chaos that might ensue?  We must \emph{prove} that such a thing exists, and that only one such thing exists.  The tool that will allow us to do this is the following theorem about the existence and uniqueness of (ordinary) differential equations.
+
+Solutions to the differential equations we will be investigating are quite nice.  They are even \emph{better} than smooth.  They are what is called \emph{analytic}.
+\begin{dfn}{Radius of convergence}{RadiusOfConvergence}
+Let $x_0\in \R ^d$ and for $m\in \N$, let $[c_m]_{a_1\cdots a_m}$ be a rank $m$ covariant tensor.  Then, the \emph{radius of convergence}\index{Radius of convergence} of the \emph{power series}\index{Power series}
+\begin{equation}
+\sum _{m\in \N}[c_m]_{a_1\cdots a_m}(x-x_0)^{a_1}\cdots (x-x_0)^{a_m},
+\end{equation}
+is $\sup \left\{ \abs{x-x_0}:\text{the series converges absolutely for }x\in \R ^d\text{.}\right\}$.
+\end{dfn}
+In one dimension, we can say a bit more about the radius of convergence.
+\begin{prp}{Cauchy-Hadamard Theorem}{prp6.4.48}\index{Cauchy-Hadamard Theorem}
+The radius of convergence of the power series
+\begin{equation}
+\sum _{m\in \N}c_m(x-x_0)^m
+\end{equation}
+is the unique real number $r_0$ such that (i)~the series converges absolutely for all $x\in \R$ with $\abs{x-x_0}$ and (ii)~diverges for all $x\in \R ^d$ with $\abs{x-x_0}>r_0$.
+
+Furthermore,
+\begin{equation}
+r_0=\frac{1}{\limsup _m\abs{c_m}^{1/m}}
+\end{equation}
+\begin{rmk}
+Note that in a lot of examples, the sequence $m\mapsto \abs{c_m}^{1/m}$ will just simply converge, in which case this $\limsup$ just comes a $\lim$ (\cref{prp3.3.52}):
+\begin{equation}
+r_0=\frac{1}{\lim _m\abs{c_m}^{1/m}}.
+\end{equation}
+The point is, if you're the type of person that gets terrified at the sight of a $\limsup$ (or $\liminf$), don't.
+\end{rmk}
+\begin{wrn}
+Warning:  Anything may happen if $\abs{x-x_0}=r$---see the following exercise (\cref{exr6.4.51}).
+\end{wrn}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.  Hint:  Use the \nameref{RootTest}.
+\end{exr}
+\end{proof}
+\end{prp}
+\begin{exr}{}{exr6.4.51}
+In the all of the following three examples, show that the radius of convergence is $1$.  Furthermore, show that
+\begin{enumerate}
+\item $\sum _{m\in \N}x^m$ doesn't converge if $\abs{x}=1$;
+\item $\sum _{m\in \N}\frac{x^m}{m}$ diverges for $x=1$ and converges for $x=-1$; and
+\item $\sum _{m\in \N}\frac{x^m}{m^2}$ converges absolutely for $\abs{x}=1$.
+\end{enumerate}
+\end{exr}
+\begin{dfn}{Taylor series}{TaylorSeries}
+Let $D\subseteq \R ^d$, let $x_0\in \Int (D)$, and let $f\colon D\rightarrow \R$ be infinitely-differentiable at $x_0$.  Then, the \emph{Taylor series}\index{Taylor series} of $f$ at $x_0$ is the function
+\begin{equation}\label{Taylor}
+B_r(x_0)\ni x\mapsto \sum _{m\in \N}\frac{\nabla _{a_1}\cdots \nabla _{a_m}f(x_0)}{m!}(x-x_0)^{a_1}\cdots (x-x_0)^{a_m}\ni \R ,
+\end{equation}
+where $r$ is the radius of convergence.
+\begin{rmk}
+If $x_0=0$, then this is the \emph{Maclaurin series}\index{Maclaurin series} of $f$.
+\end{rmk}
+\begin{rmk}
+Every smooth function has a Taylor series.  Not every smooth function is the limit of its Taylor series---see \cref{TaylorNot}.
+\end{rmk}
+\end{dfn}
+As mentioned in the remark, not every smooth function is the limit of its Taylor series.  In fact, there is a name for such functions which \emph{do} possess this property.
+\begin{dfn}{Analytic}{Analytic}
+Let $D\subseteq \R ^d$, let $x\in \Int (D)$, and let $f\colon D\rightarrow \R$.  Then, $f$ is \emph{analytic}\index{Analytic} at $x_0$ iff (i)~$f$ is infinitely-differentiable at $x_0$ and (ii)~there is a neighborhood $U$ of $x_0$ on which $f$ is the limit of its Taylor series at $x$ in $C^\infty (U)$.  $f$ is \emph{analytic} (on $D$) iff $f$ is analytic at $x_0$ for all $x_0\in \Int (D)$.  $f$ is \emph{globally-analytic}\index{Globally-analytic} iff (i)~$f$ is analytic and (ii)~for every $x_0\in \Int (D)$ $f$ is the limit of its Taylor series at $x_0$ in $C^\infty (D)$.
+\begin{rmk}
+The difference between analytic and globally-analytic is that, in order to be globally-analytic, the Taylor series at every point has to converge to the function on the \emph{entire domain}.  For example, the function $\R \setminus \{ 1\} \ni x\mapsto \frac{1}{1-x}$ is analytic, but not globally-analytic:  its Taylor series at $0$ is $1+x+x^2+\cdots$, which does not converge on all of $\R \setminus \{ 1\}$.  On the other hand, we will see that $\exp$ \emph{is} globally-analytic.
+\end{rmk}
+\begin{rmk}
+Recall that there is a difference between smooth and infinitely-differentiable (see one of the remarks in the definition of differentiability, \cref{DerivativeTensor}).  Analytic functions are in fact smooth, because polynomials are smooth and analytic functions are limits of polynomials\footnote{Namely the partial sums of their Taylor series.} in $C^\infty (\R ^d)$.
+\end{rmk}
+\begin{rmk}
+As was mentioned above in the definition of Taylor series themselves, not all smooth functions are analytic---see \cref{TaylorNot}.
+\end{rmk}
+\begin{rmk}
+This is actually one \emph{huge} difference between real and complex analysis.  When you study complex analysis, you will find that \emph{all} (complex) differentiable functions are analytic.  
+\end{rmk}
+\begin{rmk}
+The first condition (infinite-differentiability) is really just imposed so that the Taylor series itself makes sense.
+\end{rmk}
+\end{dfn}
+You'll recall from calculus that a lot of the functions you worked with (e.g.~$\ln$, $\arctan$, etc.) were defined as inverses to other functions.  It will thus be of interest to us in order to know that inverses of analytic functions are analytic.
+\begin{prp}{}{prp6.4.53}
+Let $D\subseteq \R$, let $x\in \Int (D)$, and let $f\colon D\rightarrow \R$ be injective.  Then, if $f$ is analytic at $x$ and $\nabla _af(x)\neq 0$, then $f^{-1}\colon f(D)\rightarrow \R$ is analytic at $f(x)$.
+\begin{wrn}
+Warning:  This will fail if $\nabla _af(x)=0$.  For example, $\R \ni x\mapsto x^3\in \R$ is analytic and bijective but its inverse is not even differentiable at $0$.
+\end{wrn}
+\begin{wrn}
+Warning:  Even if $f$ is bijective with $\nabla _af(x)\neq 0$ for all $x\in \R$, $f$ globally-analytic does not imply that $f^{-1}$ is globally-analytic.  For example, we will see that $\exp$ is bijective, $\frac{\dif}{\dif x}\exp (x)\neq 0$ for all $x\in \R$, and $\exp$ is globally-analytic, but yet its inverse, $\ln$, is not globally-analytic, because, for example, its Taylor series at $x=1$ is $(x-1)-\frac{(x-1)^2}{2}+\frac{(x-1)^3}{3}+\cdots$, which does not converge on all of $\R ^+$.
+\end{wrn}
+\begin{proof}
+We leave this an an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove the result yourself.
+\end{exr}
+\end{proof}
+\end{prp}
+\begin{thm}{Existence and uniqueness of linear constant coefficient ODEs}{}
+Let $A\indices{^a_b}:\R ^d\rightarrow \R ^d$ be a nonzero linear map, let $t_0\in \R$, and let $[\gamma _0]^a\in \R ^d$.  Then, there exists a unique differentiable function $\gamma ^a\colon \R \rightarrow \R ^d$ such that
+\begin{enumerate}
+\item $\gamma ^a(t_0)=[\gamma _0]^a$; and
+\item
+\begin{equation}
+\tfrac{\dif}{\dif t}\gamma (t)^a=A\indices{^a_b}\gamma (t)^b.
+\end{equation}
+Furthermore, this function $\gamma ^a$ is globally-analytic.
+\end{enumerate}
+\begin{proof}
+\Step{Reduce the proof to the case $t_0=0$}
+Suppose we have proven the result for the case in which $t_0=0$.  Then, if $\gamma ^a$ is the unique solution with $\gamma (0)^a=[\gamma _0]^a$, then $\delta (t)^a\ceqq \gamma (t-t_0)^a$ will be the unique solution with $\delta (t_0)^a=[\gamma _0]^a$.
+
+\Step{Show smoothness given existence}
+For the proof, we do not make use of index notation.
+
+\Step{Show existence}
+Define $\gamma _m:\R \rightarrow \R ^d$ by
+\begin{equation}
+\gamma _m(t)\coloneqq \sum _{k=0}^m\frac{A^kt^k}{k!}\gamma _0.
+\end{equation}
+\begin{exr}[breakable=false]{}{}
+Show that $m\mapsto \gamma _m$ is Cauchy in $C^\infty (\R ,\R ^d)$.
+\end{exr}
+By completeness (\cref{CInftyComplete}), we may then define $\gamma \coloneqq \lim _m\gamma _m\in C^\infty (\R ,\R ^m)$.  By the definition of convergence in $C^\infty$ or rather, a corollary of it---see \cref{CInftyConvergence}), we have that
+\begin{equation}
+\begin{split}
+\tfrac{\dif}{\dif t}\gamma & =\lim _m\tfrac{\dif}{\dif t}\gamma _m=\lim _m\sum _{k=1}^m\frac{A^k}{(k-1)!}t^{k-1}=A\lim _m\sum _{k=1}^{m-1}\frac{A^{k-1}}{(k-1)!}t^{k-1} \\
+& =A\lim _m\sum _{k=0}^m\frac{A^k}{k!}t^k=A\gamma .
+\end{split}
+\end{equation}
+And the other condition follows easily from the fact that $\gamma _m(0)=\gamma _0$ for all $m\in \N$.  By construction,\footnote{Almost---you have to check that this is actually the Taylor series of the function.} $\gamma$ is the limit of its Taylor series in $C^\infty (\R )$, and therefore, by the previous exercise, is globally-analytic.
+
+\Step{Show uniqueness}
+Let $c:\R \rightarrow \R ^d$ be some other differentiable function that satisfies that satisfies (i)~$c(0)=\gamma _0$ and (ii)
+\begin{equation}
+\frac{\dif}{\dif t}c=Ac.
+\end{equation}
+Define
+\begin{equation}
+L\coloneqq \sup _{\norm[v]=1}\norm[Av].
+\end{equation}
+As $A$ is nonzero, this is positive.  We wish to show that $c=\gamma$ on an interval of length $\frac{1}{L}$ centered at $0$.  We will then have that they satisfy the same differential equation and same initial condition at $\frac{1}{2L}$, and so by the same argument we can extend the interval on which they agree from an interval of length $\frac{1}{L}$ to an interval of length $\frac{1}{L}+\frac{1}{2L}$.  Extending in other direction as well shows that they agree on an interval of length $\frac{2}{L}$ centered at $0$.  Continuing this process inductively, we show that they agree on all of $\R$.
+
+Define $T:\Mor _{\Top}\left( \left[ -\frac{1}{2L},\frac{1}{2L}\right] ,\R ^d\right) \rightarrow \Mor _{\Top}\left( \left[ -\frac{1}{2L},\frac{1}{2L}\right] ,\R ^d\right)$ by
+\begin{equation}
+\left[ T(f)\right] (t)\coloneqq \gamma _0+A\int _0^t\dif s\, f(s).
+\end{equation}
+We show that $T$ is a contraction mapping on $\Mor _{\Top}\left( \left[ -\frac{1}{2L},\frac{1}{2L}\right] ,\R ^d\right)$.  It will then follow from the \nameref{BanachFixedPointTheorem} that $T$ has a unique fixed point, that is, there is a \emph{unique} continuous function $\gamma$ on $\left[ -\frac{1}{2L},\frac{1}{2L}\right]$
+\begin{equation}
+\gamma (t)=\gamma _0+A\int _0^t\dif s\, \gamma (s).
+\end{equation}
+By the Fundamental Theorem of Calculus, this is equivalent to $\frac{\dif}{\dif t}\gamma (t)=A\gamma (t)$, which will complete the proof.
+
+To show that it is a contraction mapping, note that
+\begin{equation}
+\begin{split}
+\norm[T(f)-T(g)] & =\sup _{t\in \left[ -\tfrac{1}{2L},\tfrac{1}{2L}\right]}\left| A\int _0^t\dif s\, f(s)-g(s)\right| \\
+& \leq L\sup _{t\in \left[ -\tfrac{1}{2L},\tfrac{1}{2L}\right]}\int _0^t\dif s\, \left| f(s)-g(s)\right| \\
+& \leq L\cdot \frac{L}{2}\cdot \norm[f-g]=\tfrac{1}{2}\norm[f-g],
+\end{split}
+\end{equation}
+so that this is indeed a contraction mapping.
+\end{proof}
+\end{thm}
+We get as an easy corollary the following result.
+\begin{crl}{}{}
+Let $m\in \N$, $a_0,\ldots ,a_m\in \R$ with $a_m\neq 0$, $t_0\in \R$, and $f_0^0,\ldots ,f_0^{m-1}\in \R$.  Then, there exists a unique smooth map $f\colon \R \rightarrow \R$ such that
+\begin{enumerate}
+\item $\frac{\dif ^k}{\dif x^k}f^{(k)}(t_0)=f_0^k$ for $0\leq k\leq m-1$; and
+\item
+\begin{equation}\label{ODE}
+a_m\tfrac{\dif ^m}{\dif x^m}f+\cdots +a_0f=0.
+\end{equation}
+\end{enumerate}
+\begin{proof}
+For $0\leq k\leq m-1$, define $g_k\coloneqq \frac{\dif ^k}{\dif x^k}f$.  Then, \eqref{ODE} together with these definitions gives us a system of $m$ \emph{first-order} differential equations:
+\begin{equation}\label{ODESystem}
+\frac{\dif}{\dif t}\begin{pmatrix}g_0 \\ \vdots \\ g_{m-1}\end{pmatrix}=\begin{pmatrix}0 & 1 & 0 & \cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ -\tfrac{a_0}{a_m} & -\tfrac{a_1}{a_m} & -\tfrac{a_2}{a_m} & \cdots & -\tfrac{a_{m-1}}{a_m}\end{pmatrix}\begin{pmatrix}g_0 \\ \vdots \\ g_{m-1}\end{pmatrix}
+\end{equation}
+So the general notation makes this look obtuse, but I promise, everything going on here is absolutely trivial.  For example, consider the differential equation $\frac{\dif ^2}{\dif x^2}f-3\frac{\dif}{\dif x}f+2f=0$.  Then, upon defining $g_0\coloneqq f$ and $g_1\coloneqq \frac{\dif}{\dif x}f=\frac{\dif}{\dif x}g_0$, then our system would read
+\begin{equation}
+\begin{aligned}
+\tfrac{\dif}{\dif x}g_0 & = & & & & +1\cdot g_1 \\
+\tfrac{\dif}{\dif x}g_1 & = & &-2\cdot g_0 & & +3\cdot g_1.
+\end{aligned}
+\end{equation}
+
+By the previous theorem, there is a unique smooth solution to \eqref{ODESystem} that satisfies $g_k(t_0)=f_0^k$ for $0\leq k\leq m-1$.  This is just the same as saying, however, that there is a unique smooth map $f\colon \R \rightarrow \R$ that satisfies \eqref{ODE} and $\frac{\dif}{\dif x^k}f(t_0)=f_0^k$ for $0\leq k\leq m-1$.
+\end{proof}
+\end{crl}
+
+\subsubsection{The definitions}
+
+\begin{dfn}{Exponential function}{ExponentialFunction}
+The \emph{exponential function}\index{Exponential function}, $\exp$\index[notation]{$\exp$}, is the unique function $\exp :\R \rightarrow \R$ such that (i)~$\frac{\dif}{\dif x}\exp (x)=\exp (x)$ and (ii)~$\exp (0)=1$.
+\end{dfn}
+\begin{dfn}{Euler's Number}{EulersNumber}
+\emph{Euler's Number}\index{Euler's Number} is $\e \coloneqq \exp (1)$\index[notation]{$\e$}.
+\end{dfn}
+
+Cool, so now we have a function that is its own derivative.  What about a function that is \emph{minus} its own derivative.  Well, now that we have $\exp$ in hand, this is actually really easy.
+\begin{exr}{}{}
+Show that $x\mapsto \exp (-x)$ is the unique differentiable function from $\R$ to $\R$ such that (i)~is equal to minus its derivative and (ii)~is equal to $1$ at $0$.
+\end{exr}
+
+What about second derivatives?  Well, of course, we $\exp$ is equal to its own second derivative.  That's easy.  But what about a function that is equal to \emph{minus} its own second derivative?  If we wanted to play the same trick as before, we would need to consider the function $x\mapsto \exp (\alpha x)$ for some number $\alpha$ with $\alpha ^2=-1$, but that's just craziness.  Only looney-toons would ever think about such nonsense.\footnote{But seriously:  why is there no \emph{real} number whose square is $-1$?}  Looks like we're just going to have to come up with a new name for such a function.  ``Cosine'' sounds rad.  Let's call it that.
+\begin{dfn}{Cosine and sine}{}
+The \emph{cosine function}\index{Cosine function}, $\cos$\index[notation]{$\cos$}, is the unique function $\cos :\R \rightarrow \R$ such that (i)~$\frac{\dif ^2}{\dif x^2}\cos (x)=-\cos (x)$, (ii)~$\cos (0)=1$, and (iii)~$\frac{\dif}{\dif x}\cos (0)=0$.
+
+The \emph{sine function}\index{Sine function}, $\sin$\index[notation]{$\sin$}, is the unique function $\sin :\R \rightarrow \R$ such that (i)~$\frac{\dif ^2}{\dif x^2}\sin (x)=-\sin (x)$, (ii)~$\sin (0)=0$, and (iii)~$\frac{\dif}{\dif x}\sin (0)=1$.
+\begin{rmk}
+In the case of $\exp$, because it was defined by a differential equation of \emph{first}-order, only one initial condition was required to uniquely specify it.  In contrast, however, there is \emph{more} than one function equal to minus its own second-derivative (and is $1$ at $0$).  To uniquely specify the function, you must also specify its first derivative.  $\sin$ and $\cos$ are ``essentially everything'' in the sense that any other function that is equal to minus its own second derivative can be written as a linear combination of these (and furthermore, you can figure out what that linear combination should be by looking at initial conditions at $0$).
+\end{rmk}
+\end{dfn}
+
+In terms of finding functions that are equal to their own derivatives or minus their own derivatives, we are essentially done.  $\exp$ always works for finding functions equal to its own $n^{\text{th}}$ derivative, and if you want a function equal to \emph{minus} its own $n^{\text{th}}$ derivative, $x\mapsto \exp (-x)$ will work for $n$ odd, and $\cos$ and $\sin$ will work for $n$ even.  For the time being then, we simply return to the study of $\cos$ and $\sin$.
+
+\subsubsection{Their properties}
+
+\begin{exr}{$\exp$ is an exponential function}{}
+Show that $\exp (x)=\e ^x$.
+\begin{rmk}
+$\exp$ is the unique function that is equal to its own derivative and is $1$ at $0$.  On the other hand, $x\mapsto \e ^x$ is an exponential function in the usual sense, that is, in the sense of \cref{Exponentials}.  These are not a priori the same thing.
+\end{rmk}
+\end{exr}
+\begin{crl}{}{}
+\begin{enumerate}
+\item $\exp (x+y)=\exp (x)\exp (y)$ for all $x,y \in \mathbb{R}$.
+\item $\exp (x)^y=\exp (xy)$ for all $x,y\in \R$.
+\end{enumerate}
+\begin{proof}
+\cref{Exponentials} says that $x\mapsto \e ^x$ is the unique continuous function that satisfies (i)~$\e ^{x+y}=\e ^x\e ^y$ and (ii)~$\e ^0=1$.  This, together with the result of the previous exercise, give $\exp (x+y)=\exp (x)\exp (y)$ for all $x,y\in \R$.  Similarly, the second result follows from \cref{exr2.5.27}.
+\end{proof}
+\end{crl}
+\begin{exr}{}{}
+Show that
+\begin{equation}
+\lim _{x\to \infty}\exp (x)=\infty \text{ and }\lim _{x\to \infty}x^m\exp (-x)=0
+\end{equation}
+for all $m\in \N$.
+\end{exr}
+\begin{exr}{}{}
+Show that the image of $\exp$ is $\R ^+$.
+\end{exr}
+In particular, as $\frac{\dif}{\dif x}\exp =\exp >0$, $\exp$ is increasing, and in particular, injective.  This allows us to make the following definition.
+\begin{dfn}{Natural logarithm}{NaturalLogarithm}
+The \emph{natural logarithm}\index{Natural logarithm}, $\ln :\R ^+\rightarrow \R$, is defined by $\ln \coloneqq \exp ^{-1}$.
+\end{dfn}
+\begin{exr}{}{}
+\begin{enumerate}
+\item Show that $\ln (xy)=\ln (x)+\ln (y)$ for all $x,y\in \R ^+$.
+\item Show that $x\ln (y)=\ln (y^x)$ for all $x\in \R$ and $y\in \R ^+$.
+\end{enumerate}
+\end{exr}
+\begin{exr}{}{}
+Show that $\frac{\dif}{\dif x}\ln (x)=\frac{1}{x}$.
+\end{exr}
+\begin{exr}{}{exr6.4.76}
+\cref{prp6.4.53} implies that $\ln$ is analytic.  Compute the Taylor series of $\ln$ at $x=1$ and compute its radius of convergence using \cref{prp6.4.48}.  Conclude that
+\begin{equation}
+\ln (2)=\sum _{m\in \Z ^+}\frac{(-1)^{m+1}}{m},
+\end{equation}
+finally wrapping up a loose end from way back in \cref{HarmonicSeries}.
+\end{exr}
+\begin{exr}{Taylor series need not converge to the original function}{TaylorNot}
+Define $f\colon \R \rightarrow \R$ by
+\begin{equation}
+f(x)\coloneqq \begin{cases}\exp \left( -\tfrac{1}{x}\right) & \text{if }x>0 \\ 0 & \text{if }x\leq 0.\end{cases}
+\end{equation}
+Show that $\frac{\dif ^m}{\dif x^m}f(0)=0$ for all $m\in \N$.
+\begin{rmk}
+If you are familiar with Taylor series from calculus, this example is meant to show that there are functions which are not equal to their Taylor series---this function has Taylor series identically $0$ at $0$, but of course the function itself is not $0$.  Thus, there is no general theorem concerning existence of Taylor series---sometimes they just do plain not exist (or at least, do not converge to what you want them to).
+\end{rmk}
+\end{exr}
+
+\begin{exr}{}{}
+Show that $\frac{\dif}{\dif x}\sin =\cos$ and $\frac{\dif}{\dif x}\cos =-\sin$.
+\end{exr}
+\begin{exr}{}{}
+Show that
+\begin{equation}
+\begin{aligned}
+\cos (x+y) & =\cos (x)\cos (y)-\sin (x)\sin (y) \\
+\sin (x+y) & =\cos (x)\sin (y)+\cos (y)\sin (x)
+\end{aligned}
+\end{equation}
+for all $x,y\in \R$.
+\end{exr}
+\begin{exr}{}{}
+Show that $\sin ^2+\cos ^2=1$.
+\end{exr}
+\begin{prp}{$\uptau$, $\uppi$, and the periodicity of $\sin$ and $\cos$}{Tau}
+There is a positive real number $\uptau \in \R ^+$\index[notation]{$\uptau$} such that
+\begin{enumerate}
+\item $\uptau$ is the smallest positive real number such that $\cos (x+\uptau )=\cos (x)$ for all $x\in \R$; and
+\item $\uptau$ is the smallest positive real number such that $\sin (x+\uptau )=\sin (x)$ for all $x\in \R$.
+\end{enumerate}
+Furthermore, it satisfies
+\begin{equation}
+\begin{aligned}
+\cos \left( x+\tfrac{\uptau}{4}\right) & =-\sin (x) \\
+\sin \left( x+\tfrac{\uptau}{4}\right) & =\cos (x).
+\end{aligned}
+\end{equation}
+\begin{rmk}
+For historical reasons, it is customary to use the half-period $\uppi \coloneqq \frac{1}{2}\uptau$\index[notation]{$\uppi$} instead.
+\end{rmk}
+\begin{proof}
+It follows from the definition that $\frac{\dif ^2}{\dif x^2}\cos (0)=-\cos (0)=-1$.  We first show that $\frac{\dif ^2}{\dif x^2}\cos$ is not everywhere negative.  If this were the case that $\frac{\dif}{\dif x}\cos$ would be (strictly) decreasing.  As $\frac{\dif}{\dif x}\cos (0)=0$, there would then be some $x_0>0$ with $\frac{\dif}{\dif x}\cos (x_0)\eqqcolon y_0<0$.  Then, because the derivative is decreasing again, we would have that $\frac{\dif}{\dif x}\cos (t)\leq y_0$ for all $y\geq x_0$.  Hence,
+\begin{equation}
+\begin{split}
+\cos (x) & =\int _0^x\dif t\, \frac{\dif}{\dif t}\cos (t)=\int _{x_0}^x\dif t\, \frac{\dif}{\dif t}\cos (t)+\int _0^{x_0}\dif t\, \frac{\dif}{\dif t}\cos (t) \\
+& \leq y_0\cdot (x-x_0)+\int _0^{x_0}\dif t\, \frac{\dif}{\dif t}\cos (t).
+\end{split}
+\end{equation}
+By taking $x$ sufficiently large, we would obtain the existence of some point $x\in \R$ with $\cos (x)<-1$:  a contradiction.  Therefore, the set $\left\{ x\in \R ^+:\frac{\dif ^2}{\dif x^2}\cos (x)=0\right\}$ is nonempty, and so we may define
+\begin{equation}
+\theta \coloneqq \inf \left\{ x\in \R ^+:\tfrac{\dif ^2}{\dif x^2}\cos (x)=0\right\} .
+\end{equation}
+By continuity, we have that $\frac{\dif ^2}{\dif x^2}\cos (\theta )=0$, and so $\cos (\theta )=0$ (from the differential equation).  As $\cos ^2+\sin ^2=1$, it follows that $\sin (\theta )=\pm 1$.
+
+We check that in fact $\sin (\theta )=1$.  As $\sin (0)=0$, it suffices to show that $\frac{\dif}{\dif x}\sin (x)>0$ for $x\in (0,\theta )$.  However, $\frac{\dif}{\dif x}\sin (x)=\cos (x)$, so it suffices to show that $\cos (x)>0$ for $x\in (0,\theta )$.  By the \nameref{IntermediateValueTheorem}, it suffices to show that $\cos$ does not vanish on $(0,\theta )$.  However, if $\cos$ were to vanish on $(0,\theta )$, then $\frac{\dif ^2}{\dif x^2}\cos$ would vanish on $(0,\theta )$, contradicting the definition of $\theta$.
+
+We then have that
+\begin{equation}
+\begin{split}
+\cos (x+4\theta ) & =\cos (x+3\theta )\cdot \cos (\theta )-\sin (x+3\theta )\cdot \sin (\theta ) \\
+& =-\sin (x+3\theta ) \\
+& =-\cos (x+2\theta )\sin (\theta )-\sin (x+2\theta )\cos (\theta ) \\
+& =-\cos (x+2\theta ) \\
+& =-\cos (x+\theta )\cos (\theta )+\sin (x+\theta )\sin (\theta ) \\
+& =\sin (x+\theta )=\cos (x)\sin (\theta )+\sin (x)\cos (\theta ) \\
+& =\cos (x).
+\end{split}
+\end{equation}
+
+We wish to show that $4\theta$ is the smallest such positive real number.  So, let $T\in \R ^+$ be some other positive real number such that $\cos (x+T)=\cos (x)$ for all $x\in \R$.  We wish to show that $4\theta \leq T$.  To show this, by the definition of $\theta$, it suffices to show that $\frac{\dif ^2}{\dif x^2}\cos (\frac{T}{4})=0$.  We compute again using the `angle addition formula'
+\begin{equation}
+\begin{split}
+1 & =\cos (0)=\cos (T)=\cos \left( \tfrac{T}{4}+\tfrac{T}{4}+\tfrac{T}{4}+\tfrac{T}{4}\right) \\
+& =\footnote{Algebra omitted.  It's tedious.}\cos \left( \tfrac{T}{4}\right) ^4-6\cos \left( \tfrac{T}{4}\right) ^2\sin \left( \tfrac{T}{4}\right) ^2+\sin \left( \tfrac{T}{4}\right) ^4 \\
+& =C^4-6C^2(1-C^2)+(1-C^2)^2=8C^4-8C^2+1,
+\end{split}
+\end{equation}
+where of course we have defined $C\coloneqq \cos \left( \frac{T}{4}\right)$.  From this equation, it follows that either $\frac{\dif ^2}{\dif x^2}\cos \left( \frac{T}{4}\right) =C=0$, in which case we are done, from the definition of $\theta$, we have that $\frac{T}{4}\geq \theta$, or
+\begin{equation}
+C^2-1=0,
+\end{equation}
+from which it follows that $\cos \left( \frac{T}{4}\right) =\pm 1$.  If it were $-1$, that would imply that $\cos$, and hence $\frac{\dif ^2}{\dif x^2}\cos$ vanishes in $(0,\frac{T}{4})$, which implies that $\frac{T}{4}>\theta$.  If it were $1$, then as $\cos$ is less than $1$ in a neighborhood of $0$, there would have to be some point in $x_0\in (0,\frac{T}{4})$ for which the derivative was positive.  As $\frac{\dif}{\dif \cos (0)}=0$, this implies that there must be some point in $x_1\in (0,x_0)$ on which the second derivative is positive.  However, as the second derivative is negative in a neighborhood of $0$, this implies (by the \nameref{IntermediateValueTheorem} again), that the second derivative must vanish in $(0,x_1)$.  Then, $\theta <x_1<x_0<\frac{T}{4}$.  And so, in all cases, we do indeed have that $\theta \leq \frac{T}{4}$, as desired.
+
+\begin{exr}{}{}
+Finish the theorem by showing that $\cos (x+\uppi )=-\sin (x)$ and $\sin (x+\uppi )=\cos (x)$.
+\end{exr}
+\end{proof}
+\end{prp}
+\begin{exr}{}{}
+Show that
+\begin{enumerate}
+\item $\cos$ is nonvanishing on $\left( -\frac{\uppi}{2},\frac{\uppi}{2}\right)$; and
+\item $\sin$ is nonvanishing on $(0,\uppi )$.
+\end{enumerate}
+\end{exr}
+This enables us to make the following definitions.
+\begin{dfn}{$\tan$, $\cot$, $\sec$, and $\csc$}{}
+Define $\tan ,\sec :\left( -\frac{\uppi}{2},\frac{\uppi}{2}\right) \rightarrow \R$ and $\cot ,\csc :(0,\uppi )\rightarrow \R$ by
+\begin{enumerate}
+\item $\tan \coloneqq \frac{\sin}{\cos}$;
+\item $\cot \coloneqq \frac{\cos}{\sin}$;
+\item $\sec \coloneqq \frac{1}{\cos}$; and
+\item $\csc \coloneqq \frac{1}{\sin}$.
+\end{enumerate}
+\end{dfn}
+\begin{exr}{}{}
+Show that
+\begin{enumerate}
+\item $\frac{\dif}{\dif x}\tan =\sec ^2$;
+\item $\frac{\dif}{\dif x}\cot =-\csc ^2$;
+\item $\frac{\dif}{\dif x}\sec =\sec \tan$; and
+\item $\frac{\dif}{\dif x}\csc =-\csc \cot$.
+\end{enumerate}
+\end{exr}
+Thus, $\tan$ is increasing and $\cot$ is decreasing.  In particular, they are both injective.
+\begin{exr}{}{}
+Show that the image of both $\tan$ and $\cot$ is $\R$.
+\end{exr}
+This allows us to make the following definition.
+\begin{dfn}{Arctangent and arccotangent}{Arctan}
+The \emph{arctangent}\index{Arctangent} and \emph{arccotangent}\index{Arccotangent}, $\arctan ,\arccot :\R \rightarrow \R$, are defined by $\arctan \coloneqq \tan ^{-1}$ and $\arccot \coloneqq \cot ^{-1}$.
+\begin{rmk}
+You can define inverses for the rest of these so-called `trigonometric' functions as well, but in general you must restrict the domain of definition (for example, $\cos$ is not injective on $\R$).
+\end{rmk}
+\end{dfn}
+\begin{exr}{}{}
+Show that
+\begin{enumerate}
+\item $\frac{\dif}{\dif x}\arctan (x)=\frac{1}{x^2+1}$; and
+\item $\frac{\dif}{\dif x}\arccot (x)=-\frac{1}{x^2+1}$.
+\end{enumerate}
+\end{exr}
+\begin{exr}{}{ArctanHomeo}
+Show that $\arctan :\R \rightarrow \left( -\frac{\uppi}{2},\frac{\uppi}{2}\right)$ and $\arccot :\R \rightarrow (0,\uppi )$ are homeomorphisms.
+\begin{rmk}
+Recall that they cannot be \emph{uniform}-homeomorphisms because $\R$ is complete, and $\left( -\frac{\uppi}{2},\frac{\uppi}{2}\right)$ and $(0,\uppi )$ are not.
+\end{rmk}
+\end{exr}
+
+\subsubsection{The Binomial Theorem, the Multinomial Theorem, and the Power Rule}
+
+Despite all that we have done, there is one rule for differentiation you are likely familiar with that is still noticeably absent from the calculation tools we have developed thus far:  the \emph{power rule}.
+
+Oddly, polynomials were the one type of function that we could have defined a long time ago, but yet we have waited to compute their derivatives until last.  The reason for this is perhaps the most efficient way to prove the power rule uses the \emph{\nameref{BinomialTheorem}}, which, in its most general form (the form that we \emph{will} need), required some knowledge of exponentials and logarithms.
+
+The classical statement of the \nameref{BinomialTheorem} gives an expression for $(x+y)^m$ for $x,y\in \R$ and $m\in \N$.  We will generalize this in two ways.  First,\footnote{Well, actually, second, but no one ever said mathematicians were good at counting.} we will prove this for $m\in \R$, that is, we will allow $m$ to be \emph{any} real number.  Secondly, we will prove an analogous expression for $(x_1+\cdots +x_n)^m$, $n\in \N$.  This expression is usually known as the \emph{\nameref{MultinomialTheorem}}.  We actually don't have a direct use for this result, but it's something you should know, and if it's going to be taught anywhere, it should probably be taught alongside the Binomial Theorem.  I actually don't know if you can generalize the Multinomial Theorem to allow for $m\in \R$---I will say more about this in remarks of the statement itself.
+
+\begin{dfn}{Multinomial coefficient}{MultinomialCoefficient}
+Let $m\in \N$ and $k_1,\ldots ,k_n\in \N$ be such that $k_1+\cdots +k_n=m$.  Then, the \emph{$\coord{m,\coord{k_1,\ldots ,k_n}}$ multinomial coefficient}\index{Multinomial coefficient}, $\binom{m}{k_1,\ldots ,k_n}$, is defined by
+\begin{equation}\label{eqn6.4.110}
+\binom{m}{k_1,\ldots ,k_n}\ceqq \frac{m!}{k_1!\cdots k_n!}
+\end{equation}\index[notation]{$\binom{m}{k_1,\ldots ,k_n}$}
+\begin{rmk}
+Combinatorically, $\binom{m}{k_1,\ldots ,k_n}$ represents the number of ways in which you can place $m$ objects into $n$ boxes, with $k_1$ objects in the first box, $k_2$ objects in the second box, etc..
+\end{rmk}
+\begin{rmk}
+The term \emph{multinomial coefficient} itself comes from the statement of the \nameref{MultinomialTheorem}---the statement of that result should make it obvious why they are called what they are called.
+\end{rmk}
+\begin{rmk}
+I suppose the case $m=2$ is classically referred to as \emph{binomial coefficients}, however, the case $n=2$ is special in that you can generalize the definition to allow more than just natural numbers, and so we state the definition separately---see \cref{BinomialCoefficient}.
+\end{rmk}
+\end{dfn}
+The most elegant way to state the \nameref{MultinomialTheorem} involves what are known as \emph{multiindices}.
+\begin{dfn}{Multiindex}{Multiindex}
+A \emph{multiindex}\index{Multiindex} of degree $n$ is an element of $\N ^n$.
+
+For $\alpha \in \N ^n$, we write
+\begin{equation}
+\abs{\alpha}\ceqq \alpha _1+\cdots +\alpha _n\text{ and }\alpha !\ceqq \alpha _1!\cdots \alpha _n!
+\end{equation}\index[notation]{$\abs{\alpha}$}\index[notation]{$\alpha "!$}.
+
+For $\alpha \in \N ^n$ and $x\in \R ^n$, we write
+\begin{equation}
+x^\alpha \ceqq x_1^{\alpha _1}\cdots x_n^{\alpha _n}
+\end{equation}\index[notation]{$x^{\alpha}$}.
+
+For $\alpha \in \N ^n$ and $m\in \N$, we write
+\begin{equation}
+\binom{m}{\alpha}\ceqq \binom{m}{\alpha _1,\ldots ,\alpha _n}.
+\end{equation}\index[notation]{$\binom{m}{\alpha}$}
+\begin{rmk}
+So it's a bit silly to talk about multiindices themselves---what's so special about elements of $\N ^n$?  The point of multiindices is not the things themselves, but rather the simplification of notation they allow.  For example, compare the statements of the \nameref{MultinomialTheorem} with and without multiindices.
+\end{rmk}
+\end{dfn}
+\begin{thm}{Multinomial Theorem}{MultinomialTheorem}\index{Multinomial Theorem}
+Let $x\in \R ^n$ and let $m\in \N$.  Then,
+\begin{equation}
+(x_1+\cdots +x_n)^m=\sum _{\abs{\alpha}=m}\binom{m}{\alpha}x^{\alpha}.
+\end{equation}
+\begin{rmk}
+Explicitly, not using multiindex notation, this reads
+\begin{equation}
+(x_1+\cdots +x_n)^m=\sum _{k_1+\cdots +k_n=m}\binom{m}{k_1,\ldots ,k_n}x_1^{k_1}\cdots x_n^{k_n}.
+\end{equation}
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{thm}
+
+We now turn to the \nameref{BinomialTheorem}.  As mentioned in a remark of the definition of multinomial coefficients (\cref{MultinomialCoefficient}), we wish to define binomial coefficients separately.
+\begin{dfn}{Binomial coefficient}{BinomialCoefficient}
+Let $a\in \R$ and $k\in \N$.  Then, the \emph{$\coord{a,k}$ binomial coefficient}\index{Binomial coefficient}, $\binom{a}{k}$, is defined by
+\begin{equation}
+\binom{a}{k}\ceqq \frac{a(a-1)(a-2)\cdots (a-(k+1))}{k!}.
+\end{equation}
+\begin{rmk}
+Note that in the case $a\in \N$, this does indeed agree with \eqref{eqn6.4.110} (the definition of the multinomial coefficients with $n=2$).  The significance of this is that this makes sense for \emph{any} real number $a\in \R$ (not just natural numbers).
+\end{rmk}
+\end{dfn}
+This now allows us to state the \nameref{BinomialTheorem}.
+\begin{thm}{Binomial Theorem}{BinomialTheorem}\index{BinomialTheorem}
+Let $x,y\in \R _0^+$ and $a\in \R$.  Then, if $\abs{x}<\abs{y}$, then
+\begin{equation}
+(x+y)^a=\sum _{k\in \N}\binom{a}{k}x^ky^{a-k}.
+\end{equation}
+\begin{rmk}
+Note that, unlike in the case of the \nameref{MultinomialTheorem}, we do require that $x,y\geq 0$.  For example, take $x=0$, $y=-1$, and $a=\frac{1}{2}$.  The left-hand side of this then becomes $(-1)^{\tfrac{1}{2}}$---sheer lunacy.\footnote{That said, it's worth noting that if you do allow the complex numbers, this can be made to work for all $x,y\in \R$ (and all $a\in \C$).  This is why we have included the absolute values here, even though they are not strictly necessary---they will be necessary when you go to generalize.}
+\end{rmk}
+\begin{rmk}
+Note the condition that $\abs{x}<\abs{y}$ is nonissue.  If you happen to have $\abs{x}>\abs{y}$, rename your variables, et voil\`{a}, you have your result (and of course if $\abs{x}=\abs{y}$ you don't need to work this hard to begin with).  To see why you might need this, write the expression the left-hand side instead as $\abs{x}^a(1+\frac{y}{x})^a$.  For example, if $a=-1$, we need $\abs*{\frac{y}{x}}<1$ for the resulting series to converge.
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{thm}
+
+We now can finally use this to prove the power rule.
+\begin{exr}{Power Rule}{PowerRule}\index{PowerRule}
+Let $a\in \R$.  Show that $\frac{\dif}{\dif x}x^a=ax^{a-1}$.
+\begin{rmk}
+By $x^a$, I mean the function $(0,\infty )\ni x\mapsto x^a$.  It is necessary to restrict the domain as exponential functions are only a priori defined for a positive base---see \cref{Exponentials}.  That said, if $a\in \N$, then the result of holds just as well for the function $\R \ni x\mapsto x^a$, which is now defined on all of $\R$ (and your proof should work basically the same for this case).
+\end{rmk}
+\end{exr}
+
+\subsubsection{The \texorpdfstring{$p$}{p}-series test}
+
+Way back in \crefnameref{sbs3.3.5}, we mentioned the $p$-series Test, though we decided to postpone the proof at the time as the most natural proof (IMHO) required the use of the integral, specifically application of the \namerefpcref{IntegralTest}.  While that was enough to do it in principle, we needed the Fundamental Theorem of Calculus to actually compute the integrals we wished to compare to.  We needed one final ingredient, however, namely, an antiderivative of $\frac{1}{x}$.
+\begin{prp}{$p$-series Test}{pSeriesTest}\index{$p$-series Test}
+Let $p\in \R$.  Then, $\sum _{n\in \Z ^+}\frac{1}{n^p}$ iff $p>1$.
+\begin{proof}
+If $p\leq 0$, $\lim _n\frac{1}{n^p}\neq 0$, and so it diverges.
+
+If $p>0$, $[1,\infty) \ni x\mapsto \frac{1}{x^p}\in [0,\infty )$ is nonincreasing, and so we may apply the \nameref{IntegralTest}, which implies that $\sum _{n\in \Z ^+}\frac{1}{n^p}$ converges iff $\int _1^{\infty}\dif x\, \frac{1}{x^p}$ converges.  The \nameref{FTCII} and the \nameref{PowerRule} give us that (for $p>1$)
+\begin{equation}
+\int _1^{\infty}\dif x\, \frac{1}{x^p}=\bounds{\frac{1}{1-p}x^{1-p}}{1}{\infty}=0-\frac{1}{1-p}=\frac{1}{p-1},
+\end{equation}
+so that the series converges if $p>1$.  The same computation shows that the series diverges for $0<p<1$.  As for $p=1$, we have
+\begin{equation}
+\int _1^{\infty}\dif x\, \frac{1}{x}=\bounds{\ln (x)}{1}{\infty}=\infty -0=\infty ,
+\end{equation}
+which shows that the series diverges for $p=1$.
+\end{proof}
+\end{prp}
+
+\subsubsection{The irrationality of \texorpdfstring{$\e$}{e}}
+
+We mentioned a long time ago way back in \cref{chp2} that $\e$ was irrational.  Now that we (finally!) know what $\e$ is, it is time to return to this issue.
+\begin{thm}{}{thm6.4.107}
+$\e$ is irrational.
+\begin{rmk}
+In fact, much more is true than this.  First of all, as you're probably aware, $\uppi$ is irrational as well.  Even more is true, however:  both $\e$ and $\uppi$ are \emph{transcendental}, that is, not algebraic.\footnote{Recall (\cref{dfn2.13}) that an algebraic number is a number that is the root of a polynomial with integer coefficients.  Also recall that every rational number $\frac{m}{n}\in \Q$ is the root of $nx-m$, and so being transcendental is indeed (much) stronger than being irrational.}  Unfortunately, however, the most elegant way to see these results that I know of\footnote{Namely, by using the Lindemann-Weierstrass Theorem\index{Lindemann-Weierstrass Theorem}.  A special case says that if $x$ is a nonzero algebraic number, then $\e ^x$ is transcendental.  In particular, $\e =\e ^1$ is transcendental.  Furthermore, if $\uppi$ were algebraic, then $\e ^{\im \pi}=-1$ would be transcendental:  a contradiction.} requires the use of complex numbers, at least to be applied to $\uppi$ as well.  I am confident this method can be `hacked' so as to not technically require direct reference to $\C$, but it would be just that, a hack, and doing this result is really probably best saved until after one has introduced the complex numbers.
+\end{rmk}
+\begin{proof}
+\Step{Express $\e$ as a series}
+As $\exp (x)$ is globally-analytic and $\frac{\dif}{\dif x}\exp (x)=\exp (x)$, the Taylor series of $\exp$ centered at $0$ gives in particular
+\begin{equation}
+\e \coloneqq \exp (1)=\sum _{m\in \N}\frac{1}{m!}.
+\end{equation}
+
+\Step{Show that $\e \notin \Z$}
+We first check that $\e$ is not an integer.  To do that, we show that it is strictly larger than $2$ and strictly less than $3$.  That is is strictly greater than $2$ is obvious:  $\e =1+1+\text{positive stuff}>2$.  On the other hand, to see that $\e <3$, note that $2^m\leq m!$ for $m\geq 4$, so that
+\begin{equation}
+\begin{split}
+\e & =1+1+\frac{1}{2}+\frac{1}{6}+\sum _{m=4}^{\infty}\frac{1}{m!}\leq 1+1+\frac{1}{2}+\frac{1}{6}+\sum _{m=4}^{\infty}\frac{1}{2^m}\\
+& =1+1+\frac{1}{2}+\frac{1}{6}+2^{-4}\sum _{m=0}^{\infty}\frac{1}{2^m}=1+1+\frac{1}{2}+\frac{1}{6}+\frac{2^{-4}}{1-\tfrac{1}{2}} \\
+& =1+1+\frac{1}{2}+\frac{1}{6}+2^{-3}=1+1+\frac{7}{24}<3.
+\end{split}
+\end{equation}
+
+\Step{Proceed by contradiction}
+Suppose that $\e =\frac{m}{n}$ for $m\in \Z$, $n\in \Z ^+$, and $\gcd (m,n)=1$.  Note that, as we now know that $\e$ is not an integer, $n\geq 2$.
+
+\Step{Define $x\in \R$}
+Define
+\begin{equation}
+x\coloneqq \sum _{k=n+1}^{\infty}\frac{n!}{k!}.
+\end{equation}
+
+\Step{Show that $x\in \Z$}
+Note that
+\begin{equation}
+\begin{split}
+x & \coloneqq n!\sum _{k=n+1}^{\infty}\frac{1}{k!}=n!\left( \sum _{k=0}^{\infty}\frac{1}{k!}-\sum _{k=0}^n\frac{1}{k!}\right) =n!\left( \e -\sum _{k=0}^n\frac{1}{k!}\right) \\
+& =n!\left( \frac{m}{n}-\sum _{k=0}^n\frac{1}{k!}\right) =m(n-1)!-\sum _{k=0}^n\frac{n!}{k!}\in \Z .
+\end{split}
+\end{equation}
+
+\Step{Show that $0<x<1$}
+That $x>0$ is obvious:  it is an infinite sum of positive numbers.  For the other inequality, first note that, for $k>n$,
+\begin{equation}
+\frac{n!}{k!}=\frac{1}{(n+1)\cdots (n+(k-n))}\leq \frac{1}{(n+1)^{k-n}}.
+\end{equation}
+Hence,
+\begin{equation}
+\begin{split}
+x & \coloneqq \sum _{k=n+1}^{\infty}\frac{n!}{k!}\leq \sum _{k=n+1}^{\infty}\frac{1}{(n+1)^{k-n}}=\sum _{k=0}^{\infty}\frac{1}{(n+1)^{k+1}} \\
+& =\frac{1}{n+1}\frac{1}{1-\tfrac{1}{n+1}}=\frac{1}{n}<1.
+\end{split}
+\end{equation}
+
+\Step{Finish the proof}
+The last two steps give us our contradiction, and so it must have been that $\e \notin \Q$.
+\end{proof}
+\end{thm}
+
+\section{Differentiability and continuity}
+
+Having defined the exponential function, we can now tie up a loose end from before.
+\begin{exm}{A function which is infinitely-differentiable but not continuous}{exm6.2.15}\footnote{This comes from \cite[pg.~116]{Gelbaum}.}
+Define $f\colon \R ^2\rightarrow \R$ by
+\begin{equation}
+f(\coord{x,y})\coloneqq \begin{cases}0 & \text{if }x=0 \\ \frac{\exp \left( -\tfrac{1}{x^2}\right) y}{\exp \left( -\tfrac{2}{x^2}\right) +y^2} & \text{otherwise.}\end{cases}
+\end{equation}
+Order $\R ^+$ by the usual order and consider the net $\R ^+\ni t\mapsto x_t\coloneqq \coord{t,\exp \left( -\frac{1}{t^2}\right) }\in \R ^2$.  Then, $\lim _{t\to 0^+}x_t=\coord{0,0}$, but
+\begin{equation}
+f(x_t)=f(\coord{t,\exp (-\tfrac{1}{t^2})})=\frac{\exp (-\tfrac{2}{t^2})}{\exp (-\tfrac{2}{t^2})+\exp (-\tfrac{2}{t^2})}=\tfrac{1}{2}\neq 0=f(\coord{0,0}),
+\end{equation}
+and so $f$ is not continuous at $\coord{0,0}$.
+
+On the other hand, it is smooth away from $x=0$, so we need only show that it is infinitely-differentiable on the set $\{ \coord{x,y}:x=0\}$.  For $v\coloneqq \coord{v_x,v_y}\in \tangent{\R ^2}[\coord{0,y}]$, $v_x\neq 0$,\footnote{If $v_x=0$, then the $f(\coord{0,y}+\varepsilon v)=0$, and so of course the directional derivative in this direction is $0$.} we have
+\begin{equation}
+\begin{split}
+\MoveEqLeft
+\frac{f(\coord{0,y}+\varepsilon v)-f(\coord{0,y})}{\varepsilon}=\frac{\frac{\exp \left( -\tfrac{1}{(\varepsilon v_x)^2}\right) (y+\varepsilon v_y)}{\exp \left(-\tfrac{2}{(\varepsilon v_x)^2}\right) +(y+\varepsilon v_y)^2}}{\varepsilon} \\
+& =\frac{1}{\varepsilon}\frac{\exp \left( -\tfrac{1}{(\varepsilon v_x)^2}\right) (y+\varepsilon v_y)}{\exp \left( -\tfrac{2}{(\varepsilon v_x)^2}\right) +(y+\varepsilon v_y)^2} \\
+& =\frac{1}{\varepsilon}\frac{y+\varepsilon v_y}{\exp \left( -\tfrac{1}{(\varepsilon v_x)^2}\right) +(y+\varepsilon v_y)^2\exp \left( \tfrac{1}{(\varepsilon v_x)^2}\right) }.
+\end{split}
+\end{equation}
+Hence,
+\begin{equation}
+\D _vf(\coord{0,y})\coloneqq \lim _{\varepsilon \to 0^+}=\frac{f(\coord{0,y}+\varepsilon v)-f(\coord{0,y})}{\varepsilon}=0.
+\end{equation}
+Of course, the map $v\mapsto 0$ is linear.
+
+Thus, $\D _vf(\coord{0,y})$ exists for all $v\in \tangent{\R ^d}[\coord{0,y}]$ \emph{and} the map $v\mapsto D _vf(\coord{0,0})$ is linear, but nevertheless $f$ is not continuous at $\coord{0,0}$.
+
+\begin{exr}[breakable=false]{}{}
+Show that in fact $f$ is infinitely-differentiable.
+\begin{rmk}
+Hint:  Note that there is nothing to worry about ever away from $x=0$.  As for $x=0$, try using an induction argument to show that the power of $\exp \left( \tfrac{1}{(\varepsilon v_x)^2}\right)$ will always be greater than the power of the same thing in the numerator of every term of every component of the higher derivatives.
+\end{rmk}
+\end{exr}
+\end{exm}
+\begin{exr}{}{}
+Does there exist an infinitely-differentiable function which is nowhere continuous?
+\begin{rmk}
+Full disclaimer:  I do not know the answer.
+\end{rmk}
+\end{exr}
+Fortunately, however, this cannot happen in one-dimension (thank god!).
+\begin{prp}{}{prp6.5.1}
+Let $f\colon \R \rightarrow \R$ be a function and let $x_0\in \R$.  Then, if $f$ is differentiable at $x_0$, then it is continuous at $x_0$.
+\begin{proof}
+Consider
+\begin{equation}
+f(x)-f(x_0)=\left( \frac{f(x)-f(x_0)}{x-x_0}\right) (x-x_0).
+\end{equation}
+Taking the limit of both sides as $x\to x_0$, because $\lim _{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}=\frac{\dif}{\dif x}f(x_0)$ exists (and is finite), we find that $\lim _{x\to x_0}(f(x)-f(x_0))=0$, so that $f$ is continuous at $x_0$.
+\end{proof}
+\end{prp}
+Be careful though:  $f$ need not be continuous in a neighborhood of $x_0$.
+\begin{exm}{A function on $\R$ differentiable at a point and not continuous in a neighborhood of that point}{}
+Define $f\colon \R \rightarrow \R$ by
+\begin{equation}
+f(x)\coloneqq \begin{cases}x^2 & \text{if }x\in \Q \\ 0 & \text{if }x\in \Q ^{\comp}.\end{cases}
+\end{equation}
+\begin{exr}[breakable=false]{}{}
+Show that $f$ is continuous at $0$ and only at $0$.
+\end{exr}
+\begin{exr}[breakable=false]{}{}
+Show that $f$ is differentiable at $0$ with derivative $0$.
+\end{exr}
+\begin{rmk}
+You might be tempted to ask ``Well, what if it is twice differentiable at a point?''.  The problem with this is, in order to even define the second derivative at the point, the derivative has to exist in a neighborhood of that point,\footnote{Otherwise, the limit as $h\to 0$ of the difference quotient of the derivative (the definition of the second derivative) does not make sense.} in which case it is then automatically continuous on that same neighborhood by the previous result.
+\end{rmk}
+\end{exm}
+
+Recall that (\cref{Differentiable}) for a function to be differentiable means that it extends to a differentiable function on a neighborhood of the domain; it does \emph{not} mean that it is differentiable on the interior.  What follows is a `naturally occurring' example of how these may differ.\footnote{As opposed to stupid examples in which $\Int (D)=\emptyset$.}
+\begin{exm}{A function differentiable on $(a,b)$ but not on $[a,b]$}{exm6.5.37}
+Define $f\colon [0,1]\rightarrow \R$ by
+\begin{equation}
+f(x)\coloneqq \begin{cases}x\sin (\tfrac{1}{x}) & \text{if }x\neq 0 \\ 0 & \text{if }x=0.\end{cases}
+\end{equation}
+Then, $f$ is differentiable on $[0,1]$ with derivative\footnote{Remember, we only define the derivative at \emph{interior} points of domain, and $f$ is in fact \emph{smooth} on $(0,1)$.}
+\begin{equation}
+\tfrac{\dif}{\dif x}f(x)=\sin (\tfrac{1}{x})-\tfrac{1}{x}\cos (\tfrac{1}{x}).
+\end{equation}
+\begin{exr}[breakable=false]{}{}
+From here, show that $f$ is not Lipschitz-continuous on $[0,1]$.
+\end{exr}
+\end{exm}
+
+What follows is a list of exercises that deal with conditions that are \emph{not} sufficient for differentiability.
+\begin{exr}{A function differentiable in one but not all directions}{}
+Find a function $f\colon \R ^2\rightarrow \R$ that is differentiable along the $x$-axis at the origin, but not along the $y$-axis.
+\end{exr}
+\begin{exr}{A function differentiable on the standard basis but not differentiable}{}
+Find a function $f\colon \R ^2\rightarrow \R$ that is differentiable along both the $x$-axis \emph{and} the $y$-axis at the origin, but not in the direction of the vector $\coord{1,1}$.
+\begin{rmk}
+In particular, it is quite possible for a the partial derivatives\footnote{The \emph{partial derivatives}\index{Partial derivatives} of a function are the directional derivatives in the direction of a standard orthonormal basis vector.} of a function to exist without that function being differentiable.
+\end{rmk}
+\end{exr}
+\begin{exr}{A continuous function that is not differentiable}{}
+Find an example a function that is continuous but not differentiable.
+\end{exr}
+As a matter of fact, you can even find continuous functions which \emph{aren't differentiable anywhere}!
+\begin{exm}{A continuous function that is nowhere-differentiable}{exm6.3.4}\footnote{Proof adapted from \cite{Coleman}.}
+Define $f_0:[0,1]\rightarrow \R$ by
+\begin{equation}
+f_0(x)\coloneqq \begin{cases}x & \text{if }x\in [0,\tfrac{1}{2}] \\ 1-x & \text{if }x\in [\tfrac{1}{2},1].\end{cases}
+\end{equation}
+and extend $f_0:\R \rightarrow \R$ periodically with period $1$.  For $k\in \N$, now define $f_k:\R \rightarrow \R$ by
+\begin{equation}
+f_k(x)\coloneqq \tfrac{1}{4^k}f_0(4^kx).
+\end{equation}
+Then define $s_m:\R \rightarrow \R$ by
+\begin{equation}
+s_m(x)\coloneqq \sum _{k=0}^mf_k(x).
+\end{equation}
+We wish to show that $m\mapsto s_m$ is Cauchy in $\Mor _{\Top}(\R,\R )$.    Then, because $\Mor _{\Top}(\R ,\R )$ is complete (\cref{thm4.5.6}), we may define $f\colon \R \rightarrow \R$ by
+\begin{equation}
+f(x)\coloneqq \sum _{k=0}^\infty f_k(x)
+\end{equation}
+and will automatically have that $s\in \Mor _{\Top}(\R ,\R )$ (that is, that $f$ is continuous).  We will then show that $f$ is not differentiable anywhere.
+
+We thus verify cauchyness.  For $n>m$, we have
+\begin{equation}
+\begin{split}
+\abs{s_n(x)-s_m(x)} & =\sum _{k=m+1}^nf_k(x)<\sum _{k=m+1}^n\frac{1}{4^k}\leq \sum _{k=m+1}^\infty \frac{1}{4^k} \\
+& =\frac{1}{1-\tfrac{1}{4}}-\sum _{k=0}^m\frac{1}{4^k}=\frac{1}{1-\tfrac{1}{4}}-\frac{1-(\tfrac{1}{4})^{m+1}}{1-\tfrac{1}{4}} \\
+& =\tfrac{4}{3}\frac{1}{4^{m+1}}.
+\end{split}
+\end{equation}
+In fact, for $K\subseteq \R$ quasicompact,
+\begin{equation}
+\norm[s_n-s_m]_K\leq \norm[s_n-s_m]_{\R}\leq \frac{4}{3}\frac{1}{4^{m+1}},
+\end{equation}
+and hence the sequence $m\mapsto s_m$ is Cauchy in $\Mor _{\Top}(\R ,\R )$, and hence converges to $f$.
+
+We now turn to the proof that $f$ is differentiable nowhere.  So, fix $x\in \R$.  We want to show that $f$ is not differentiable at $\R$.  To prove this, we first prove a small lemma:  we show that there exists a sequence $m\mapsto \varepsilon _m$ such that $\varepsilon _m=\frac{1}{4^{m+1}}$ and
+\begin{equation}
+\abs{f_m(x+\varepsilon _m')-f_m(x)}=\abs{\varepsilon _m'}
+\end{equation}
+whenever $\varepsilon _m'\leq \varepsilon _m$.  Define $r_m\coloneqq 4^mx-\lfloor 4^mx\rfloor$, so that $r_m\in [0,1)$.  We define
+\begin{equation}
+\varepsilon _m\coloneqq \tfrac{1}{4^{m+1}}\cdot \begin{cases}1 & \text{if }r\in [0,\tfrac{1}{4})\text{ or }r\in [\tfrac{1}{2},\tfrac{3}{4}) \\ -1 & \text{if }r\in [\tfrac{1}{4},\tfrac{1}{2})\text{ or }r\in [\tfrac{3}{4},1).\end{cases}
+\end{equation}
+Obviously $\epsilon _m=\frac{1}{4^{m+1}}$.  For the other fact, notice that
+\begin{equation}
+f_0(4^mx)=\begin{cases}r & \text{if }r_m\in [0,\tfrac{1}{2}) \\ 1-r & \text{if }x\in [\tfrac{1}{2},1),\end{cases}
+\end{equation}
+Thus,
+\begin{equation}
+f_0(4^m(x+\varepsilon _m))-f_0(4^mx)=f_0(r_m+4^m\varepsilon _m)-f_0(r_m)=f_0(r_m\pm \tfrac{1}{4})-f_0(r_m).
+\end{equation}
+The sign was purposefully chosen so that both $r_m$ and $r_m\pm \frac{1}{4}$ lie in the same `half' of the interval $[0,1]$, so that the same `rule' in the definition of $f_0$ applies.  In fact, the same is of course true if $\pm \tfrac{1}{4}$ replaced by any $4^m\varepsilon _m'$ with $\varepsilon _m'\leq \varepsilon _m$.  Thus, in either case, for such an $\varepsilon _m'$, we have that
+\begin{equation}
+f_0(4^m(x+\varepsilon _m'))-f_0(4^mx)=4^m\varepsilon _m'.
+\end{equation}
+From this it follows that
+\begin{equation}
+\abs{f_m(x+\varepsilon _m')-f_m(x)}=\tfrac{1}{4^m}\abs{f_0(4^m(x+\varepsilon _m'))-f_0(4^mx)}=\tfrac{1}{4^m}\cdot 4^m\varepsilon _m'=\varepsilon _m'
+\end{equation}
+
+Take $n>m$.  Then,
+\begin{equation}
+\begin{split}
+f_n(x+\varepsilon _m) & =\tfrac{1}{4^n}f_0(4^n(x+\varepsilon _m))=\tfrac{1}{4^n}f_0(4^nx\pm 4^{n-(m+1)}) \\
+& =\footnote{Because $f_0$ has period $1$ and $n\geq m+1$.}\tfrac{1}{4^n}f_0(4^nx)=f_n(x).
+\end{split}
+\end{equation}
+Thus,
+\begin{equation}
+\begin{split}
+f(x+\varepsilon _m)-f(x) & =\sum _{k=0}^\infty [f_k(x+\varepsilon _m)-f_k(x)] \\
+& =\sum _{k=0}^m[f_k(x+\varepsilon _m)-f_k(x)].
+\end{split}
+\end{equation}
+On the other hand, for $n\leq m$,
+\begin{equation}
+f_n(x)=\tfrac{1}{4^n}f_0(f^nx)=\tfrac{4^{m-n}}{4^n}f_0\left( 4^m\frac{x}{4^{m-n}}\right) =4^{m-n}f_m(\tfrac{1}{4^{m-n}}x),
+\end{equation}
+and so
+\begin{equation}\label{5.3.11}
+\begin{split}
+\left| f_n(x+\varepsilon _m)-f_n(x)\right| & =4^{m-n}\left| f_n\left( \frac{x}{4^{m-n}}+\frac{h_m}{4^{m-n}}\right) -f_n\left( \tfrac{x}{4^{m-n}}\right) \right| \\
+& =\footnote{Because, for $n\leq m$, $\frac{\varepsilon _m}{4^{m-n}}\leq \varepsilon _m$.}4^{m-n}\cdot \frac{\varepsilon _m}{4^{m-n}}=\varepsilon _m
+\end{split}
+\end{equation}
+Thus,
+\begin{equation}
+\Delta _m\coloneqq \frac{f(x+\varepsilon _m)-f(x)}{\varepsilon _m}=\sum _{k=0}^m\frac{f_k(x+\varepsilon _m)-f_k(x)}{\varepsilon _k}.
+\end{equation}
+By \eqref{5.3.11}, each term in this sum is $\pm 1$, so that the difference quotient $\frac{f(x+\varepsilon _m)-f(x)}{\varepsilon _m}$ is an integer.  Let $n_m^+$ denote the number of $+1$s that appear in this finite sum and similarly let $n_m^-$ denote the number of $-1$s that appear in this sum, so that $\Delta _m=n_m^+-n_m^-$ and $m=n_m^++n_m^-$.  Hence, $\Delta _m=m-2n_m^-$.  Thus, the parity of $\Delta _m$ is constant, and so cannot converge.  Thus, this limit, the derivative, does not exist at $x$.
+\end{exm}
+In fact, if you thought this was bad, we can do even worse than this.  (This also wraps up a loose end when we motivated the introduction of the topology on $C^\infty (\R ^d)$.)
+\begin{exm}{A sequence of smooth functions which converges in $\Mor _{\Top}(\R ,\R )$ to a function which is nowhere-differentiable}{SmoothUniformBad}
+Weierstrass Function
+\end{exm}
+On the other hand, if the derivative \emph{extends} to a continuous function on the entire domain, then we are good to go.
+\begin{exr}{}{}
+Let $K\subseteq \R ^d$ be quasicompact and convex, and let $f\colon K\rightarrow \R$.  Show that if $f$ is continuously-differentiable, then $f$ is Lipschitz-continuous.
+\begin{wrn}
+Warning:  This will fail for a more general $K$---see the following exercise (\cref{exr6.5.41}).
+\end{wrn}
+\begin{rmk}
+\emph{Convex}\index{Convex} means that $\left\{ (1-t)x+ty:t\in [0,1]\right\} \subseteq K$ for every $x,y\in K$.  Note that $\left\{ (1-t)x+ty:t\in [0,1]\right\}$ is just the `line segment' from $x$ to $y$.  Thus, a set is convex iff it contains the line segment between any two of its points.
+\end{rmk}
+\begin{rmk}
+Recall that (\cref{Derivative}) ``$f$ is continuously-differentiable'' means that $f$ is differentiable and that its derivative $\nabla _af$ is continuous on $D$ (recall that (\cref{TensorField}) this in turn means that $v^a\nabla _af$ is continuous for all vectors $v^a$).
+\end{rmk}
+\end{exr}
+\begin{exr}{}{exr6.5.41}
+Find an example of a continuously differentiable function $f\colon D\rightarrow \R$ which is not Lipschitz-continuous.  Can you find an example with $D$ bounded?  Compact?  Connected?  Bounded and connected?  Compact and connected?
+\end{exr}
+
+The derivative (as a function on the tangent space) is itself continuous (hence uniformly-continuous because continuous homomorphisms of topological groups are uniformly-continuous (\cref{prpB.10}).
+\begin{exr}{}{}
+Show that the map $\tangent{\R ^d}[x]\ni v^a\mapsto v^a\nabla _af(x)\in \R$ is continuous\footnote{Recall that $\tangent{\R ^d}[x]$ is a \emph{metric} vector space, with the metric being the dot product.  This metric induces a norm (the usual euclidean norm), which in turn induces a metric, which in turn induces a uniformity, which in turn induces a topology.} if $f$ is differentiable at $x$.
+\end{exr}
+
+And now we come to the classical ``Do the partial derivatives commute?'' question.
+\begin{thm}{Clairut's Theorem}{ClairutsTheorem}\index{Clairut's Theorem}
+Let $D\subseteq \R ^d$, let $x\in D$, and let $f\colon D\rightarrow \R$.  Then, if $f$ has a second derivative that is continuous at $x$, then, $\nabla _a\nabla _b(x)f=\nabla _b\nabla _af(x)$.
+\begin{rmk}
+If $f$ is smooth, by applying this result inductively, it follows that all mixed partials agree.
+\end{rmk}
+\begin{rmk}
+This applies equally well for arbitrary tensors of course, with the usual proof or just reducing it to this case.
+\end{rmk}
+\begin{wrn}
+Warning:  This fails in general, even for smooth functions, if there is curvature on a Riemannian manifold!  As a matter of fact, the curvature tensor is \emph{defined} by this lack of commutativity.
+\end{wrn}
+\begin{proof}
+Let $v^a,w^a\in \R ^d$.  Then,
+{\small
+\begin{equation}
+\begin{multlined}
+[v^a\nabla _a(w^b\nabla _bf)](x)=\lim _{\varepsilon _v\to 0^+}\frac{w^b\nabla _bf(x+\varepsilon _vv)-w^b\nabla _bf(x)}{\varepsilon _v} \\ =\lim _{\varepsilon _v\to 0^+}\lim _{\varepsilon _w\to 0^+}\frac{f(x+\varepsilon _vv+\varepsilon _ww)-f(x+\varepsilon _vv)-f(x+\varepsilon _ww)+f(x)}{\varepsilon _v\varepsilon _w}.
+\end{multlined}
+\end{equation}
+}
+For $\varepsilon _w>0$, define $g_{\varepsilon _w}\colon U_{h_w}\rightarrow \R$ by
+\begin{equation}
+g_{\varepsilon _w}(\varepsilon )\coloneqq f(x+\varepsilon _ww+\varepsilon v)-f(x+\varepsilon v),
+\end{equation}
+where $U_{\varepsilon _w}\subseteq \R $ is an open neighborhood of $0$ chosen so that $x+\varepsilon _w+\varepsilon v\in U$ is in the domain of $f$ for all $\varepsilon \in \Cls (U_{\varepsilon _w})$.  In fact, by making $U_{\varepsilon _w}$ smaller if necessary, way may without loss of generality assume that it is an open interval containing $0$.  Using this definition, we have
+\begin{equation}
+[v^a\nabla _a(w^b\nabla _bf)](x)=\lim _{\varepsilon _v\to 0^+}\lim _{\varepsilon _w\to 0^+}\frac{1}{\varepsilon _w}\frac{g_{\varepsilon _w}(\varepsilon _v)-g_{\varepsilon _w}(0)}{\varepsilon _v}.
+\end{equation}
+$g_{\varepsilon _w}$ is continuous on the closed interval $\Cls (U_{\varepsilon _w})$ and differentiable on its interior,\footnote{Despite the fact that the existence of the derivative of $f$ does not imply continuity of $f$, it \emph{is} the case that the existence of directional derivatives of $f$ implies existence of derivative of $g_{\varepsilon _w}$, which, because it is defined in one-dimension, \emph{does} imply continuity.} and so by the \nameref{MeanValueTheorem} there is some $c_{\varepsilon _v}\in (0,\varepsilon _v)$ such that
+\begin{equation}
+\tfrac{\dif}{\dif \varepsilon}g_{\varepsilon _w}(c_{\varepsilon _v})=\frac{g_{\varepsilon _w}(\varepsilon _v)-g_{\varepsilon _w}(0)}{\varepsilon _v},
+\end{equation}
+so that
+{\small
+\begin{equation}
+\begin{split}
+\MoveEqLeft {}
+[v^a\nabla _a(w^b\nabla _bf)](x)=\lim _{\varepsilon _v\to 0^+}\lim _{\varepsilon _w\to 0^+}\frac{1}{\varepsilon _w}\tfrac{\dif}{\dif \varepsilon}g_{\varepsilon _w}(c_{\varepsilon _v}) \\
+& =\lim _{\varepsilon _v\to 0^+}\lim _{\varepsilon _w\to 0^+}\frac{v^a\nabla _af(x+\varepsilon _ww+c_{\varepsilon _v}v)-v^a\nabla _af(x+c_{\varepsilon _v}v)}{\varepsilon _w}.
+\end{split}
+\end{equation}
+}
+Similarly as before, for $\varepsilon _v>0$, define\footnote{For what it's worth, this is what ultimately motivated me to change from $h$s to $\varepsilon$s in the difference quotient---at first I tried writing $g_{h_w}^1$ and $g_{h_v}^2$, which works, but\textellipsis ew.  Being able to use $h$ is so much better.} $h_{\varepsilon _v}\colon V_{\varepsilon _v}\rightarrow \R$ by
+\begin{equation}
+h_{\varepsilon _v}(\varepsilon )\coloneqq v^a\nabla _af(x+c_{\varepsilon _v}v+\varepsilon w)
+\end{equation}
+for a sufficiently small neighborhood $V_{\varepsilon _v}$ of $0$.  Then,
+\begin{equation}
+\left[ v^a\nabla _a(w^b\nabla _bf)\right] (x)=\lim _{\varepsilon _v\to 0^+}\lim _{\varepsilon _w\to 0^+}\frac{h_{\varepsilon _v}(\varepsilon _w)-h_{\varepsilon _v}(0)}{\varepsilon _w}.
+\end{equation}
+Applying the \nameref{MeanValueTheorem} again, we deduce the existence of some $c_{\varepsilon _w}\in (0,\varepsilon _w)$ such that 
+\begin{equation}
+\tfrac{\dif}{\dif \varepsilon}h_{\varepsilon _v}(c_{\varepsilon _w})=\frac{h_{\varepsilon _v}(\varepsilon _w)-h_{\varepsilon _v}(0)}{\varepsilon _w}, 
+\end{equation}
+so that
+\begin{equation}
+\left[ v^a\nabla _a(w^b\nabla _bf)\right] (x)=\lim _{\varepsilon _v\to 0^+}\lim _{\varepsilon _w\to 0^+}w^b\nabla _b\left( v^a\nabla _af(x+c_{\varepsilon _v}v+c_{\varepsilon _w}w)\right) .
+\end{equation}
+Continuity of the second derivative applied to this gives the desired result.
+\end{proof}
+\end{thm}
+\begin{exr}{}{}
+Define $f\colon \R ^2\rightarrow \R$ by
+\begin{equation}
+f(\coord{x,y})\coloneqq \begin{cases}\frac{xy(x^2-y^2)}{x^2+y^2} & \text{if }\coord{x,y}\neq \coord{0,0} \\ 0 & \text{if }\coord{x,y}=\coord{0,0}.\end{cases}
+\end{equation}
+Show that this function is differentiable everywhere with gradient (in standard coordinates) given by
+{\small
+\begin{equation}
+\nabla _af(\coord{x,y})=\begin{cases}\coord*{\frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2},\frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}} & \text{if }\coord{x,y}\neq \coord{0,0} \\ \coord{0,0} & \text{if }\coord{x,y}=\coord{0,0}.\end{cases}
+\end{equation}
+}
+In other words, for a vector $v^a\coloneqq \coord{v_x,v_y}\in \R ^2$,
+{\scriptsize
+\begin{equation}
+v^a\nabla _af(\coord{x,y})=\begin{cases}v_x\left(\frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2} \right) +v_y\left( \frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}\right) & \text{if }\coord{x,y}\neq \coord{0,0} \\ 0 & \text{if }\coord{x,y}=\coord{0,0}.\end{cases}
+\end{equation}
+}
+Show that
+\begin{equation}
+\R ^2\ni w\mapsto \D _w\left( v^af\right) (\coord{0,0})
+\end{equation}
+is \emph{not} linear, so that $f$ is \emph{not} twice-differentiable at $\coord{0,0}$.
+\begin{rmk}
+On the other hand, if you plug-in $v=\coord{1,0}$ and $w=\coord{0,1}$, and then plug-in $v=\coord{0,1}$ and $w=\coord{1,0}$, you should get different answers.  Thus, the second partial derivatives do \emph{not} commute, but it is also not twice-differentiable.  Thus, this example does \emph{not show the necessity of the continuity assumption} in the previous theorem.  Can you find an example of a function second differentiable at a point that is not symmetric there?
+\end{rmk}
+\end{exr}
+\nameref{ClairutsTheorem} finally allows us to address what is probably one of the most familiar (and useful) results from elementary calculus:  the second derivative test.\footnote{Though we present a stronger result, what we call simply the \emph{Highest Derivative Test}.}
+\begin{thm}{Higher Derivative Test}{HigherDerivativeTest}\index{Higher Derivative Test}
+Let $D\subseteq \R ^d$, let $x_0\in \Int (D)$, $f\colon D\rightarrow \R$ be differentiable at $x_0$, and let $m\in \Z ^+\cup \{ \infty \}$ be the least for which $\nabla _{a_1}\cdots \nabla _{a_m}f(x_0)\neq 0$.\footnote{With $m\coloneqq \infty$ if all derivatives which exist vanish.}  Then, if $m<\infty$, then $x_0$ is a local maximum (resp.~local minimum) of $f$ iff (i)~$m$ is even and (ii)~$\nabla _{a_1}\cdots \nabla _{a_m}f(x_0)$ is negative-definite (resp.~positive-definite).
+\begin{wrn}
+Warning:  There are smooth functions with local extrema and all derivatives vanishing at this point (i.e.~$m=\infty$), in which case the test is not applicable---see the following exercise.
+\end{wrn}
+\begin{rmk}
+For example, this will tell us that $\R \ni x\mapsto x^4\in \R$ has a local minimum at $x=0$, something which the Second Derivative Test is unable to do (it is inconclusive).
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\end{exr}
+\end{proof}
+\end{thm}
+\begin{exr}{}{}
+Find a smooth function $f\colon \R \rightarrow \R$ for which $x=0$ is a local maximum and $\frac{\dif ^n}{\dif x^n}f(0)=0$ for all $n\in \Z ^+$.
+\end{exr}
+
+\section{The Inverse Function Theorem}
+
+We have talked about functions which take values in $\R ^m$ before, $f\colon \R ^d\rightarrow \R ^m$, and we have interpreted them as vector fields on $\R ^d$.  I don't want to do this now.  Now, the codomain is going to play what will be the role of a general manifold when you generalize, so for the time being I will write $M\coloneqq \R ^m$ to be suggestive of this.
+\begin{displayquote}
+When you generalize to manifolds and you have a smooth function $f\colon M\rightarrow N$ between manifolds, then for each $x\in X$ the derivative becomes a linear map at the tangent space $\tangent{M}[x]\ni v^a\mapsto v^b\nabla _bf(x)^\mu \in \tangent{N}[f(x)]$.  (Once again, the $\mu$ index indicates that this vector lives in a different vector space than $v^a$ does.)  Unfortunately, in the very special case of $f\colon \R ^d\rightarrow \R ^m$, because $\tangent{M}[x]\cong _{\Vect _{\R}}\R ^d$ is `the same as'\footnote{Or so the symbols would suggest.} $M$ and $\tangent{N}[f(x)]\cong _{\Vect _{\R}}\R ^m$ is `the same as' $N$, the `same' thing gets treated in very different ways in different, and this can make things very confusing.  For example, $f(x)\in \R ^m$ the metric space\footnote{If we could, we should regard it as a manifold, but we don't know what manifolds are, and a metric space is the next best thing (that we have at our disposal).}, but $v^a\nabla _af(x)^\mu \in \R ^m$ the vector space (namely, the tangent space of $\R ^m$ at $f(x)$).
+\end{displayquote}
+Thus, for a smooth map $f\colon \R ^d\rightarrow M$, at each point, $\nabla _af(x)^\mu \in \Mor _{\Vect _{\R}}(\tangent{\R ^d}[x],\tangent{M}[f(x)])$, the linear map being defined as $v^a\mapsto v^b\nabla _bf(x)^\mu$.
+
+For the special case $d=m$, something a little bit special happens:  we can then ask whether the derivative is invertible at each point or not (regarding as a linear map between tangent spaces \emph{of the same dimension}).  An incredibly important fact, known as the \emph{Inverse Function Theorem}, is that, if a function is smooth and the derivative is invertible at a point, then the function itself is \emph{invertible with smooth inverse} in a neighborhood of that point.  You might say that infinitesimal invertibility implies local invertibility.
+\begin{thm}{Inverse Function Theorem}{InverseFunctionTheorem}\index{Inverse Function Theorem}
+Let $S\subseteq \R ^d$, let $f^a\colon D\rightarrow \R ^d$ be smooth, and let $x\in \Int (D)$.  Then, if $\nabla _af(x)^b:\tangent{\R ^d}[x]\rightarrow \tangent{\R ^d}[f(x)]$ is invertible, then there exists an open neighborhood $U$ of $x$ such that $\restr{f}{U}$ is invertible with smooth inverse.
+\begin{rmk}
+Bijective functions which are smooth and have smooth inverse will be called \emph{diffeomorphisms}\index{Diffeomorphism} when you pass to the category of manifolds (they wind-up being of course the isomorphisms in the category of manifolds).  Thus, we say that if a smooth map has a derivative that is invertible at a point, then it is a \emph{local diffeomorphism}\index{Local diffeomorphism}.
+\end{rmk}
+\begin{proof}
+We leave this as an exercise.
+\begin{exr}[breakable=false]{}{}
+Prove this yourself.
+\begin{rmk}
+Hint:  Yet another exercise that should not be---see \cite[pg.~221]{Rudin}.
+\end{rmk}
+\end{exr}
+\end{proof}
+\end{thm}

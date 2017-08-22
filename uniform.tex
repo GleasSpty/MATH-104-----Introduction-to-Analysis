@@ -1,8 +1,8 @@
 \chapter{Uniform spaces}\label{chp5}
 
-A uniform space is the most general context in which one can talk about concepts such as uniform continuity, uniform convergence, cauchyness, completeness, etc..  To formalize this notion, we will equip a set with a distinguished set of covers, called \emph{uniform covers}.  The example you should always keep in the back of your mind is the collection of all $\varepsilon$-balls for a \emph{fixed} $\varepsilon$:  $\cover{U}_\varepsilon \coloneqq \left\{ B_\varepsilon (x):x\in \R \right\}$.  The idea is that, somehow, all of the sets in the same uniform cover are of the `same size'.
+A uniform space is the most general context in which one can talk about concepts such as uniform continuity, uniform convergence, Cauchyness, completeness, etc..  To formalize this notion, we will equip a set with a distinguished set of covers, called \emph{uniform covers}.  The example you should always keep in the back of your mind is the collection of all $\varepsilon$-balls for a \emph{fixed} $\varepsilon$:  $\cover{U}_\varepsilon \coloneqq \left\{ B_\varepsilon (x):x\in \R \right\}$.  The idea is that, somehow, all of the sets in the same uniform cover are of the `same size'.
 
-Having specified the uniform covers, we will then be able to say things like a net $\lambda \mapsto x_\lambda$ is Cauchy iff for every uniform cover $\cover{U}$, there is some $U\in \cover{U}$ such that $\lambda \mapsto x_\lambda$ is eventually contained in $U$.  In the case that the collection of uniform covers is $\left\{ \cover{U}_\varepsilon :\varepsilon >0\right\}$,\footnote{Disclaimer:  The collection of all the $\cover{U}_{\varepsilon}$ is not actually a uniformity but rather a \emph{uniform base}---see \cref{UniformBase}.} you can check that this is precisely the definition of cauchyness we had in $\R$ (\cref{dfn3.3.26}).
+Having specified the uniform covers, we will then be able to say things like a net $\lambda \mapsto x_\lambda$ is Cauchy iff for every uniform cover $\cover{U}$, there is some $U\in \cover{U}$ such that $\lambda \mapsto x_\lambda$ is eventually contained in $U$.  In the case that the collection of uniform covers is $\left\{ \cover{U}_\varepsilon :\varepsilon >0\right\}$,\footnote{Disclaimer:  The collection of all the $\cover{U}_{\varepsilon}$ is not actually a uniformity but rather a \emph{uniform base}---see \cref{UniformBase}.} you can check that this is precisely the definition of Cauchyness we had in $\R$ (\cref{dfn3.3.26}).
 
 Moreover, the generalization from $\R$ to uniform spaces is not a needless abstraction.  Indeed, I am \emph{required} to cover metric spaces (\cref{MetricSpace}) in this course, and this is just a very special type of uniform space.  Indeed, essentially every topological space we look at in these notes---besides ones cooked up for the express purpose of producing a counter-example---has a canonical uniformity.  On the other hand, it is certainly not the case that every topological space we encounter will be a metric space.  For example, something as simple as all continuous functions from $\R$ to $\R$ has no canonical metric,\footnote{For what it's worth, I believe the topology is metrizable (homeomorphic to a metric space), but certainly not with any metric you would like to work with, much less a canonical one.} but is trivially a uniform space (because it is a topological group---see \cref{dfnB.7}).
 
@@ -13,7 +13,7 @@ A uniform space will wind-up being a set equipped with a special set of covers, 
 \subsection{Star-refinements}
 
 \begin{dfn}{Star}{Star}
-Let $X$ be a set, let $S\subseteq X$, and let $\collection{U}$ be a collection of subsets of $X$.  Then, the \emph{star}\index{Star} of $S$ with respect to $\cover{U}$, $\Star _{\collection{U}}(S)$,\index[notation]{$\Star _{\collection{U}}(S)$} is defined by
+Let $X$ be a set, let $S\subseteq X$, and let $\collection{U}$ be a collection of subsets of $X$.  Then, the \term{star}\index{Star} of $S$ with respect to $\cover{U}$, $\Star _{\collection{U}}(S)$,\index[notation]{$\Star _{\collection{U}}(S)$} is defined by
 \begin{equation}
 \Star _{\collection{U}}(S)\coloneqq \bigcup _{\substack{U\in \collection{U} \\ U\cap S\neq \emptyset}}U.
 \end{equation}
@@ -29,11 +29,11 @@ To help guide your intuition, stars play similar roles as $\varepsilon$-balls di
 
 We will certainly be wanting to take the `image' and `preimage' of a cover.
 \begin{dfn}{Image and preimage of a cover}{}
-Let $f\colon X\rightarrow Y$ be a function, let $\cover{U}$ be a cover of $X$, and $\cover{V}$ be a cover of $Y$.  Then, the \emph{image} of $\cover{U}$, $f(\cover{U})$\index[notation]{$f(\cover{U})$}, is defined by
+Let $f\colon X\rightarrow Y$ be a function, let $\cover{U}$ be a cover of $X$, and $\cover{V}$ be a cover of $Y$.  Then, the \term{image}\index{Image (of a cover)} of $\cover{U}$, $f(\cover{U})$\index[notation]{$f(\cover{U})$}, is defined by
 \begin{equation}
 f(\cover{U})\coloneqq \{ f(U):U\in \cover{U}\} .
 \end{equation}
-The \emph{preimage} of $\cover{V}$, $f^{-1}(\cover{V})$\index[notation]{$f^{-1}(\cover{V})$}, is defined by
+The \term{preimage}\index{Preimage (of a cover)} of $\cover{V}$, $f^{-1}(\cover{V})$\index[notation]{$f^{-1}(\cover{V})$}, is defined by
 \begin{equation}
 f^{-1}(\cover{V})\coloneqq \{ f^{-1}(V):V\in \cover{V}\} .
 \end{equation}
@@ -113,9 +113,11 @@ Furthermore, if $f$ is injective, then we have equality.
 \cref{prpC.2.3.i} Note that we have that (\cref{exrA.1.30}.\cref{enmA.1.30.ii} and \cref{exrA.1.47}.\cref{enmA.1.47.i}) $V\cap T\supseteq f(f^{-1}(V)\cap f^{-1}(T))$.  Therefore, if $f^{-1}(V)$ intersects $f^{-1}(T)$, it must be the case that $V$ intersects $T$.  Furthermore, $f$ is surjective, so that $f(f^{-1}(T'))=T'$ for all $T'\subseteq Y$ (\cref{exrA.1.47}), then we would in fact that that $V\cap T=f(f^{-1}(V)\cap f^{-1}(T))$, so that in this case $V$ intersects $T$ iff $f^{-1}(V)$ intersects $f^{-1}(T)$.
 \begin{equation}
 \begin{split}
-\Star _{f^{-1}(\cover{V})}(f^{-1}(T)) & \coloneqq \bigcup _{\substack{V\in \cover{V} \\ f^{-1}(V)\cap f^{-1}(T)\neq \emptyset}}f^{-1}(V) \\
-& =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.i}}f^{-1}\left( \bigcup _{\substack{V\in \cover{V} \\ f^{-1}(V)\cap f^{-1}(T)\neq \emptyset}}V\right) \\
-& \subseteq \footnote{Here we are using the fact that $f^{-1}(V)$ intersects $f^{-1}(T)$ implies that $V$ intersects $T$.  Also note that we have equality here if $f$ is surjective.}f^{-1}\left( \bigcup _{\substack{V\in \cover{V} \\ V\cap T\neq \emptyset}}V\right) \eqqcolon f^{-1}\left( \Star _{\cover{V}}(T)\right) .
+\MoveEqLeft
+\Star _{f^{-1}(\cover{V})}(f^{-1}(T))\coloneqq \bigcup _{\substack{V\in \cover{V} \\ f^{-1}(V)\cap f^{-1}(T)\neq \emptyset}}f^{-1}(V) \\
+& =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.i}}f^{-1}\biggg( \bigcup _{\substack{V\in \cover{V} \\ f^{-1}(V)\cap f^{-1}(T)\neq \emptyset}}V\biggg) \\
+& \subseteq \footnote{Here we are using the fact that $f^{-1}(V)$ intersects $f^{-1}(T)$ implies that $V$ intersects $T$.  Also note that we have equality here if $f$ is surjective.}f^{-1}\biggg( \bigcup _{\substack{V\in \cover{V} \\ V\cap T\neq \emptyset}}V\biggg) \\
+& \eqqcolon f^{-1}\left( \Star _{\cover{V}}(T)\right) .
 \end{split}
 \end{equation}
 
@@ -132,7 +134,7 @@ f(U\cap S)=f(U)\cap f(S),
 so in this case $U$ intersects $S$ iff $f(U)$ intersects $f(S)$.  Hence,
 \begin{equation}
 \begin{split}
-f(\Star _{\cover{U}}(S)) & \coloneqq f\left( \bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}U\right) =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.iii}}\bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}f(U) \\
+f(\Star _{\cover{U}}(S)) & \coloneqq f\biggg( \bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}U\biggg) =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.iii}}\bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}f(U) \\
 & \subseteq \footnote{Here we are using the fact that $U$ intersects $S$ implies that $f(U)$ intersects $f(S)$.  Also note that we have equality here if $f$ is injective.}\bigcup _{\substack{U\in \cover{U} \\ f(U)\cap f(S)\neq \emptyset}}f(U)\eqqcolon \Star _{f(\cover{U})}f(S).
 \end{split}
 \end{equation}
@@ -142,7 +144,8 @@ f(\Star _{\cover{U}}(S)) & \coloneqq f\left( \bigcup _{\substack{U\in \cover{U} 
 \cref{prpC.2.3.iii} Note that $f^{-1}(T)$ intersects $S$ iff $T$ intersects $f(S)$.  Using this, we have
 \begin{equation}
 \begin{split}
-\Star _{f^{-1}(\cover{V})}(S) & \coloneqq \bigcup _{\substack{V\in \cover{V} \\ f^{-1}(V)\cap S\neq \emptyset}}f^{-1}(V)=f^{-1}\left( \bigcup _{\substack{V\in \cover{V} \\ V\cap f(S)\neq \emptyset}}V\right) \\
+\Star _{f^{-1}(\cover{V})}(S) & \coloneqq \bigcup _{\substack{V\in \cover{V} \\ f^{-1}(V)\cap S\neq \emptyset}}f^{-1}(V) \\
+& =f^{-1}\bigg( \bigcup _{\substack{V\in \cover{V} \\ V\cap f(S)\neq \emptyset}}V\biggg) \\
 & \eqqcolon f^{-1}\left( \Star _{\cover{V}}(f(S))\right) .
 \end{split}
 \end{equation}
@@ -162,8 +165,8 @@ f(\Star _{\cover{U}}(S)) & \coloneqq f\left( \bigcup _{\substack{U\in \cover{U} 
 \begin{dfn}{Refinement and star-refinement}{dfnC.1}
 Let $X$ be a set, and let $\cover{U}$ and $\cover{V}$ be covers on $X$.
 \begin{enumerate}
-\item $\cover{U}$ is a \emph{refinement}\index{Refinement} of $\cover{V}$, written $\cover{U}\preceq \cover{V}$\index[notation]{$\cover{U}\preceq \cover{V}$} iff for every $U\in \cover{U}$ there is some $V\in \cover{V}$ such that $U\subseteq V$.
-\item $\cover{U}$ is a \emph{star-refinement}\index{star-refinement} of $\cover{V}$, written $\cover{U}\llcurly \cover{V}$\index[notation]{$\cover{U}\llcurly \cover{V}$} iff for every $U\in \cover{U}$ there is a $V\in \cover{V}$ such that $\Star _{\cover{U}}(U)\subseteq V$.
+\item $\cover{U}$ is a \term{refinement}\index{Refinement} of $\cover{V}$, written $\cover{U}\preceq \cover{V}$\index[notation]{$\cover{U}\preceq \cover{V}$} iff for every $U\in \cover{U}$ there is some $V\in \cover{V}$ such that $U\subseteq V$.
+\item $\cover{U}$ is a \term{star-refinement}\index{star-refinement} of $\cover{V}$, written $\cover{U}\llcurly \cover{V}$\index[notation]{$\cover{U}\llcurly \cover{V}$} iff for every $U\in \cover{U}$ there is a $V\in \cover{V}$ such that $\Star _{\cover{U}}(U)\subseteq V$.
 \end{enumerate}
 \begin{rmk}
 The intuition is that every element of $\cover{U}$ is small enough to be contained in some element of $\cover{V}$.
@@ -192,7 +195,7 @@ Show that $\llcurly$ is transitive, but not even reflexive.
 \end{exr}
 Any two covers always have a common refinement.  In fact, they have a canonical (but not unique!) largest one.
 \begin{dfn}{Meet of covers}{}
-Let $X$ be a set, and let $\cover{U}$ and $\cover{V}$ be covers of $X$.  Then, the \emph{meet}\index{Meet (of covers)} of $\cover{U}$ and $\cover{V}$, $\cover{U}\wedge \cover{V}$\index[notation]{$\cover{U}\wedge \cover{V}$}, is defined by
+Let $X$ be a set, and let $\cover{U}$ and $\cover{V}$ be covers of $X$.  Then, the \term{meet}\index{Meet (of covers)} of $\cover{U}$ and $\cover{V}$, $\cover{U}\wedge \cover{V}$\index[notation]{$\cover{U}\wedge \cover{V}$}, is defined by
 \begin{equation}
 \cover{U}\wedge \cover{V}\coloneqq \{ U\cap V:U\in \cover{U}\text{ and }V\in \cover{V}\} .
 \end{equation}
@@ -272,7 +275,9 @@ Let $f\colon X\rightarrow Y$ be a function and let $\cover{U}$ and $\cover{V}$ b
 We simply `compute'.
 \begin{equation}
 \begin{split}
-f^{-1}(\cover{U})\wedge f^{-1}(\cover{V}) & \coloneqq \left\{ f^{-1}(U)\cap f^{-1}(V):U\in \cover{U},V\in \cover{V}\right\} \\
+\MoveEqLeft
+f^{-1}(\cover{U})\wedge f^{-1}(\cover{V}) \\
+& \coloneqq \left\{ f^{-1}(U)\cap f^{-1}(V):U\in \cover{U},V\in \cover{V}\right\} \\
 & =\left\{ f^{-1}(U\cap V):U\in \cover{U},V\in \cover{V}\right\} \\
 & \eqqcolon f^{-1}(\cover{U}\wedge \cover{V}).
 \end{split}
@@ -300,9 +305,9 @@ Putting this together, we get
 f^{-1}\left( \Star _{f(\cover{U})}(f(U))\right) =\Star _{\cover{U}}(U)\subseteq V,
 \end{equation}
 and hence, as $f$ is surjective
-\begin{equation}
+\begin{equation*}
 \Star _{f(\cover{U})}(f(U))=f\left( f^{-1}\left( \Star _{f(\cover{U})}(f(U))\right) \right) \subseteq f(V)
-\end{equation}
+\end{equation*}
 Thus, $f(\cover{U})\llcurly f(\cover{V})$.
 \end{proof}
 \end{prp}
@@ -310,13 +315,13 @@ Thus, $f(\cover{U})\llcurly f(\cover{V})$.
 \subsection{Uniform spaces}
 
 \begin{dfn}{Uniform space}{UniformSpace}
-A \emph{uniform space}\index{Uniform space} is a set $X$ equipped with a nonempty collection $\uniformity{U}$ of covers, the \emph{uniformity}\index{Uniformity}, such that
+A \term{uniform space}\index{Uniform space} is a set $X$ equipped with a nonempty collection $\uniformity{U}$ of covers, the \term{uniformity}\index{Uniformity}, such that
 \begin{enumerate}
 \item \label{UniformSpace.UpwardClosed}(Upward-closed)\index{Upward-closed} if $\cover{U}\in \uniformity{U}$ and $\cover{U}\llcurly \cover{V}$, then $\cover{V}\in \uniformity{U}$; and
 \item \label{UniformSpace.DownwardDirected}(Downward-directed)\index{Downward-directed} if $\cover{U},\cover{V}\in \uniformity{U}$, then there is some $\cover{W}\in \uniformity{U}$ such that $\cover{W}\llcurly \cover{U}$ and $\cover{W}\llcurly \cover{V}$.
 \end{enumerate}
 \begin{rmk}
-The elements of $\uniformity{U}$ are \emph{uniform covers}\index{Uniform covers}.
+The elements of $\uniformity{U}$ are \term{uniform covers}\index{Uniform covers}.
 \end{rmk}
 \begin{rmk}
 The intuition is that, in a given uniform cover $\cover{U}$, every element of $\cover{U}$ is `of the same size' (think $\cover{U}\coloneqq \{ B_{\varepsilon}(x):x\in \R \}$ for a \emph{fixed} $\varepsilon >0$).
@@ -337,7 +342,7 @@ Let $\coord{X,\uniformity{U}}$ be a uniform space.  Then, for $x\in X$,
 \begin{equation}
 \cover{B}_x\coloneqq \left\{ \Star _{\cover{U}}(x):\cover{U}\in \uniformity{U}\right\}
 \end{equation}
-is a neighborhood base at $x$.  The topology defined by this neighborhood base is the \emph{uniform topology}\index{Uniform topology} on $X$ with respect to $\uniformity{U}$.
+is a neighborhood base at $x$.  The topology defined by this neighborhood base is the \term{uniform topology}\index{Uniform topology} on $X$ with respect to $\uniformity{U}$.
 \begin{rmk}
 Explicitly, this means that $U\subseteq X$ is open iff for every $x\in U$ there is some uniform cover $\cover{U}$ such that $\Star _{\cover{U}}(x)\subseteq U$.  Note how this is precisely the same as our definition in $\R ^d$ when you replace the start with $B_{\varepsilon}(x)$---see \cref{OpenSetInR}.
 \end{rmk}
@@ -380,7 +385,7 @@ Note that this proof did not make use of the upward-closed axiom.  Thus, in fact
 \end{proof}
 \end{prp}
 \begin{exm}{Discrete and indiscrete uniform spaces}{}
-Just as with topological spaces, we can always put the largest and the smallest uniformity on a set $X$.  The former case, in which every cover of $X$ is a uniform cover, is the \emph{discrete uniformity}\index{Discrete uniformity}, and the latter, in which the only uniform cover is $\{ X\}$, is the \emph{indiscrete uniformity}\index{Indiscrete uniformity}.
+Just as with topological spaces, we can always put the largest and the smallest uniformity on a set $X$.  The former case, in which every cover of $X$ is a uniform cover, is the \term{discrete uniformity}\index{Discrete uniformity}, and the latter, in which the only uniform cover is $\{ X\}$, is the \term{indiscrete uniformity}\index{Indiscrete uniformity}.
 \begin{exr}[breakable=false]{}{}
 Show that the uniform topology with respect to the discrete uniformity is the discrete topology and that the uniform topology with respect to the indiscrete uniformity is the indiscrete topology.
 \end{exr}
@@ -388,7 +393,7 @@ Show that the uniform topology with respect to the discrete uniformity is the di
 
 Just as we have continuous maps between topological spaces, we have \emph{uniformly}-continuous maps between uniform spaces.
 \begin{dfn}{Uniformly-continuous function}{}
-Let $f\colon X\rightarrow Y$ be a function between uniform spaces.  Then, $f$ is \emph{uniformly-continuous} iff the preimage of every uniform cover is a uniform cover.
+Let $f\colon X\rightarrow Y$ be a function between uniform spaces.  Then, $f$ is \term{uniformly-continuous}\index{Uniformly-continuous} iff the preimage of every uniform cover is a uniform cover.
 \end{dfn}
 \begin{exm}{The category of uniform spaces}{}\index{Category of uniform spaces}
 The category of uniform spaces is the category $\Uni$\index[notation]{$\Uni$}
@@ -407,7 +412,7 @@ Note that this is something you need to check in order for $\Uni$ to actually fo
 \end{exm}
 \begin{dfn}{Uniform-homeomorphism}{UniformHomeomorphism}
 \\
-Let $f\colon X\rightarrow Y$ be a function between uniform spaces.  Then, $f$ is a \emph{uniform-homeomorphism}\index{Uniform-homeomorphism} iff it is an isomorphism in $\Uni$.
+Let $f\colon X\rightarrow Y$ be a function between uniform spaces.  Then, $f$ is a \term{uniform-homeomorphism}\index{Uniform-homeomorphism} iff it is an isomorphism in $\Uni$.
 \end{dfn}
 \begin{exr}{}{}
 Show that a function is a uniform-homeomorphism iff (i)~it is bijective, (ii)~it is uniformly-continuous, and (iii)~its inverse is uniformly-continuous.
@@ -419,11 +424,11 @@ Show that if a function is uniformly-continuous, then it is continuous.
 Find an example of a function that is bijective and uniformly-continuous, but not a uniform-homeomorphism.
 \end{exr}
 
-\subsection{Uniform bases, and the initial and final uniformities}
+\subsection[Uniform bases and the initial/final uniformities]{Uniform bases, and the initial and final uniformities}
 
 It is usually convenient to not specify every uniform cover explicitly, but rather, to specify a certain collection of uniform covers analogous to specifying a base for a topology.\footnote{Unfortunately, the way in which one might like to define a uniformity that is analogous to generating collections for topologies doesn't work---see \cref{exm4.1.80}.}
 \begin{dfn}{Uniform base}{UniformBase}
-Let $X$ be a uniform space and let $\uniformity{B}$ be a collection of uniform covers of $X$.  Then, $\uniformity{B}$ is a \emph{uniform base}\index{Uniform base} for the uniformity on $X$ iff the statement that a cover $\cover{U}$ is a uniform cover is equivalent to the statement that there is some $\cover{B}\in \uniformity{B}$ such that $\cover{B}\llcurly \cover{U}$.
+Let $X$ be a uniform space and let $\uniformity{B}$ be a collection of uniform covers of $X$.  Then, $\uniformity{B}$ is a \term{uniform base}\index{Uniform base} for the uniformity on $X$ iff the statement that a cover $\cover{U}$ is a uniform cover is equivalent to the statement that there is some $\cover{B}\in \uniformity{B}$ such that $\cover{B}\llcurly \cover{U}$.
 \begin{rmk}
 You should compare this to the definition of a base for a topology (\cref{Base}).
 \end{rmk}
@@ -494,7 +499,10 @@ and so $x\in \Int (B)$ (because $\Star _{\cover{C}}(x)$ is a neighborhood of $x$
 
 Let $\cover{B},\cover{C}\in \uniformity{B}$ and let $\cover{D}$ be a common star-refinement of $\cover{B}$ and $\cover{C}$.  We show that $\Int (\cover{D})$ is a common star-refinement of $\Int (\cover{B})$ and $\Int (\cover{C})$.  Because of $\cover{B}\leftrightarrow \cover{C}$ symmetry, it suffices to show that it is a star-refinement of $\Int (\cover{B})$.  So, let $\Int (D)\in \Int (\cover{D})$.  Then, there is some $B\in \cover{B}$ such that $\Star _{\cover{D}}(D)\subseteq B$, and so because union of the interiors is contained in the interior of the union (\cref{exr3.4.53}.\cref{enm3.4.53.ii}), we have
 \begin{equation}
-\Star _{\Int (\cover{D})}(\Int (D))\subseteq \Star _{\Int (\cover{D})}(D)\subseteq \Int \left( \Star _{\cover{D}}D\right) \subseteq \Int (B),
+\begin{split}
+\Star _{\Int (\cover{D})}(\Int (D)) & \subseteq \Star _{\Int (\cover{D})}(D)\subseteq \Int \left( \Star _{\cover{D}}D\right) \\
+& \subseteq \Int (B),
+\end{split}
 \end{equation}
 and so indeed $\Int (\cover{D})$ star-refines $\Int (\cover{B})$.
 
@@ -527,7 +535,7 @@ So, let $\uniformity{U}$ be a uniformity containing $\cover{U}$ and contained in
 
 With topological spaces, we could define a topology by specifying the closure or interior, or defining a notion of convergence.  To the best of my knowledge, there are no analogous methods for defining uniformities.  As for the initial and final topologies, however, there are analogous constructions (which you might not have expected as we no longer can simply `generate' uniformities like we could with topologies).
 \begin{prp}{Initial uniformity}{InitialUniformity}
-Let $X$ be a set, let $\cover{Y}$ be an indexed collection of uniform spaces, and for each $Y\in \cover{Y}$ let $f_Y:X\rightarrow Y$ be a function.  Then, there exists a unique uniformity $\uniformity{U}$ on $X$, the \emph{initial uniformity} with respect to $\{ f_Y:Y\in \cover{Y}\}$, such that
+Let $X$ be a set, let $\cover{Y}$ be an indexed collection of uniform spaces, and for each $Y\in \cover{Y}$ let $f_Y:X\rightarrow Y$ be a function.  Then, there exists a unique uniformity $\uniformity{U}$ on $X$, the \term{initial uniformity} with respect to $\{ f_Y:Y\in \cover{Y}\}$, such that
 \begin{enumerate}
 \item $f_Y:X\rightarrow Y$ is uniformly-continuous with respect to $\uniformity{U}$ for all $Y\in \cover{Y}$; and
 \item if $\uniformity{U}'$ is another uniformity for which each $f_Y$ is uniformly-continuous, then $\uniformity{U}\subseteq \uniformity{U}'$.
@@ -564,13 +572,13 @@ We finally check that the uniform topology of the initial uniformity agrees with
 
 In the other direction, let $U\subseteq X$ be open with respect to the uniform topology of the initial uniformity.  By the defining result of the uniform topology (\cref{UniformTopology}), this means that for all $x\in U$, there is some $\cover{B}\in \uniformity{B}$ such that $x\in \Star _{\cover{B}}(x)\subseteq U$.  Write $\cover{B}=f_{Y_1}^{-1}(\cover{V}_1)\wedge \cdots \wedge f_{Y_m}^{-1}(\cover{V}_m)$.  As, for points, the star with respect to a wedge is the intersection of the stars (\cref{prp4.2.27}),
 {\small
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \MoveEqLeft
 \Star _{\cover{B}}(x)=\Star _{f_{Y_1}^{-1}(\cover{V}_1)}(x)\cap \cdots \cap \Star _{f_{Y_m}^{-1}(\cover{V}_m)}(x) \\
 & =f_{Y_1}^{-1}\left( \Star _{\cover{V}_1}(f_{Y_1}(x))\right) \cap \cdots \cap f_{Y_m}^{-1}\left( \Star _{\cover{V}_m}(f_{Y_m}(x))\right) .
 \end{split}
-\end{equation}
+\end{equation*}
 }
 where we have applied \cref{prpC.2.3}.  As each $\Star _{\cover{V}_k}(f_{Y_k}(x))$ is a neighborhood of $f_{Y_k}(x)\in Y_k$, $f_{Y_k}^{-1}\left( \Star _{\cover{V}_k}(f_{Y_k}(x))\right)$ is a neighborhood of $x\in X$ for the initial topology, and so, by the above equality, $\Star _{\cover{B}}(x)$ is likewise a neighborhood of $x\in X$ for the initial topology.  This shows that every point in $U$ has a neighborhood for the initial topology contained in $U$, and hence $U$ is likewise open for the initial topology, as desired.
 \end{proof}
@@ -587,7 +595,7 @@ Prove this result, using the proof of \cref{prp3.4.6} (the analogous result for 
 \end{prp}
 And just as we had with topological spaces, there is a `dual' version of the initial uniformity.
 \begin{prp}{Final uniformity}{FinalUniformity}
-Let $X$ be a set, let $\cover{Y}$ be an indexed collection of uniform spaces, and for each $Y\in \cover{Y}$ let $f_Y:Y\rightarrow X$ be a function.  Then, there exists a unique uniformity $\uniformity{U}$ on $X$, the \emph{final uniformity}\index{Final uniformity} with respect to $\{ f_Y:Y\in \cover{Y}\}$, such that
+Let $X$ be a set, let $\cover{Y}$ be an indexed collection of uniform spaces, and for each $Y\in \cover{Y}$ let $f_Y:Y\rightarrow X$ be a function.  Then, there exists a unique uniformity $\uniformity{U}$ on $X$, the \term{final uniformity}\index{Final uniformity} with respect to $\{ f_Y:Y\in \cover{Y}\}$, such that
 \begin{enumerate}
 \item $f_Y:Y\rightarrow X$ is uniformly-continuous with respect to $\uniformity{U}$; and
 \item if $\uniformity{U}'$ is another uniformity for which each $f_Y$ is uniformly-continuous, then $\uniformity{U}\supseteq \uniformity{U}'$.
@@ -665,7 +673,10 @@ for all $x\in K$.
 
 Let $\cover{U}_0$ be in turn a star-refinement of $\cover{U}_0$.  We show that $\cover{U}\wedge \{ K\}$ is a star-refinement of $f^{-1}(\cover{V})\wedge \{ K\}$.  So, let $U\in \cover{U}$.  Let $U_0\in \cover{U}_0$ be such that $\Star _{\cover{U}}(U)\subseteq U_0$.  Let $x\in U$ and pick $k$ so that \eqref{eqn4.1.98} holds.  Then,
 \begin{equation}
-\Star _{\cover{U}\wedge \{ K\}}(U\cap K)\subseteq U_0\cap K\subseteq \Star _{\cover{U}_0\wedge \{ K\}}(x)\subseteq f^{-1}(V_{x_k})\cap K.
+\begin{split}
+\Star _{\cover{U}\wedge \{ K\}}(U\cap K) & \subseteq U_0\cap K\subseteq \Star _{\cover{U}_0\wedge \{ K\}}(x) \\
+& \subseteq f^{-1}(V_{x_k})\cap K.
+\end{split}
 \end{equation}
 \end{proof}
 \end{prp}
@@ -694,7 +705,7 @@ $f\colon \R \rightarrow \R$ is continuous iff for every $x\in \R$ and for every 
 The key difference between continuity and uniform-continuity is \emph{the location in which the quantification ``for every $x\in \R$'' appears}.  In the former (just continuous case), your choice of $\delta$ is \emph{allowed to depend on $x$}, whereas to be uniformly-continuous, \emph{a single $\delta$ has to `work' for every $x\in \R$}.
 \end{rmk}
 \begin{rmk}
-The result you just proved characterizing uniform-continuity in $\R$ is often taken as the definition of uniform-continuity.  Had we studied uniform-continuity in the context of just the real numbers first (as opposed to in the context of uniform spaces), we would have done the same.  My personal feeling, however, is that uniform continuity is not that incredibly important, at least not to the point where it is worth going out of our way to discuss it just in the context of $\R$.  The real reason we discuss uniform spaces is for the purpose of discussing cauchyness and completeness, not uniform continuity per se (and also of course because a huge collection of examples of topological spaces are canonically uniform spaces).
+The result you just proved characterizing uniform-continuity in $\R$ is often taken as the definition of uniform-continuity.  Had we studied uniform-continuity in the context of just the real numbers first (as opposed to in the context of uniform spaces), we would have done the same.  My personal feeling, however, is that uniform continuity is not that incredibly important, at least not to the point where it is worth going out of our way to discuss it just in the context of $\R$.  The real reason we discuss uniform spaces is for the purpose of discussing Cauchyness and completeness, not uniform continuity per se (and also of course because a huge collection of examples of topological spaces are canonically uniform spaces).
 \end{rmk}
 \end{exr}
 \end{exm}
@@ -731,15 +742,15 @@ As was previously mentioned, one big motivation for studying uniform spaces is t
 
 Before we talk about any sort of uniformity, we had better first say what we mean by \emph{semimetric space}.
 \begin{dfn}{Semimetric and metric}{Semimetric}
-Let $X$ be a set.  Then, a \emph{semimetric}\index{Semimetric} on $X$ is a function $\metric:X\times X\rightarrow \R _0^+$ such that
+Let $X$ be a set.  Then, a \term{semimetric}\index{Semimetric} on $X$ is a function $\metric:X\times X\rightarrow \R _0^+$ such that
 \begin{enumerate}
-\item $\metric[x][x]=0$;
-\item (Symmetry) $\metric[x][y]=\metric[y][x]$;
-\item (Triangle Inequality) $\metric[x][z]\leq \metric[x][y]+\metric[y][z]$.
+\item $\metric{x}{x}=0$;
+\item (Symmetry) $\metric{x}{y}=\metric{y}{x}$;
+\item (Triangle Inequality) $\metric{x}{z}\leq \metric{x}{y}+\metric{y}{z}$.
 \end{enumerate}
-$\metric$ is a \emph{metric}\index{Metric} if furthermore (Definiteness) $\metric[x][y]=0$ implies $x=y$.
+$\metric$ is a \term{metric}\index{Metric} if furthermore (Definiteness) $\metric{x}{y}=0$ implies $x=y$.
 \begin{rmk}
-Semimetrics are also sometimes called \emph{pseudometrics}\index{Pseudometric}.  However, the term seminorm (something we haven't discussed yet---see \cref{Seminorm}) is actually much more common than either of these terms, and as metrics are to norms (also something we haven't discussed yet---see \cref{Seminorm} again) as semimetrics/pseudometrics are to seminorms, I feel as if the terminology ``semimetric'' is more appropriate.
+Semimetrics are also sometimes called \term{pseudometrics}\index{Pseudometric}.  However, the term seminorm (something we haven't discussed yet---see \cref{Seminorm}) is actually much more common than either of these terms, and as metrics are to norms (also something we haven't discussed yet---see \cref{Seminorm} again) as semimetrics/pseudometrics are to seminorms, I feel as if the terminology ``semimetric'' is more appropriate.
 
 If fact, you should be warned that \emph{some authors use a different meaning than us for ``semimetric''}.
 \end{rmk}
@@ -748,7 +759,7 @@ It is much more common to denote (semi)metrics by ``$d(\blankdot ,\blankdot )$''
 \end{rmk}
 \end{dfn}
 \begin{exm}{}{}
-Let $X\coloneqq \R$ and define $\metric[x][y]\coloneqq \abs{x-y}$.  Then, $\metric$ is in fact a metric.
+Let $X\coloneqq \R$ and define $\metric{x}{y}\coloneqq \abs{x-y}$.  Then, $\metric$ is in fact a metric.
 \begin{rmk}
 Of course, this is where the notation $\metric$ in general comes from.
 \end{rmk}
@@ -756,18 +767,18 @@ Of course, this is where the notation $\metric$ in general comes from.
 \begin{exm}{A semimetric that is not a metric}{exm4.4.3}
 Let $X$ be a topological space and let $K\subseteq X$ be quasicompact.  For $f,g\in \Mor _{\Top}(X,\R )$, we define
 \begin{equation}\label{4.4.4}
-\metric[f][g]_K\coloneqq \sup _{x\in K}\{ \abs{f(x)-g(x)}\} .\footnote{We require that $K$ be quasicompact so that $f-g$ is bounded on $K$ (by the \namerefpcref{ExtremeValueTheorem})}.
+\metric{f}{g}_K\coloneqq \sup _{x\in K}\{ \abs{f(x)-g(x)}\} .\footnote{We require that $K$ be quasicompact so that $f-g$ is bounded on $K$ (by the \namerefpcref{ExtremeValueTheorem})}.
 \end{equation}
 In general, this will not be a metric.  For example, take $X\coloneqq \R$ and $K\coloneqq [0,1]$.  Then,  $\abs{f,0}_K=0$ iff $\restr{f}{[0,1]}=0$, but of course, there are many nonzero real-valued continuous functions on $\R$ that vanish on $[0,1]$ (by Urysohn's Lemma (\cref{UrysohnsLemma}), for example, if you want to use a sledgehammer (or maybe just a hammer?) to swat a fly).
 \end{exm}
 \begin{dfn}{Semimetric space}{Semimetric space}
-A \emph{semimetric space}\index{Semimetric space} is a set $X$ equipped with a collection $\collection{D}$ of semimetrics.
+A \term{semimetric space}\index{Semimetric space} is a set $X$ equipped with a collection $\collection{D}$ of semimetrics.
 \begin{rmk}
-For some reason, it seems that semimetric spaces are also referred to as \emph{gauge spaces}\index{Gauge spaces}.  Off the top of my head, I can think of at least two other distinct ways in which the term ``gauge'' is used in mathematics, and so I would recommend not using this terminology
+For some reason, it seems that semimetric spaces are also referred to as \term{gauge spaces}\index{Gauge spaces}.  Off the top of my head, I can think of at least two other distinct ways in which the term ``gauge'' is used in mathematics, and so I would recommend not using this terminology
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Metric space}{MetricSpace}
-A \emph{metric space}\index{Metric space} $(X,\metric )$ is a semimetric space $\coord{X,\collection{D}}$ in which $\collection{D}$ is a singleton, $\cover{D}=\{ \metric \}$, and $\metric$ is a metric.
+A \term{metric space}\index{Metric space} $(X,\metric )$ is a semimetric space $\coord{X,\collection{D}}$ in which $\collection{D}$ is a singleton, $\cover{D}=\{ \metric \}$, and $\metric$ is a metric.
 \begin{rmk}
 The reason we take $\cover{D}$ to be a singleton instead of just an arbitrary collection of \emph{metrics} is to agree with standard terminology (metric spaces are almost always taken to be sets equipped with a (\emph{single}) metric).
 \end{rmk}
@@ -775,7 +786,7 @@ The reason we take $\cover{D}$ to be a singleton instead of just an arbitrary co
 \begin{exm}{A semimetric space that is not a metric space}{}
 Let $X$ be a topological space, and for $K\subseteq X$ quasicompact nonempty, let $\metric _K$ be the semimetric on $\Mor _{\Top}(X,\R )$ in \eqref{4.4.4}, that is
 \begin{equation}
-\metric[f][g]\coloneqq \sup _{x\in K}\{ \abs{f(x)-g(x)}\} .
+\metric{f}{g}\coloneqq \sup _{x\in K}\{ \abs{f(x)-g(x)}\} .
 \end{equation}
 We already know from \cref{exm4.4.3} that each $\metric _K$ is a semimetric on $\Mor _{\Top}(X,\R )$.
 
@@ -783,7 +794,7 @@ As $\cover{D}$ clearly contains more than one element (at least so long as $X$ c
 \end{exm}
 We noted at the very beginning of this chapter that the star of a point with respect to $\cover{B}_{\varepsilon}$ in $\R$ is just the ball of $2\varepsilon$.  You should be careful, however, as this does not hold in general.
 \begin{exm}{A metric space for which \\ $\Star _{\cover{B}_{\varepsilon}}(x)\neq B_{2\varepsilon}(x)$}{}
-Define $X\coloneqq \{ 0,1\}$ equipped with the metric $\metric$ for which $\metric[0][1]=1$, $\varepsilon \coloneqq 1$, and $x_0\coloneqq 0$.  Then,
+Define $X\coloneqq \{ 0,1\}$ equipped with the metric $\metric$ for which $\metric{0}{1}=1$, $\varepsilon \coloneqq 1$, and $x_0\coloneqq 0$.  Then,
 \begin{equation}
 \cover{B}_{\varepsilon}=\left\{ \{ 0\} ,\{ 1\} \right\} ,
 \end{equation}
@@ -811,18 +822,18 @@ It's worth noting that, in a metric space, for every closed subset, the distance
 \begin{prp}{}{prp4.8.49}
 Let $\coord{X,\metric}$ be a metric space and let $C\subseteq X$.  Then, the function $\dist _C:X\rightarrow \R$ defined by
 \begin{equation}\label{4.8.50}
-\dist _C(x)\coloneqq \inf _{c\in C}\{ \metric[x][c]\} 
+\dist _C(x)\coloneqq \inf _{c\in C}\{ \metric{x}{c}\} 
 \end{equation}\index[notation]{$\dist _C(x)$}
 is uniformly-continuous and furthermore $\dist _C^{-1}(0)=C$.
 \begin{rmk}
 The statement that $\dist _C^{-1}(0)=C$ means that, not only is $\dist _C$ $0$ on $C$, but in fact, it isn't $0$ anywhere else as well.  Contrast this with a set that is not closed, e.g. $(0,1)\subseteq \R$, for which $1\in \R$ is a distance of $0$ from this set but not actually an element of the set.
 \end{rmk}
 \begin{proof}
-Let $\varepsilon >0$.  Let $x_1,x_2\in X$ lie in some $\varepsilon$ ball.  Choose some $c\in C$ such that $\metric[x_1][c]-\dist_C(x_1)<\varepsilon$.\footnote{Using \cref{prp1.4.11}.}  Then,
+Let $\varepsilon >0$.  Let $x_1,x_2\in X$ lie in some $\varepsilon$ ball.  Choose some $c\in C$ such that $\metric{x_1}{c}-\dist_C(x_1)<\varepsilon$.\footnote{Using \cref{prp1.4.11}.}  Then,
 \begin{equation}
 \begin{split}
-\dist _C(x_2) & \leq \metric[x_2][c]\leq \metric[x_2][x_1]+\metric[x_1][c]<2\varepsilon +(\dist _C(x_1)+\varepsilon ) \\
-& =3\varepsilon +\dist _C(x_1),
+\dist _C(x_2) & \leq \metric{x_2}{c}\leq \metric{x_2}{x_1}+\metric{x_1}{c} \\
+& <2\varepsilon +(\dist _C(x_1)+\varepsilon )=3\varepsilon +\dist _C(x_1),
 \end{split}
 \end{equation}
 and so
@@ -858,7 +869,7 @@ where
 and
 \begin{equation}\label{1.13}
 \begin{multlined}
-B_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}(x)\coloneqq \left\{ y\in X:\right. \\ \left. \metric[y][x]_1<\varepsilon _1,\ldots ,\metric[y][x]_m<\varepsilon _m\right\} .
+B_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}(x)\coloneqq \left\{ y\in X:\right. \\ \left. \metric{y}{x}_1<\varepsilon _1,\ldots ,\metric{y}{x}_m<\varepsilon _m\right\} .
 \end{multlined}
 \end{equation}\index[notation]{$B_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}(x)$}
 \begin{exr}{}{}
@@ -870,26 +881,29 @@ So the notation admittedly makes this look a bit atrocious.  Let's try to break 
 \end{dfn}
 Our first order of business is to make explicit what it means to be uniformly-continuous for semimetric spaces.
 \begin{prp}{}{prp4.2.27x}
-Let $f\colon \coord{X,\collection{D}}\rightarrow \coord{Y,\collection{E}}$ be a function between semimetric spaces.  Then, $f$ is uniformly continuous iff for every $\metric \in \collection{E}$ and $\varepsilon >0$, there are some $\metric _1,\ldots ,\metric _m\in \collection{D}$ and $\delta _1,\ldots ,\delta _m>0$ such that, whenever $\metric[x_1][x_2]_k<\delta _k$ for $1\leq k\leq m$, it follows that $\metric[f(x_1)][f(x_2)]<\varepsilon$.
+Let $f\colon \coord{X,\collection{D}}\rightarrow \coord{Y,\collection{E}}$ be a function between semimetric spaces.  Then, $f$ is uniformly continuous iff for every $\metric \in \collection{E}$ and $\varepsilon >0$, there are some $\metric _1,\ldots ,\metric _m\in \collection{D}$ and $\delta _1,\ldots ,\delta _m>0$ such that, whenever $\metric{x_1}{x_2}_k<\delta _k$ for $1\leq k\leq m$, it follows that $\metric{f(x_1)}{f(x_2)}<\varepsilon$.
 \begin{rmk}
-In particular, for metric spaces, $f$ is uniformly-continuous iff for every $\varepsilon >0$ there is some $\delta >0$ such that, whenever $\metric[x_1][x_2]<\delta$, it follows that $\metric[f(x_1)][f(x_2)]<\varepsilon$.
+In particular, for metric spaces, $f$ is uniformly-continuous iff for every $\varepsilon >0$ there is some $\delta >0$ such that, whenever $\metric{x_1}{x_2}<\delta$, it follows that $\metric{f(x_1)}{f(x_2)}<\varepsilon$.
 \end{rmk}
 \begin{proof}
 $(\Rightarrow )$ Suppose that $f$ is uniformly-continuous.  Let $\metric _1\in \collection{E}$ and let $\varepsilon >0$.  Then, as $f$ is uniformly-continuous, $f^{_1}\left( \cover{B}_{\varepsilon}^{\metric}\right)$ is a uniform cover, and so, by the definition of a uniform base (\cref{UniformBase}), there are $\metric _1,\ldots ,\metric _m\in \collection{D}$ and $\delta _1,\ldots ,\delta _m>0$ such that $\cover{B}_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}\llcurly f^{-1}\left( \cover{B}_{\varepsilon}^{\metric}\right)$.  Thus, for every $B_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}(x)\in \cover{B}_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}$ there is some $f^{-1}(B_{\varepsilon}^{\metric}(y_x))\in f^{-1}(\cover{B}_{\varepsilon}^{\metric})$ such that
-\begin{equation}
+\begin{equation*}
 \Star _{\cover{B}_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}}\left( B_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}(x)\right) \subseteq f^{-1}(B_{\varepsilon}^{\metric}(y_x)).
-\end{equation}
+\end{equation*}
 
-So, let $x_1,x_2\in X$ and suppose that $\metric[x_1][x_2]_k<\delta _k$ for $1\leq k\leq m$.  This means that $x_1,x_2\in B_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}(x_2)$, and so, by the above equation, $x_1,x_2\in f^{-1}(B_{\varepsilon}^{\metric}(y_x))$.  Hence,
+So, let $x_1,x_2\in X$ and suppose that $\metric{x_1}{x_2}_k<\delta _k$ for $1\leq k\leq m$.  This means that $x_1,x_2\in B_{\delta _1,\ldots ,\delta _m}^{\metric _1,\ldots ,\metric _m}(x_2)$, and so, by the above equation, $x_1,x_2\in f^{-1}(B_{\varepsilon}^{\metric}(y_x))$.  Hence,
 \begin{equation}
-\metric[f(x_1)][f(x_2)]\leq \metric[f(x_1)][y_{x_1}]+\metric[y_{x_1}][f(x_2)]<\varepsilon +\varepsilon =2\varepsilon .
+\begin{split}
+\metric{f(x_1)}{f(x_2)} & \leq \metric{f(x_1)}{y_{x_1}}+\metric{y_{x_1}}{f(x_2)} \\
+& <\varepsilon +\varepsilon =2\varepsilon .
+\end{split}
 \end{equation}
 
 \blankline
 \noindent
-$(\Leftarrow )$ Suppose that for every $\metric \in \collection{E}$ and $\varepsilon >0$, there are some $\metric _1,\ldots ,\metric _m\in \collection{D}$ and $\delta _1,\ldots ,\delta _m>0$ such that, whenever $\metric[x_1][x_2]_k<\delta _k$ for $1\leq k\leq m$, it follows that $\metric[f(x_1)][f(x_2)]<\varepsilon$.  Let $\metric _1,\ldots ,\metric _m\in \collection{E}$\footnote{Note that these semimetrics are elements of $\collection{E}$, whereas the same symbols in the previous sentence were used to represent elements of $\collection{D}$.} and let $\varepsilon _1,\ldots ,\varepsilon _m>0$.  We wish to show that $f^{-1}\left( \cover{B}_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}\right)$ is a uniform cover.
+$(\Leftarrow )$ Suppose that for every $\metric \in \collection{E}$ and $\varepsilon >0$, there are some $\metric _1,\ldots ,\metric _m\in \collection{D}$ and $\delta _1,\ldots ,\delta _m>0$ such that, whenever $\metric{x_1}{x_2}_k<\delta _k$ for $1\leq k\leq m$, it follows that $\metric{f(x_1)}{f(x_2)}<\varepsilon$.  Let $\metric _1,\ldots ,\metric _m\in \collection{E}$\footnote{Note that these semimetrics are elements of $\collection{E}$, whereas the same symbols in the previous sentence were used to represent elements of $\collection{D}$.} and let $\varepsilon _1,\ldots ,\varepsilon _m>0$.  We wish to show that $f^{-1}\left( \cover{B}_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}\right)$ is a uniform cover.
 
-By hypothesis, for each $k$, there are finitely many $\metric _{k,1},\ldots ,\metric _{k,m_k}\in \collection{D}$ and $\delta _{k_1},\ldots ,\delta _{k,m_k}>0$ such that, whenever $\metric[x_1][x_2]_{k,l}<\delta _{k,l}$ for $1\leq l\leq m_k$, it follows that $\metric[f(x_1)][f(x_2)]_k<\frac{1}{2}\varepsilon _k$.  We claim that $\cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}$ star-refines $f^{-1}\left( \cover{B}_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}\right)$, which will complete the proof.
+By hypothesis, for each $k$, there are finitely many $\metric _{k,1},\ldots ,\metric _{k,m_k}\in \collection{D}$ and $\delta _{k_1},\ldots ,\delta _{k,m_k}>0$ such that, whenever $\metric{x_1}{x_2}_{k,l}<\delta _{k,l}$ for $1\leq l\leq m_k$, it follows that $\metric{f(x_1)}{f(x_2)}_k<\frac{1}{2}\varepsilon _k$.  We claim that $\cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}$ star-refines $f^{-1}\left( \cover{B}_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}\right)$, which will complete the proof.
 
 So, let $B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)\in \cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}$.  We claim that
 \begin{equation}
@@ -899,10 +913,10 @@ So, let $B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metr
 \end{equation}
 which itself will complete the proof.
 
-So, let $x'\in \Star _{\cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}}\left( B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)\right)$.  We wish to show that $f(x')\in B_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}(f(x))$.  That $x'\in \Star _{\cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}}\left( B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)\right)$ means that there is some $x''\in X$ with $x''\in B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x')$ and $x''\in B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)$.  As $\metric[x''][x']_{k,l}<\delta _k$ for $1\leq k\leq m_l$ (and similarly for $\metric[x''][x]_{k,l}$), it follows from our hypothesis that $\metric[f(x'')][f(x')]_k<\frac{1}{2}\varepsilon _k$ and $\metric[f(x'')][f(x)]_k<\frac{1}{2}\varepsilon _k$ for $1\leq k\leq m$.  Hence,
+So, let $x'\in \Star _{\cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}}\left( B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)\right)$.  We wish to show that $f(x')\in B_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _1,\ldots ,\metric _m}(f(x))$.  That $x'\in \Star _{\cover{B}_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m}}}\left( B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)\right)$ means that there is some $x''\in X$ with $x''\in B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x')$ and $x''\in B_{\delta _{1,1},\ldots ,\delta _{m,m_m}}^{\metric _{1,1},\ldots ,\metric _{m,m_m}}(x)$.  As $\metric{x''}{x'}_{k,l}<\delta _k$ for $1\leq k\leq m_l$ (and similarly for $\metric{x''}{x}_{k,l}$), it follows from our hypothesis that $\metric{f(x'')}{f(x')}_k<\frac{1}{2}\varepsilon _k$ and $\metric{f(x'')}{f(x)}_k<\frac{1}{2}\varepsilon _k$ for $1\leq k\leq m$.  Hence,
 \begin{equation}
 \begin{split}
-\metric[f(x')][f(x)]_k & \leq \metric[f(x')][f(x'')]_k+\metric[f(x'')][f(x)]_k \\
+\metric{f(x')}{f(x)}_k & \leq \metric{f(x')}{f(x'')}_k+\metric{f(x'')}{f(x)}_k \\
 & <\tfrac{1}{2}\varepsilon _k+\tfrac{1}{2}\varepsilon _k=\varepsilon _k.
 \end{split}
 \end{equation}
@@ -928,7 +942,7 @@ Not only does the discrete topology come from a uniformity, but so to does the d
 
 Let $X$ be a set and for $x,y\in X$, define
 \begin{equation}
-\metric[x][y]\coloneqq \begin{cases}0 & \text{if }x=y \\ 1 & \text{otherwise.}\end{cases}
+\metric{x}{y}\coloneqq \begin{cases}0 & \text{if }x=y \\ 1 & \text{otherwise.}\end{cases}
 \end{equation}
 \begin{exr}[breakable=false]{}{}
 Show that $\metric$ is indeed a metric on $X$.
@@ -949,17 +963,17 @@ Why does the indiscrete uniformity (on a set with at least two elements) not com
 
 But before we head onto topological groups, what about the morphisms in the category of semimetric spaces, you ask?  Good question.
 \begin{dfn}{Bounded map (of semimetric \\ spaces)}{BoundedMap}
-Let $f\colon \coord{X,\cover{D}}\rightarrow \coord{Y,\cover{E}}$ be a function between semimetric spaces.  Then, $f$ is \emph{bounded}\index{Bounded map (of semimetric spaces)} iff for every $\metric \in \cover{E}$, there are \emph{finitely-many} $\metric _1,\ldots ,\metric _m\in \cover{D}$ and constants $K_1,\ldots ,K_m\geq 0$ such that
+Let $f\colon \coord{X,\cover{D}}\rightarrow \coord{Y,\cover{E}}$ be a function between semimetric spaces.  Then, $f$ is \term{bounded}\index{Bounded map (of semimetric spaces)} iff for every $\metric \in \cover{E}$, there are \emph{finitely-many} $\metric _1,\ldots ,\metric _m\in \cover{D}$ and constants $K_1,\ldots ,K_m\geq 0$ such that
 \begin{equation}
-\metric[f(x_1)][f(x_2)]\leq K_1\metric[x_1][x_2]_1+\cdots +K_m\metric[x_1][x_2]_m
+\metric{f(x_1)}{f(x_2)}\leq K_1\metric{x_1}{x_2}_1+\cdots +K_m\metric{x_1}{x_2}_m
 \end{equation}
 for all $x_1,x_2\in X$.
 \begin{rmk}
 If $X$ and $Y$ are metric spaces with metric $\metric _X$ and $\metric _Y$ respectively, this condition reads just
 \begin{equation}
-\metric[f(x_1)][f(x_2)]_Y\leq K\metric[x_1][x_2]_X.
+\metric{f(x_1)}{f(x_2)}_Y\leq K\metric{x_1}{x_2}_X.
 \end{equation}
-In this case, $f$ is called \emph{Lipschitz-continuous}\index{Lipschitz-continuous}
+In this case, $f$ is called \term{Lipschitz-continuous}\index{Lipschitz-continuous}.
 \end{rmk}
 \begin{rmk}
 Of all the categories we've come across, that the bounded maps are the `right' notion of morphism between semimetric spaces is probably the least obvious.\footnote{Of course, we can declare any collection of morphisms we like.  It's just that, taking the morphisms to be \emph{all} functions when the objects are groups (for example) is not particularly useful---the category won't be able to tell that the groups are groups!}  The motivation for the definition is that, for seminormed vector spaces, this definition is equivalent to continuity---see \cref{exr4.3.57}.  Perhaps a simpler explanation is that it guarantees uniform-continuity.
@@ -999,7 +1013,7 @@ is not bounded on $[0,1]$.  Equivalently, you can show that $\lim _{y\to 0^+}\sq
 
 Before we talk about any sort of uniformity, we had better first define what we mean by a topological group.
 \begin{dfn}{Topological group}{TopologicalGroup}
-A \emph{topological group} is a group $\coord{G,\cdot ,1,\blank ^{-1}}$ equipped with a topology such that
+A \term{topological group} is a group $\coord{G,\cdot ,1,\blank ^{-1}}$ equipped with a topology such that
 \begin{enumerate}
 \item $\cdot :G\times G\rightarrow G$ is continuous; and
 \item $\blank ^{-1}:G\rightarrow G$ is continuous.
@@ -1090,7 +1104,10 @@ W''\coloneqq (W')(W')^{-1}.
 \end{equation}
 This certainly satisfies $(W'')^{-1}=W''$, and furthermore,
 \begin{equation}
-W''W''\coloneqq (W')(W')^{-1}(W')(W')^{-1}\subseteq WWWW\subseteq VV\subseteq U.
+\begin{split}
+W''W'' & \coloneqq (W')(W')^{-1}(W')(W')^{-1}\subseteq WWWW \\
+& \subseteq VV\subseteq U.
+\end{split}
 \end{equation}
 \end{proof}
 \end{prp}
@@ -1105,10 +1122,13 @@ and
 \uniformity{B}_{G,R}\coloneqq \left\{ \cover{B}_{U,R}:U\ni 1\text{ is open.}\right\} 
 \end{equation}\index[notation]{$\uniformity{B}_{G,R}$}
 where
-\begin{equation}\label{1.9}
-\cover{B}_{U,L}\coloneqq \left\{ gU:g\in G\right\} \text{ and }\cover{B}_{U,R}\coloneqq \left\{ Ug:g\in G\right\} .
-\end{equation}\index[notation]{$\cover{B}_{U,L}$}\index[notation]{$\cover{B}_{U,R}$}
-Then, $\uniformity{B}_{G,L}$ and $\uniformity{B}_{R,L}$ are uniform bases, which generate respectively the \emph{left uniformity}\index{Left uniformity (of a topological group)} $\uniformity{U}_{G,L}$\index[notation]{$\uniformity{U}_{G,L}$} and \emph{right uniformity}\index{Right uniformity (of a topological group)} $\uniformity{U}_{G,R}$\index[notation]{$\uniformity{G}_{G,R}$}.
+\begin{subequations}\label{1.9}
+\begin{align}
+\cover{B}_{U,L} & \coloneqq \left\{ gU:g\in G\right\} \\
+\cover{B}_{U,R} & \coloneqq \left\{ Ug:g\in G\right\} .
+\end{align}
+\end{subequations}\index[notation]{$\cover{B}_{U,L}$}\index[notation]{$\cover{B}_{U,R}$}
+Then, $\uniformity{B}_{G,L}$ and $\uniformity{B}_{R,L}$ are uniform bases, which generate respectively the \term{left uniformity}\index{Left uniformity (of a topological group)} $\uniformity{U}_{G,L}$\index[notation]{$\uniformity{U}_{G,L}$} and \term{right uniformity}\index{Right uniformity (of a topological group)} $\uniformity{U}_{G,R}$\index[notation]{$\uniformity{G}_{G,R}$}.
 
 Furthermore,
 \begin{enumerate}
@@ -1189,7 +1209,7 @@ so that $\cover{U}_U\llcurly f^{-1}(\cover{U}_V)$.
 
 An \emph{incredibly} family of examples of topological groups are the topological vector spaces.
 \begin{dfn}{Topological vector space}{}
-A \emph{topological vector space}\index{Topological vector space} is real vector space $\coord{V,+,0,\R ,\cdot}$ such that
+A \term{topological vector space}\index{Topological vector space} is real vector space $\coord{V,+,0,\R ,\cdot}$ such that
 \begin{enumerate}
 \item $\coord{V,+,0}$ is a topological group; and
 \item $\cdot :\R \times V\rightarrow V$ is continuous.
@@ -1200,17 +1220,17 @@ Of course, this definition makes sense if we were to replace $\R$ with any topol
 \end{dfn}
 One big reason why we are interested in topological vector spaces is because almost all of the examples of semimetrics we counter actually come \emph{seminorms}.
 \begin{dfn}{Seminorm and norm}{Seminorm}
-Let $V$ be a real vector space.  Then, a \emph{seminorm}\index{Seminorm} on $V$ is a function $\norm :V\rightarrow \R _0^+$ such that
+Let $V$ be a real vector space.  Then, a \term{seminorm}\index{Seminorm} on $V$ is a function $\norm :V\rightarrow \R _0^+$ such that
 \begin{enumerate}
-\item (Homogeneity) $\norm[\alpha v]=\norm[\alpha ]\norm[v]$ for $\alpha \in \R$ and $v\in V$;
-\item (Triangle Inequality) $\norm[v_1+v_2]\leq \norm[v_1]+\norm[v_2]$.
+\item (Homogeneity) $\norm{\alpha v}=\norm{\alpha }\norm{v}$ for $\alpha \in \R$ and $v\in V$;
+\item (Triangle Inequality) $\norm{v_1+v_2}\leq \norm{v_1}+\norm{v_2}$.
 \end{enumerate}
-$\norm$ is a \emph{norm} if furthermore (Definiteness) $\norm[x]=0$ implies $x=0$.
+$\norm$ is a \term{norm} if furthermore (Definiteness) $\norm{x}=0$ implies $x=0$.
 \end{dfn}
 \begin{dfn}{Semimetric induced by a seminorm}{}
-Let $V$ be a real vector space, let $\norm$ be a seminorm on $V$, and let $v_1,v_2\in V$.  Then, the \emph{semimetric induced by $\norm$}, $\metric$, is defined by
+Let $V$ be a real vector space, let $\norm$ be a seminorm on $V$, and let $v_1,v_2\in V$.  Then, the \term{semimetric induced by $\norm$}, $\metric$, is defined by
 \begin{equation}
-\metric[v_1][v_2]\coloneqq \norm[v_1-v_2].
+\metric{v_1}{v_2}\coloneqq \norm{v_1-v_2}.
 \end{equation}
 \begin{exr}[breakable=false]{}{}
 Check that $\metric$ is indeed a semimetric.  Show that if $\norm$ is a norm then $\metric$ is a metric.
@@ -1220,7 +1240,7 @@ Intuitively, the seminorm of something is like its `size' and semimetric is like
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Seminormed vector space and normed vector space}{SeminormedVectorSpace}
-A \emph{seminormed vector space}\index{Seminormed vector space} is a real vector space $V$ together with a collection of seminorms $\cover{D}$ such that $\coord{V,\cover{D}}$ is a semimetric space.  $\coord{V,\cover{D}}$ is a \emph{normed vector space}\index{Normed vector space} iff it is furthermore a metric space.
+A \term{seminormed vector space}\index{Seminormed vector space} is a real vector space $V$ together with a collection of seminorms $\cover{D}$ such that $\coord{V,\cover{D}}$ is a semimetric space.  $\coord{V,\cover{D}}$ is a \term{normed vector space}\index{Normed vector space} iff it is furthermore a metric space.
 \end{dfn}
 As by now you should have expected, the morphisms of seminormed vector spaces are the bounded (\cref{BoundedMap}) linear maps.
 \begin{exm}{The category of seminormed vector spaces}{}\index{Category of seminormed vector spaces}
@@ -1235,7 +1255,7 @@ The category of topological spaces is the category $\Semi \Vect$\index[notation]
 \begin{exr}{}{}
 Let $f\colon \coord{V,\cover{D}}\rightarrow \coord{W,\cover{E}}$ be a linear map between seminormed vector spaces.  Show that $f$ is bounded iff for every $\norm _0\in \cover{E}$ there are \emph{finitely-many} $\norm _1,\ldots ,\norm _m\in \cover{D}$ and constants $K_1,\ldots ,K_m\geq 0$ such that
 \begin{equation}
-\norm[f(v)]_0\leq K_1\norm[v]_1+\cdots +K_m\norm[v]_m
+\norm{f(v)}_0\leq K_1\norm{v}_1+\cdots +K_m\norm{v}_m
 \end{equation}
 for all $v\in V$.
 \begin{rmk}
@@ -1253,14 +1273,14 @@ As a mater of fact, the morphisms don't care whether you're thinking of things a
 \begin{exr}{}{exr4.3.57}
 Let $f\colon \coord{V,\cover{D}}\rightarrow \coord{W,\cover{E}}$ be a \emph{linear} map between two seminormed vector spaces.  Show that it is continuous iff it is bounded.
 \end{exr}
-\begin{displayquote}
+\begin{important}
 Unless otherwise stated, seminormed vector spaces are always equipped with the uniformity induced by the semimetric space structure (or, equivalently, the uniformity induced by the topological group structure).
-\end{displayquote}
+\end{important}
 
 In fact, a lot of examples of seminormed vector spaces have \emph{even more} structure, namely, the structure of an algebra.
 \begin{dfn}{Associative-algebra}{Algebra}
 \\
-An \emph{associative-algebra}\index{Associative-algebra} is a set $A$ equipped with the structure of a vector space over a field $F$ $\coord{A,+,0,-,F}$ and the structure of a ring $\coord{A,+,0,-,\cdot ,1}$ such that
+An \term{associative-algebra}\index{Associative-algebra} is a set $A$ equipped with the structure of a vector space over a field $F$ $\coord{A,+,0,-,F}$ and the structure of a ring $\coord{A,+,0,-,\cdot ,1}$ such that
 \begin{enumerate}
 \item $(\alpha _1\alpha _2)\cdot a=\alpha _1\cdot (\alpha _2\cdot a)$ for $\alpha _1,\alpha _2\in F$ and $a\in A$; and
 \item $\alpha \cdot (a_1a_2)=(\alpha \cdot a_1)a_2$ for $\alpha \in F$ and $a_1,a_2\in A$.
@@ -1273,7 +1293,7 @@ The prefix ``associative'' here is to distinguish this concept from other things
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Homomorphism (of associative-algebras)}{HomomorphismOfAlgebras}
-Let $A$ and $B$ be associative-algebras and let $f\colon A\rightarrow B$ be a function.  Then, $f$ is a \emph{homomorphism}\index{Homomorphism (of associative-algebras)} iff $f$ is both a linear map of the underlying vectors spaces and a ring homomorphism of the underlying vector spaces.
+Let $A$ and $B$ be associative-algebras and let $f\colon A\rightarrow B$ be a function.  Then, $f$ is a \term{homomorphism}\index{Homomorphism (of associative-algebras)} iff $f$ is both a linear map of the underlying vectors spaces and a ring homomorphism of the underlying vector spaces.
 \end{dfn}
 \begin{exm}{The category of associative-algebras over a field $F$}{}\index{Category of associative-algebras}
 The category of associative-algebras over a field $F$ is the category $\Alg _F$\index[notation]{$\Alg _F$}
@@ -1285,7 +1305,7 @@ The category of associative-algebras over a field $F$ is the category $\Alg _F$\
 \end{enumerate}
 \end{exm}
 \begin{dfn}{Seminormed algebra}{SeminormedAlgebra}
-A \emph{seminormed algebra}\index{Seminormed algebra} is an associative-algebra whose underlying vector space is a seminormed vector space such that $\norm[a_1a_2]\leq \norm[a_1]\norm[a_2]$ for $a_1,a_2\in A$.
+A \term{seminormed algebra}\index{Seminormed algebra} is an associative-algebra whose underlying vector space is a seminormed vector space such that $\norm{a_1a_2}\leq \norm{a_1}\norm{a_2}$ for $a_1,a_2\in A$.
 \begin{rmk}
 Note that we don't mention the field we are working over because, by definition, seminormed vector spaces are always over $\R$---see \cref{SeminormedVectorSpace}.
 \end{rmk}
@@ -1304,7 +1324,7 @@ The category of seminormed algebras over a field $F$ is the category $\Semi \Alg
 \end{exm}
 We're just about to put all these definitions to use for the purpose of introducing, among other things, the notion of \emph{uniform convergence}.  It will be important to be able to contrast this with the weaker notion of \emph{pointwise convergence}.
 \begin{dfn}{Pointwise convergence}{PointwiseConvergence}
-Let $X$ be a set,let $Y$ be a topological space, let $\lambda \mapsto f_{\lambda}\in \Mor _{\Set}(X,Y)$ be a net, and let $f_{\infty}\in \Mor _{\Set}(X,Y)$.  Then, $\lambda \mapsto f_{\lambda}$ \emph{converges pointwise}\index{Pointwise convergence} to $f_{\infty}$ iff for every $x\in X$, $\lambda \mapsto f_{\lambda}(x)$ converges to $f_{\infty}(x)$.
+Let $X$ be a set,let $Y$ be a topological space, let $\lambda \mapsto f_{\lambda}\in \Mor _{\Set}(X,Y)$ be a net, and let $f_{\infty}\in \Mor _{\Set}(X,Y)$.  Then, $\lambda \mapsto f_{\lambda}$ \term{converges pointwise}\index{Pointwise convergence} to $f_{\infty}$ iff for every $x\in X$, $\lambda \mapsto f_{\lambda}(x)$ converges to $f_{\infty}(x)$.
 \begin{rmk}
 Thus, $\lambda \mapsto f_{\lambda}$ converges pointwise to $f_{\infty}$ iff if you plug in $x$ and take the limit, you get $f_{\infty}(x)$.
 \end{rmk}
@@ -1317,7 +1337,7 @@ f_{\infty}(x)\coloneqq \begin{cases}0 & \text{if }x\in [0,1) \\ 1 & \text{if }x=
 It turns out that this does \emph{not} converge uniformly to $f_{\infty}$ because, if it did, $f_{\infty}$ would need to be continuous---see \cref{thm4.5.6}.
 \end{exm}
 \begin{exr}{}{exr4.2.84}
-Let $X$ be a set and let $Y$ be a topological space.  Show that the relation of pointwise convergence between nets in $\Mor _{\Set}(X,Y)$ and elements of $\Mor _{\Set}(X,Y)$ satisfies the axioms of \namerefpcref{KelleysConvergenceTheorem}, so as to define a unique topology on $\Mor _{\Set}(X,Y)$ for which the notion of convergence is precisely pointwise convergence, the \emph{topology of pointwise convergence}.
+Let $X$ be a set and let $Y$ be a topological space.  Show that the relation of pointwise convergence between nets in $\Mor _{\Set}(X,Y)$ and elements of $\Mor _{\Set}(X,Y)$ satisfies the axioms of \namerefpcref{KelleysConvergenceTheorem}, so as to define a unique topology on $\Mor _{\Set}(X,Y)$ for which the notion of convergence is precisely pointwise convergence, the \term{topology of pointwise convergence}.
 \end{exr}
 
 With these new definitions in hand, we now present an incredibly important example of a seminormed algebra, an example that was a large part of the motivation for introducing seminormed algebras at all.
@@ -1328,16 +1348,16 @@ A\coloneqq \Mor _{\Top}(X,\R ).
 \end{equation}
 Pointwise addition and pointwise scalar multiplication gives $A$ the structure of a real vector space.  Pointwise multiplication gives $A$ in turn the structure of a real associative-algebra.  The collection $\{ \norm _K:K\subseteq X\text{ quasicompact}\}$, where
 \begin{equation}
-\norm[f]_K\coloneqq \sup _{x\in K}\{ \abs{f(x)}\} ,
-\end{equation}\index[notation]{$\norm[f]_K$}
-the \emph{supremum seminorm}\index{Supremum seminorm} on $K$, then gives $A$ the structure of a seminormed algebra.  It is thus canonically a uniform space (and in turn a topological space).  If $X$ itself is quasicompact, convergence in $\Mor _{\Top}(X,\R )$ is called \emph{uniform convergence}\index{Uniform convergence}.\footnote{Despite the name and the context in which we're presenting it, uniform convergence actually has nothing to do with uniform spaces per se (in contrast to uniform continuity, for example).  $\Mor _{\Top}(X,\R )$ has a topology, and hence a notion of convergence, which we happen to call ``uniform convergence''.  In particular, we only needed to equip $\Mor _{\Top}(X,\R )$ with a topology to define uniform convergence.  The reason we waited until the chapter on uniform spaces, of course, is because $\Mor _{\Top}(X,\R )$ obtains its topology from a family of semimetrics (or in the case $X$ is quasicompact, just a single metric), not because of any direct connection with uniform convergence and uniform spaces.}  Thus, in the general case, people refer to convergence in the topological space $\Mor _{\Top}(X,\R )$ as \emph{uniform convergence on quasicompact subsets}, though, as this is never ambiguous, you can probably just say ``uniform convergence'' all the time for short\footnote{This is further justified in the exercise below.}.  This is important enough to spell out in detail.
-\begin{displayquote}
-$\lambda \mapsto f_{\lambda}\in \Mor _{\Top}(X,\R )$ converges (uniformly) to $f_{\infty}\in \Mor _{\Top}(X,\R )$ iff for every quasicompact subset $K\subseteq X$ $\lambda \mapsto x_{\lambda}$ is eventually contained in $B_{\norm _K}(f_{\infty})\coloneqq \left\{ f\in \Mor _{\Top}(X,\R ):\norm[f-f_{\infty}]_K\right\} $.  
-\end{displayquote}
+\norm{f}_K\coloneqq \sup _{x\in K}\{ \abs{f(x)}\} ,
+\end{equation}\index[notation]{$\norm{f}_K$}
+the \term{supremum seminorm}\index{Supremum seminorm} on $K$, then gives $A$ the structure of a seminormed algebra.  It is thus canonically a uniform space (and in turn a topological space).  If $X$ itself is quasicompact, convergence in $\Mor _{\Top}(X,\R )$ is called \term{uniform convergence}\index{Uniform convergence}.\footnote{Despite the name and the context in which we're presenting it, uniform convergence actually has nothing to do with uniform spaces per se (in contrast to uniform continuity, for example).  $\Mor _{\Top}(X,\R )$ has a topology, and hence a notion of convergence, which we happen to call ``uniform convergence''.  In particular, we only needed to equip $\Mor _{\Top}(X,\R )$ with a topology to define uniform convergence.  The reason we waited until the chapter on uniform spaces, of course, is because $\Mor _{\Top}(X,\R )$ obtains its topology from a family of semimetrics (or in the case $X$ is quasicompact, just a single metric), not because of any direct connection with uniform convergence and uniform spaces.}  Thus, in the general case, people refer to convergence in the topological space $\Mor _{\Top}(X,\R )$ as \term{uniform convergence on quasicompact subsets}, though, as this is never ambiguous, you can probably just say ``uniform convergence'' all the time for short\footnote{This is further justified in the exercise below.}.  This is important enough to spell out in detail.
+\begin{important}
+$\lambda \mapsto f_{\lambda}\in \Mor _{\Top}(X,\R )$ converges (uniformly) to $f_{\infty}\in \Mor _{\Top}(X,\R )$ iff for every quasicompact subset $K\subseteq X$ $\lambda \mapsto x_{\lambda}$ is eventually contained in $B_{\norm _K}(f_{\infty})\coloneqq \left\{ f\in \Mor _{\Top}(X,\R ):\norm{f-f_{\infty}}_K\right\} $.  
+\end{important}
 Even more explicitly:
-\begin{displayquote}
+\begin{important}
 $\lambda \mapsto f_{\lambda}\in \Mor _{\Top}(X,\R )$ converges (uniformly) to $f_{\infty}\in \Mor _{\Top}(X,\R )$ iff for every quasicompact subset $K\subseteq X$ and for every $\varepsilon >0$ there is some $\lambda _0$ such that, whenever $\lambda \geq \lambda _0$, it follows that $\abs{f_{\lambda}(x)-f_{\infty}(x)}<\varepsilon$ for all $x\in K$.
-\end{displayquote}
+\end{important}
 This is in contrast to \emph{pointwise convergence} (\cref{PointwiseConvergence}):  here, we can choose a single $\lambda _0$ that `works' for all $x\in K$, whereas, in the pointwise case, your $\lambda _0$ will have to depend on $x$.  That is to say, we can choose $\lambda _0$ ``uniformly'' to work for \emph{all} $x\in K$.
 
 The reason the case $X$ quasicompact is special is because, in this case, it is actually isomorphic (in the category of seminormed algebras) to a normed algebra.
@@ -1350,12 +1370,12 @@ Let $X$ be quasicompact.  Show that
 \end{equation}
 is an isomorphism in the category of seminormed algebras.
 \begin{rmk}
-The point is that, if all we care about is the seminormed algebra structure, we may always assume without loss of generality that $\Mor _{\Top}(X,\R )$ is in fact a \emph{normed} algebra with the single norm being given by $\norm[f]_X\coloneqq \sup _{X\in X}\{ \abs{f(x)}\}$, the \emph{supremum norm}\index{Supremum norm}.  In this case, we do not write $\norm[f]_X$ but rather $\norm[f]_\infty$\index[notation]{$\norm[f]_\infty$}.  The reason for this notation will become clear when we study $L^p$ spaces---see \crefnameref{Lp}.
+The point is that, if all we care about is the seminormed algebra structure, we may always assume without loss of generality that $\Mor _{\Top}(X,\R )$ is in fact a \emph{normed} algebra with the single norm being given by $\norm{f}_X\coloneqq \sup _{X\in X}\{ \abs{f(x)}\}$, the \term{supremum norm}\index{Supremum norm}.  In this case, we do not write $\norm{f}_X$ but rather $\norm{f}_\infty$\index[notation]{$\norm{f}_\infty$}.  The reason for this notation will become clear when we study $L^p$ spaces---see \crefnameref{Lp}.
 \end{rmk}
 \end{exr}
-\begin{displayquote}
+\begin{important}
 Unless otherwise stated, $\Mor _{\Top}(X,\R )$ is a always given the structure of a seminormed algebra, the associative-algebra structure defined pointwise and the seminorms being $\norm _K$ for $K\subseteq X$ quasicompact.
-\end{displayquote}
+\end{important}
 
 Of \emph{incredible} importance is that this space is in fact complete (at least for so-called \emph{quasicompactly-generated} spaces).  Of course, we need to first actually define what we mean by complete, and so we postpone this result---see \cref{thm4.5.6}.
 \end{exm}
@@ -1368,11 +1388,15 @@ Another reason to believe that the topology of uniform convergence on quasicompa
 	\begin{proof}
 		By \cref{exr4.2.31x,prp4.1.8},\footnote{These results give respectively a neighborhood base for semimetric spaces and state how neighborhood bases define topologies.} a base for usual topology on $\Mor _{\Top}(X,\R )$ is given by the collection of sets of the form
 		\begin{equation}\label{2.20}
-			f+B_{\varepsilon _1,\ldots ,\varepsilon _n}^{K_1,\ldots ,K_m}\ceqq f+\left\{ g\in \Mor _{\Top}(X,\R ):\left\| g\right\| _{K_k}<\varepsilon _k\right\}
+			\begin{multlined}
+			f+B_{\varepsilon _1,\ldots ,\varepsilon _n}^{K_1,\ldots ,K_m} \\ \ceqq f+\left\{ g\in \Mor _{\Top}(X,\R ):\left\| g\right\| _{K_k}<\varepsilon _k\right\}
+			\end{multlined}
 		\end{equation}
 		for $m\in \Z ^+$, $K_k\subseteq X$ quasi-compact, and $\varepsilon _k>0$, where for convenience we have abbreviated $B_{\varepsilon _1,\ldots ,\varepsilon _m}^{K_1,\ldots ,K_m}\ceqq B_{\varepsilon _1,\ldots ,\varepsilon _m}^{\metric _{K_1},\ldots ,\metric _{K_m}}$.  On the other hand, a base for the quasicompact-open topology is given by
 		\begin{equation}\label{2.21}
-			O_{K_1,a_1,\varepsilon _1;\ldots ;K_n,a_n,\varepsilon _n}:=\left\{ f\in C(X;F):f(K_k)\subseteq B_{\varepsilon _k}(a_k)\right\}
+			\begin{multlined}
+			O_{K_1,a_1,\varepsilon _1;\ldots ;K_n,a_n,\varepsilon _n} \\ \ceqq \left\{ f\in C(X;F):f(K_k)\subseteq B_{\varepsilon _k}(a_k)\right\}
+			\end{multlined}
 		\end{equation}
 		for $K_k\subseteq X$ quasicompact, $a_k\in \R$, and $\varepsilon _k>0$.
 		
@@ -1389,19 +1413,21 @@ Another reason to believe that the topology of uniform convergence on quasicompa
 		
 		\blni
 		$(\Leftarrow )$ Suppose that $X$ is completely $T_2$.  Let $K_1,\ldots ,K_n\subseteq X$ be arbitrary quasicompact subsets, let $a_1,\ldots ,a_n\in \R$ , and let $\varepsilon _1,\ldots ,\varepsilon _m>0$.  These arbitrary choices determine an arbitrary `$O$-set' of the form \eqref{2.21}.  Let $h$ be an element of this set.  We wish to show that it contains some set of the form \eqref{2.20} that contains $h$.  If $K_k$ meets $K_l$, then, in order that this ``$O$-set'' be nonempty, it had better be the case that $B_{\varepsilon _k}(a_k)$ meet $B_{\varepsilon _l}(a_l)$, in which case the intersection contains some $B_{\varepsilon}(a)\subseteq B_{\varepsilon _k}(a_k)\cap B_{\varepsilon _l}(a_l)$.  Now, remove $K_j$ and $K_k$ from this list and replace them respectively with just $\coord{K_j\cup K_k,a,\varepsilon}$.   After making these replacements, we obtain a new `$O$-set' smaller than the original, and furthermore, with the quasicompact sets disjoint.  As $X$ is completely-$T_2$, there exists a continuous function $f\colon X\rightarrow \R$ such that $f(K_k)=\{ a_k\}$ for $1\leq k\leq m$.  Then, $f+B_{\varepsilon _1,\ldots ,\varepsilon _n}^{K_1,\ldots ,K_m}$ is contained in this new `$O$-set', and hence is contained in the original `$O$-set' as well.  Furthermore
-		\begin{equation}
+		\begin{equation*}
 		\begin{split}
 		\MoveEqLeft
 		\sup \left\{ \abs{h(x)-f(x)}:x\in K_k\right\} \\
 		& =\sup \left\{ \abs{h(x)-a_k}:x\in K_k\right\} <\varepsilon _k,
 		\end{split}
-		\end{equation}
+		\end{equation*}
 		and hence contains $h$, as desired. 
 		
 		For the other direction, let $f\in \Mor _{\Top}(X,\R )$, $K_1,\ldots ,K_n\subseteq X$ quasicompact, and $\varepsilon _1,\ldots ,\varepsilon _m>0$ all be arbitrary.  Then,
 		\begin{equation}\label{eqn4.2.105}
 			\begin{split}
-				f+B_{\varepsilon _1,\ldots ,\varepsilon _n}^{K_1,\ldots ,K_n} & \ceqq f+\left\{ g\in \Mor _{\Top}(X,\R ):\left\| g\right\| _{K_k}<\varepsilon _k\right\} \\
+				\MoveEqLeft
+				f+B_{\varepsilon _1,\ldots ,\varepsilon _n}^{K_1,\ldots ,K_n} \\
+				& \ceqq f+\left\{ g\in \Mor _{\Top}(X,\R ):\left\| g\right\| _{K_k}<\varepsilon _k\right\} \\
 				& =f+\left\{ g\in \Mor _{\Top}(X,\R ):g(K_k)\subseteq B_{\varepsilon _k}(0)\right\} 
 			\end{split}
 		\end{equation}
@@ -1421,14 +1447,14 @@ Another reason to believe that the topology of uniform convergence on quasicompa
 			\end{split}
 		\end{equation}
 		Thus, $g$ is contained in the set in \eqref{eqn4.2.105}, and hence we have
-		\begin{equation}
+		\begin{equation*}
 			h\in O_{L_{1,1},f(x_{1,1}),\delta _1;\ldots ,L_{m,n_m},f(x_n,x_{n_m}),\delta _m}\subseteq f+B_{\varepsilon _1,\ldots ,\varepsilon _n}^{K_1,\ldots ,K_n},
-		\end{equation}
+		\end{equation*}
 		as desired.
 	\end{proof}
 \end{prp}
 
-\section{\texorpdfstring{$T_0$}{T0} uniform spaces are uniformly-completely-\texorpdfstring{$T_3$}{T3}}
+\section[\texorpdfstring{$T_0$}{T0} uni.~spaces are uni.-completely-\texorpdfstring{$T_3$}{T3}]{\texorpdfstring{$T_0$}{T0} uniform spaces are uniformly-completely-\texorpdfstring{$T_3$}{T3}}
 
 Our goal in this subsection is to show that all $T_0$ uniform spaces are uniformly-$T_3$.  Of course, to prove this, we had better say what uniformly-completely-$T_3$ means.
 
@@ -1436,55 +1462,55 @@ Our goal in this subsection is to show that all $T_0$ uniform spaces are uniform
 
 Throughout this subsection, let $S_1,S_2\subseteq X$ be \emph{disjoint} subsets of a uniform space $X$.
 \begin{dfn}{Uniformly-distinguishable}{UniformlyDistinguishable}
-$S_1$ and $S_2$ are \emph{uniformly-distinguishable}\index{Uniformly-distinguishable} iff there is some uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_1)$ does not intersect $S_2$ or there is a uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_2)$ does not intersect $S_1$.
+$S_1$ and $S_2$ are \term{uniformly-distinguishable}\index{Uniformly-distinguishable} iff there is some uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_1)$ does not intersect $S_2$ or there is a uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_2)$ does not intersect $S_1$.
 \end{dfn}
 \begin{dfn}{Uniformly-separated}{UniformlySeparatedx}
-$S_1$ and $S_2$ are \emph{uniformly-separated} iff there is some uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_1)$ does not intersect $S_2$ and there is a uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_2)$ does not intersect $S_1$.
+$S_1$ and $S_2$ are \term{uniformly-separated} iff there is some uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_1)$ does not intersect $S_2$ and there is a uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_2)$ does not intersect $S_1$.
 \end{dfn}
 \begin{dfn}{Uniformly-separated}{UniformlySeparated}
-$S_1$ and $S_2$ are \emph{uniformly-separated by neighborhoods}\index{Uniformly-separated by neighborhoods} iff there is some uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_1)$ is disjoint from $\Star _{\cover{U}}(S_2)$.
+$S_1$ and $S_2$ are \term{uniformly-separated by neighborhoods}\index{Uniformly-separated by neighborhoods} iff there is some uniform cover $\cover{U}$ for which $\Star _{\cover{U}}(S_1)$ is disjoint from $\Star _{\cover{U}}(S_2)$.
 \end{dfn}
 \begin{dfn}{Uniformly-completely-separated}{UniformlyCompletelySeparated}
-\\ $S_1$ and $S_2$ are \emph{uniformly-completely-separated}\index{Uniformly-completely-separated} iff there is a uniformly-continuous function $f\colon X\rightarrow [0,1]$ such that $\restr{f}{S_1}=0$ and $\restr{f}{S_2}=1$.
+\\ $S_1$ and $S_2$ are \term{uniformly-completely-separated}\index{Uniformly-completely-separated} iff there is a uniformly-continuous function $f\colon X\rightarrow [0,1]$ such that $\restr{f}{S_1}=0$ and $\restr{f}{S_2}=1$.
 \end{dfn}
 \begin{exr}{}{}
 Show that if $S_1$ and $S_2$ are uniformly-completely-separated, then they are uniformly-separated.
 \end{exr}
 \begin{dfn}{Uniformly-perfectly-separated}{UniformlyPerfectlySeparated}
-$S_1$ and $S_2$ are \emph{uniformly-perfectly-separated}\index{Uniformly-perfectly-separated} iff there is a uniformly-continuous function $f\colon X\rightarrow [0,1]$ such that $S_1=f^{-1}(0)$ and $S_2=f^{-1}(1)$.
+$S_1$ and $S_2$ are \term{uniformly-perfectly-separated}\index{Uniformly-perfectly-separated} iff there is a uniformly-continuous function $f\colon X\rightarrow [0,1]$ such that $S_1=f^{-1}(0)$ and $S_2=f^{-1}(1)$.
 \end{dfn}
 \begin{dfn}{Uniformly-$T_0$}{UniformlyT0}
-$X$ is \emph{uniformly-$T_0$}\index{Uniformly-$T_0$} iff any two distinct points are uniformly-distinguishable.
+$X$ is \term{uniformly-$T_0$}\index{Uniformly-$T_0$} iff any two distinct points are uniformly-distinguishable.
 \end{dfn}
 \begin{dfn}{Uniformly-$T_1$}{UniformlyT1}
-$X$ is \emph{uniformly-$T_1$}\index{Uniformly-$T_1$} iff any two distinct points are uniformly-separated.
+$X$ is \term{uniformly-$T_1$}\index{Uniformly-$T_1$} iff any two distinct points are uniformly-separated.
 \end{dfn}
 \begin{dfn}{Uniformly-$T_2$}{UniformlyT2}
-$X$ is \emph{uniformly-$T_2$}\index{Uniformly-$T_2$} iff any two distinct points can be uniformly-separated by neighborhoods.
+$X$ is \term{uniformly-$T_2$}\index{Uniformly-$T_2$} iff any two distinct points can be uniformly-separated by neighborhoods.
 \end{dfn}
 \begin{dfn}{Uniformly-completely-$T_2$\hfill}{UniformlyCompletelyT2}
-$X$ is \emph{uniformly-completely-$T_2$}\index{uniformly-completely-$T_2$} iff any two distinct points can be uniformly-completely-separated.
+$X$ is \term{uniformly-completely-$T_2$}\index{uniformly-completely-$T_2$} iff any two distinct points can be uniformly-completely-separated.
 \end{dfn}
 \begin{dfn}{Uniformly-perfectly-$T_2$\hfill}{UniformlyPerfectlyT2}
-$X$ is \emph{uniformly-perfectly-$T_2$}\index{uniformly-perfectly-$T_2$} iff any two distinct points can be uniformly-perfectly-separated.
+$X$ is \term{uniformly-perfectly-$T_2$}\index{uniformly-perfectly-$T_2$} iff any two distinct points can be uniformly-perfectly-separated.
 \end{dfn}
 \begin{dfn}{Uniformly-$T_3$}{UniformlyT3}
-$X$ is \emph{uniformly-$T_3$}\index{Uniformly-$T_3$} iff it is $T_1$ and any closed set and a point not contained in it can be uniformly-separated by neighborhoods.
+$X$ is \term{uniformly-$T_3$}\index{Uniformly-$T_3$} iff it is $T_1$ and any closed set and a point not contained in it can be uniformly-separated by neighborhoods.
 \end{dfn}
 \begin{dfn}{Uniformly-completely-$T_3$\hfill}{UniformlyCompletelyT3}
-$X$ is \emph{uniformly-completely-$T_3$}\index{Uniformly-completely-$T_3$} iff it is $T_1$ and any closed set and a point not contained in it can be uniformly-completely-separated.
+$X$ is \term{uniformly-completely-$T_3$}\index{Uniformly-completely-$T_3$} iff it is $T_1$ and any closed set and a point not contained in it can be uniformly-completely-separated.
 \end{dfn}
 \begin{dfn}{Uniformly-perfectly-$T_3$\hfill}{UniformlyPerfectlyT3}
-$X$ is \emph{uniformly-perfectly-$T_3$}\index{Uniformly-perfectly-$T_3$} iff it is $T_1$ and any closed set and a point not contained in it can be uniformly-perfectly-separated.
+$X$ is \term{uniformly-perfectly-$T_3$}\index{Uniformly-perfectly-$T_3$} iff it is $T_1$ and any closed set and a point not contained in it can be uniformly-perfectly-separated.
 \end{dfn}
 \begin{dfn}{Uniformly-$T_4$}{UniformlyT4}
-$X$ is \emph{uniformly-$T_4$}\index{Uniformly-$T_4$} iff it is $T_1$ and any two disjoint closed subsets can be uniformly-separated by neighborhoods.
+$X$ is \term{uniformly-$T_4$}\index{Uniformly-$T_4$} iff it is $T_1$ and any two disjoint closed subsets can be uniformly-separated by neighborhoods.
 \end{dfn}
 \begin{dfn}{Uniformly-completely-$T_4$\hfill}{UniformlyCompletelyT4}
-$X$ is \emph{uniformly-completely-$T_4$}\index{Uniformly-completely-$T_4$} iff it is $T_1$ and any two disjoint closed subsets can be uniformly-completely-separated.
+$X$ is \term{uniformly-completely-$T_4$}\index{Uniformly-completely-$T_4$} iff it is $T_1$ and any two disjoint closed subsets can be uniformly-completely-separated.
 \end{dfn}
 \begin{dfn}{Uniformly-perfectly-$T_4$\hfill}{UniformlyPerfectlyT4}
-$X$ is \emph{uniformly-perfectly-$T_4$}\index{Uniformly-perfectly-$T_4$} iff it is $T_1$ and any closed set and any two disjoint closed subsets can be can be uniformly-perfectly-separated.
+$X$ is \term{uniformly-perfectly-$T_4$}\index{Uniformly-perfectly-$T_4$} iff it is $T_1$ and any closed set and any two disjoint closed subsets can be can be uniformly-perfectly-separated.
 \end{dfn}
 The goal of this section is to prove that all of these separation axioms from uniformly-$T_0$ to uniformly-completely-$T_3$ (that is, $T_0$ implies uniformly-completely-$T_3$---see \cref{crl4.4.16}).  We also present counter-examples to show that all these equivalent axioms are strictly weaker than both uniformly-$T_4$ (see \cref{exm4.4.20}) and uniformly-perfectly-$T_3$ (see \cref{exm4.4.23}).  Before we begin our proof of that result, however, we present a smaller, but still quite useful result, which says that a relatively broad collection of spaces (metric spaces) satisfies the strongest separation axiom one could possibly hope for.
 \begin{prp}{}{prp5.4.13}
@@ -1502,9 +1528,9 @@ Define $f\coloneqq f_1+f_2$.  Then, this is certainly $0$ on $C_1$ and $1$ on $C
 
 We actually prove a stronger result which requires the notion of the \emph{diameter} of a set (in a metric space).
 \begin{dfn}{Diameter}{Diameter}
-Let $\coord{X,\metric}$ be a metric space and let $S\subseteq X$.  Then, the \emph{diameter}\index{Diameter} of $S$, $\diam (S)$, is defined by
+Let $\coord{X,\metric}$ be a metric space and let $S\subseteq X$.  Then, the \term{diameter}\index{Diameter} of $S$, $\diam (S)$, is defined by
 \begin{equation}
-\diam (S)\coloneqq \sup _{x,y\in S}\{ \metric[x][y]\} .
+\diam (S)\coloneqq \sup _{x,y\in S}\{ \metric{x}{y}\} .
 \end{equation}
 \begin{rmk}
 Of course, it may be the case that $\diam (S)=\infty$.
@@ -1522,9 +1548,11 @@ Let us write $\cover{U}_0\coloneqq \cover{U}$.  Then, we take a star-refinement 
 
 \Step{Define $\ell (x_1,x_2)$ for $x_1,x_2\in X$}[stp4.8.76.2]
 Define
+{\scriptsize
 \begin{equation}\label{eqn4.3.21}
 \ell (x_1,x_2)\coloneqq \begin{cases}2 & \text{if }x_2\notin \Star _{\cover{U}_0}(x_1) \\ 2^{1-\max \{ m\in \N :x_2\in \Star _{\cover{U}_m}(x_1)\}} & \text{otherwise.}\end{cases}
 \end{equation}
+}
 Note that this in particular implies that $\ell (x_1,x_2)=0$ if $x_2\in \Star _{\cover{U}_m}(x_1)$ for all $m\in \N$.  (We do need to make the other extreme case explicit as the maximum of the empty-set is $-\infty$.)  Thus, the statement that $X$ is $T_0$ (together with the fact that stars form a neighborhood base for the topology (\cref{UniformTopology})) implies that either $\ell (x_1,x_2)>0$ or $\ell (x_2,x_1)>0$.
 
 \Step{Define $\ell (\cover{P})$ for paths $\cover{P}$}
@@ -1532,17 +1560,17 @@ For the purposes of this proof, a \emph{path} from $x_1$ to $x_2$ will be a fini
 
 \Step{Define the semimetric}
 Finally, we define
-\begin{equation}
+\begin{equation*}
 \begin{multlined}
-\metric[x_1][x_2]\coloneqq \min \left\{ 1,\inf \left( \left\{ \ell (\cover{P}):\right. \right. \right. \\ \left. \left. \left. \cover{P}\text{ is a path from }x_1\text{ to }x_2\text{ or a path from }x_2\text{ to }x_1\text{.}\right\} \right) \right\} .
+\metric{x_1}{x_2}\coloneqq \min \left\{ 1,\inf \left( \left\{ \ell (\cover{P}):\right. \right. \right. \\ \left. \left. \left. \cover{P}\text{ is a path from }x_1\text{ to }x_2\text{ or a path from }x_2\text{ to }x_1\text{.}\right\} \right) \right\} .
 \end{multlined}
-\end{equation}
+\end{equation*}
 
 \Step{Show that this is in fact a semimetric}
 From the definition, we have that $\metric$ is symmetric (this is the reason for putting the ``or'' in the definition---note that the definition of $\ell (x_1,x_2)$ is not manifestly symmetric).  The triangle inequality follows from the fact that a path from $x_1$ to $x_3$ and a path from $x_3$ to $x_2$ gives us a path from $x_1$ to $x_2$, with the length of this new path being the sum of the lengths of the other two.  Thus, $\metric$ is in fact a semimetric.
 
 \Step{Construct $Y$}
-Define $x_1\sim x_2$ iff $\metric[x_1][x_2]=0$.  That this is an equivalence relation follows from the fact that $\metric$ is a semimetric.  Thus, we may define
+Define $x_1\sim x_2$ iff $\metric{x_1}{x_2}=0$.  That this is an equivalence relation follows from the fact that $\metric$ is a semimetric.  Thus, we may define
 \begin{equation}
 Y\coloneqq X/\sim .
 \end{equation}
@@ -1550,28 +1578,28 @@ Y\coloneqq X/\sim .
 \Step{Construct the metric on $Y$}
 We abuse notation and write the induced metric on $Y$ with the same symbol $\metric$ as the semimetric on $X$:
 \begin{equation}
-\metric[[x_1]_{\sim}][[x_2]_{\sim}]\coloneqq \metric[x_1][x_2].
+\metric{[x_1]_{\sim}}{[x_2]_{\sim}}\coloneqq \metric{x_1}{x_2}.
 \end{equation}
 \begin{exr}[breakable=false]{}{}
 Check that $\metric$ on $Y$ is well-defined.
 \end{exr}
 
 \Step{Show that this in fact a metric}
-$\metric$ on $Y$ is automatically symmetric and satisfies the triangle inequality because $\metric$ on $X$ does.  Furthermore, if $\metric[[x_1]_{\sim}][[x_2]_{\sim}]=0$, then $\metric[x_1][x_2]=0$, and so $x_1\sim x_2$ by the definition of $\sim$.  Thus, $\metric$ is indeed a metric on $Y$.
+$\metric$ on $Y$ is automatically symmetric and satisfies the triangle inequality because $\metric$ on $X$ does.  Furthermore, if $\metric{[x_1]_{\sim}}{[x_2]_{\sim}}=0$, then $\metric{x_1}{x_2}=0$, and so $x_1\sim x_2$ by the definition of $\sim$.  Thus, $\metric$ is indeed a metric on $Y$.
 
 \Step{Define $\q :X\rightarrow Y$}
 We take $\q :X\rightarrow Y$ to be the quotient map:  $\q (x)\coloneqq [x]_{\sim}$.  Of course $\q$ is surjective (all quotient maps are).
 
 \Step{Show that $\q$ is uniformly-continuous}
-We apply \cref{prp4.2.27x} which characterizes uniform-continuity for functions whose codomain is a metric space.  So, let $\varepsilon >0$.  We must find a uniform cover $\cover{U}$ of $X$ such that for every $U\in \cover{U}$, whenever $x_1,x_2\in U$, it follows that $\metric[\q (x_1)][\q (x_2)]<\varepsilon$.  It suffices to show this for $\varepsilon \coloneqq 2^{1-m}$.  We show that $\cover{U}_m$ is a uniform cover that `works'.  So, let $U\in \cover{U}_m$ and let $x_1,x_2\in U$.   Then, in particular, $x_2\in \Star _{\cover{U}_m}(x_1)$, and so
+We apply \cref{prp4.2.27x} which characterizes uniform-continuity for functions whose codomain is a metric space.  So, let $\varepsilon >0$.  We must find a uniform cover $\cover{U}$ of $X$ such that for every $U\in \cover{U}$, whenever $x_1,x_2\in U$, it follows that $\metric{\q (x_1)}{\q (x_2)}<\varepsilon$.  It suffices to show this for $\varepsilon \coloneqq 2^{1-m}$.  We show that $\cover{U}_m$ is a uniform cover that `works'.  So, let $U\in \cover{U}_m$ and let $x_1,x_2\in U$.   Then, in particular, $x_2\in \Star _{\cover{U}_m}(x_1)$, and so
 \begin{equation}
-\metric[\q (x_1)][\q (x_2)]\coloneqq \metric[x_1][x_2]\leq 2^{1-m}\eqqcolon \varepsilon .
+\metric{\q (x_1)}{\q (x_2)}\coloneqq \metric{x_1}{x_2}\leq 2^{1-m}\eqqcolon \varepsilon .
 \end{equation}
 
 \Step{Finish the proof by proving the desired property of $\q$}
 Let $S\subseteq Y$ and suppose that $\diam (S)<1$.  We wish to show that there is some $U\in \cover{U}_0$ such that $S\subseteq U$.  It suffices to show that for $x_1,x_2\in S$, there is some $U_{x_1,x_2}\in \cover{U}_1$ such that $x_1,x_2\in U_{x_1,x_2}$.  This is because, if this is true, then $S\subseteq \Star _{\cover{U}_1}(x_1)$, which in turn is contained in some element of $\cover{U}_0$ because $\cover{U}_1$ star-refines $\cover{U}_0$.
 
-To show this, it suffices to show that if $\metric[x_1][x_2]\leq 2^{1-m}$ for $m\in \Z ^+$, then there is some $U\in \cover{U}_m$ such that $x_1,x_2\in U$.  So, let $x_1,x_2\in X$ be such that $\metric[x_1][x_2]\leq 2^{1-m}$.  Then, without loss of generality, there is some path $\coord{x^\infty,\ldots ,x^n}$ from $x_1$ to $x_2$ with
+To show this, it suffices to show that if $\metric{x_1}{x_2}\leq 2^{1-m}$ for $m\in \Z ^+$, then there is some $U\in \cover{U}_m$ such that $x_1,x_2\in U$.  So, let $x_1,x_2\in X$ be such that $\metric{x_1}{x_2}\leq 2^{1-m}$.  Then, without loss of generality, there is some path $\coord{x^\infty,\ldots ,x^n}$ from $x_1$ to $x_2$ with
 \begin{equation}\label{4.8.53}
 \ell (x^\infty,x^1)+\cdots +\ell (x^{n-1},x^n)\leq 2^{1-m}.
 \end{equation}
@@ -1713,21 +1741,21 @@ Let $C_1,C_2\subseteq C$ be disjoint and closed.  Then, by definition of the sub
 \end{lma}
 \end{exm}
 
-Finally, we are ready to begin discussing cauchyness and completeness in the general context of uniform spaces.
+Finally, we are ready to begin discussing Cauchyness and completeness in the general context of uniform spaces.
 
 \section{Cauchyness and completeness}
 
 \begin{dfn}{Cauchyness}{Cauchyness}
-Let $\coord{X,\uniformity{U}}$ be a uniform space and let $\lambda \mapsto x_\lambda$ be a net.  Then, we say that $\lambda \mapsto x_\lambda$ is \emph{cauchy}\index{Cauchy (in uniform spaces)} iff for every $\cover{U}\in \uniformity{U}$, there is some $U\in \cover{U}$ such that $\lambda \mapsto x_\lambda$ is eventually contained in $U$.
+Let $\coord{X,\uniformity{U}}$ be a uniform space and let $\lambda \mapsto x_\lambda$ be a net.  Then, we say that $\lambda \mapsto x_\lambda$ is \term{Cauchy}\index{Cauchy (in uniform spaces)} iff for every $\cover{U}\in \uniformity{U}$, there is some $U\in \cover{U}$ such that $\lambda \mapsto x_\lambda$ is eventually contained in $U$.
 \begin{rmk}
-You should compare this with our definition of cauchyness in $\R$, \cref{dfn3.3.26}.  As the collection of all $\varepsilon$-balls for all $\varepsilon >0$ forms a uniform base, then the definition we gave before in \cref{dfn3.3.26} will be a word-for-word special case of this definition (once we show that we can replace $\uniformity{U}$ with any uniform base in the above definition---see \cref{prpB.16}).  Indeed, part of the motivation for phrasing the definition in \cref{dfn3.3.26} the way we did was to make the transition to this higher level of generality as transparent as possible---see the paragraphs that follow \cref{dfn3.3.26} for a few more comments regarding this.
+You should compare this with our definition of Cauchyness in $\R$, \cref{dfn3.3.26}.  As the collection of all $\varepsilon$-balls for all $\varepsilon >0$ forms a uniform base, then the definition we gave before in \cref{dfn3.3.26} will be a word-for-word special case of this definition (once we show that we can replace $\uniformity{U}$ with any uniform base in the above definition---see \cref{prpB.16}).  Indeed, part of the motivation for phrasing the definition in \cref{dfn3.3.26} the way we did was to make the transition to this higher level of generality as transparent as possible---see the paragraphs that follow \cref{dfn3.3.26} for a few more comments regarding this.
 \end{rmk}
 \end{dfn}
 To check whether a net is Cauchy, it suffices to check on just a uniform base for the uniformity.
 \begin{prp}{}{prpB.16}
 Let $X$ be a set, let $\uniformity{B}$ be a uniform base on $X$, and let $\lambda \mapsto x_\lambda$ be a net.  Then, $\lambda \mapsto x_\lambda$ is Cauchy iff for every $\cover{B}\in \uniformity{B}$ there is some $B\in \cover{B}$ such that $\lambda \mapsto x_\lambda$ is eventually contained in $B$.
 \begin{rmk}
-With this equivalence, the definition we gave before for cauchyness in $\R$ in \cref{dfn3.3.26} is literally verbatim equivalent to this definition upon replacement of $\uniformity{B}$ with $\{ \cover{B}_\varepsilon :\varepsilon >0\}$ and of $\cover{B}$ with $\cover{B}_\varepsilon \coloneqq \{ B_\varepsilon (x):x\in \R \}$.
+With this equivalence, the definition we gave before for Cauchyness in $\R$ in \cref{dfn3.3.26} is literally verbatim equivalent to this definition upon replacement of $\uniformity{B}$ with $\{ \cover{B}_\varepsilon :\varepsilon >0\}$ and of $\cover{B}$ with $\cover{B}_\varepsilon \coloneqq \{ B_\varepsilon (x):x\in \R \}$.
 \end{rmk}
 \begin{proof}
 $(\Rightarrow )$ There is nothing to check.
@@ -1759,28 +1787,28 @@ Similarly, show that the following are equivalent.
 On the other hand, find an example of a topological group $G$ and a net $\lambda \mapsto g_{\lambda}\in G$ that is Cauchy with respect to the left uniformity but not the right.
 \end{exr}
 
-Just as continuous functions preserve convergence, so to do uniformly-continuous functions preserve cauchyness.
+Just as continuous functions preserve convergence, so to do uniformly-continuous functions preserve Cauchyness.
 \begin{exr}{}{exr4.5.3}
 Let $f\colon X\rightarrow Y$ be uniformly-continuous and let $\lambda \mapsto x_\lambda \in X$ be Cauchy.  Show that $\lambda \mapsto f(x_\lambda)$ is Cauchy.
 \begin{wrn}
-Warning:  Continuous functions do \emph{not} necessarily preserve cauchyness.
+Warning:  Continuous functions do \emph{not} necessarily preserve Cauchyness.
 \end{wrn}
 \end{exr}
 \begin{exm}{A continuous image of a Cauchy net need not be Cauchy}{}
 The net $\Z ^+\ni m\mapsto \frac{1}{m}\in \R ^+$ is Cauchy.  On the other hand, its image under the continuous map $\R ^+\ni x\mapsto \frac{1}{x}\in \R ^+$ is $\Z ^+\ni m\mapsto m\in \R ^+$, which is not even eventually bounded, much less Cauchy.
 \end{exm}
 
-Of course, if we know what it means for nets to be cauchy, then we likewise have a notion of what it means for uniform spaces to be \emph{complete}.
+Of course, if we know what it means for nets to be Cauchy, then we likewise have a notion of what it means for uniform spaces to be \emph{complete}.
 \begin{dfn}{Completeness}{Completeness}
-A uniform space is \emph{complete}\index{Complete (uniform space)} iff every Cauchy net converges.
+A uniform space is \term{complete}\index{Complete (uniform space)} iff every Cauchy net converges.
 \begin{rmk}
-In case there might be some confusion (e.g.~if the topology of the underlying uniform space comes from a totally-ordered set), then we shall say \emph{Cauchy-complete} in contrast to \emph{Dedekind complete}.  We made a big deal about not merely saying ``complete'' when we meant Dedekind-complete.  It's more important in that case as most of the Dedekind-complete things we ran into had canonical uniformities (though we didn't know it at the time), and so there is an ambiguity of Dedekind-completeness vs.~Cauchy-completeness.  On the other hand, most uniform spaces don't have an order structure, in which case there is no potential for ambiguity.  In any case, besides being slightly more verbose, it doesn't hurt to clarify.
+In case there might be some confusion (e.g.~if the topology of the underlying uniform space comes from a totally-ordered set), then we shall say \term{Cauchy-complete} in contrast to \emph{Dedekind complete}.  We made a big deal about not merely saying ``complete'' when we meant Dedekind-complete.  It's more important in that case as most of the Dedekind-complete things we ran into had canonical uniformities (though we didn't know it at the time), and so there is an ambiguity of Dedekind-completeness vs.~Cauchy-completeness.  On the other hand, most uniform spaces don't have an order structure, in which case there is no potential for ambiguity.  In any case, besides being slightly more verbose, it doesn't hurt to clarify.
 \end{rmk}
 \end{dfn}
 
 By now, you've probably got the impression that quasicompactness is kind-of a strong condition.  Indeed, as we're about to see, quasicompactness implies completeness for uniform spaces.  However, we can do one better, and get an ``iff'' statement by introducing another relatively natural condition, that of \emph{total-boundedness}.
 \begin{dfn}{Totally-bounded}{TotallyBounded}
-Let $X$ be a uniform space.  Then, $X$ is \emph{totally-bounded}\index{Totally-bounded} iff every uniform cover of $X$ has a finite subcover.
+Let $X$ be a uniform space.  Then, $X$ is \term{totally-bounded}\index{Totally-bounded} iff every uniform cover of $X$ has a finite subcover.
 \begin{rmk}
 This is just like the definition of quasicompactness, except that we only require that \emph{uniform} covers have finite subcovers, instead of \emph{all} covers.
 \end{rmk}
@@ -1825,20 +1853,20 @@ We mentioned back above in \cref{exm4.3.60} that $\Mor _{\Top}(X,\R )$ is comple
 \begin{thm}{}{thm4.5.6}
 Let $X$ be a topological space that has the property that a subset is open iff its intersection with each quasicompact subset $K$ is open in $K$.  Then, $\Mor _{\Top}(X,\R )$ is complete.
 \begin{rmk}
-In particular, the limit of a uniformly convergent\footnote{Recall (\cref{exm4.3.60}) that ``uniform convergence'' is just the notion of convergence in the topological space $\Mor _{\Top}(X,\R )$ (or I suppose ``uniform convergence on quasicompact subsets'' if you want to be verbose about it).  As this is a semimetric space, concretely what this is means, $\lambda \mapsto f_{\lambda}\in \Mor _{\Top}(X,\R )$ converges to $f_{\infty}$ iff for every quasicompact subset $K\subseteq X$, $\lambda \mapsto \sup _{x\in K}\left\{ \norm[f_{\lambda}(x)-f_{\infty}(x)]\right\}$ converges to $0$.} net of continuous functions is continuous.  This need not be the case if the convergence is just pointwise---see \cref{exm4.5.12x}.
+In particular, the limit of a uniformly convergent\footnote{Recall (\cref{exm4.3.60}) that ``uniform convergence'' is just the notion of convergence in the topological space $\Mor _{\Top}(X,\R )$ (or I suppose ``uniform convergence on quasicompact subsets'' if you want to be verbose about it).  As this is a semimetric space, concretely what this is means, $\lambda \mapsto f_{\lambda}\in \Mor _{\Top}(X,\R )$ converges to $f_{\infty}$ iff for every quasicompact subset $K\subseteq X$, $\lambda \mapsto \sup _{x\in K}\left\{ \norm{f_{\lambda}(x)-f_{\infty}(x)}\right\}$ converges to $0$.} net of continuous functions is continuous.  This need not be the case if the convergence is just pointwise---see \cref{exm4.5.12x}.
 \end{rmk}
 \begin{rmk}
-This condition on $X$ is called \emph{quasicompactly-generated}\index{Quasicompactly-generated}.  For example, the cocountable topology on $\R$ is \emph{not} quasicompactly-generated---see \cref{exm4.5.12}.
+This condition on $X$ is called \term{quasicompactly-generated}\index{Quasicompactly-generated}.  For example, the cocountable topology on $\R$ is \emph{not} quasicompactly-generated---see \cref{exm4.5.12}.
 \end{rmk}
 \begin{proof}
 \Step{Prove the result for $X$ quasicompact}
-We first take $X$ to be quasicompact.  In this case, the uniform structure on $\Mor _{\Top}(X,\R )$ is the same as that generated by the single norm $\norm _X$ (\cref{exr4.2.86}).  Therefore, by \cref{exr4.5.3x} (cauchyness in semimetric spaces), to show that $\Mor _{\Top}(X,\R )$ is complete, it suffices to show that every net that is Cauchy with respect to $\norm _X$ converges.  So, suppose that $\lambda \mapsto f_\lambda \in \Mor _{\Top}(X,\R )$ is Cauchy.  As, for every $x\in X$,
+We first take $X$ to be quasicompact.  In this case, the uniform structure on $\Mor _{\Top}(X,\R )$ is the same as that generated by the single norm $\norm _X$ (\cref{exr4.2.86}).  Therefore, by \cref{exr4.5.3x} (Cauchyness in semimetric spaces), to show that $\Mor _{\Top}(X,\R )$ is complete, it suffices to show that every net that is Cauchy with respect to $\norm _X$ converges.  So, suppose that $\lambda \mapsto f_\lambda \in \Mor _{\Top}(X,\R )$ is Cauchy.  As, for every $x\in X$,
 \begin{equation}
-\abs{f_{\lambda _1}(x)-f_{\lambda _2}(x)}\leq \norm[f_{\lambda _1}-f_{\lambda _2}],
+\abs{f_{\lambda _1}(x)-f_{\lambda _2}(x)}\leq \norm{f_{\lambda _1}-f_{\lambda _2}},
 \end{equation}
 it follows that, for each $x\in X$, the net $\lambda \mapsto f_\lambda (x)\in \R$ is Cauchy.  As $\R$ is complete, each of these nets has a limit.  Call this limit $f_\infty (x)$.  We need to check two things:  (i)~that $x\mapsto f_\infty (x)$ is continuous (so that indeed $f_\infty \in \Mor _{\Top}(X,\R )$), and (ii)~that $\lambda \mapsto f_\lambda$ converges to $f_\infty$ in $\Mor _{\Top}(X,\R )$.
 
-We first show that $f_\infty$ is continuous.  Let $\varepsilon >0$.  Let $\lambda _0$ be such that, whenever $\lambda _1,\lambda _2\geq \lambda _0$, it follows that $\norm[f_{\lambda _1}-f_{\lambda _2}]<\varepsilon$.  Let $U$ be an open neighborhood of $x_\infty$ such that $f_{\lambda _0}(U)\subseteq B_{\varepsilon}(f_{\lambda _0}(x_\infty ))$.  Let $x\in U$.  Let $\lambda _1,\lambda _2\geq \lambda _0$ be such that $\abs{f_{\lambda _1}(x)-f_\infty (x)},\abs{f_{\lambda _2}(x_\infty )-f_\infty (x_\infty )}<\varepsilon$.  Then,
+We first show that $f_\infty$ is continuous.  Let $\varepsilon >0$.  Let $\lambda _0$ be such that, whenever $\lambda _1,\lambda _2\geq \lambda _0$, it follows that $\norm{f_{\lambda _1}-f_{\lambda _2}}<\varepsilon$.  Let $U$ be an open neighborhood of $x_\infty$ such that $f_{\lambda _0}(U)\subseteq B_{\varepsilon}(f_{\lambda _0}(x_\infty ))$.  Let $x\in U$.  Let $\lambda _1,\lambda _2\geq \lambda _0$ be such that $\abs{f_{\lambda _1}(x)-f_\infty (x)},\abs{f_{\lambda _2}(x_\infty )-f_\infty (x_\infty )}<\varepsilon$.  Then,
 \begin{equation}
 \begin{split}
 \MoveEqLeft
@@ -1855,11 +1883,15 @@ We now check that $\lambda \mapsto f_\lambda$ converges to $f_\infty$ in $\Mor _
 \end{equation}
 is an open cover of $X$.  Therefore, there is a finite subcover, $\{U_{x_1},\ldots ,U_{x_m}\}$.  Thus, we may choose $\lambda _0$ such that, whenever $\lambda \geq \lambda _0$, it follows that $\abs{f_\lambda (x_k)-f_\infty (x_k)}<\varepsilon$ for all $1\leq k\leq m$.  Now let $x\in X$ be arbitrary.  Without loss of generality, assume that $x\in U_1$.  Then, whenever $\lambda \geq \lambda _0$, it follows that
 \begin{equation}
-\abs{f_\lambda (x)-f_\infty (x)}\leq \abs{f_\lambda (x)-f_\lambda (x_1)}+\abs{f_\lambda (x_1)+f_\infty (x_1)}<2\varepsilon .
+\begin{split}
+\MoveEqLeft
+\abs{f_\lambda (x)-f_\infty (x)} \\
+& \leq \abs{f_\lambda (x)-f_\lambda (x_1)}+\abs{f_\lambda (x_1)+f_\infty (x_1)}<2\varepsilon .
+\end{split}
 \end{equation}
 Taking the supremum over $x$, we find that
 \begin{equation}
-\norm[f_\lambda -f_\infty ]<2\varepsilon ,
+\norm{f_\lambda -f_\infty }<2\varepsilon ,
 \end{equation}
 so that indeed $\lambda \mapsto f_\lambda$ converges to $f_\infty$.
 
@@ -1885,24 +1917,24 @@ f_S(x)\coloneqq \begin{cases}f(x) & \text{if }x\in S \\ f(x_1) & \text{if }x<x_1
 \end{equation}
 That is, it is a constant $f(x_1)$ for all $x\leq x_1$, and similarly for $x\geq x_m$.  For $x$ between $x_k$ and $x_{k+1}$, is it a just the line segment going from $f(x_k)$ at $x=x_k$ to $f(x_{k+1})$ at $x=x_{k+1}$.  By construction, this is continuous with respect to the usual topology, and hence continuous with respect to the cocountable extension topology.
 
-Now, for $K\subseteq X$ quasicompact, $K$ is finite, and hence $K\in \Lambda$.  Thus, whenever $S\geq K$, that is, whenever $S\supseteq K$, we have that $f_S(x)=f(x)$ for all $x\in S$, so that $\norm[f_S-f]=0$.  In particular, (i)~$S\mapsto f_S$ is cauchy; and (ii)~if it converges in $\Mor _{\Top}(X,\R )$, it must converge to $f\in \Mor _{\Top}(X,\R )$.  However, as $f$ is not continuous, i.e.~not an element of $\Mor _{\Top}(X,\R )$, evidently $S\mapsto f_S$ does not converge, and so $\Mor _{\Top}(X,\R )$ is not complete.
+Now, for $K\subseteq X$ quasicompact, $K$ is finite, and hence $K\in \Lambda$.  Thus, whenever $S\geq K$, that is, whenever $S\supseteq K$, we have that $f_S(x)=f(x)$ for all $x\in S$, so that $\norm{f_S-f}=0$.  In particular, (i)~$S\mapsto f_S$ is Cauchy; and (ii)~if it converges in $\Mor _{\Top}(X,\R )$, it must converge to $f\in \Mor _{\Top}(X,\R )$.  However, as $f$ is not continuous, i.e.~not an element of $\Mor _{\Top}(X,\R )$, evidently $S\mapsto f_S$ does not converge, and so $\Mor _{\Top}(X,\R )$ is not complete.
 \end{exm}
 The key result of this subsection was that $\Mor _{\Top}(X,\R )$ is complete for $X$ quasicompactly-generated.  It turns out that the converse of this is \emph{false}.
 \begin{exm}{A space for which $\Mor _{\Top}(X,\R )$ is complete yet is not quasicompactly-generated}{}
 Take $X\coloneqq \R$ equipped with the cocountable topology.  We showed in \cref{exm4.5.12} that $X$ is not quasicompact-generated.  It remains to show that $\Mor _{\Top}(X,\R )$ is complete.  To do this, we show that every element of $\Mor _{\Top}(X,\R )$ is constant.
 
 Let $f\colon X\rightarrow \R$ be continuous.  If $f$ is not constant, then $f^{-1}(a)$ is closed and proper for every $a\in \R$, and hence countable.  The image cannot be countable then, because if it were, $\R$ would be a countable union of countable sets,\footnote{Because $\R \eqqcolon X=\bigcup _{a\in f(X)}f^{-1}(a)$.} and hence countable.  As $\R =\bigcup _{n\in \Z}[n,n+1]$ and the image is uncountable, some interval $[n,n+1]$ must intersect the image at uncountable many points.  But then, either $[m,m+1]$ contains the image, or its preimage is a countable set, in which case we would have
-\begin{equation}
+\begin{equation*}
 \text{countable set}=f^{-1}([n,n+1])=\bigcup _{a\in f(X)\cap [n,n+1]}f^{-1}(a)
-\end{equation}
+\end{equation*}
 is an uncountable union of nonempty disjoint sets, a contradiction.  Therefore, it must be that $f(X)\subseteq [m,m+1]$, so that $f^{-1}([n,n+1])=X$.  Now, writing $[n,n+1]=[n,n+\frac{1}{2}]\cup [n+\frac{1}{2},n+1]$ and applying the same logic again, we find, without loss of generality, that the image of $f$ is contained in $[n,n+\frac{1}{2}]$.  Applying this logic inductively, we deduce that the image of $f$ is contained in an interval of length $\frac{1}{2^m}$ for all $m\in \N$.  In particular, the image of $f$ cannot contain more than one element, because two distinct points cannot fit inside an interval sufficiently small, a contradiction of the fact that $f$ is not constant.  Therefore, every $f\colon X\rightarrow \R$ continuous must be a constant function.
 
 A Cauchy net of constant functions amounts to a Cauchy net of real numbers, which converges, and so the original Cauchy net of constant functions converges to this constant function.  Therefore, $\Mor _{\Top}(X,\R )$ is complete.
 \end{exm}
 In conclusion:
-\begin{displayquote}
+\begin{important}
 If a space is quasicompactly-generated, then $\Mor _{\Top}(X,\R )$ is complete.  Furthermore, if $\Mor _{\Top}(X,\R )$ is complete, then $X$ is a topological space.\footnote{Uhm, duh.  The content here is not in the implication, but rather in the counter-example.}  Both of these implications are strict:  the reals with the cocountable topology show that the first implication is strict, and the reals with the cocountable extension topology show that the second implication is strict.
-\end{displayquote}
+\end{important}
 
 There are a couple other important results about the space $\Mor _{\Top}(X,\R )$ that we present before moving to the next subsection.
 \begin{prp}{Dini's Theorem}{DinisTheorem}\index{Dini's Theorem}
@@ -1931,7 +1963,7 @@ Suppose that $\lambda \mapsto f_{\lambda}(x)$ is uniformly eventually monotone. 
  
 Denote the index set by $\Lambda$.  Let $\varepsilon >0$.  Then, $X=\bigcup _{\lambda \in \Lambda}g_{\lambda}^{-1}([0,\varepsilon ))$ because $\lambda \mapsto g_{\lambda}$ converges pointwise to $0$.  As $X$ is quasicompact, there are finitely many $\lambda _1,\ldots ,\lambda _m\in \Lambda$ such that $X=g_{\lambda _1}^{-1}([0,\varepsilon ])\cup \cdots \cup g_{\lambda _m}^{-1}$.  Let $\lambda _0\in \Lambda$ be at least as large as each $\lambda _k$.  As $\lambda \mapsto g_{\lambda}$ is nonincreasing, it follows that $g_{\lambda _0}^{-1}([0,\varepsilon ))\supseteq g_{\lambda _k}^{-1}([0,\varepsilon ))$ for each $1\leq k\leq m$, and hence $X=g_{\lambda _0}^{-1}([0,\varepsilon ))$.
 
-Now suppose that $\lambda \geq \lambda _0$.  Then, as $\lambda \mapsto g_{\lambda}$ is nonincreasing, we have that $g_{\lambda}\leq g_{\lambda _0}$, so that $g_{\lambda}(x)\leq g_{\lambda _0}(x)<\varepsilon$ for all $x\in X$, that is, $\abs{f_{\lambda}(x)-f_{\infty}(x)}\eqqcolon g_{\lambda}(x)<\varepsilon$ for all $x\in X$, and so $\norm[f_{\lambda}-f_{\infty}]\coloneqq \sup _{x\in X}\abs{f_{\lambda}(x)-f_{\infty}(x)}<\varepsilon$.  Thus, $\lambda \mapsto f_{\lambda}$ converges to $f_{\infty}$ uniformly.
+Now suppose that $\lambda \geq \lambda _0$.  Then, as $\lambda \mapsto g_{\lambda}$ is nonincreasing, we have that $g_{\lambda}\leq g_{\lambda _0}$, so that $g_{\lambda}(x)\leq g_{\lambda _0}(x)<\varepsilon$ for all $x\in X$, that is, $\abs{f_{\lambda}(x)-f_{\infty}(x)}\eqqcolon g_{\lambda}(x)<\varepsilon$ for all $x\in X$, and so $\norm{f_{\lambda}-f_{\infty}}\coloneqq \sup _{x\in X}\abs{f_{\lambda}(x)-f_{\infty}(x)}<\varepsilon$.  Thus, $\lambda \mapsto f_{\lambda}$ converges to $f_{\infty}$ uniformly.
 
 \Step{Prove the result in general}
 We now do the general case, in which case $X$ is not necessarily quasicompact.  So, suppose that $\lambda \mapsto f_{\lambda}$ is uniformly eventually monotone.  Then certainly $\lambda \mapsto \restr{f_{\lambda}}{K}$ is uniformly eventually monotone for all quasicompact $K\subseteq X$, and so by the previous step, $\lambda \mapsto \restr{f_{\lambda}}{K}$ converges to $\restr{f_{\infty}}{K}$ in $\Mor _{\Top}(K,\R )$, and hence $\lambda \mapsto f_{\lambda}$ converges to $f_{\infty}$ in $\Mor _{\Top}(X,\R )$.
@@ -1939,9 +1971,9 @@ We now do the general case, in which case $X$ is not necessarily quasicompact.  
 \end{prp}
 \begin{exm}{A continuous pointwise limit of continuous functions for which the convergence is pointwise eventually monotone, but the convergence is not uniform}{exm4.4.23x}
 For $\lambda \in (0,1)$, define $f_{\lambda}\colon [0,1]$ by
-\begin{equation}
+\begin{equation*}
 f_{\lambda}(x)\coloneqq \begin{cases}\frac{\lambda}{\lambda ^{\tfrac{1}{\lambda}}}x^{\tfrac{1}{\lambda}} & \text{if }x\leq \lambda  \\ \lambda & \text{if }\lambda \leq x\leq \tfrac{1}{2}(\lambda +\sqrt{\lambda}) \\ -\frac{\lambda}{\tfrac{1}{2}(\lambda +\sqrt{\lambda})-1}(x-1).\end{cases}
-\end{equation}
+\end{equation*}
 This converges pointwise (as $\lambda \to 1$) to the constant $0$ on $[0,1]$, which of course is continuous, and furthermore, the convergence is eventually nonincreasing at each point; however, the convergence is \emph{not} uniform (as we check next) because it is not \emph{uniformly} eventually monotone.
 
 If the convergence were uniform, then, in particular, for $\varepsilon \coloneqq \frac{1}{2}$, there would be some $\lambda _0$ such that, whenever $\lambda \geq \lambda _0$, it follows that $f_{\lambda}(x)<\frac{1}{2}$ for all $x\in [0,1]$.  In particular, plugging in $x=\lambda$, we would have $\lambda _0\leq \lambda <\frac{1}{2}$, so that $\lambda _0<\frac{1}{2}$.  Then, as $\frac{1}{2}\geq \lambda _0$, it would follows that $f_{\frac{1}{2}}(x)<\frac{1}{2}$ for all $x\in [0,1]$, but this is not the case (e.g.~for $x=\frac{1}{2}$).
@@ -1949,7 +1981,7 @@ If the convergence were uniform, then, in particular, for $\varepsilon \coloneqq
 \begin{thm}{Stone-Weierstrass Theorem}{StoneWeierstrassTheorem}\index{Stone-Weierstrass Theorem}
 Let $X$ be a topological space and let $\alg{A}\subseteq \Mor _{\Top}(X,\R )$ be a subalgebra.\footnote{For $\alg{A}$ to be a subalgebra of $\Mor _{\Top}(X,\R )$ is equivalent to saying that it is a subspace that is closed under multiplication with $1\in \alg{A}$.}  Then, if for every $x_1,x_2\in X$ with $x_1\neq x_2$ there is some $f\in \alg{A}$ such that $f(x_1)\neq f(x_2)$, then either $\alg{A}$ is dense in $\Mor _{\Top}(X,\R )$ or there is some $x_0\in X$ such that $\alg{A}=\left\{ f\in \Mor _{\Top}(X,\R ):f(x_0)=0\right\}$.
 \begin{rmk}
-If $\alg{A}$ satisfies the hypotheses of this theorem, then $\alg{A}$ is said to \emph{separate points}\index{Separate points}.  Intuitively, the algebra $\alg{A}$ alone can `tell the difference' between distinct points of $X$.
+If $\alg{A}$ satisfies the hypotheses of this theorem, then $\alg{A}$ is said to \term{separate points}\index{Separate points}.  Intuitively, the algebra $\alg{A}$ alone can `tell the difference' between distinct points of $X$.
 \end{rmk}
 \begin{rmk}
 Recall that (\cref{Dense}) for $\alg{A}$ to be dense in $\Mor _{\Top}(X,\R )$ means that $\Cls (\alg{A})=\Mor _{\Top}(X,\R )$.  Explicitly, for any continuous function $f\colon X\rightarrow \R$, there is a net $\lambda \mapsto f_{\lambda}\in \alg{A}$ converging (uniformly) to $f$.  That is to say, you can uniformly approximate \emph{any} real-valued continuous function on $X$ with elements of $\alg{A}$.
@@ -1971,11 +2003,11 @@ Suppose that we have proven the result for $X$ quasicompact.  Let $f\in \Mor _{\
 \end{equation}
 converges to $f\in \Mor _{\Top}(X,\R )$.  This will show that $f$ is a limit point of $\alg{A}$, so that $f\in \Cls (\alg{A})$, as desired.
 
-By \cref{exr4.2.31} (characterization of convergence in semimetric spaces), to show that this converges to $f$, we need to show that this converges to $f$ with respect to $\norm _K$ for all $K\in \collection{K}$.  So, let $K_0\in \collection{K}$.  Let $\varepsilon >0$.  As $\lambda \mapsto f_{K_0,\lambda}$ converges to $f$ in $\Mor _{\Top}(X,\R )$, there is some $[\lambda _0]_{K_0}$ such that, whenever $\lambda \geq [\lambda _0]_{K_0}$, it follows that $\norm[f_{K_0,\lambda}-f]_{K_0}<\varepsilon$.
+By \cref{exr4.2.31} (characterization of convergence in semimetric spaces), to show that this converges to $f$, we need to show that this converges to $f$ with respect to $\norm _K$ for all $K\in \collection{K}$.  So, let $K_0\in \collection{K}$.  Let $\varepsilon >0$.  As $\lambda \mapsto f_{K_0,\lambda}$ converges to $f$ in $\Mor _{\Top}(X,\R )$, there is some $[\lambda _0]_{K_0}$ such that, whenever $\lambda \geq [\lambda _0]_{K_0}$, it follows that $\norm{f_{K_0,\lambda}-f}_{K_0}<\varepsilon$.
 
 Now, suppose that $\coord{K,\lambda}\geq \coord{K_0,\lambda _0}$.  This means that $K\supseteq K_0$ and $\lambda _L\geq [\lambda _0]_L$ for every $L\in \collection{K}$.  Hence, in this case,
 \begin{equation}
-\norm[f_{K,\lambda _K}-f]_{K_0}\leq \norm[f_{K,\lambda _K}-f]_K<\varepsilon .
+\norm{f_{K,\lambda _K}-f}_{K_0}\leq \norm{f_{K,\lambda _K}-f}_K<\varepsilon .
 \end{equation}
 Thus, this net does indeed converge to $f$ with respect to each $\norm _{K_0}$, and hence this net converges to $f$, as desired.
 
@@ -2025,9 +2057,12 @@ h_{m+2}-h_{m+1}\coloneqq \tfrac{1}{2}(g^2-h_{m+1}^2)\geq \tfrac{1}{2}(g^2-\abs{g
 Finally, we have that
 \begin{equation}
 \begin{split}
-h_{m+1} & \coloneqq h_m+\tfrac{1}{2}(g^2-h_m^2)=h_m+\tfrac{1}{2}(\abs{g}+h_m)(\abs{g}-h_m) \\
+h_{m+1} & \coloneqq h_m+\tfrac{1}{2}(g^2-h_m^2) \\
+& =h_m+\tfrac{1}{2}(\abs{g}+h_m)(\abs{g}-h_m) \\
 & \leq h_m+\tfrac{1}{2}(\abs{g}+\abs{g})(\abs{g}-h_m) \\
-& =h_m+\abs{g}(\abs{g}-h_m)\leq \footnote{Because $\abs{g}\leq 1$.}h_m+\abs{g}-h_m=\abs{g}.
+& =h_m+\abs{g}(\abs{g}-h_m)\\
+& \leq \footnote{Because $\abs{g}\leq 1$.}h_m+\abs{g}-h_m \\
+& =\abs{g}.
 \end{split}
 \end{equation}
 
@@ -2051,11 +2086,11 @@ By the previous step and the fact that $\Cls (\alg{A})$ is itself an algebra (\c
 By \cref{stpStoneWeierstrassTheorem.2x}, for every $x\in X$ there is some $g_x\in \alg{A}$ such that $g_x(x_0)=f(x_0)$ and $g_x(x)=f(x)$.  As $g_x$ is continuous, there is an open neighborhood $U_x$ of $x$ such that $g_x(u)>f(u)-\varepsilon$ for all $u\in U_x$.  As $X$ is quasicompact, there are finitely many $U_{x_1},\ldots ,U_{x_m}$ that cover $X$.  Define $f_{x_0}\coloneqq \max (g_{x_1},\ldots ,g_{x_m})$.  By the previous step, we have that $f_{x_0}\in \Cls (\alg{A})$.  Furthermore, as $g_x(x_0)=f(x_0)$ for all $x\in X$, we certainly have that $f_{x_0}(x_0)=f(x_0)$.  Finally, from the inequalities $g_{x_k}(u)>f(U)-\varepsilon$ for all $u\in U_{x_k}$ and the fact that $X=U_{x_1}\cup \cdots \cup U_{x_m}$, it follows that $f_{x_0}>f-\varepsilon$.
 
 \Step{Show that $\Cls (\alg{A})=\Mor _{\Top}(X,\R )$}
-Let $f\in \Mor _{\Top}(X,\R )$.  Let $\varepsilon >0$.  We wish to find $g\in \Cls (\alg{A})$ such that $\norm[f-g]<\varepsilon$.  This will show that $f$ is an accumulation point of $\Cls (\alg{A})$, and hence $f\in \Cls (\alg{A})$ as $\Cls (\alg{A})$ is closed.
+Let $f\in \Mor _{\Top}(X,\R )$.  Let $\varepsilon >0$.  We wish to find $g\in \Cls (\alg{A})$ such that $\norm{f-g}<\varepsilon$.  This will show that $f$ is an accumulation point of $\Cls (\alg{A})$, and hence $f\in \Cls (\alg{A})$ as $\Cls (\alg{A})$ is closed.
 
 By the previous step, for every $x\in X$, there is some $g_x\in \Cls (\alg{A})$ such that $g_x(x)=f(x)$ and $g_x>f-\varepsilon$.  As $g_x$ is continuous, there is an open neighborhood $U_x$ of $x$ such that $g_x(u)<f(u)+\varepsilon$ for all $u\in U_x$.  As $X$ is quasicompact, there are finitely many $U_{x_1},\ldots ,U_{x_m}$ that cover $X$.  Define $g\coloneqq \min (g_{x_1},\ldots ,g_{x_m})$.  By \cref{stpStoneWeierstrassTheorem.5}, $g\in \Cls (\alg{A})$.
 
-As each $g_x>f-\varepsilon$, it follows that $g>f-\varepsilon$.  Furthermore, as $g_{x_k}(u)<f(u)+\varepsilon$ for all $u\in U_{x_k}$ and the fact that $X=U_{x_1}\cup \cdots \cup U_{x_m}$, it follows that $g<f+\varepsilon$.  These inequalities together give $\norm[f-g]<\varepsilon$, as desired.
+As each $g_x>f-\varepsilon$, it follows that $g>f-\varepsilon$.  Furthermore, as $g_{x_k}(u)<f(u)+\varepsilon$ for all $u\in U_{x_k}$ and the fact that $X=U_{x_1}\cup \cdots \cup U_{x_m}$, it follows that $g<f+\varepsilon$.  These inequalities together give $\norm{f-g}<\varepsilon$, as desired.
 \end{proof}
 \end{thm}
 We obtain as a near immediate corollary of this a result that is quite significant in its own right.
@@ -2082,7 +2117,7 @@ Show that $\R [x_1,\ldots ,x_d]$ separates points in $\Mor _{\Top}(D,\R )$.
 
 Before moving on to the completion, we end with an exercise that will be needed later in \cref{prp3.6.73}.
 \begin{exr}{}{exr4.4.22}
-Let $X$ be a topological space, let $\mcal{B}(X,\R )$ denote the collection of all bounded continuous real-valued functions on $X$, and for $f\in \mcal{B}(X,\R )$ define $\norm[f]\coloneqq \sup _{x\in X}\abs{f(x)}$.  Show that $\coord{\mcal{B}(X,\R ),\norm}$ is a complete normed vector space.
+Let $X$ be a topological space, let $\mcal{B}(X,\R )$ denote the collection of all bounded continuous real-valued functions on $X$, and for $f\in \mcal{B}(X,\R )$ define $\norm{f}\coloneqq \sup _{x\in X}\abs{f(x)}$.  Show that $\coord{\mcal{B}(X,\R ),\norm}$ is a complete normed vector space.
 \begin{rmk}
 Note that, unlike in \cref{thm4.5.6}, we do \emph{not} need $X$ to be quasicompactly-generated.
 \end{rmk}
@@ -2092,7 +2127,7 @@ Note that, unlike in \cref{thm4.5.6}, we do \emph{not} need $X$ to be quasicompa
 
 And now we show that every uniform space can be \emph{completed}.\footnote{Of course, we already know that $\Q$ is not complete (see \cref{prp3.3.59,prp3.3.68}), and so in general there will most certainly be some `completing' to be done.}
 \begin{thm}{Completion}{Completion}
-Let $X$ be a $T_0$ uniform space.  Then, there exists a unique complete uniform space $\Cmp (X)$, the \emph{completion}\index{Cauchy completion}\index{Completion (of a uniform space)} of $X$, such that
+Let $X$ be a $T_0$ uniform space.  Then, there exists a unique complete uniform space $\Cmp (X)$, the \term{completion}\index{Cauchy completion}\index{Completion (of a uniform space)} of $X$, such that
 \begin{enumerate}
 \item $\Cmp (X)$ contains $X$; and
 \item if $Y$ is any other complete uniform space which contains $X$, then $Y$ contains $\Cmp (X)$.
@@ -2105,10 +2140,10 @@ You will see in the proof that this is the ``Cauchy sequence construction'' we m
 If $X$ is not $T_0$, then, if you like, you can define the completion of $X$ as $\Cmp (\TZero (X))$---see \cref{T0Quotient}.  Note that in this case $X$ is \emph{not} (in general) contained in its completion.
 \end{rmk}
 \begin{proof}
-\Step{Define an equivalence relation $\sim$ on cauchy nets}[stpB.5.6.1]
+\Step{Define an equivalence relation $\sim$ on Cauchy nets}[stpB.5.6.1]
 Define first as a set
 \begin{equation}
-X'\coloneqq \left\{ \lambda \mapsto x_\lambda \in X:\lambda \mapsto x_\lambda \text{ is cauchy.}\right\} 
+X'\coloneqq \left\{ \lambda \mapsto x_\lambda \in X:\lambda \mapsto x_\lambda \text{ is Cauchy.}\right\} 
 \end{equation}
 For $\lambda \mapsto x_\lambda$ and $\mu \mapsto y_\mu$ Cauchy nets, define $(\lambda \mapsto x_\lambda )\sim (\mu \mapsto y_\mu )$ iff open subsets of $X$ eventually contain $\lambda \mapsto x_\lambda$ iff they eventually contain $\mu \mapsto y_\mu$.
 
@@ -2157,13 +2192,13 @@ We claim that $\widetilde{\Cmp (\cover{U})}$ is a uniform base on $\Cmp (X)$.  C
 It follows from \cref{prpC.2.3x} that $\q$ preserves star-refinement (the purpose of the previous step was to verify the requisite hypotheses of \cref{prpC.2.3x}), and so that $\Cmp (\uniformity{U})$ is a uniform base follows from the fact that that $\uniformity{U}'$ was a uniform base on $X'$.
 
 \Step{Show that $\Cmp (X)$ is complete.}
-Let $\lambda \mapsto \q (x^\lambda )$ be cauchy in $\Cmp (X)$.  By definition of cauchyness and our uniformity on $\Cmp (X)$, this means that, for every uniform cover $\Cmp (\cover{U})\in \Cmp (\uniformity{U})$, there is some $\Cmp (U)\in \Cmp (\cover{U})$ such that $\lambda \mapsto \q (x^\lambda )$ is eventually contained in $\Cmp (U)\coloneqq \q (U')$.  Thus, for each $x^\lambda \in X'$ for $\lambda$ sufficiently large, there is some $y^\lambda \in U'$ with $x^\lambda \sim y^\lambda$.  However, by definition of $U'$, $U$ eventually contains $y^\lambda$, and hence, because $x^\lambda \sim y^\lambda$, eventually contains $x^\lambda$, and so in fact $x^\lambda \in U'$.  Thus, we have a net $\lambda \mapsto x^\lambda \in X'$ that has the property that, for every uniform cover $\cover{U}\in \uniformity{U}$, there is some $U\in \cover{U}$ such that $\lambda \mapsto x^\lambda$ is eventually contained in $U'$.
+Let $\lambda \mapsto \q (x^\lambda )$ be Cauchy in $\Cmp (X)$.  By definition of Cauchyness and our uniformity on $\Cmp (X)$, this means that, for every uniform cover $\Cmp (\cover{U})\in \Cmp (\uniformity{U})$, there is some $\Cmp (U)\in \Cmp (\cover{U})$ such that $\lambda \mapsto \q (x^\lambda )$ is eventually contained in $\Cmp (U)\coloneqq \q (U')$.  Thus, for each $x^\lambda \in X'$ for $\lambda$ sufficiently large, there is some $y^\lambda \in U'$ with $x^\lambda \sim y^\lambda$.  However, by definition of $U'$, $U$ eventually contains $y^\lambda$, and hence, because $x^\lambda \sim y^\lambda$, eventually contains $x^\lambda$, and so in fact $x^\lambda \in U'$.  Thus, we have a net $\lambda \mapsto x^\lambda \in X'$ that has the property that, for every uniform cover $\cover{U}\in \uniformity{U}$, there is some $U\in \cover{U}$ such that $\lambda \mapsto x^\lambda$ is eventually contained in $U'$.
 
 Let us denote the domain of $\lambda \mapsto x^\lambda$ by $\Lambda$.  Now, each $x^\lambda$ is itself a net, and so let us denote its domain by $M^\lambda$.  Define $x^\infty \in X'$ to be the net
 \begin{equation}
 \Lambda \times \prod _{\lambda \in \Lambda}M^\lambda \ni (\coord{\lambda ,\mu }\mapsto [x^\lambda ]_{\mu ^\lambda}\in X.
 \end{equation}
-We first must check that this is cauchy, so that indeed $x^\infty \in X'$.
+We first must check that this is Cauchy, so that indeed $x^\infty \in X'$.
 
 So, let $\cover{U}\in \uniformity{U}$ be a uniform cover.  Then, there is some $U\in \cover{U}$ such that $\lambda \mapsto x^\lambda$ is eventually contained in $U'$.  So, let $\lambda _0$ be such that, whenever $\lambda \geq \lambda _0$, it follows that $x^\lambda \in U'$.  For all such $\lambda$, the net $x^\lambda$ itself must be eventually contained in $U$, so let $\mu _0^\lambda$ be such that, whenever $\mu ^\lambda \geq \mu _0^\lambda$, it follows that $[x^\lambda ]_{\mu ^\lambda}\in U$.  (For $\lambda$ not at least $\lambda _0$, $\mu _0^\lambda$ may be anything).  Now, suppose that $\coord{\lambda ,\mu}\geq \coord{\lambda _0,\mu _0}$.  Then,
 \begin{equation}\label{eqn4.4.29}
@@ -2171,7 +2206,7 @@ So, let $\cover{U}\in \uniformity{U}$ be a uniform cover.  Then, there is some $
 \end{equation}
 Thus, $\coord{\lambda ,\mu }\mapsto (x^\lambda )_{\mu ^\lambda}$ is Cauchy.
 
-We now show that $\lambda \mapsto \q (x^\lambda )$ converges to $\q (x^\infty )$.  To show this, as stars form neighborhood bases, it suffices to show that $\lambda \mapsto \q (x^\lambda )$ is eventually contained in $\Star _{\Cmp (\cover{U})}(\q (x^\infty ))$ for all $\cover{U}\in \uniformity{U}$.  As $\q$ is surjective, the preimage of a star is equal to the star of the preimage (\cref{prpC.2.3}), and so it suffices to show that $\lambda \mapsto x^\lambda$ is eventually contained in $\Star _{\cover{U}'}(x^\infty )$ for all $\cover{U}\in \uniformity{U}$.  So, let $\cover{U}\in \uniformity{U}$ be a uniform cover.  Then, there is some $U\in \cover{U}$ such that $\lambda \mapsto x^\lambda$ is eventually contained in $U'$.  Thus, we will be done if we can show that $x^\infty \in U'$ (so that then $U'\subseteq \Star _{\cover{U}'}(x^\infty )$).  To show this, we must show that $x^\infty$ is eventually contained in $U$.  However, the exact same argument (see \eqref{eqn4.4.29}) that was used above to show that $x^\infty$ was cauchy shows precisely this.  Therefore, $\lambda \mapsto x^\lambda$ converges to $x^\infty$.
+We now show that $\lambda \mapsto \q (x^\lambda )$ converges to $\q (x^\infty )$.  To show this, as stars form neighborhood bases, it suffices to show that $\lambda \mapsto \q (x^\lambda )$ is eventually contained in $\Star _{\Cmp (\cover{U})}(\q (x^\infty ))$ for all $\cover{U}\in \uniformity{U}$.  As $\q$ is surjective, the preimage of a star is equal to the star of the preimage (\cref{prpC.2.3}), and so it suffices to show that $\lambda \mapsto x^\lambda$ is eventually contained in $\Star _{\cover{U}'}(x^\infty )$ for all $\cover{U}\in \uniformity{U}$.  So, let $\cover{U}\in \uniformity{U}$ be a uniform cover.  Then, there is some $U\in \cover{U}$ such that $\lambda \mapsto x^\lambda$ is eventually contained in $U'$.  Thus, we will be done if we can show that $x^\infty \in U'$ (so that then $U'\subseteq \Star _{\cover{U}'}(x^\infty )$).  To show this, we must show that $x^\infty$ is eventually contained in $U$.  However, the exact same argument (see \eqref{eqn4.4.29}) that was used above to show that $x^\infty$ was Cauchy shows precisely this.  Therefore, $\lambda \mapsto x^\lambda$ converges to $x^\infty$.
 
 \Step{Show that $\Cmp (X)$ contains $X$}
 Of course, when we say that $\Cmp (X)$ ``contains'' $X$, what we really means is that there is a subset of $\Cmp (X)$ which is uniformly-homeomorphic to $X$.  So, we define $\iota \colon X\rightarrow \Cmp (X)$, and show that it is a uniform-homeomorphism onto its image.\footnote{Its image will be equipped with the subspace uniformity, that is, the initial uniformity (see \cref{InitialUniformity}) with respect to the inclusion into $\Cmp (X)$.}
@@ -2258,7 +2293,7 @@ Among other things, the significance of this result is that group operations of 
 Having shown that uniform spaces always have completions, finally, we may return to an unresolved issue all the way back from \cref{chp1}.
 \begin{exm}{A nonzero totally-ordered Cau\-chy-complete field distinct from $\R$}{exm4.4.41}
 Recall the field of rational functions with coefficients in the reals, $\R (x)$, from \cref{exm2.3.12}.  Being a totally-ordered field, it is in particular a topological group (\cref{exr4.8.58}) with respect to its underlying commutative group $\coord{\R (x),+,0,-}$, and so has a canonical uniform structure.  Thus, we may complete to form the complete topological field $\Cmp (\R (x))$.
-\begin{exr}{}{}
+\begin{exr}[breakable=false]{}{}
 Extend the order on $\R (x)$ to $\Cmp (\R (x))$ so that $\Cmp (\R (x))$ is a totally-ordered field containing $\R (x)$.
 \end{exr}
 By construction then, $\Cmp (\R (x))$ is a nonzero totally-ordered Cauchy-complete field.  Not only is it distinct from $\R$, but it cannot even embed in $\R$ as, if it did, then so to $\R (x)$ would embed in $\R$ (as it embeds in $\Cmp (\R (x))$), and hence $\R (x)$ would be archimedean, a contradiction of \cref{exm2.3.12}.
@@ -2281,7 +2316,7 @@ Note that we are making the same abuse of notation here as described in a remark
 By the previous result, $\Cmp (\R [x])=\Cls (\R [x])$.  However, by the \namerefpcref{WeierstrassApproximationTheorem}, $\Cls (\R [x])=\Mor _{\Top}(\R ,\R )$, and so we have $\Cmp (\R [x])=\Mor _{\Top}(\R ,\R )$.
 \end{exm}
 \begin{exm}{$\Cmp (\Q )=\R$}{}
-We've known for awhile now (\cref{CompletenessOfR}) that $\R$ is cauchy-complete; however, we never stopped to check that it is the `smallest' complete uniform space that contains $\Q$.  This, however now follows from \cref{prp4.4.59} as $\Cls (\Q )=\Cls (\R )$ (which itself was (hopefully) proven in \cref{exr4.2.38}).
+We've known for awhile now (\cref{CompletenessOfR}) that $\R$ is Cauchy-complete; however, we never stopped to check that it is the `smallest' complete uniform space that contains $\Q$.  This, however now follows from \cref{prp4.4.59} as $\Cls (\Q )=\Cls (\R )$ (which itself was (hopefully) proven in \cref{exr4.2.38}).
 \end{exm}
 
 \subsection{Complete metric spaces}
@@ -2331,7 +2366,7 @@ Proceeding inductively, we can find $x_m\in X$ and $0<\varepsilon _m<2^{-m}$ suc
 \Cls \left( B_{\varepsilon _m}(x_m)\right) \subseteq U_m\cap B_{\varepsilon _{m-1}}(x_{m-1}).
 \end{equation}
 
-We now check that $m\mapsto x_m$ is cauchy.  Let $\varepsilon >0$.  Choose $m\in \N$ such that $\varepsilon _m<\varepsilon$.  Suppose that $n\geq m$.  Then, $x_n\in B_{\varepsilon _n}(x_n)\subseteq B_{\varepsilon _m}(x_m)\subseteq B_{\varepsilon}(x_m)$.  Thus, $m\mapsto x_m$ is eventually contained in some $\varepsilon$ ball, and is hence cauchy.  As $X$ is complete, it converges (to a unique limit) and so we may define
+We now check that $m\mapsto x_m$ is Cauchy.  Let $\varepsilon >0$.  Choose $m\in \N$ such that $\varepsilon _m<\varepsilon$.  Suppose that $n\geq m$.  Then, $x_n\in B_{\varepsilon _n}(x_n)\subseteq B_{\varepsilon _m}(x_m)\subseteq B_{\varepsilon}(x_m)$.  Thus, $m\mapsto x_m$ is eventually contained in some $\varepsilon$ ball, and is hence Cauchy.  As $X$ is complete, it converges (to a unique limit) and so we may define
 \begin{equation}
 x_\infty \coloneqq \lim _mx_m.
 \end{equation}
@@ -2340,7 +2375,7 @@ We claim that $x\in U\cap V$.  As explained above, this will complete the proof.
 \end{proof}
 \end{thm}
 
-\begin{exm}{A complete uniform space which is not a baire space}{exm4.5.2x}\footnote{A \emph{baire space}\index{Baire space} is a topological space in which the conclusion of the \nameref{BaireCategoryTheorem} holds.  This example was inspired by \href{http://mathoverflow.net/questions/212308/baire-category-theorem-for-complete-uniform-spaces}{priel's answer} on mathoverflow.net.  Thanks to Nate Eldredge for nudging me towards the correct proof.}
+\begin{exm}{A complete uniform space which is not a Baire space}{exm4.5.2x}\footnote{A \term{Baire space}\index{Baire space} is a topological space in which the conclusion of the \nameref{BaireCategoryTheorem} holds.  This example was inspired by \href{http://mathoverflow.net/questions/212308/baire-category-theorem-for-complete-uniform-spaces}{priel's answer} on mathoverflow.net.  Thanks to Nate Eldredge for nudging me towards the correct proof.}
 Define
 \begin{equation}
 \begin{multlined}
@@ -2357,7 +2392,7 @@ equipped with the product uniformity.  Note that $X_m$ embeds in $X$ via $\iota 
 \end{equation}
 that is, $\coord{x_1,\ldots ,x_m}$ is sent to the function from $\Z ^+$ into $[0,1]$ which sends $k$ to $x_k$ for $k\leq m$ and $0$ otherwise.  We then equip $X$ with the final uniformity (\cref{FinalUniformity}) with respect to the collection $\{ \iota _m:m\in \Z ^+\}$.
 
-Let $\Lambda \ni \lambda \mapsto x_{\lambda}\in X$ be cauchy.  We first wish to show that $\lambda \mapsto x_\lambda$ is eventually contained in $X_{m_0}$ for some $m_0\in \Z ^+$.  To show this, we proceed by contradiction:  suppose that for every $m\in \N$ and every $\lambda$ there is some $\lambda _{m,\lambda}\geq \lambda$ such that $x_{\lambda _{m,\lambda}}\notin X_m$.  Define $\Lambda '\coloneqq \Z ^+\times \Lambda$.  Then, $\Lambda '\ni \coord{m,\lambda}\mapsto x_{\lambda _{m,\lambda}}$ is a subnet of $\lambda \mapsto x_\lambda$, and hence is in turn cauchy.  Thus, for every $\varepsilon _1,\varepsilon _2,\varepsilon _3,\ldots >0$, there is some $\coord{m_0,\lambda _0}$ such that, whenever $\coord{m,\lambda},\coord{n,\mu}\geq \coord{m_0,\lambda _0}$, it follows that
+Let $\Lambda \ni \lambda \mapsto x_{\lambda}\in X$ be Cauchy.  We first wish to show that $\lambda \mapsto x_\lambda$ is eventually contained in $X_{m_0}$ for some $m_0\in \Z ^+$.  To show this, we proceed by contradiction:  suppose that for every $m\in \N$ and every $\lambda$ there is some $\lambda _{m,\lambda}\geq \lambda$ such that $x_{\lambda _{m,\lambda}}\notin X_m$.  Define $\Lambda '\coloneqq \Z ^+\times \Lambda$.  Then, $\Lambda '\ni \coord{m,\lambda}\mapsto x_{\lambda _{m,\lambda}}$ is a subnet of $\lambda \mapsto x_\lambda$, and hence is in turn Cauchy.  Thus, for every $\varepsilon _1,\varepsilon _2,\varepsilon _3,\ldots >0$, there is some $\coord{m_0,\lambda _0}$ such that, whenever $\coord{m,\lambda},\coord{n,\mu}\geq \coord{m_0,\lambda _0}$, it follows that
 \begin{equation}
 \abs{x_{\lambda _{m,\lambda}}(k)-x_{\lambda _{n,\mu}}(k)}<\varepsilon _k
 \end{equation}
@@ -2373,14 +2408,14 @@ As $\varepsilon _l$ is arbitrary, this is a contradiction.  Thus, there is some 
 
 However, $X_{m_0}$, being a finite product of compact metric spaces, is a compact metric space, and hence complete, so that $\lambda \mapsto x_\lambda$ converges in $X_{m_0}$, and hence in $X$.  Therefore, $X$ is complete.
 
-We now wish to check that $X$ is not a baire space.  From the definition, we have that
+We now wish to check that $X$ is not a Baire space.  From the definition, we have that
 \begin{equation}
 X=\bigcup _{m\in \Z ^+}X_m.
 \end{equation}
 \begin{exr}[breakable=false]{}{}
 Show that $X_m$ is closed in $X$.
 \end{exr}
-Thus, to show that $X$ is not a baire space, it suffices to show that each $X_m$ has empty interior.  So, let $x\in X_m$.  We show that every open neighborhood around $x$ contains an element of $X_{m+1}$ that is not contained in $X_m$.  Let us write
+Thus, to show that $X$ is not a Baire space, it suffices to show that each $X_m$ has empty interior.  So, let $x\in X_m$.  We show that every open neighborhood around $x$ contains an element of $X_{m+1}$ that is not contained in $X_m$.  Let us write
 \begin{equation}
 x=\coord{x_1,x_2,\ldots ,x_m,0,0,0,\ldots}
 \end{equation}
@@ -2397,52 +2432,52 @@ We finish the chapter with an application of the \nameref{BaireCategoryTheorem} 
 \begin{thm}{Banach Fixed-Point Theorem}{BanachFixedPointTheorem}\index{Banach Fixed-Point Theorem}
 Let $\coord{X,\metric}$ be a metric space and let $f\colon X\rightarrow X$ be such that
 \begin{equation}\label{4.5.70}
-\metric[f(x_1)][f(x_2)]\leq M\metric[x_1][x_2]
+\metric{f(x_1)}{f(x_2)}\leq M\metric{x_1}{x_2}
 \end{equation}
 for some $0\leq 1<M$.  Then, there is \emph{at most one} point $x_0\in X$ such that $f(x_0)=x_0$.  If $X$ is nonempty and complete, then there is \emph{exactly one} $x_0\in X$ such that $f(x_0)=x_0$.
 \begin{rmk}
-Such an $x_0$ is called a \emph{fixed-point}, hence the name of the theorem.  Thus, the theorem tells us that (i)~fixed-points, if they exist, have to be unique; and (ii)~in the (nonempty) complete case, there has to be some fixed-point (and hence exactly one fixed-point).
+Such an $x_0$ is called a \term{fixed-point}, hence the name of the theorem.  Thus, the theorem tells us that (i)~fixed-points, if they exist, have to be unique; and (ii)~in the (nonempty) complete case, there has to be some fixed-point (and hence exactly one fixed-point).
 \end{rmk}
 \begin{rmk}
-\eqref{4.5.70} is just the statement that $f$ is lipschitz-continuous \emph{for a constant} $M<1$.  Such maps are called \emph{contraction-mappings}, hence the alternative name for this theorem, the \emph{Contraction-Mapping Theorem}\index{Contraction-Mapping Theorem}.
+\eqref{4.5.70} is just the statement that $f$ is Lipschitz-continuous \emph{for a constant} $M<1$.  Such maps are called \term{contraction-mappings}, hence the alternative name for this theorem, the \term{Contraction-Mapping Theorem}\index{Contraction-Mapping Theorem}.
 \end{rmk}
 \begin{proof}
 Let $x_1,x_2\in X$ be two fixed points of $f$.  Then,
 \begin{equation}
-\metric[x_1][x_2]=\metric[f(x_1)][f(x_2)]\leq M\metric[x_1][x_2],
+\metric{x_1}{x_2}=\metric{f(x_1)}{f(x_2)}\leq M\metric{x_1}{x_2},
 \end{equation}
-and hence, if $\metric[x_1][x_2]\neq 0$, we would have $1\leq M$:  a contradiction.  Therefore, $\metric[x_1][x_2]=0$, and hence $x_1=x_2$.
+and hence, if $\metric{x_1}{x_2}\neq 0$, we would have $1\leq M$:  a contradiction.  Therefore, $\metric{x_1}{x_2}=0$, and hence $x_1=x_2$.
 
 Now take $X$ to be nonempty and complete.  We construct an actual fixed point of $f$.  Let $x_0\in X$ (there is such a point because $X$ is nonempty).  For $m\in \Z ^+$, define
 \begin{equation}
 x_m\coloneqq f(x_{m-1}).
 \end{equation}
-We wish to show that the sequence $m\mapsto x_m$ is cauchy.  If we can do so, then its limit $x_\infty$ must exist, and so by taking the limit of the previous equation, we would find that $x_\infty =f(x_\infty )$ ($f$ is lipschitz-continuous, hence uniformly-continuous, hence continuous).  Thus, it suffices to show that $m\mapsto x_m$ is cauchy.
+We wish to show that the sequence $m\mapsto x_m$ is Cauchy.  If we can do so, then its limit $x_\infty$ must exist, and so by taking the limit of the previous equation, we would find that $x_\infty =f(x_\infty )$ ($f$ is Lipschitz-continuous, hence uniformly-continuous, hence continuous).  Thus, it suffices to show that $m\mapsto x_m$ is Cauchy.
 
 To see this, we first notice that\footnote{We're using $y$s instead of $x$s because those symbols are already used-up.}
 \begin{equation}
 \begin{split}
-\metric[y_1][y_2] & \leq \metric[y_1][f(y_1)]+\metric[f(y_1)][f(y_2)]+\metric[f(y_2)][y_2] \\
-& \leq \metric[y_1][f(y_1)]+M\metric[y_1][y_2]+\metric[f(y_2)][y_2],
+\metric{y_1}{y_2} & \leq \metric{y_1}{f(y_1)}+\metric{f(y_1)}{f(y_2)}+\metric{f(y_2)}{y_2} \\
+& \leq \metric{y_1}{f(y_1)}+M\metric{y_1}{y_2}+\metric{f(y_2)}{y_2},
 \end{split}
 \end{equation}
 and so
 \begin{equation}\label{4.5.75}
-\metric[y_1][y_2]\leq \frac{1}{1-M}\left( \metric[y_1][f(y_1)]+\metric[f(y_2)][y_2]\right) 
+\metric{y_1}{y_2}\leq \frac{1}{1-M}\left( \metric{y_1}{f(y_1)}+\metric{f(y_2)}{y_2}\right) 
 \end{equation}
 Also note that
 \begin{equation}
-\metric[f^m(y_1)][f^m(y_2)]\leq M^m\metric[y_1][y_2],
+\metric{f^m(y_1)}{f^m(y_2)}\leq M^m\metric{y_1}{y_2},
 \end{equation}
 which follows of course from just applying \eqref{4.5.70} inductively.  Taking $y_1\coloneqq f^m(x_0)$ and $y_2\coloneqq f^n(x_0)$ in \eqref{4.5.75}, we find
 \begin{equation}
 \begin{split}
-\metric[x_m][x_n] & \leq \frac{1}{1-M}\left( \metric[x_m][x_{m+1}]+\metric[x_{n+1}][x_n]\right) \\
-& \leq \frac{1}{1-M}\left( M^m\metric[x_0][f(x_0)]+M^n\metric[f(x_0)][x_0]\right) \\
-& =\frac{M^m+M^n}{1-M}\metric[x_0][f(x_0)].
+\metric{x_m}{x_n} & \leq \frac{1}{1-M}\left( \metric{x_m}{x_{m+1}}+\metric{x_{n+1}}{x_n}\right) \\
+& \leq \frac{1}{1-M}\left( M^m\metric{x_0}{f(x_0)}+M^n\metric{f(x_0)}{x_0}\right) \\
+& =\frac{M^m+M^n}{1-M}\metric{x_0}{f(x_0)}.
 \end{split}
 \end{equation}
-Because $M<1$, we can make $\frac{M^m+M^n}{1-M}$ arbitrarily small by taking $m$ and $n$ sufficiently large.\footnote{If you are not comfortable with this amount of detail, I suggest you fill in the gaps.  You will want to get to the point where you feel comfortable just asserting cauchyness after obtaining an inequality like this.}  Hence, this sequence is Cauchy, and we are done.
+Because $M<1$, we can make $\frac{M^m+M^n}{1-M}$ arbitrarily small by taking $m$ and $n$ sufficiently large.\footnote{If you are not comfortable with this amount of detail, I suggest you fill in the gaps.  You will want to get to the point where you feel comfortable just asserting Cauchyness after obtaining an inequality like this.}  Hence, this sequence is Cauchy, and we are done.
 \end{proof}
 \end{thm}
 \begin{exm}{A contraction mapping with no fixed-point}{}

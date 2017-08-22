@@ -27,7 +27,7 @@ Let $K$ be any set such that $|K|=\kappa$.  Recall that (\cref{dfn1.1.23}) to sh
 \end{prp}
 Thus, the cardinality of the natural numbers is the smallest infinite cardinality.  We give a name to this cardinality.
 \begin{dfn}{Countability}{dfn2.2}
-Let $X$ be a set.  Then, $X$ is \emph{countably-infinite}\index{Countably-infinite} iff $|X|=|\N |$.  $X$ is \emph{countable} iff either $X$ is countably-infinite or $X$ is finite.  We write $\aleph _0\coloneqq |\N |$\index[notation]{$\aleph _0$}.
+Let $X$ be a set.  Then, $X$ is \term{countably-infinite}\index{Countably-infinite} iff $|X|=|\N |$.  $X$ is \term{countable} iff either $X$ is countably-infinite or $X$ is finite.  We write $\aleph _0\coloneqq |\N |$\index[notation]{$\aleph _0$}.
 \begin{rmk}
 It is not uncommon for people to use the term ``countable'' to mean what we call ``countably-infinite''.  They would would then just say ``countable or finite'' in cases that we would say ``countable''.
 \end{rmk}
@@ -85,7 +85,7 @@ This result might seem a bit crazy at first.  I mean, just `look' at the number 
 
 We mentioned briefly before the algebraic numbers in the remark right before \crefnameref{sbs1.4.2}.  We go ahead and define them now because they provide a good exercise in cardinality.
 \begin{dfn}{Real algebraic numbers}{dfn2.13}
-A real number $\alpha \in \R$ is \emph{algebraic}\index{Algebraic (number)} iff there exists a nonzero polynomial with integer coefficients $p$ such that $p(\alpha )=0$.  We write $\A _{\R}$\index[notation]{$\A _{\R}$} for the set of real algebraic numbers.
+A real number $\alpha \in \R$ is \term{algebraic}\index{Algebraic (number)} iff there exists a nonzero polynomial with integer coefficients $p$ such that $p(\alpha )=0$.  We write $\A _{\R}$\index[notation]{$\A _{\R}$} for the set of real algebraic numbers.
 \begin{rmk}
 Every rational number is real algebraic:  if $q=\frac{m}{n}\in \Q$, then $q$ is a root of the polynomial $nx-m$.  On the other hand, there are real algebraic numbers that are not rational, for example, $\sqrt{2}\in \R$ is a root of $x^2-2$.\footnote{I know technically we have not yet defined $\sqrt{2}$, though as I only intend you to convince you (as opposed to prove it for you) that there are algebraic numbers which are not rational, this is not an issue.}
 \end{rmk}
@@ -104,7 +104,7 @@ So, we've now done both $\Z$ and $\Q$, but what about $\R$?  At first, you might
 \begin{thm}{Cantor's Cardinality Theorem}{CantorsCardinalityTheorem}\index{Cantor's Cardinality Theorem}
 Let $X$ be a set.  Then, $|X|<|2^X|$.
 \begin{rmk}
-There is a good chance you may have heard of the term \emph{Cantor's Diagonal Argument}\index{Cantor's Diagonal Argument}.  The argument here is a generalization of that (it's also `cleaner'), and so we don't present the Diagonal Argument itself.
+There is a good chance you may have heard of the term \term{Cantor's Diagonal Argument}\index{Cantor's Diagonal Argument}.  The argument here is a generalization of that (it's also `cleaner'), and so we don't present the Diagonal Argument itself.
 \end{rmk}
 \begin{proof}
 We must show two things:  (i)~$|X|\leq |2^X|$ and (ii)~$|X|\neq |2^X|$.
@@ -126,7 +126,7 @@ Now, to show that $|\R |>\aleph _0$, we show that $|\R |=2^{\aleph _0}$.  Before
 
 $\R$ already has a decent amount of structure:  both an order and a field structure.  We now equip it with yet another structure which will make arguments easier to work with and more intuitive (though as the entire definition involves only the order and algebraic structure, in principle we could do without it).
 \begin{dfn}{Absolute value}{AbsoluteValue}
-The \emph{absolute value}\index{Absolute value} of $x\in \R$, denoted by $\abs{x}$\index[notation]{$\abs{x}$}, is defined by
+The \term{absolute value}\index{Absolute value} of $x\in \R$, denoted by $\abs{x}$\index[notation]{$\abs{x}$}, is defined by
 \begin{equation}
 \abs{x}\coloneqq \begin{cases}x & \text{if }x\geq 0 \\ -x & \text{if }x\leq 0.\end{cases}
 \end{equation}
@@ -138,7 +138,7 @@ D_{\varepsilon}(x_0) & \coloneqq \left\{ x\in \R :|x-x_0|\leq \varepsilon \right
 \end{aligned}
 \end{equation}
 \begin{rmk}
-$B_{\varepsilon}(x_0)$\index[notation]{$B_{\varepsilon}(x_0)$} is the \emph{ball}\index{Ball} of radius $\varepsilon$ centered at $x_0$ and $D_{\varepsilon}(x_0)$\index[notation]{$D_{\varepsilon}(x_0)$} is the \emph{disk}\index{Disk} of radius $\varepsilon$ centered at $x_0$.
+$B_{\varepsilon}(x_0)$\index[notation]{$B_{\varepsilon}(x_0)$} is the \term{ball}\index{Ball} of radius $\varepsilon$ centered at $x_0$ and $D_{\varepsilon}(x_0)$\index[notation]{$D_{\varepsilon}(x_0)$} is the \term{disk}\index{Disk} of radius $\varepsilon$ centered at $x_0$.
 \end{rmk}
 \end{dfn}
 \begin{exr}{}{exr3.1.4}
@@ -168,7 +168,7 @@ Suppose that $\abs{m-n}<\varepsilon$.  Without loss of generality, suppose that 
 
 The first property of the real numbers we come to is called the Archimedean Property.  The Archimedean Property essentially says that the natural numbers are unbounded.
 \begin{dfn}{The Archimedean Property}{}
-Let $F$ be a nonzero totally-ordered field so that $\Q \subseteq F$ (see \cref{prp1.4.52}).  Then, we say that $F$ is \emph{Archimedean}\index{Archimedean field} iff for all $x\in F$ there is some $m\in \N \subseteq F$ such that $x<m$.
+Let $F$ be a nonzero totally-ordered field so that $\Q \subseteq F$ (see \cref{prp1.4.52}).  Then, we say that $F$ is \term{Archimedean}\index{Archimedean field} iff for all $x\in F$ there is some $m\in \N \subseteq F$ such that $x<m$.
 \begin{rmk}
 Note the use of \emph{Archimedean field} in contrast with \emph{Dedekind-complete}:  one is capitalized and hte other is not.  To be honest, while this convention doesn't make the most sense to me, it seems most standard to write people's names, even if not being used to refer to that person, with an upper-case letter, but to \emph{not} use upper-case for terms derived from people's names.
 \end{rmk}
@@ -202,12 +202,12 @@ Our first application of the Archimedean Property is that it allows us to define
 \begin{prp}{Floor and ceiling}{FloorAndCeiling}
 Let $x\in \R$.
 \begin{itemize}
-\item There is a unique integer $\floor{x}$\index[notation]{$\floor{x}$}, the \emph{floor}\index{Floor} of $x$, such that
+\item There is a unique integer $\floor{x}$\index[notation]{$\floor{x}$}, the \term{floor}\index{Floor} of $x$, such that
 \begin{enumerate}
 \item $\floor{x}\leq x$; and
 \item if $\Z \ni m\leq x$, then $m\leq \floor{x}$.
 \end{enumerate}
-\item There is a unique integer $\ceil{x}$, \index[notation]{$\ceil{x}$}, the \emph{ceiling}\index{Ceiling} of $x$, such that
+\item There is a unique integer $\ceil{x}$, \index[notation]{$\ceil{x}$}, the \term{ceiling}\index{Ceiling} of $x$, such that
 \begin{enumerate}
 \item $\ceil{x}\geq x$; and
 \item if $\Z \ni m\geq x$, then $m\geq \ceil{x}$.
@@ -229,7 +229,7 @@ Prove the analogous result for $\ceil{x}$.
 
 It might seem like the Archimedean Property is obviously true, but it is in fact not true of all totally-ordered fields.  To present such an example, we have to take a bit of an aside and discuss polynomial crings and fields of rational functions.  Such crings and fields are important for many other reasons than to present an example of a totally-ordered field that does not have the Archimedean Property, so it is worthwhile to understand the material anyways, though you might want to come back to it later if you don't care about the counter-example at the time being.
 
-\subsubsection{Polynomials and a totally-ordered field which is not Archimedean}
+\subsubsection{Totally-ordered field which is not Archimedean}
 
 \begin{dfn}{Polynomial cring}{PolynomialCring}
 Let $R$ be a totally-ordered cring, denote by $R[x]$ the set of all polynomials with coefficients in $R$, let $+$ and $\cdot$ on $R[x]$ be addition and multiplication of polynomials, and define $p>0$ iff the leading coefficient of $p$ is greater than $0$ in $R$.\footnote{Recall that this is enough to define a total-order by \cref{exr1.1.41}.} 
@@ -237,7 +237,7 @@ Let $R$ be a totally-ordered cring, denote by $R[x]$ the set of all polynomials 
 Show that $\coord{R[x],+,0,-,\cdot ,1,\leq}$ is a totally-ordered cring.  What is $0\in R[x]$?  What is $1\in R[x]$?
 \end{exr}
 \noindent
-$R[x]$ is the \emph{polynomial cring}\index{Polynomial cring} with coefficients in $R$.  The \emph{degree}\index{Degree (of a polynomial)} of a polynomial $p$, denoted by $\deg (p)$\index[notation]{$\deg (p)$}, is the highest power of $x$ that appears in $p$ with nonzero coefficient.
+$R[x]$ is the \term{polynomial cring}\index{Polynomial cring} with coefficients in $R$.  The \term{degree}\index{Degree (of a polynomial)} of a polynomial $p$, denoted by $\deg (p)$\index[notation]{$\deg (p)$}, is the highest power of $x$ that appears in $p$ with nonzero coefficient.
 \end{dfn}
 \begin{exr}{}{}
 Show that the following statements are true.
@@ -251,7 +251,7 @@ Show that the following statements are true.
 Show that $R$ is integral iff $R[x]$ is.
 \end{exr}
 \begin{thm}{Field of rational functions}{FieldOfRationalFunctions}
-Let $F$ be a field, so that $F[x]$ is a totally-ordered integral cring.  Then, there exists unique a totally-ordered field $F(x)$, the field of \emph{rational functions with coefficients in $F$}\index{Rational functions}, such that
+Let $F$ be a field, so that $F[x]$ is a totally-ordered integral cring.  Then, there exists unique a totally-ordered field $F(x)$, the field of \term{rational functions}\index{Rational functions} with coefficients in $F$, such that
 \begin{enumerate}
 \item $F[x]\subseteq F(x)$; and
 \item if $F'$ is any other totally-ordered field such that $F[x]\subseteq F
@@ -310,12 +310,12 @@ A (real-valued) \emph{sequence} is a function from $\N$ to $\R$.
 
 A net is a generalization of a sequence.  It is incredibly uncommon to introduce nets in a first course on analysis (or even in second course), but we have a couple reasons for doing so.  One point of introducing them to put emphasis on the \emph{structure} $\N$ is equipped with in this context.  In particular, the $\N$ in the definition of a sequence is \emph{not} to be thought of as a crig; for the purposes of sequences, the algebraic structure does not matter.  Instead, in the context of sequences, $\N$ should be thought of as a directed set.  Another motivation, and almost certainly the more important one, for working with nets is that, when you go to generalize to examples more exotic than the real numbers, some of the results that are true in the reals would fail to generalize if we restricted ourselves to only work with sequences---see the remarks in \cref{prp3.4.21,prp3.4.56}.  There is no getting around this:  in general topology (the subject of the next chapter), you \emph{need} to use nets.\footnote{I imagine that there will be quite a few readers who have already learned at least some general topology and have never encountered nets before.  I would further imagine that at least some of these readers would be skeptical of my claim that you ``need' nets.  There are several things I could point to you to convince you of this, but one particularly important phenomenon is as follows:  there are nonhomeomorphic spaces with the same notion of sequential convergence---see \cref{exm4.2.25}.  The significance of this is that, if you want to \emph{define} a topology by saying what it means to converge (and you almost certainly will at some point if you plan to become a mathematician), you \emph{cannot} use sequences---see the remark in \cref{KelleysConvergenceTheorem}.}
 \begin{dfn}{Directed set}{dfn3.3.2}
-A \emph{directed set}\index{Directed set} is a nonempty partially-ordered set $\coord{\Lambda ,\leq}$ such that, for every $x_1,x_2\in X$, there is some $x_3\in X$ with $x_1,x_2\leq x_3$.
+A \term{directed set}\index{Directed set} is a nonempty partially-ordered set $\coord{\Lambda ,\leq}$ such that, for every $x_1,x_2\in X$, there is some $x_3\in X$ with $x_1,x_2\leq x_3$.
 \begin{rmk}
 In words, a partially-ordered set is directed iff you can find an upper-bound of any two elements.
 \end{rmk}
 \begin{rmk}
-This property is sometimes called \emph{upward-directed}\index{Upward-directed}.  Compare, for example, the terminology in \cref{FilterBase,UniformSpace}.
+This property is sometimes called \term{upward-directed}\index{Upward-directed}.  Compare, for example, the terminology in \cref{FilterBase,UniformSpace}.
 \end{rmk}
 \end{dfn}
 \begin{exr}{}{}
@@ -334,12 +334,12 @@ You showed (hopefully anyways) in \cref{exmA.1.95} that $X$ is a partially-order
 \end{exr}
 \end{exm}
 \begin{dfn}{Net}{}
-A (real-valued) \emph{net}\index{Net} is a function from a directed set $\coord{\Lambda ,\leq}$ into $\R$.
+A (real-valued) \term{net}\index{Net} is a function from a directed set $\coord{\Lambda ,\leq}$ into $\R$.
 \begin{rmk}
 Similarly as with sequences, if $x\colon \Lambda \rightarrow \R$ is a net, it is customary to write $x_\lambda \coloneqq x(\lambda )$\index[notation]{$x_\lambda$}.
 \end{rmk}
 \begin{rmk}
-Single values of the sequence $x_{\lambda}$ are referred to as \emph{elements}\index{Element (of a net)} or \emph{terms}\index{Term (of a net)} of the net $\lambda \mapsto x_{\lambda}$.
+Single values of the sequence $x_{\lambda}$ are referred to as \term{elements}\index{Element (of a net)} or \term{terms}\index{Term (of a net)} of the net $\lambda \mapsto x_{\lambda}$.
 \end{rmk}
 \begin{rmk}
 It is very common that the specific directed set that is the domain is not so important and that the result works for any directed set.  As a result, in an attempt to simplify notation slightly, we frequently omit the actual domain of nets.  For example, we may just write $\lambda \mapsto x_{\lambda}\in \R$, with no mention of $\Lambda$.  You should usually be able to infer the domain on the basis of the index we happen to be using.
@@ -356,7 +356,7 @@ For those of you born and raised in Sequence Land:  Nets are a bit like the iPho
 \end{dfn}
 And now we give our `official' definition of a sequence.
 \begin{dfn}{Sequence}{dfn3.3.4}
-A (real-valued) \emph{sequence}\index{Sequence} is a net whose directed set is order-isomorphic (i.e.~isomorphic in $\Pre$) to $\coord{\N ,\leq}$.
+A (real-valued) \term{sequence}\index{Sequence} is a net whose directed set is order-isomorphic (i.e.~isomorphic in $\Pre$) to $\coord{\N ,\leq}$.
 \begin{rmk}
 Typically people take a sequence to be a function from $\N$ into $\R$.  This is essentially fine, but then, technically speaking, a function from $\Z ^+$ to $\R$ is not a sequence, and you have to reindex everything by $1$ to make it a sequence.  It is easier if we just ignore this by only requiring that the domain of the net be \emph{isomorphic to} (in $\Pre$) instead of \emph{equal to} $\coord{\N ,\leq}$.
 \end{rmk}
@@ -382,7 +382,7 @@ We now define what it means to be the \emph{limit} of a net.  To make the defini
 
 We often use the word \emph{eventually} in the context of nets and sequences.  For example, we might say ``The net $\lambda \mapsto x_\lambda$ is eventually XYZ.'', ``XYZ'' be some sort of property.  This means that there is some $\lambda _0$ such that if $\lambda \geq \lambda _0$ it follows that $\lambda \mapsto x_\lambda$ is XYZ.  For example, a fact that will come in handy is that convergent nets (and in fact, Cauchy nets) are eventually bounded (\cref{prp3.3.28}).  We make this formal.
 \begin{mdf}{Eventually XYZ}{EventuallyXYZ}
-Let $\Lambda \ni \lambda \mapsto x_\lambda \in \R$ be a net.  Then, $\lambda \mapsto x_\lambda$ is \emph{eventually XYZ}\index{Eventually XYZ} iff there is some $\lambda _0$ such that $\{ \lambda \in \Lambda :\lambda \geq \lambda _0\} \ni \lambda \mapsto x_\lambda$ is XYZ.
+Let $\Lambda \ni \lambda \mapsto x_\lambda \in \R$ be a net.  Then, $\lambda \mapsto x_\lambda$ is \term{eventually XYZ}\index{Eventually XYZ} iff there is some $\lambda _0$ such that $\{ \lambda \in \Lambda :\lambda \geq \lambda _0\} \ni \lambda \mapsto x_\lambda$ is XYZ.
 \begin{rmk}
 In other words, once you `go past' $\lambda _0$, you have a net which is \emph{actually} XYZ.
 \end{rmk}
@@ -400,7 +400,7 @@ For all intents and purposes, you should think of the `first elements' of a net 
 
 There is another concept that is in a sense (\cref{prp2.4.12}) `complementary' to the concept of eventuality, namely, the concept of \emph{frequently}.
 \begin{mdf}{Frequently XYZ}{FrequentlyXYZ}
-Let $\Lambda \ni \lambda \mapsto x_{\lambda}\in \R$ be a net.  Then, $\lambda \mapsto x_{\lambda}$ is \emph{frequently}\index{Frequently XYZ} iff for every $\lambda \in \Lambda$ there is some $\lambda '\geq \lambda$ such that $x_{\lambda '}$ is XYZ.
+Let $\Lambda \ni \lambda \mapsto x_{\lambda}\in \R$ be a net.  Then, $\lambda \mapsto x_{\lambda}$ is \term{frequently}\index{Frequently XYZ} iff for every $\lambda \in \Lambda$ there is some $\lambda '\geq \lambda$ such that $x_{\lambda '}$ is XYZ.
 \begin{rmk}
 In other words, no matter `how far you go', there will always still be at least one more term of the net that is XYZ.
 \end{rmk}
@@ -430,7 +430,7 @@ $\Lambda \ni \lambda \mapsto x_{\lambda}$ is frequently not XYZ iff for every $\
 
 Now with the concept of eventuality in hand, we present the definition of convergence.
 \begin{dfn}{Limit (of a net)}{dfn3.3.8}
-Let $\lambda \mapsto x_\lambda$ be a net and let $x_\infty\in \R$.  Then, $x_\infty$ is the \emph{limit}\index{Limit (of a net)} of $\lambda \mapsto x_\lambda$ iff for every $\varepsilon >0$, $\lambda \mapsto x_\lambda$ is eventually contained in $B_\varepsilon (x_\infty)$.   If a net has a limit, then we say that it \emph{converges}\index{Convergence (of net (in $\R$))}.\footnote{Divergence is not the same as nonconvergence.  We will define divergence momentarily.}
+Let $\lambda \mapsto x_\lambda$ be a net and let $x_\infty\in \R$.  Then, $x_\infty$ is the \term{limit}\index{Limit (of a net)} of $\lambda \mapsto x_\lambda$ iff for every $\varepsilon >0$, $\lambda \mapsto x_\lambda$ is eventually contained in $B_\varepsilon (x_\infty)$.   If a net has a limit, then we say that it \term{converges}\index{Convergence (of net (in $\R$))}.\footnote{Divergence is not the same as nonconvergence.  We will define divergence momentarily.}
 \begin{rmk}
 Note the use of the term \emph{eventually}.  Explicitly, this is equivalent to
 \begin{textequation}
@@ -479,22 +479,29 @@ For the first time in these notes, we encounter (in the proof) what is known as 
 
 In a general rg $\coord{R,+,0,\cdot}$ (\cref{Rg}), if $\{ x_m,\ldots ,x_n\} \subseteq R$ is a finite subset, then we write
 \begin{equation}\label{eqn2.4.23}
-\sum _{\{ x_m,\ldots ,x_n\}}x_k\ceqq \sum _{k=m}^nx_k\ceqq x_m+x_{m+1}+\cdots +x_{n-1}+x_n.
+\begin{split}
+\MoveEqLeft
+\sum _{\{ x_m,\ldots ,x_n\}}x_k\ceqq \sum _{k=m}^nx_k \\
+& \ceqq x_m+x_{m+1}+\cdots +x_{n-1}+x_n.
+\end{split}
 \end{equation}\index[notation]{$\sum _{k=m}^nx_k$}
 Similarly, we write
 \begin{equation}\label{eqn2.4.24}
-\prod _{\{ x_m,\ldots ,x_n\}}x_k\ceqq \prod _{k=m}^nx_k\ceqq x_m\cdot x_{m+1}\cdot \cdots \cdot x_{n-1}\cdot x_n.\footnote{Note that these definitions implicitly make use of associativity of the binary operations.  (Otherwise, does $\prod _{k=1}^3x_k$ mean $(x_1\cdot x_2)\cdot x_3$ or $x_1\cdot (x_2\cdot x_3)$?).}
+\begin{split}
+\prod _{\{ x_m,\ldots ,x_n\}}x_k & \ceqq \prod _{k=m}^nx_k \\
+& \ceqq x_m\cdot x_{m+1}\cdot \cdots \cdot x_{n-1}\cdot x_n.\footnote{Note that these definitions implicitly make use of associativity of the binary operations.  (Otherwise, does $\prod _{k=1}^3x_k$ mean $(x_1\cdot x_2)\cdot x_3$ or $x_1\cdot (x_2\cdot x_3)$?).}
+\end{split}
 \end{equation}\index[notation]{$\prod _{k=m}^nx_k$}
 The empty sum ($n<m$) is defined to be $0$, and for rigs the empty product ($n<m$) is defined to be $1$.
 
-The definition in \eqref{eqn2.4.23} is \emph{sigma notation}\index{Sigma notation} and the definition in \eqref{eqn2.4.24} is \emph{pi notation}\index{Pi notation}.\footnote{``$\Sigma$'' is for ``sum'' and ``$\Pi$'' is for ``product''.}
+The definition in \eqref{eqn2.4.23} is \term{sigma notation}\index{Sigma notation} and the definition in \eqref{eqn2.4.24} is \term{pi notation}\index{Pi notation}.\footnote{``$\Sigma$'' is for ``sum'' and ``$\Pi$'' is for ``product''.}
 \end{rmk}
 \begin{proof}
 Define $b\coloneqq \frac{1}{\abs{a}}$.  Let $M>0$.  We show that $m\mapsto b^m$ is eventually larger than $M$.  It will then follows that $m\mapsto \abs{a}^m$ is eventually smaller than $\frac{1}{M}$, or in other words, $m\mapsto \abs{a}^m$ is eventually contained in $B_{\frac{1}{M}}(0)$.  As $\frac{1}{M}$ is just as arbitrary as $\varepsilon >0$, this will show that $\lim _ma^m=0$.
 
 We have
 \begin{equation}
-b^m=(1+(b-1))^m=\sum _{k=0}^m\binom{m}{k}(b-1)^k\geq 1+m(b-1).\footnote{$\binom{m}{k}$ is the $\coord{m,k}$ \emph{binomial coefficient} and is defined by $\binom{m}{k}\ceqq \frac{m(m-1)(m-2)\cdots (m-(k+1))}{\prod _{j=1}^kj}$---see \cref{BinomialCoefficient} for elaboration if you need it.}
+b^m=(1+(b-1))^m=\sum _{k=0}^m\binom{m}{k}(b-1)^k\geq 1+m(b-1).\footnote{$\binom{m}{k}$ is the $\coord{m,k}$ \term{binomial coefficient} and is defined by $\binom{m}{k}\ceqq \frac{m(m-1)(m-2)\cdots (m-(k+1))}{\prod _{j=1}^kj}$---see \cref{BinomialCoefficient} for elaboration if you need it.}
 \end{equation}
 Because $b-1>0$, it follows from the Archimedean Property (\cref{thm3.2.3})\footnote{Choose $m\in \N$ to be strictly larger than $\frac{M-1}{b-1}$, so that $1+m(b-1)>M$.} that $m\mapsto b^m$ is eventually larger than $M$, which completes the proof.
 \end{proof}
@@ -510,11 +517,11 @@ Finally, I explain a similar argument once again at the end of the proof of \cre
 \end{prp}
 
 \begin{dfn}{Divergence}{Divergence}
-Let $\lambda \mapsto x_\lambda$ be a net.  Then, $\lambda \mapsto x_\lambda$ \emph{diverges to $+\infty$}\index{Diverges to $\pm \infty$} iff for every $M>0$, $\lambda \mapsto x_{\lambda}$ is eventually larger than $M$.
+Let $\lambda \mapsto x_\lambda$ be a net.  Then, $\lambda \mapsto x_\lambda$ \term{diverges to $+\infty$}\index{Diverges to $\pm \infty$} iff for every $M>0$, $\lambda \mapsto x_{\lambda}$ is eventually larger than $M$.
 
 Similarly for $-\infty$.\footnote{You should consider writing this definition out explicitly yourself.}
 
-$\lambda \mapsto x_\lambda$ \emph{diverges}\index{Diverges} iff $\lambda \mapsto \abs{x_{\lambda}}$ diverges.
+$\lambda \mapsto x_\lambda$ \term{diverges}\index{Diverges} iff $\lambda \mapsto \abs{x_{\lambda}}$ diverges.
 \begin{rmk}
 Of course, the intuition is just that $x_\lambda$ grows arbitrarily large.
 \end{rmk}
@@ -538,18 +545,18 @@ Note that this terminology is slightly nonstandard.  It is common for authors to
 The biggest problem with proving that a net converges is that we first need to know what the limit is before hand.  For example, consider
 \begin{equation}\label{3.2.16}
 \lim _m\sum _{k=0}^m\tfrac{1}{k!}.\footnotemark
-\end{equation}\footnotetext{In case you're wondering what this crazy new symbol ``$!$'' means, for $n\in \N$, $n!$, the \emph{factorial}\index{Factorial} of $n$, is defined inductively by $0!\coloneqq 1$ and $(n+1)!\coloneqq (n+1)\cdot n!$.}
+\end{equation}\footnotetext{In case you're wondering what this crazy new symbol ``$!$'' means, for $n\in \N$, $n!$, the \term{factorial}\index{Factorial} of $n$, is defined inductively by $0!\coloneqq 1$ and $(n+1)!\coloneqq (n+1)\cdot n!$.}
 You probably recall that this \emph{should} converge to $\e$, but what the hell is $\e$?  It has not yet been defined.  In fact, we will later define
 \begin{equation}
 \e \coloneqq \lim _m\sum _{k=0}^m\tfrac{1}{k!},\footnotemark
 \end{equation}\footnotetext{Actually we will define $\e \coloneqq \exp (1)$, but this will of course turn out to be exactly this limit.}
-but we cannot even make this definition if we don't know a priori that the limit of \eqref{3.2.16} exists!  Thus, we need to have a way of showing that \eqref{3.2.16} exists without making explicit reference to $\e$.  The concepts of \emph{cauchyness} and \emph{completeness} (in the sense of uniform spaces, as opposed to in the sense of preordered sets) allow us to do this.
+but we cannot even make this definition if we don't know a priori that the limit of \eqref{3.2.16} exists!  Thus, we need to have a way of showing that \eqref{3.2.16} exists without making explicit reference to $\e$.  The concepts of \emph{Cauchyness} and \emph{completeness} (in the sense of uniform spaces, as opposed to in the sense of preordered sets) allow us to do this.
 
 \subsection{Cauchyness and completeness}\label{sbs3.3.3}
 
 Like with the concept of convergence and limits, we will first define what it means to be Cauchy, and then explain the intuition behind the definition.
 \begin{dfn}{Cauchyness}{dfn3.3.26}
-Let $\lambda \mapsto x_\lambda$ be a net.  Then, $\lambda \mapsto x_\lambda$ is \emph{Cauchy}\index{Cauchy} iff for every $\varepsilon >0$, $\lambda \mapsto x_\lambda$ is eventually contained in some $\varepsilon$-ball.
+Let $\lambda \mapsto x_\lambda$ be a net.  Then, $\lambda \mapsto x_\lambda$ is \term{Cauchy}\index{Cauchy} iff for every $\varepsilon >0$, $\lambda \mapsto x_\lambda$ is eventually contained in some $\varepsilon$-ball.
 \begin{rmk}
 Note the use of the term \emph{eventually}.  Similarly as before, explicitly, this means that
 \begin{textequation}
@@ -557,12 +564,12 @@ $\lambda \mapsto x_\lambda$ is Cauchy iff there is some $\lambda _0$ and some $\
 \end{textequation}
 \end{rmk}
 \end{dfn}
-You should compare this with the definition of a limit, \cref{dfn3.3.8}.  The only essential difference between the definition of convergence and the definition of Cauchy is that, in the former case, there is a \emph{single} center of the $\varepsilon$-ball that works for all $\varepsilon$, whereas, in the case of cauchyness, the center of the ball can vary with the choice of $\varepsilon$.  Thus, we immediately have the implication:
+You should compare this with the definition of a limit, \cref{dfn3.3.8}.  The only essential difference between the definition of convergence and the definition of Cauchy is that, in the former case, there is a \emph{single} center of the $\varepsilon$-ball that works for all $\varepsilon$, whereas, in the case of Cauchyness, the center of the ball can vary with the choice of $\varepsilon$.  Thus, we immediately have the implication:
 \begin{exr}{}{exr3.3.27}
 Let $\lambda \mapsto x_\lambda$ be a convergent net.  Show that $\lambda \mapsto x_\lambda$ is Cauchy.
 \end{exr}
 
-As a short aside, we note that this is not how the definition of cauchyness is usually stated.  Instead, the following equivalent condition is given as the definition.
+As a short aside, we note that this is not how the definition of Cauchyness is usually stated.  Instead, the following equivalent condition is given as the definition.
 \begin{exr}{}{exr3.3.28}
 Let $\lambda \mapsto x_\lambda$ be a net.  Show that $\lambda \mapsto x_\lambda$ is Cauchy iff for all $\varepsilon >0$ there is some $\lambda _0$ such that whenever $\lambda _1,\lambda _2\geq \lambda _0$ it follows that $\abs{x_{\lambda _1}-x_{\lambda _2}}<\varepsilon$.
 \end{exr}
@@ -576,8 +583,8 @@ is Cauchy.  (Note that $s_m\in \Q$, so in fact, this sequence is Cauchy in $\Q$ 
 \begin{equation}
 \begin{split}
 \abs{s_{m_1}-s_{m_2
-}} & =\left| \sum _{k=0}^{m_1}\tfrac{1}{k!}-\sum _{k=0}^{m_2}\tfrac{1}{k!}\right| =\sum _{k=m_1+1}^{m_2}\tfrac{1}{k!}\leq \sum _{k=m_1+1}^{m_2}\tfrac{1}{2^k} \\
-& =\frac{2^{m_2}-2^{m_1}}{2^{m_1+m_2}}\leq 2^{-m_1}
+}} & =\left| \sum _{k=0}^{m_1}\tfrac{1}{k!}-\sum _{k=0}^{m_2}\tfrac{1}{k!}\right| =\sum _{k=m_1+1}^{m_2}\tfrac{1}{k!} \\
+& \leq \sum _{k=m_1+1}^{m_2}\tfrac{1}{2^k}=\frac{2^{m_2}-2^{m_1}}{2^{m_1+m_2}}\leq 2^{-m_1}
 \end{split}
 \end{equation}
 where we have without loss of generality assumed that $3\leq m_1\leq m_2$ (because $2^k\leq k!$ for $k\geq 4$).
@@ -600,7 +607,10 @@ r_0\coloneqq \max \left\{ \abs{x_0}|,\ldots ,\abs{x_{m_0-1}},1+\abs{x_0}\right\}
 \end{equation}
 where $x_0$ is the center of the ball $B$.  The reason for the $1+|x_0|$ is as follows.  For $m\geq m_0$, we have that
 \begin{equation}
-\abs{x_m}=\abs{(x_m-x_0)+x_0}\leq \abs{x_m-x_0}+\abs{x_0}\leq 1+\abs{x_0}.
+\begin{split}
+\abs{x_m} & =\abs{(x_m-x_0)+x_0}\leq \abs{x_m-x_0}+\abs{x_0} \\
+& \leq 1+\abs{x_0}.
+\end{split}
 \end{equation}
 From this, it follows that $\left\{ x_m:m\in \N ]\right\} \subseteq B_{r_0}(x_\infty)$, so that $\left\{ x_m:m\in \N \right\}$ is bounded.
 \end{proof}
@@ -657,7 +667,7 @@ Let $\lambda \mapsto x_\lambda$ and $\lambda \mapsto b_\lambda$ be two convergen
 Of course, it is also true if the limits are $\pm \infty$.
 \end{rmk}
 \begin{rmk}
-Sometimes this (or really, I suppose, an immediate corollary of this) is called the \emph{Squeeze Theorem}\index{Squeeze Theorem}.
+Sometimes this (or really, I suppose, an immediate corollary of this) is called the \term{Squeeze Theorem}\index{Squeeze Theorem}.
 \end{rmk}
 \end{exr}
 \begin{exr}{Squeeze Theorem}{SqueezeTheorem}
@@ -716,7 +726,7 @@ u_{\lambda _0}\coloneqq \sup _{\lambda \geq \lambda _0}\{ x_\lambda \} \text{ an
 \begin{exr}[breakable=false]{}{}
 Check that $\lambda \mapsto u_\lambda$ is nonincreasing and that $\lambda \mapsto l_\lambda$ is nondecreasing.
 \end{exr}
-Then, the \emph{limit superior}\index{Limit superior} and the \emph{limit inferior}\index{Limit inferior} of $\lambda \mapsto x_{\lambda}$, $\limsup _{\lambda}x_{\lambda}$ and $\liminf _{\lambda}x_{\lambda}$ respectively, are defined by
+Then, the \term{limit superior}\index{Limit superior} and the \term{limit inferior}\index{Limit inferior} of $\lambda \mapsto x_{\lambda}$, $\limsup _{\lambda}x_{\lambda}$ and $\liminf _{\lambda}x_{\lambda}$ respectively, are defined by
 \begin{subequations}\label{3.3.50}
 \begin{align}
 \limsup x_\lambda & \coloneqq \lim _\lambda u_\lambda \\
@@ -803,7 +813,7 @@ To show that $\lambda \mapsto x_\lambda$ converges, we first have to find some n
 
 We wish to show that $\lim _\lambda x_\lambda =x_\infty$.  So, let $\varepsilon >0$.  First of all, choose $\lambda _0$ so that there is some $\varepsilon$-ball $B_{\varepsilon}$ such that
 \begin{equation}\label{3.3.45}
-\left\{ x_\lambda :\lambda \geq \lambda _0\right\} \subseteq B_{\varepsilon}.\footnote{This is the definition of cauchy.}
+\left\{ x_\lambda :\lambda \geq \lambda _0\right\} \subseteq B_{\varepsilon}.\footnote{This is the definition of Cauchy.}
 \end{equation}
 We will use this later.
 
@@ -832,7 +842,7 @@ Hence,
 & \leq \abs{x_{\lambda '}-u_\lambda}+\abs{u_\lambda -x_\infty}<\varepsilon +\varepsilon =2\varepsilon .
 \end{split}
 \end{equation}
-We're almost done.  The only problem with this is that $\lambda '$ is a specific index.  We need this inequality to hold for all $\lambda$ sufficiently large, not just a single $\lambda '$.  Fortunately, the cauchyness can do this for us:  it follows from \eqref{3.3.45} that, whenever $\lambda \geq \lambda _0$, $\abs{x_\lambda -x_{\lambda '}}<2\varepsilon$.  Hence, for $\lambda \geq \lambda _0$,
+We're almost done.  The only problem with this is that $\lambda '$ is a specific index.  We need this inequality to hold for all $\lambda$ sufficiently large, not just a single $\lambda '$.  Fortunately, the Cauchyness can do this for us:  it follows from \eqref{3.3.45} that, whenever $\lambda \geq \lambda _0$, $\abs{x_\lambda -x_{\lambda '}}<2\varepsilon$.  Hence, for $\lambda \geq \lambda _0$,
 \begin{equation}
 \begin{split}
 \abs{x_\lambda -x_\infty} & =\abs{(x_\lambda -x_{\lambda '})+(x_{\lambda '}-x_\infty)} \\
@@ -921,13 +931,13 @@ We would have been able to show almost from the very beginning that, if $m\in \Z
 \begin{prp}{}{prp3.3.68}
 Let $m\in \Z ^+$.  Then, if $m$ is not a perfect square, then there is no $x\in \Q$ such that $x^2=m$.
 \begin{rmk}
-$m\in \Z ^+$ is a \emph{perfect-square}\index{Perfect-square} iff $m=n^2$ for some $n\in \Z$.  In other words, an integer is a perfect square iff it is the square of another integer.
+$m\in \Z ^+$ is a \term{perfect-square}\index{Perfect-square} iff $m=n^2$ for some $n\in \Z$.  In other words, an integer is a perfect square iff it is the square of another integer.
 \end{rmk}
 \begin{rmk}
-Thus, in particular, \cref{prp3.3.68} gives an example of a sequence that is cauchy in $\Q$ but does \emph{not} converge in $\Q$.  In other words, $\Q$ is \emph{not} cauchy-complete.
+Thus, in particular, \cref{prp3.3.68} gives an example of a sequence that is Cauchy in $\Q$ but does \emph{not} converge in $\Q$.  In other words, $\Q$ is \emph{not} Cauchy-complete.
 \end{rmk}
 \begin{proof}
-Suppose that $m$ is not a perfect square.  Then, we can write $m=k^2n$ where $n>1$ is square-free\footnote{$m\in \Z$ is \emph{square-free}\index{Square-free} iff the only perfect-square which divides $m$ is $1$.}.  It thus suffices to show that there is no rational number whose square is $n$.  We proceed by contradiction:  suppose there is some $x\in \Q$ such that $x^2=n$.  Write $x=\frac{a}{b}$ with $b>0$ and $\gcd (a,b)=1$.  Then,
+Suppose that $m$ is not a perfect square.  Then, we can write $m=k^2n$ where $n>1$ is square-free\footnote{$m\in \Z$ is \term{square-free}\index{Square-free} iff the only perfect-square which divides $m$ is $1$.}.  It thus suffices to show that there is no rational number whose square is $n$.  We proceed by contradiction:  suppose there is some $x\in \Q$ such that $x^2=n$.  Write $x=\frac{a}{b}$ with $b>0$ and $\gcd (a,b)=1$.  Then,
 \begin{equation}
 a^2=nb^2,
 \end{equation}
@@ -1003,9 +1013,9 @@ On the other hand, if we set $m=n$ and \emph{then} take a limit, we get
 \lim _mx_{m,m}=\lim _m\left( \frac{\tfrac{1}{m^2}}{\tfrac{1}{m^2}+\tfrac{1}{m^2}}\right) =\lim _m(\tfrac{1}{2})=\tfrac{1}{2}.
 \end{equation}
 Thus:
-\begin{displayquote}
+\begin{important}
 Even if there is some number $x_\infty$ such that (i)~\emph{for all} $\lambda$, $\lim _\mu x_{\lambda ,\mu}=x_\infty$, and (ii)~\emph{for all} $\mu$, $\lim _\lambda x_{\lambda ,\mu}=x_\infty$, it need \emph{not} be the case that $\lim _\lambda x_{\lambda ,\lambda}=x_\infty$.
-\end{displayquote}
+\end{important}
 This can sort of be fixed, however---see \cref{prp3.3.154}.
 \end{exm}
 \begin{exm}{Iterated limits need not agree}{}
@@ -1046,7 +1056,7 @@ Let $m\mapsto a_m$ be a sequence and define $s_m\coloneqq \sum _{k=0}^ma_k$.  Th
 \begin{equation}
 \sum _{k\in \N}a_k\coloneqq \sum _{k=0}^\infty a_k\coloneqq \lim _m\sum _{k=0}^ma_k
 \end{equation}
-is a \emph{series}\index{Series} and the $s_m$s are the \emph{partial sums}\index{Partial sums} of this series.\footnote{Of course this limit need not exist.  In that case, the notation $\sum _{k\in \N}a_k$ is meaningless, or at least, doesn't represent any real number.}  The series is said to \emph{converge} iff the sequence $m\mapsto s_m$ converges and similarly for \emph{diverge to $\pm \infty$} and \emph{diverge}.  The series \emph{converges absolutely}\index{Converges absolutely} iff $\sum _{k=0}^m\abs{a_k}$ converges and similarly for \emph{diverges absolutely}\index{Diverges absolutely}\footnote{Of course, there is no ``diverges to $\pm \infty$ absolutely'' because this can only diverge to $+\infty$.  Also note that ``diverges absolutely'' is the same as ``doesn't converge absolutely''.}.  The series \emph{converges conditionally}\index{Converges conditionally} iff it converges but not absolutely, and similarly for \emph{diverges conditionally}\index{Diverges conditionally}.
+is a \term{series}\index{Series} and the $s_m$s are the \term{partial sums}\index{Partial sums} of this series.\footnote{Of course this limit need not exist.  In that case, the notation $\sum _{k\in \N}a_k$ is meaningless, or at least, doesn't represent any real number.}  The series is said to \term{converge} iff the sequence $m\mapsto s_m$ converges and similarly for \term{diverge to $\pm \infty$} and \term{diverge}.  The series \term{converges absolutely}\index{Converges absolutely} iff $\sum _{k=0}^m\abs{a_k}$ converges and similarly for \term{diverges absolutely}\index{Diverges absolutely}\footnote{Of course, there is no ``diverges to $\pm \infty$ absolutely'' because this can only diverge to $+\infty$.  Also note that ``diverges absolutely'' is the same as ``doesn't converge absolutely''.}.  The series \term{converges conditionally}\index{Converges conditionally} iff it converges but not absolutely, and similarly for \term{diverges conditionally}\index{Diverges conditionally}.
 \begin{rmk}
 Of course, absolute convergence implies convergence, and similarly divergence to $\pm \infty$ implies divergence implies absolute divergence.
 \end{rmk}
@@ -1082,7 +1092,7 @@ Let $m\mapsto a_m$ be a sequence.  Then, if $\sum _{k\in \N}a_k$ converges, then
 As just mentioned, this is often used in the contrapositive:  if $\lim _ma_m\neq 0$, then $\sum _{k\in \N}a_k$ doesn't converge.
 \end{rmk}
 \begin{proof}
-Suppose that $\sum _{k\in \N}a_k$ converges.  Let $\varepsilon >0$.  Then, as the sequence of partial sums is cauchy, there is some $m_0\in \N$ such that, whenever $m_0\leq m\leq n$, it 
+Suppose that $\sum _{k\in \N}a_k$ converges.  Let $\varepsilon >0$.  Then, as the sequence of partial sums is Cauchy, there is some $m_0\in \N$ such that, whenever $m_0\leq m\leq n$, it 
 \begin{equation}
 \left| \sum _{k=m+1}^na_k\right| =\left| \sum _{k=0}^na_k-\sum _{k=0}^ma_k\right| <\varepsilon .
 \end{equation}
@@ -1100,7 +1110,7 @@ Let $m\mapsto a_m$ be a sequence.  Show that if $\sum _{k\in \N}a_k$ converges, 
 \begin{prp}{Absolute convergence implies convergence}{}
 Let $m\mapsto a_m$ be a sequence and suppose that $\sum _{k\in \N}\abs{a_k}$ exists.  Then, $\sum _{k\in \N}a_k$ exists.
 \begin{proof}
-To show that $\sum _{k\in \N}a_k$ exists, we show that the sequences of partials sums $m\mapsto s_m\coloneqq \sum _{k=0}^ma_k$ is cauchy.  Take $m\leq n$.  Then,
+To show that $\sum _{k\in \N}a_k$ exists, we show that the sequences of partials sums $m\mapsto s_m\coloneqq \sum _{k=0}^ma_k$ is Cauchy.  Take $m\leq n$.  Then,
 \begin{equation}\label{3.3.61}
 \begin{split}
 \left| \sum _{k=0}^na_k-\sum _{k=0}^ma_k\right| & =\left| \sum _{k=m+1}^na_k\right| \leq \sum _{k=m+1}^n\abs{a_k} \\
@@ -1117,13 +1127,13 @@ Then, it follows from \eqref{3.3.61} that whenever $m_0\leq m\leq n$ that
 \begin{equation}
 \left| \sum _{k=0}^na_k-\sum _{k=0}^ma_k\right| <\varepsilon ,
 \end{equation}
-which shows that the sequence of partial sums is cauchy, and hence the series converges.
+which shows that the sequence of partial sums is Cauchy, and hence the series converges.
 \end{proof}
 \end{prp}
 
-The next test we present is the \emph{Alternating Series Test}.
+The next test we present is the \term{Alternating Series Test}.
 \begin{dfn}{Alternating series}{}
-A series $\sum _{k\in \N}a_k$ is \emph{alternating}\index{Alternating series} iff $\sgn (a_{k+1})=-\sgn (a_k)$ for all $k\in \N$.
+A series $\sum _{k\in \N}a_k$ is \term{alternating}\index{Alternating series} iff $\sgn (a_{k+1})=-\sgn (a_k)$ for all $k\in \N$.
 \begin{rmk}
 In this case, we may write $a_k=\pm (-1)^kb_k$ where $b_k\geq 0$ and the $\pm$ is determined depending on the sign of the first term.
 \end{rmk}
@@ -1134,7 +1144,9 @@ Let $m\mapsto a_m$ be a nonincreasing sequence that converges to $0$.  Then, $\s
 The first thing to notice is that
 \begin{equation}
 \begin{split}
-\sum _{k=m}^n(-1)^{k-m}a_k & =a_m-(a_{m+1}-a_{m+2})-(a_{m+3}-a_{m+4})-\cdots \\ & \qquad \qquad -(a_{n-1}-a_n) \\
+\MoveEqLeft
+\sum _{k=m}^n(-1)^{k-m}a_k \\
+& =a_m-(a_{m+1}-a_{m+2})-(a_{m+3}-a_{m+4})-\cdots \\ & \quad -(a_{n-1}-a_n) \\
 & \leq a_m
 \end{split}
 \end{equation}
@@ -1142,9 +1154,12 @@ because each $a_k-a_{k+1}\geq 0$.\footnote{Depending on whether $m-n$ is even or
 
 Using this, we see that
 \begin{equation}
-\left| \sum _{k=0}^n(-1)^ka_k-\sum _{k=0}^m(-1)^ka_k\right| =\left| \sum _{k=m+1}^n(-1)a_k\right| \leq a_{m+1}.
+\begin{split}
+\left| \sum _{k=0}^n(-1)^ka_k-\sum _{k=0}^m(-1)^ka_k\right| & =\left| \sum _{k=m+1}^n(-1)a_k\right| \\
+& \leq a_{m+1}.
+\end{split}
 \end{equation}
-Now that the partial sums are cauchy follows from the fact that $\lim _ma_m=0$.
+Now that the partial sums are Cauchy follows from the fact that $\lim _ma_m=0$.
 \end{proof}
 \end{prp}
 \begin{prp}{Comparison Test}{ComparisonTest}\index{Comparison Test}
@@ -1232,7 +1247,7 @@ Prove the case where
 \end{proof}
 \end{prp}
 \begin{exm}{Harmonic Series}{HarmonicSeries}
-Consider the series $\sum _{m\in \Z ^+}(-1)^{m+1}\frac{1}{m}$ with terms $a_m\coloneqq (-1)^{m+1}\frac{1}{m}$.  This is called the \emph{Alternating Harmonic Series}\index{Alternating Harmonic Series}, whereas the series of absolute values $\sum _{m\in \Z ^+}\frac{1}{m}$ is the \emph{Harmonic Series}\index{Harmonic Series}.  We see immediately from the Alternating Series Test that the alternating harmonic series converges.  In fact, it converges to $\ln (2)$,\footnote{See \cref{exr6.4.76}.} though we don't know that yet (we don't even know what $\ln (2)$ is!).  The harmonic series itself though diverges (so that the alternating harmonic series is conditionally convergent).  To see this, we apply the Comparison Test:
+Consider the series $\sum _{m\in \Z ^+}(-1)^{m+1}\frac{1}{m}$ with terms $a_m\coloneqq (-1)^{m+1}\frac{1}{m}$.  This is called the \term{Alternating Harmonic Series}\index{Alternating Harmonic Series}, whereas the series of absolute values $\sum _{m\in \Z ^+}\frac{1}{m}$ is the \term{Harmonic Series}\index{Harmonic Series}.  We see immediately from the Alternating Series Test that the alternating harmonic series converges.  In fact, it converges to $\ln (2)$,\footnote{See \cref{exr6.4.76}.} though we don't know that yet (we don't even know what $\ln (2)$ is!).  The harmonic series itself though diverges (so that the alternating harmonic series is conditionally convergent).  To see this, we apply the Comparison Test:
 \begin{equation}
 \begin{split}
 \sum _{m\in \Z ^+}\tfrac{1}{m} & =1+\tfrac{1}{2}+\tfrac{1}{3}+\tfrac{1}{4}+\tfrac{1}{5}+\tfrac{1}{6}+\tfrac{1}{7}+\tfrac{1}{8}+\cdots \\
@@ -1265,7 +1280,7 @@ and
 It is then customary to write $x=\sgn (x)x_0.x_1x_2x_3\ldots$, possibly using separate set of symbols to represent the numbers in $\{ 0,1,\ldots ,r-1\}$ (for example, in hexadecimal, it is customary to use the symbol ``$\text{A}$'' to represent the number $10\in \Z ^+$, the symbol ``$\text{B}$'' to represent the number $11\in \Z ^+$, and so on).
 \end{rmk}
 \begin{rmk}
-$r$ is the \emph{radix}\index{Radix} of the number system, and it correspond to the number of distinct symbols one uses to represent a number in a `decimal expansion' (though, strictly speaking I suppose, ``decimal expansion'' really refers to the case $r=10$).  Of course, you cannot distinguish between numbers using a single symbol alone (at least certainly not all real numbers), and so we need at least $r\geq 2$.  $r=2$ corresponds to \emph{binary}\index{Binary}, $r=3$ corresponds to \emph{ternary}\index{Ternary}, $r=8$ correspond to \emph{octal}\index{Octal}, $r=10$ corresponds to \emph{decimal}\index{Decimal}, $r=16$ corresponds to \emph{hexadecimal}\index{Hexadecimal}, and those are the only names I am aware of.
+$r$ is the \term{radix}\index{Radix} of the number system, and it correspond to the number of distinct symbols one uses to represent a number in a `decimal expansion' (though, strictly speaking I suppose, ``decimal expansion'' really refers to the case $r=10$).  Of course, you cannot distinguish between numbers using a single symbol alone (at least certainly not all real numbers), and so we need at least $r\geq 2$.  $r=2$ corresponds to \term{binary}\index{Binary}, $r=3$ corresponds to \term{ternary}\index{Ternary}, $r=8$ correspond to \term{octal}\index{Octal}, $r=10$ corresponds to \term{decimal}\index{Decimal}, $r=16$ corresponds to \term{hexadecimal}\index{Hexadecimal}, and those are the only names I am aware of.
 \end{rmk}
 \begin{rmk}
 The condition \cref{DecimalExpansions.ii} is needed to ensure uniqueness.  For example, we have $1=1.00\ldots$ as well as $1=0.99\ldots$ for $r=10$.
@@ -1400,7 +1415,7 @@ It follows that $\abs{\R}\leq 2^{\aleph _0}$, and hence that $\abs{\R}=2^{\aleph
 \end{proof}
 \end{thm}
 
-\subsubsection{Addition of infinitely many numbers is `noncommutative'}
+\subsubsection{Addition of infinitely many terms is `noncommutative'}
 
 We will make the title of this subsubsection precise in a moment, but for the moment we will settle for something imprecise:  there exists two convergent series $\sum _{m\in \N}a_m$ and $\sum _{m\in \N}b_m$ which converge to different values, but yet $\{ a_m:m\in \N \} =\{ b_m:m\in \N \}$.  That is, the terms themselves are the same (though in different order of course), but yet the series converge to different values!  If this is your first time studying `rigorous' mathematics, this is probably one of these ``WTF!? moments'' when you realize that sometimes mathematics can be so counter-intuitive so as to demand rigor---if we didn't require a proof, it would be very easy to dismiss `commutativity' of infinite series as ``obvious''.  In fact, it's not usually a good idea to use the word ``obvious'' in proofs at all---at best it's lazy, and at worst, it's just plain wrong.
 
@@ -1546,12 +1561,12 @@ Let $x\colon \N \rightarrow \R$ be a sequence and let $S\subseteq \N$.  When sho
 
 Now let $\Lambda$ be a general directed set and let $\Lambda '\subseteq \Lambda$ be a subset whose elements are arbitrarily large.  (Precisely, this means that, for all $\lambda \in \Lambda$, there is some $\mu \in \Lambda '$ such that $\mu \geq \lambda$.)  One way to see we need to make this requirement is because, without this requirement, $\Lambda '$ would not itself be a directed set in general.  However, if we do require the elements of $S$ to be arbitrarily large, then $\Lambda '$ will be a directed set, and so $\restr{a}{S}$ will indeed be a net, and certainly it will turn-out that $\restr{a}{\Lambda '}$ is a subnet of $a$.  However, it is \emph{not} the case that every subnet of $\lambda \mapsto x_\lambda$ is of this form.  The reason for this is ultimately because, if we don't allow for more general subnets, then theorems we want to be true will fail to be true (see, for example, the proofs of \cref{prp3.4.56,KelleysConvergenceTheorem}).
 \begin{dfn}{Subnet}{dfnSubnet}
-Let $x\colon \Lambda \rightarrow \R$ be a be a net.  Then, a \emph{subnet}\index{Subnet} of $a$ is a net $b:\Lambda '\rightarrow \R$ such that
+Let $x\colon \Lambda \rightarrow \R$ be a be a net.  Then, a \term{subnet}\index{Subnet} of $a$ is a net $b:\Lambda '\rightarrow \R$ such that
 \begin{enumerate}
 \item \label{enmSubnet.i}for all $\mu \in \Lambda '$, $y_\mu =x_{\lambda _\mu}$ for some $\lambda _\mu \in \Lambda$; and
 \item \label{enmSubnet.ii}whenever $U\subseteq \R$ eventually contains $x$, it eventually contains $y$.
 \end{enumerate}
-A \emph{subsequence}\index{Subsequence} is a subnet that is a sequence.
+A \term{subsequence}\index{Subsequence} is a subnet that is a sequence.
 \begin{rmk}
 In words, a subnet of a net is a net whose terms are all terms from the original net and is eventually contained in every set that eventually contains the original net.
 \end{rmk}
@@ -1593,14 +1608,14 @@ Let $U\subseteq \R$ eventually contain $\lambda \mapsto x_{\lambda}$.  This mean
 \end{prp}
 As subnets of the more `naive type' are still quite important, we do given them a special name.
 \begin{dfn}{Cofinal subset}{}
-Let $S$ be a subset of a preordered set $X$.  Then, $S$ is \emph{cofinal}\index{Cofinal} iff for every $x\in X$ there is some $s\in S$ such that $s\geq x$.
+Let $S$ be a subset of a preordered set $X$.  Then, $S$ is \term{cofinal}\index{Cofinal} iff for every $x\in X$ there is some $s\in S$ such that $s\geq x$.
 \begin{rmk}
 Of course, saying that a subset is cofinal is just our fancy-schmancy way of saying that the elements are arbitrarily large.
 \end{rmk}
 \end{dfn}
 One way to see that we need elements to grow arbitrarily large is because, in a directed set, the subset will itself be directed.
 \begin{dfn}{Cofinal subnet}{StrictSubnet}
-A \emph{cofinal subnet}\index{Cofinal subnet} of a net $x\colon \Lambda \rightarrow \R$ is a subnet of the form $\restr{a}{\Lambda '}:\Lambda '\rightarrow \R$ for $\Lambda '\subseteq \Lambda$ cofinal.
+A \term{cofinal subnet}\index{Cofinal subnet} of a net $x\colon \Lambda \rightarrow \R$ is a subnet of the form $\restr{a}{\Lambda '}:\Lambda '\rightarrow \R$ for $\Lambda '\subseteq \Lambda$ cofinal.
 \begin{exr}[breakable=false]{}{}
 Let $a\colon \Lambda \rightarrow \R$ be a net and let $\Lambda '\subseteq \R$.  Show that if $\Lambda '$ is cofinal, then $\restr{a}{\Lambda '}\colon \Lambda '\rightarrow \R$ is a subnet of $a\colon \Lambda \rightarrow \R$.
 \begin{rmk}
@@ -1611,7 +1626,7 @@ Thus, our definition does in fact make sense.
 If $\Lambda '\subseteq \Lambda$ is cofinal, we say that $\Lambda '$ \emph{defines} the cofinal subnet $\restr{x}{\Lambda '}\colon \Lambda '\rightarrow \R$.
 \end{rmk}
 \begin{rmk}
-One key difference between the definition of a subnet and the more `naive' definition (that is, if one were only to allow \emph{strict} subnets) is that you are allowed to repeat elements in a subnet, for example, $\coord{0,0,1,2,3,\ldots}$ is a subnet of $\coord{0,1,2,3,\ldots}$, but \emph{not} a cofinal subnet.
+One key difference between the definition of a subnet and the more `naive' definition (that is, if one were only to allow \emph{cofinal} subnets) is that you are allowed to repeat elements in a subnet, for example, $\coord{0,0,1,2,3,\ldots}$ is a subnet of $\coord{0,1,2,3,\ldots}$, but \emph{not} a cofinal subnet.
 \end{rmk}
 \end{dfn}
 
@@ -1741,9 +1756,9 @@ Then, whenever $\coord{i,\lambda }\geq \coord{i_0,\lambda _0}$, by definition of
 We end this section with a result on the relationship of limit superiors and limit inferiors of nets to their subnets.
 \begin{prp}{}{}
 Let $\mu \mapsto x_{\lambda _\mu}$ be a subnet of a net $\lambda \mapsto x_\lambda$.  Then,
-\begin{equation}
+\begin{equation*}
 \liminf _\lambda x_\lambda \leq \liminf _\mu x_{\lambda _\mu}\leq \limsup _\mu x_{\lambda _\mu}\leq \limsup _\lambda x_\lambda .
-\end{equation}
+\end{equation*}
 \begin{proof}
 We already know the middle inequality holds from \cref{exr3.3.50}.  We prove the $\limsup$ inequality holds; the other is similar.
 
@@ -1759,11 +1774,11 @@ It follows from the definition of the limit superior \eqref{3.3.50} and the \nam
 \end{proof}
 \end{prp}
 
-\section{Basic topology of the euclidean space}
+\section{Basic topology of the Euclidean space}
 
 Though we have not defined it yet (and will not do so until the next chapter), a \emph{topological space} is the most general context in which one can make precise the notion of \emph{continuity}.\footnote{This is arguably a slight lie, but in any case, I think it's fair to say that continuity is really the point of working with topological spaces.}  The point is, if continuity is something you care about, then topology in turn is something you should also care about.
 
-In this last section, we work in not $\R$ itself, but rather $\R ^d\coloneqq \underbrace{\R \times \cdots \times \R}_d$, \emph{euclidean space}\index{Euclidean space}.  The reason we do so is because (i)~basically everything works verbatim if you just replace $\R$ with $\R ^d$ and (ii)~I think picturing these concepts in $\R ^2$ or $\R ^3$ is more enlightening than picturing them in $\R$.  There are a couple of places in which we will need to reference old concepts that we have not technically defined in $\R ^d$ (e.g.~limits of nets).  However, the correct definition in all such cases, unless otherwise stated, is given simply by replacing ``$\R$'' with ``$\R ^d$''.  If you're still bothered by this, just pretend $d=1$.
+In this last section, we work in not $\R$ itself, but rather $\R ^d\coloneqq \underbrace{\R \times \cdots \times \R}_d$, \term{Euclidean space}\index{Euclidean space}.  The reason we do so is because (i)~basically everything works verbatim if you just replace $\R$ with $\R ^d$ and (ii)~I think picturing these concepts in $\R ^2$ or $\R ^3$ is more enlightening than picturing them in $\R$.  There are a couple of places in which we will need to reference old concepts that we have not technically defined in $\R ^d$ (e.g.~limits of nets).  However, the correct definition in all such cases, unless otherwise stated, is given simply by replacing ``$\R$'' with ``$\R ^d$''.  If you're still bothered by this, just pretend $d=1$.
 
 Most of the structure of $\R$ generalizes to $\R ^d$ in a straightforward manner.\footnote{Though upon generalization we lose a lot of the nice properties we had in $\R$!}.  For example, for $x,y\in \R ^d$,
 \begin{equation}
@@ -1781,13 +1796,13 @@ The motivation for such a definition comes of course from the Pythagorean Theore
 
 Roughly speaking, a continuous function is a function which `preserves limits', that is, if you take the limit as $x$ goes to $a$, then $f(x)$ goes to $f(a)$.  Thus, to formulate the definition of continuity, we must first say what we mean by limit of a function (so far, we have only said what it means to take the limit of a \emph{net}).  In turn, the notion of a \emph{limit point} will make this definition slightly easier to formulate (it's also quite an important concept in its own right).
 \begin{dfn}{Limit point}{LimitPoint}
-Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is a \emph{limit point}\index{Limit point} of $S$ iff there exists a net $\lambda \mapsto x_\lambda \in S$ with $x_\lambda \neq x_0$ such that $\lim _\lambda x_\lambda =x_0$.
+Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is a \term{limit point}\index{Limit point} of $S$ iff there exists a net $\lambda \mapsto x_\lambda \in S$ with $x_\lambda \neq x_0$ such that $\lim _\lambda x_\lambda =x_0$.
 \begin{rmk}
 The reason for the requirement $x_\lambda \neq x_0$ is two-fold:  first of all, we need to make this same requirement in the definition of a limit of a function for reasons explained there, and second of all, we need this condition for the notion of a limit point to agree with the notion of an accumulation point---see \cref{prp3.4.21}.  (See the respective definitions, \cref{dfn3.4.1,dfn3.4.20}, for an explanation of why we make the corresponding conditions in these definitions.)
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Limit (of a function)}{dfn3.4.1}
-Let $D\subseteq \R ^d$,\footnote{``$D$'' is for ``domain''.} let $x_0\in \R ^d$ be a limit point of $D$, let $f\colon D\rightarrow \R ^e$, and let $L\in \R ^e$.  Then, $y$ is a \emph{limit}\index{Limit (of a function)} of $f$ at $x_0$ iff for every net $\lambda \mapsto x_\lambda \in D$ such that (i)~$x_\lambda \neq x_0$ and (ii)~$\lim _\lambda x_\lambda =x_0$ we have $\lim _\lambda f(x_\lambda )=y$.
+Let $D\subseteq \R ^d$,\footnote{``$D$'' is for ``domain''.} let $x_0\in \R ^d$ be a limit point of $D$, let $f\colon D\rightarrow \R ^e$, and let $L\in \R ^e$.  Then, $y$ is a \term{limit}\index{Limit (of a function)} of $f$ at $x_0$ iff for every net $\lambda \mapsto x_\lambda \in D$ such that (i)~$x_\lambda \neq x_0$ and (ii)~$\lim _\lambda x_\lambda =x_0$ we have $\lim _\lambda f(x_\lambda )=y$.
 \begin{exr}{}{}
 Let $y,y'\in \R ^e$ be limits of the function $f\colon D\rightarrow \R ^e$ at $x_0\in \R ^d$.  Show that $y=y'$.
 \end{exr}
@@ -1851,12 +1866,12 @@ As before, the content of this theorem is the the limit $\lim _{x\to x_0}g(x)$ \
 \end{exr}
 Before we finally turn to continuity, we first define limit superiors and limit inferiors of \emph{functions}.
 \begin{dfn}{Limit superior and limit inferior (of a function)}{}
-Let $D\subseteq \R ^d$, let $x_0\in \R ^d$ be a limit point of $D$, and let $f\colon D\rightarrow \R ^e$.  Then, the \emph{limit superior}\index{Limit superior (of a function)} and \emph{limit inferior}\index{Limit inferior (of a function)} of $f$ at $x_0$, $\limsup _{x\to x_0}f(x)$ and $\liminf _{x\to x_0}f(x)$ respectively, are defined by
+Let $D\subseteq \R ^d$, let $x_0\in \R ^d$ be a limit point of $D$, and let $f\colon D\rightarrow \R ^e$.  Then, the \term{limit superior}\index{Limit superior (of a function)} and \term{limit inferior}\index{Limit inferior (of a function)} of $f$ at $x_0$, $\limsup _{x\to x_0}f(x)$ and $\liminf _{x\to x_0}f(x)$ respectively, are defined by
 \begin{subequations}
-\begin{align}
+\begin{align*}
 \limsup _{x\to x_0}f(x) & \ceqq \lim _{\varepsilon \to 0^+}\sup \left\{ f(x):x\in B_{\varepsilon}(x_0)\right\} \\
 \liminf _{x\to x_0}f(x)& \ceqq \lim _{\varepsilon \to 0^+}\inf \left\{ f(x):x\in B_{\varepsilon}(x_0)\right\} .
-\end{align}
+\end{align*}
 \end{subequations}\index[notation]{$\limsup \limits _{x\to x_0}f(x)$}\index[notation]{$\liminf \limits _{x\to x_0}f(x)$}
 \begin{rmk}
 Note that, the same as before, the \namerefpcref{MonotoneConvergenceTheorem} guarantees that these limits always exist, though they may be $\pm \infty$.
@@ -1868,7 +1883,7 @@ Also note that, as suprema and infima are quite special to $\R$ (as opposed to $
 
 Having defined limits of functions, we can present the definition of continuity itself.
 \begin{dfn}{Continuous (real) function}{}
-Let $D\subseteq \R ^d$, let $x_0\in \R ^d$ be a limit point of $D$, and let $f\colon D\rightarrow \R ^e$.  Then, $f$ is \emph{continuous}\index{Continuous (at a point)} at $x_0$ iff $\lim _{x\to x_0}f(x)=f(x_0)$.  $f$ is \emph{continuous}\index{Continuous} iff it is continuous at $x_0$ for all $x_0\in D$.
+Let $D\subseteq \R ^d$, let $x_0\in \R ^d$ be a limit point of $D$, and let $f\colon D\rightarrow \R ^e$.  Then, $f$ is \term{continuous}\index{Continuous (at a point)} at $x_0$ iff $\lim _{x\to x_0}f(x)=f(x_0)$.  $f$ is \term{continuous}\index{Continuous} iff it is continuous at $x_0$ for all $x_0\in D$.
 \begin{rmk}
 Note how this can be written instead as $\lim _{x\to x_0}f(x)=f(\lim _{x\to x_0}x)$.  Thus, you might say that continuous functions are precisely the functions which `commute' with, or `preserve', limits.
 \end{rmk}
@@ -1878,17 +1893,17 @@ Define $f\colon \R \rightarrow \R$ by
 \begin{equation}
 f(x)\coloneqq \begin{cases}1 & \text{if }x\in \Q \\ 0 & \text{if }x\in \Q ^{\comp}.\end{cases}
 \end{equation}
-This is the \emph{Dirichlet Function}\index{Dirichlet Function}.
+This is the \term{Dirichlet Function}\index{Dirichlet Function}.
 \begin{exr}[breakable=false]{}{}
 Where is the Dirichlet Function continuous?
 \end{exr}
 \end{exm}
 \begin{exm}{Thomae Function}{}
 Define $f\colon \R \rightarrow \R$ by
-\begin{equation}
+\begin{equation*}
 f(x)\coloneqq \begin{cases}\tfrac{1}{n} & \text{if }x=\tfrac{m}{n}\in \Q \text{ with }\gcd (m,n)=1,\ n>0 \\ 0 & \text{if }x\in \Q ^{\comp}.\end{cases}
-\end{equation}
-This is the \emph{Thomae Function}\index{Thomae Function}.
+\end{equation*}
+This is the \term{Thomae Function}\index{Thomae Function}.
 \begin{exr}[breakable=false]{}{}
 Show that the Thomae Function is continuous at $x\in \R$ iff $x\in \Q ^{\comp}$.  Hint:  For a fixed $n\in \Z ^+$, how many rational numbers are there in the interval $[0,1]$ with denominator smaller than $n$?
 \end{exr}
@@ -1923,7 +1938,7 @@ Let $a\in \R ^+$.  Then, there is a unique continuous function, $\R \ni x\mapsto
 \item $a^{x+y}=a^xa^y$; and
 \item $a^1=a$.
 \end{enumerate}
-Functions of this form are called \emph{exponential functions}\index{Exponential}.  $a$ is the \emph{base}\index{Base (exponential functions)} and $x$ is the \emph{exponent}\index{Exponent (exponential functions)}.
+Functions of this form are called \term{exponential functions}\index{Exponential}.  $a$ is the \term{base}\index{Base (exponential functions)} and $x$ is the \term{exponent}\index{Exponent (exponential functions)}.
 \begin{rmk}
 We also define:  $0^a\coloneqq 0$ for $a>0$, and $0^0\coloneqq 1$---see \cref{00}.\footnote{The reason for this definition is \emph{nontrivial}, and we will have to wait for \emph{Lebesgue measure} to justify it.  That being said, you can see intuitively why we make this definition simply by graphing the function $\coord{x,y}\mapsto x^y$ on $\R ^+\times \R ^+$.  Despite our reasons, I should probably note that I imagine most simply leave $0^0$ undefined.}  $0^a$ is undefined for $a<0$.
 \end{rmk}
@@ -1971,7 +1986,7 @@ Show that $(a^x)^y=a^{xy}$.
 \subsection{Open and closed sets}
 
 \begin{dfn}{Open set}{OpenSetInR}
-Let $U\subseteq \R ^d$.  Then, $U$ is \emph{open}\index{Open (in $\R ^d$)} iff for every $x\in U$ there is some $\varepsilon >0$ such that $B_\varepsilon (x)\subseteq U$.
+Let $U\subseteq \R ^d$.  Then, $U$ is \term{open}\index{Open (in $\R ^d$)} iff for every $x\in U$ there is some $\varepsilon >0$ such that $B_\varepsilon (x)\subseteq U$.
 \begin{rmk}
 The intuition is that there is `wiggle room' around every point.
 \end{rmk}
@@ -2005,17 +2020,17 @@ $(\Leftarrow )$ Suppose that the preimage of every open set is open.  Let $x\in 
 
 `Dual' (but not \emph{opposite}!)\footnote{Don't make the mistake Hitler did---see \url{https://www.youtube.com/watch?v=SyD4p8_y8Kw}.} to the notion of an open set is that of a \emph{closed} set.
 \begin{dfn}{Closed set}{dfn3.4.17}
-Let $C\subseteq \R ^d$.  Then, $C$ is \emph{closed}\index{Closed (in $\R ^d$)} iff $C^{\comp}$ is open.
+Let $C\subseteq \R ^d$.  Then, $C$ is \term{closed}\index{Closed (in $\R ^d$)} iff $C^{\comp}$ is open.
 \end{dfn}
 \begin{exm}{$\R ^d$ and the empty-set}{}
-Hopefully you saw in \cref{exr3.4.13,exr3.4.14} that both $\emptyset$ and $\R ^d$ are open.  As $\emptyset ^{\comp}=\R ^d$ and $[\R ^d]^{\comp}=\emptyset$, it follows that both $\emptyset$ and $\R ^d$ are closed \emph{as well}.  In particular, it is possible for sets to be \emph{both open and closed}---sometimes such sets are referred to as \emph{clopen}\index{Clopen}.  This is what we meant when we said that openness and closedness are ``dual'' but not ``opposite''.
+Hopefully you saw in \cref{exr3.4.13,exr3.4.14} that both $\emptyset$ and $\R ^d$ are open.  As $\emptyset ^{\comp}=\R ^d$ and $[\R ^d]^{\comp}=\emptyset$, it follows that both $\emptyset$ and $\R ^d$ are closed \emph{as well}.  In particular, it is possible for sets to be \emph{both open and closed}---sometimes such sets are referred to as \term{clopen}\index{Clopen}.  This is what we meant when we said that openness and closedness are ``dual'' but not ``opposite''.
 \end{exm}
 \begin{exr}{}{exr2.5.33}
 Let $f\colon \R ^d\rightarrow \R ^e$.  Show that $f$ is continuous iff the preimage of every closed set is closed.
 \end{exr}
 Showing that $C^{\comp}$ is open to show that $C$ is closed can in fact be a very efficient way of doing so.  Nevertheless, it would be nice to have a direct way of checking that $C$ is closed, which is why we introduce the notion of \emph{accumulation point}.
 \begin{dfn}{Accumulation point}{dfn3.4.20}
-Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \emph{accumulation point}\index{Accumulation point} of $S$ iff for every $\varepsilon >0$, $B_\varepsilon (x_0)$ intersects $S$ at a point \emph{distinct from} $x_0$.
+Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \term{accumulation point}\index{Accumulation point} of $S$ iff for every $\varepsilon >0$, $B_\varepsilon (x_0)$ intersects $S$ at a point \emph{distinct from} $x_0$.
 \begin{rmk}
 You might think of the accumulation points of $S$ as being `infinitely close' to $S$ in some sense.
 \end{rmk}
@@ -2025,7 +2040,7 @@ The reason we require that it intersect at a point \emph{distinct} from $x_0$ is
 \end{dfn}
 The condition ``distinct from $x_0$'' is very important as, as mentioned in the remark, some results are just not true without it.  That said, there are cases in which it can be slightly annoying to worry about, which leads us to the following definition.
 \begin{dfn}{Adherent point}{AdherentPointR}
-Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \emph{adherent point}\index{Adherent point} of $S$ iff for every $\varepsilon >0$, $B_{\varepsilon}(x_0)$ intersects $S$.
+Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \term{adherent point}\index{Adherent point} of $S$ iff for every $\varepsilon >0$, $B_{\varepsilon}(x_0)$ intersects $S$.
 \begin{rmk}
 Note of course that this is exactly the same as the definition of accumulation point without the condition ``distinct from $x_0$''.
 \end{rmk}
@@ -2073,7 +2088,7 @@ Prove this yourself, using the proof of the previous result as guidance.
 \end{prp}
 Certainly, every accumulation point is an adherent point.  Additionally, there is a name (and characterization) of those accumulation points which are not adherent points, namely, ``\emph{isolated point}''.
 \begin{dfn}{Isolated point}{IsolatedPointR}
-Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \emph{isolated point}\index{Isolated point} iff there is some $\varepsilon _0>0$ such that $B_{\varepsilon _0}(x_0)\cap S=\{ x_0\}$.
+Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \term{isolated point}\index{Isolated point} iff there is some $\varepsilon _0>0$ such that $B_{\varepsilon _0}(x_0)\cap S=\{ x_0\}$.
 \begin{rmk}
 Note that it follows straight from the definition that $x_0\in S$.
 \end{rmk}
@@ -2158,7 +2173,7 @@ $(\cref{prp3.4.23.vi}\Rightarrow \cref{prp3.4.23.iv})$ Immediate
 \end{thm}
 Thus, while $C$ is closed iff it is equal to its set of adherent points, this is in general not true if you replace ``adherent'' with ``accumulation''.  In fact, this condition even has a name.
 \begin{dfn}{Perfect set}{PerfectSet}
-Let $C\subseteq \R ^d$.  Then, $C$ is \emph{perfect}\index{Perfect} iff it is equal to its set of accumulation points.
+Let $C\subseteq \R ^d$.  Then, $C$ is \term{perfect}\index{Perfect} iff it is equal to its set of accumulation points.
 \begin{rmk}
 In particular, it contains its set of accumulation points, and perfect sets are necessarily closed.
 \end{rmk}
@@ -2238,7 +2253,7 @@ Thus, for example, $1\in (0,\infty )$ is an accumulation point of the net.  Howe
 
 There is a `dual' (well, sort of) notion of accumulation point, though it is perhaps not quite as useful.
 \begin{dfn}{Interior point}{}
-Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \emph{interior point}\index{Interior point} of $S$ iff there is some $\varepsilon _0$ such that $B_{\varepsilon _0}(x_0)\subseteq S$.
+Let $S\subseteq \R ^d$ and let $x_0\in \R ^d$.  Then, $x_0$ is an \term{interior point}\index{Interior point} of $S$ iff there is some $\varepsilon _0$ such that $B_{\varepsilon _0}(x_0)\subseteq S$.
 \end{dfn}
 The result dual to \cref{prp3.4.23} is in the following easy exercise.
 \begin{exr}{}{exr3.4.26}
@@ -2292,7 +2307,7 @@ is closed.
 
 The closure of a set is the `smallest' closed set which contains it.  Likewise, the interior of a set is the `largest' open set which it contains.  The sense in which these are respectively ``smallest'' and ``largest'' is made precise by the following results.
 \begin{prp}{Closure}{prp3.4.34}
-Let $S\subseteq \R ^d$.  Then, there exists a unique set $\Cls (S)\subseteq \R ^d$\index[notation]{$\Cls (S)$}, the \emph{closure}\index{Closure} of $S$, that satisfies
+Let $S\subseteq \R ^d$.  Then, there exists a unique set $\Cls (S)\subseteq \R ^d$\index[notation]{$\Cls (S)$}, the \term{closure}\index{Closure} of $S$, that satisfies
 \begin{enumerate}
 \item \label{enm3.4.38.i}$\Cls (S)$ is closed;
 \item \label{enm3.4.38.ii}$S\subseteq \Cls (S)$; and
@@ -2323,7 +2338,7 @@ If $C$ is some other subset of $\R ^d$ which satisfies \cref{enm3.4.38.i}--\cref
 \end{prp}
 We have a dual result for the interior.
 \begin{prp}{Interior}{}
-Let $S\subseteq \R ^d$.  Then, there exists a unique set $\Int (S)\subseteq \R ^d$\index[notation]{$\Int (S)$}, the \emph{interior}\index{Interior} of $S$, that satisfies
+Let $S\subseteq \R ^d$.  Then, there exists a unique set $\Int (S)\subseteq \R ^d$\index[notation]{$\Int (S)$}, the \term{interior}\index{Interior} of $S$, that satisfies
 \begin{enumerate}
 \item $\Int (S)$ is open;
 \item $\Int (S)\subseteq S$; and
@@ -2440,7 +2455,7 @@ The objective then is to characterize closed bounded sets in such a way that wil
 Let $S\subseteq \R ^d$ and let $\cover{U}\subseteq 2^{\R ^d}$.  Then, $\cover{U}$ is a \emph{cover}\index{Cover} of $S$ iff $S\subseteq \bigcup _{U\in \cover{U}}U$.  $\cover{U}$ is an \emph{open cover}\index{Open cover} iff every $U\in \cover{U}$ is open.  A \emph{subcover} of $\cover{U}$ is a subset $\cover{V}\subseteq \cover{U}$ that is still a cover of $S$.
 \end{dfn}
 \begin{dfn}{Quasicompact}{}
-Let $S\subseteq \R ^d$.  Then, $S$ is \emph{quasicompact}\index{Quasicompact} iff every open cover of $S$ has a finite subcover.
+Let $S\subseteq \R ^d$.  Then, $S$ is \term{quasicompact}\index{Quasicompact} iff every open cover of $S$ has a finite subcover.
 \begin{rmk}
 For most authors, and in fact, for probably all authors of introductory analysis books, my definition of quasicompact for them will be called just \emph{compact}.  Instead, I reserve the term \emph{compact} for spaces which are both quasicompact \emph{and} $T_2$---see \cref{Compact}.\footnote{You are not expected to know what $T_2$ means---see the next chapter for details (specifically, \cref{T2}), though keep in mind, the details don't matter at the moment.}  As $\R ^d$ is $T_2$, the notions of compact and quasicompact are the same for the real numbers, but in general they will differ.  To the best of my knowledge,\footnote{Actually, since first writing this remark, I found that Bourbaki \cite[pg.~83]{Bourbaki} uses exactly this terminology, so perhaps the root of this terminology goes back further.} the term quasicompact originated in algebraic geometry because it was felt that things that should \emph{not} intuitively be thought of as compact nevertheless satisfied the defining condition above.  Thus, it was decided that such spaces should be referred to as quasicompact and that instead the term compact should be reserved for spaces which are both quasicompact and $T_2$.  I prefer this terminology for two reasons:  (i)~the terminology is more precise, that is, I have two terms to work with instead of just one; and (ii)~I strongly feel that it is a bad idea for the terminology we use to be dependent on the mathematics we happen to be doing at the moment---``compact'' should not mean one thing today and something else tomorrow just because I decided to work on something different.  Terminology should be as consistent as possible across all of mathematics.
 \end{rmk}
@@ -2466,7 +2481,7 @@ We do this step for $d=1$ as it makes the proof clearer.  We will mention in foo
 Let $M>0$ be such that $S\subseteq [-M,M]$.\footnote{In general, we want $S\subseteq [-M,M]\times \cdots \times [-M,M]$.}  Then, at least one of $[-M,0]\cap S$ and $[0,M]\cap S$ must not have a finite subcover of $\mcal{U}$, because if they both did, then the cover of $[-M,0]\cap S$ together with the cover of $[0,M]\cap S$ would comprise a finite subcover of $S$.  Without loss of generality, assume that $[0,M]\cap S$ has no finite subcover.\footnote{In higher dimensions, $[-M,M]\times \cdots \times [-M,M]$ breaks up into not $2$ cases, but $2^d$, all with side length $M$.  The same logic gives us that $S$ intersected with at least one of these `quadrants' has no finite subcover.}  Then, by exactly the same logic, either $\left[ 0,\frac{M}{2}\right] \cap S$ or $\left[ \frac{M}{2},M\right] \cap S$ has no finite subcover.  Proceeding inductively, we obtain a nonincreasing sequence of closed rectangles $R_0\supseteq R_1\supseteq R_2\supseteq \cdots$ such that (i)~$I_k\cap S$ has no finite subcover and (ii)~the lengths of the intervals converges to $0$.
 
 \Step{Construct an element in $S\cap \bigcap _{k\in \N}R_k$}
-Note that, as $R_k\cap S$ has no finite subcover, in particular, it cannot be empty (otherwise any subset of $\mcal{U}$ would cover it).  So, let $x_k\in R_k\cap S$.  Because the side lengths of the rectangles go to $0$, $m\mapsto x_m$ is a cauchy sequence, and hence converges to some $x_\infty \in \R ^d$.  As $S$ is closed, we have in addition that $x_\infty \in S$.  We wish to show that in addition $x_\infty \in I_k$ for all $k$.  Write $R_k=[a_{k,1},b_{k,1}]\times \cdots \times [a_{k,d},b_{k,d}]$ for $a_{k,l}\leq b_{k,l}$.  We wish to show that $a_{k,l}\leq x_\infty \leq b_{k,l}$.  We show just $[x_\infty] _l\leq b_{k,l}$ (the other inequality is similar).  We proceed by contradiction:  suppose that there is some $b_{k_0,l_0}$ such that $[x_\infty ]_{l_0}>b_{k_0,l_0}$.  Then, there is some $m_0$ such that, whenever $m\geq m_0$, it follows that $[x_m]_{l_0}>b_{k_0,l_0}$.  However, for $m$ at least as large as $k_0$, we need $x_m\in R_m\subseteq I_{k_0}$, so that $x_{m,l_0}\leq b_{k_0,l_0}$:  a contradiction.  Therefore, $x_\infty \leq b_k$ for all $k$, and so $x_\infty \in R_k$ for all $k$.
+Note that, as $R_k\cap S$ has no finite subcover, in particular, it cannot be empty (otherwise any subset of $\mcal{U}$ would cover it).  So, let $x_k\in R_k\cap S$.  Because the side lengths of the rectangles go to $0$, $m\mapsto x_m$ is a Cauchy sequence, and hence converges to some $x_\infty \in \R ^d$.  As $S$ is closed, we have in addition that $x_\infty \in S$.  We wish to show that in addition $x_\infty \in I_k$ for all $k$.  Write $R_k=[a_{k,1},b_{k,1}]\times \cdots \times [a_{k,d},b_{k,d}]$ for $a_{k,l}\leq b_{k,l}$.  We wish to show that $a_{k,l}\leq x_\infty \leq b_{k,l}$.  We show just $[x_\infty] _l\leq b_{k,l}$ (the other inequality is similar).  We proceed by contradiction:  suppose that there is some $b_{k_0,l_0}$ such that $[x_\infty ]_{l_0}>b_{k_0,l_0}$.  Then, there is some $m_0$ such that, whenever $m\geq m_0$, it follows that $[x_m]_{l_0}>b_{k_0,l_0}$.  However, for $m$ at least as large as $k_0$, we need $x_m\in R_m\subseteq I_{k_0}$, so that $x_{m,l_0}\leq b_{k_0,l_0}$:  a contradiction.  Therefore, $x_\infty \leq b_k$ for all $k$, and so $x_\infty \in R_k$ for all $k$.
 
 \Step{Deduce the contradiction}
 As $x_\infty \in S$, there is some $U\in \cover{U}$ such that $x_\infty \in U$.  Then, because the side lengths of the rectangles converge to $0$ and $U$ is open, there must be some $I_{m_0}$ such that $x_\infty \in I_{m_0}\subseteq U$.  But then, $\{ U\}$ is a finite open cover of $I_{m_0}\cap S$:  a contradiction.  Therefore, $S$ is quasicompact.
@@ -2507,7 +2522,7 @@ If for some reason you find the definition of quasicompactness in terms of open 
 
 The first characterization we come to is essentially the characterization you get by `taking complements' in the definition of quasicompactness, and rewording things in terms of closed sets.  To phrase this characterization, it will be convenient to have a term that makes the statement less verbose.
 \begin{dfn}{Finite-intersection property}{FiniteIntersectionPropertyInR}
-Let $X$ be a set, let $S\subseteq X$, let $\collection{C}\subseteq 2^X$ be a collection of subsets of $X$.  Then, $\collection{C}$ has the \emph{finite-intersection property}\index{Finite-intersection property} with $S$ iff every finite subset $\{ C_1,\ldots ,C_m\} \subseteq \collection{C}$ intersects $S$:  $(C_1\cap \cdots \cap C_m)\cap S\neq \emptyset$.  For $S=X$, we simply say that $\collection{C}$ has the \emph{finite-intersection property}.\footnote{That is, in this case we omit the phrase ``with $X$''.}
+Let $X$ be a set, let $S\subseteq X$, let $\collection{C}\subseteq 2^X$ be a collection of subsets of $X$.  Then, $\collection{C}$ has the \term{finite-intersection property}\index{Finite-intersection property} with $S$ iff every finite subset $\{ C_1,\ldots ,C_m\} \subseteq \collection{C}$ intersects $S$:  $(C_1\cap \cdots \cap C_m)\cap S\neq \emptyset$.  For $S=X$, we simply say that $\collection{C}$ has the \term{finite-intersection property}.\footnote{That is, in this case we omit the phrase ``with $X$''.}
 \end{dfn}
 \begin{prp}{}{prp3.4.58}
 Let $K\subseteq \R ^d$ and let $\collection{C}$ be a collection of closed subsets of $\R ^d$.  Then, $K$ is quasicompact iff whenever $\collection{C}$ has the finite-intersection property with $K$, the entire intersection $\bigcap _{C\in \collection{C}}C$ also intersects $K$.
@@ -2543,9 +2558,9 @@ Then,
 for every $\varepsilon >0$ and for every $\mu$, there is some $x_{\lambda _{\varepsilon ,\mu}}\in B_\varepsilon (x)$ with $\lambda _{\varepsilon ,\mu}\geq \mu$.\footnote{This is the statement that $x$ is an accumulation point of $\{ x_{\lambda}:\lambda \geq \mu \}$ for each $\mu$.}
 \end{textequation}
 Define
-\begin{equation}
+\begin{equation*}
 \Lambda '\coloneqq \left\{ \coord{\varepsilon ,\lambda}:\varepsilon \in \R ^+,\lambda \in \Lambda \text{ such that }x_\lambda \in B_{\varepsilon}(x)\right\} .
-\end{equation}
+\end{equation*}
 We order $\R ^+$ with the reverse of the usual ordering.  Then, $\R ^+\times \Lambda$ is directed.  We verify that $\Lambda '$ is likewise directed.  Let $\varepsilon _1,\varepsilon _2>0$ and let $\lambda _1,\lambda _2\in \Lambda$ be such that $x_{\lambda _k}\in B_{\varepsilon _k}(x)$.  Take $\varepsilon \coloneqq \min \{ \varepsilon _1,\varepsilon _2\}$ and let $\lambda _3$ be at least as large as $\lambda _1$ and $\lambda _2$.  By \eqref{3.4.62}, there is some $\lambda \geq \lambda _3$ such that $x_\lambda \in B_\varepsilon (x)$.  Then, $\coord{\varepsilon ,\lambda}\in \Lambda '$ and $\coord{\varepsilon ,\lambda}\geq \coord{\varepsilon _k,\lambda _k}$, so that $\Lambda '$ is directed.
 
 Now, for $\coord{\varepsilon ,\mu}\in \Lambda '$, pick some $\lambda _{\varepsilon ,\mu}$ such that (i)~$x_{\lambda _{\varepsilon ,\mu}}\in B_\varepsilon (x)$ and (ii)~$\lambda _{\varepsilon ,\mu}\geq \mu$.  Of course $\coord{\varepsilon ,\mu}\mapsto x_{\varepsilon ,\mu}$ converges to $x$, but we still need to check that it is a subnet.
@@ -2578,7 +2593,7 @@ Any infinite subset of $\R ^d$ will have a sequence of distinct points contained
 This has been a rather long chapter and we have covered many different properties of the real numbers.  For convenience, we summarize here some of the main points we have covered.
 \begin{enumerate}
 \item The real numbers are the unique (up to isomorphism of totally-ordered fields) nonzero Dedekind-complete totally-ordered field.
-\item The real numbers are cauchy-complete (\cref{CompletenessOfR}).
+\item The real numbers are Cauchy-complete (\cref{CompletenessOfR}).
 \item The real numbers have cardinality $2^{\aleph _0}>
 \aleph _0$ (\cref{CantorsCardinalityTheorem,thm2.4.118}).
 \item The real numbers are Archimedean (the natural numbers are unbounded)---see \cref{thm3.2.3}.

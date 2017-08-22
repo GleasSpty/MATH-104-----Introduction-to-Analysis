@@ -5,20 +5,20 @@ We have mentioned topological spaces several times throughout the notes already,
 \section{The definition of a topological space}
 
 \begin{dfn}{Topological space}{TopologicalSpace}
-A \emph{topological space}\index{Topological space} is a set $X$ equipped with a collection of subsets $\topology{U}\subseteq 2^X$, the \emph{topology}\index{Topology} on $X$, such that
+A \term{topological space}\index{Topological space} is a set $X$ equipped with a collection of subsets $\topology{U}\subseteq 2^X$, the \term{topology}\index{Topology} on $X$, such that
 \begin{enumerate}
 \item \label{enmTopologicalSpace.i}$\emptyset ,X\in \topology{U}$;
 \item \label{enmTopologicalSpace.ii}$\bigcup _{U\in \topology{V}}U\in \topology{U}$ if $\topology{V}\subseteq \topology{U}$; and
 \item \label{enmTopologicalSpace.iii}$\bigcap _{k=1}^mU_k\in \topology{U}$ if $U_k\in \topology{U}$ for $1\leq k\leq m$.
 \end{enumerate}
 \begin{rmk}
-The elements of $\topology{U}$ are the \emph{open sets}\index{Open (in a topological space)}.
+The elements of $\topology{U}$ are the \term{open sets}\index{Open (in a topological space)}.
 \end{rmk}
 \begin{rmk}
 In other words, a topological space is a set $X$ equipped with a collection of subsets (containing at least $\emptyset$ and $X$) closed under arbitrary union and finite intersection.
 \end{rmk}
 \begin{rmk}
-A subset $C\subseteq X$ is \emph{closed}\index{Closed (in a topological space)} iff $C^{\comp}$ is open.  (Recall that this is precisely the definition we gave in $\R$---see \cref{dfn3.4.17}.)
+A subset $C\subseteq X$ is \term{closed}\index{Closed (in a topological space)} iff $C^{\comp}$ is open.  (Recall that this is precisely the definition we gave in $\R$---see \cref{dfn3.4.17}.)
 \end{rmk}
 \begin{wrn}
 Warning:  A common mistake beginners make is to think ``More open sets means fewer closed sets.''.  This is \emph{wrong}.  There are always the same number of open sets as closed sets:  $U\mapsto U^{\comp}$ gives a bijection between them.
@@ -41,17 +41,17 @@ In other words, your collection of closed sets must be nontrivial, closed under 
 \end{rmk}
 \end{exr}
 \begin{dfn}{$G_\delta$ and $F_\sigma$ sets}{GDeltaFSigma}
-Let $S\subseteq X$ be a subset of a topological space.  Then, $S$ is a \emph{$G_\delta$ set}\index{$G_\delta$ set} iff $S$ is the countable intersection of open sets.  $S$ is an \emph{$F_\sigma$ set}\index{$F_\sigma$ set} iff $S$ i the countable union of closed sets.
+Let $S\subseteq X$ be a subset of a topological space.  Then, $S$ is a \term{$G_\delta$ set}\index{$G_\delta$ set} iff $S$ is the countable intersection of open sets.  $S$ is an \term{$F_\sigma$ set}\index{$F_\sigma$ set} iff $S$ i the countable union of closed sets.
 \begin{rmk}
 For us, these concepts will not come up very often, so it is not imperative that you remember these terms---indeed, you can probably just skip this definition for now.  They do come up, however, so it would be incomplete to not include them, and if they're going to be included somewhere, this is not a bad place to do so.
 \end{rmk}
 \end{dfn}
 
-\subsection{Bases, neighborhood bases, and generating collections}
+\subsection{(Neighborhood) bases and generating collections}
 
 It is often not necessary to define every single open set explicitly, but rather, only a special class of open sets that determine all the others.  For example, in the real numbers, to determine whether an arbitrary set was open, we made use of the `special' open sets $B_\varepsilon (x)$:  you could determine whether an arbitrary set was open simply by knowing the $\varepsilon$ balls---see \cref{OpenSetInR}.  The idea that generalizes this notion is that of a \emph{base} for a topology.
 \begin{dfn}{Base}{Base}
-Let $X$ be a topological space and let $\topology{B}$ be a collection of open sets of $X$.  Then, $\topology{B}$ is a \emph{base}\index{Base} for the topology of $X$ iff the statement that a subset $U$ of $X$ is open is equivalent to the statement that, for every $x\in U$, there is some $B\in \topology{B}$ such that $x\in B\subseteq U$.
+Let $X$ be a topological space and let $\topology{B}$ be a collection of open sets of $X$.  Then, $\topology{B}$ is a \term{base}\index{Base} for the topology of $X$ iff the statement that a subset $U$ of $X$ is open is equivalent to the statement that, for every $x\in U$, there is some $B\in \topology{B}$ such that $x\in B\subseteq U$.
 \end{dfn}
 \begin{exm}{}{}
 The collection $\left\{ B_\varepsilon (x):x\in \R ^d,\ \varepsilon >0\right\}$ is a base for the topology of $\R ^d$.
@@ -81,13 +81,13 @@ Let $X$ be a topological space and let $\topology{B}$ be a collection of subsets
 \end{exr}
 There is a similar way of defining a topology.  Instead of specifying a base for all open sets, you specify a base for all the open sets at a point (see the following definitions) for every point.
 \begin{dfn}{Neighborhood}{Neighborhood}
-Let $X$ be a topological space and let $S\subseteq N\subseteq X$.  Then, $N$ is a \emph{neighborhood}\index{Neighborhood} of $S$ iff there is some open set $U\subseteq X$ such that $S\subseteq U\subseteq N$.  An \emph{open neighborhood}\index{Open neighborhood} of $S$ is just an open set which contains $S$.  A(n open) neighborhood of a point $x$ is a(n open) neighborhood of $\{ x\}$.
+Let $X$ be a topological space and let $S\subseteq N\subseteq X$.  Then, $N$ is a \term{neighborhood}\index{Neighborhood} of $S$ iff there is some open set $U\subseteq X$ such that $S\subseteq U\subseteq N$.  An \term{open neighborhood}\index{Open neighborhood} of $S$ is just an open set which contains $S$.  A(n open) neighborhood of a point $x$ is a(n open) neighborhood of $\{ x\}$.
 \begin{rmk}
 The intuition is that neighborhoods have the ``wiggle room'' that is characteristic of open sets, but are not necessarily open themselves.  For example, in $\R$, $D_{\varepsilon}(x_0)$ is a neighborhood of $x_0$, but isn't actually open.\footnote{Recall that $D_{\varepsilon}(x_0)\coloneqq \{ x\in \R :\abs{x-x_0}\leq \varepsilon \}$---see \cref{AbsoluteValue}.}
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Neighborhood base}{NeighborhoodBase}
-Let $X$ be a topological space, let $x\in X$, and let $\topology{B}_x$ be a collection of neighborhoods\footnote{Not necessarily open!} of $x$.  Then, $\topology{B}_x$ is a \emph{neighborhood base}\index{Neighorhood base} of $x$ iff for every neighborhood $N\subseteq X$ of $x$ there is some $B_x\in \topology{B}_x$ such that $B_x\subseteq N$.  If $\topology{B}_x$ is a neighborhood base of $x$ for all $x\in X$, then $\{ \topology{B}_x:x\in X\}$ is a \emph{neighborhood base} of the topology.
+Let $X$ be a topological space, let $x\in X$, and let $\topology{B}_x$ be a collection of neighborhoods\footnote{Not necessarily open!} of $x$.  Then, $\topology{B}_x$ is a \term{neighborhood base}\index{Neighorhood base} of $x$ iff for every neighborhood $N\subseteq X$ of $x$ there is some $B_x\in \topology{B}_x$ such that $B_x\subseteq N$.  If $\topology{B}_x$ is a neighborhood base of $x$ for all $x\in X$, then $\{ \topology{B}_x:x\in X\}$ is a \term{neighborhood base} of the topology.
 \end{dfn}
 \begin{exm}{A neighborhood base with no open sets}{exm4.1.7}
 Take $X\coloneqq \R$, and for $x\in X$ define $\topology{B}_x\coloneqq \{ D_{\varepsilon}(x):\varepsilon >0\}$.  This is a neighborhood base but yet no $D_{\varepsilon}(x)$ is open.
@@ -169,12 +169,12 @@ Again, this ``creates'' the indiscrete topology, but $\topology{B}_1$ is not a f
 \end{exm}
 Sometimes we have a collection of sets that we would like to be open, but they do not necessarily form a base, and so in this case we cannot just invoke \cref{prp4.1.5}.  However, what we can do is take the `smallest' topology which contains these sets.
 \begin{prp}{Generating collection (of a top\-ology)}{GeneratingCollection}
-Let $X$ be a set and let $\collection{S}\subseteq 2^X$.  Then, there exists a unique topology $\topology{U}$ on $X$, the topology \emph{generated}\index{Generate (a topology)} by $\collection{S}$, such that
+Let $X$ be a set and let $\collection{S}\subseteq 2^X$.  Then, there exists a unique topology $\topology{U}$ on $X$, the topology \term{generated}\index{Generate (a topology)} by $\collection{S}$, such that
 \begin{enumerate}
 \item \label{GeneratingCollection.i}$\collection{S}\subseteq \topology{U}$; and
 \item \label{GeneratingCollection.ii}if $\topology{U}'$ is any other topology on $X$ containing $\collection{S}$, it follows that $\topology{U}\subseteq \topology{U}'$.
 \end{enumerate}
-Furthermore, the collection of all finite intersections of elements of $\collection{S}\cup \{ X\}$ is a base for this topology.\footnote{We throw $X$ in in case $\collection{S}$ did not cover $X$ (recall that bases (\cref{Base}) need to cover the space).}.  $\collection{S}$ is a \emph{generating collection}\index{Generating collection (of a topology)}.
+Furthermore, the collection of all finite intersections of elements of $\collection{S}\cup \{ X\}$ is a base for this topology.\footnote{We throw $X$ in in case $\collection{S}$ did not cover $X$ (recall that bases (\cref{Base}) need to cover the space).}.  $\collection{S}$ is a \term{generating collection}\index{Generating collection (of a topology)}.
 \begin{rmk}
 Compare this with the definition of the integers, rationals, reals, closure, and interior (\cref{Integers,RationalNumbers,RealNumbers,Closure,Interior}).
 \end{rmk}
@@ -196,7 +196,7 @@ Let $X$ be a totally-ordered set, and let $\topology{B}$ be the collection of se
 \begin{exr}[breakable=false]{}{}
 Use \cref{prp4.1.5} to show that $\topology{B}$ is a base for a topology.
 \end{exr}
-The topology defined by $\topology{B}$ is the \emph{order topology}\index{Order topology} on $X$.
+The topology defined by $\topology{B}$ is the \term{order topology}\index{Order topology} on $X$.
 \end{dfn}
 \begin{exm}{A partially-ordered set whose open intervals do not form a base}{}
 Define
@@ -225,7 +225,7 @@ $\N$, $\Z$, $\Q$, and $\R$ are all totally-ordered and so we may (and do) equip 
 \end{exm}
 The order topology on $\N$ and $\Z$ are examples of a very special topology, the `finest' one possible, namely the \emph{discrete topology}.
 \begin{dfn}{Discrete topology}{DiscreteTopology}
-Let $X$ be any set.  The \emph{discrete topology}\index{Discrete topology} is the topology in which \emph{every} subset is open.
+Let $X$ be any set.  The \term{discrete topology}\index{Discrete topology} is the topology in which \emph{every} subset is open.
 \begin{rmk}
 Note that every set is also \emph{closed}.
 \end{rmk}
@@ -250,7 +250,7 @@ Why is the topology on $\Q$ not discrete?
 \end{exr}
 The discrete topology is the `finest' topology you can have (finer means more open sets).  The `coarsest' topology you can have is the \emph{indiscrete topology}.
 \begin{dfn}{Indiscrete topology}{dfnIndiscreteTopology}
-Let $X$ be any set.  The \emph{indiscrete topology}\index{Indiscrete topology} is just $\{ \emptyset ,X\}$.
+Let $X$ be any set.  The \term{indiscrete topology}\index{Indiscrete topology} is just $\{ \emptyset ,X\}$.
 \begin{rmk}
 The definition of a topology requires that at least the empty-set and the entire set are open.  The indiscrete topology is when nothing else is open.  It is not particularly useful, but it can be an easy source of some counter-examples (e.g.~\cref{exm4.1.20}).
 \end{rmk}
@@ -260,7 +260,7 @@ The definition of a topology requires that at least the empty-set and the entire
 
 We now finally vastly generalize our definition of continuity.
 \begin{dfn}{Continuous function}{ContinuousFunction}
-Let $f\colon X\rightarrow Y$ be a function between topological spaces and let $x\in X$.  Then, $f$ is \emph{continuous}\index{Continuous (at a point)} at $x$ iff the preimage of every neighborhood of $f(x)$ is a neighborhood of $x$.  $f$ is \emph{continuous}\index{Continuous} iff $f$ is continuous at $x$ for all $x\in X$.
+Let $f\colon X\rightarrow Y$ be a function between topological spaces and let $x\in X$.  Then, $f$ is \term{continuous}\index{Continuous (at a point)} at $x$ iff the preimage of every neighborhood of $f(x)$ is a neighborhood of $x$.  $f$ is \term{continuous}\index{Continuous} iff $f$ is continuous at $x$ for all $x\in X$.
 \begin{wrn}
 Warning:  Here, you \emph{cannot} replace ``neighborhood'' with ``open neighborhood''  For example, consider the function $f\colon \R \rightarrow \R$ defined by
 \begin{equation}
@@ -306,7 +306,7 @@ Note that this is something you need to check in order for $\Top$ to actually fo
 \end{exr}
 \end{exm}
 \begin{dfn}{Homeomorphism}{Homeomorphism}
-Let $f\colon X\rightarrow Y$ be a function between topological spaces.  Then, $f$ is a \emph{homeomorphism}\index{Homeomorphism} iff $f$ is an isomorphism in $\Top$.
+Let $f\colon X\rightarrow Y$ be a function between topological spaces.  Then, $f$ is a \term{homeomorphism}\index{Homeomorphism} iff $f$ is an isomorphism in $\Top$.
 \end{dfn}
 \begin{exr}{}{}
 Show that a function is a homeomorphism iff (i)~it is bijective, (ii)~it is continuous, and (iii)~its inverse is continuous.
@@ -384,16 +384,16 @@ One important thing to keep in mind is:  \emph{Open neighborhoods of a point in 
 
 For the entirety of this section, $X$ and $Y$ will be general topological spaces.  We recommend that this section be used mainly as a reference---the pedagogy of the concepts is contained in the last chapter.
 \begin{dfn}{Net}{}
-A \emph{net}\index{Net} in $X$ is a function from a nonempty directed set $\coord{\Lambda ,\leq}$ into $X$.
+A \term{net}\index{Net} in $X$ is a function from a nonempty directed set $\coord{\Lambda ,\leq}$ into $X$.
 \end{dfn}
 \begin{dfn}{Sequence}{}
-A \emph{sequence}\index{Sequence} is a net whose directed set is order-isomorphic (i.e.~isomorphic in $\Pre$) to $\coord{\N ,\leq}$.
+A \term{sequence}\index{Sequence} is a net whose directed set is order-isomorphic (i.e.~isomorphic in $\Pre$) to $\coord{\N ,\leq}$.
 \end{dfn}
 \begin{mdf}{Eventually XYZ}{EventuallyXYZInTop}
-Let $\Lambda \ni \lambda \mapsto x_\lambda \in X$ be a net.  Then, $\lambda \mapsto a_\lambda$ is \emph{eventually XYZ}\index{Eventually XYZ} iff there is some $\lambda _0$ such that $\{ \lambda \in \Lambda :\lambda \geq \lambda _0\} \ni \lambda \mapsto x_\lambda$ is XYZ.
+Let $\Lambda \ni \lambda \mapsto x_\lambda \in X$ be a net.  Then, $\lambda \mapsto a_\lambda$ is \term{eventually XYZ}\index{Eventually XYZ} iff there is some $\lambda _0$ such that $\{ \lambda \in \Lambda :\lambda \geq \lambda _0\} \ni \lambda \mapsto x_\lambda$ is XYZ.
 \end{mdf}
 \begin{mdf}{Frequently XYZ}{FrequentlyXYZInTop}
-Let $\Lambda \ni \lambda \mapsto x_{\lambda}\in X$ be a net.  Then, $\lambda \mapsto x_{\lambda}$ is \emph{frequently}\index{Frequently XYZ} iff for every $\lambda \in \Lambda$ there is some $\lambda '\geq \lambda$ such that $x_{\lambda '}$ is XYZ.
+Let $\Lambda \ni \lambda \mapsto x_{\lambda}\in X$ be a net.  Then, $\lambda \mapsto x_{\lambda}$ is \term{frequently}\index{Frequently XYZ} iff for every $\lambda \in \Lambda$ there is some $\lambda '\geq \lambda$ such that $x_{\lambda '}$ is XYZ.
 \end{mdf}
 \begin{mpr}{}{mpr3.2.5}
 Let XYZ be a property that is such that a net $\lambda \mapsto x_{\lambda}$ is XYZ iff each $x_{\lambda}$ is XYZ.  Then, a net $\lambda \mapsto x_{\lambda}\in \R$ be a net is frequently not XYZ iff it is not eventually XYZ.
@@ -402,7 +402,7 @@ In particular, for $S\subseteq X$, a net is frequently contained in $S$ iff it i
 \end{rmk}
 \end{mpr}
 \begin{dfn}{Limit (of a net)}{LimitOfANet}
-Let $\lambda \mapsto x_\lambda$ be a net and let $x_\infty \in X$.  Then, $x_\infty$ is a \emph{limit}\index{Limit (of a net)} of $\lambda \mapsto x_\lambda$ iff for every open neighborhood $U$ of $x_\infty$, $\lambda \mapsto x_{\lambda}$ is eventually contained in $U$.  If a net has a limit, then we say that it \emph{converges}\index{Convergence (of a net)}.
+Let $\lambda \mapsto x_\lambda$ be a net and let $x_\infty \in X$.  Then, $x_\infty$ is a \term{limit}\index{Limit (of a net)} of $\lambda \mapsto x_\lambda$ iff for every open neighborhood $U$ of $x_\infty$, $\lambda \mapsto x_{\lambda}$ is eventually contained in $U$.  If a net has a limit, then we say that it \term{converges}\index{Convergence (of a net)}.
 \begin{rmk}
 Note that we no longer have the concept of \emph{diverge}, as this required to at least have a notion of ``unbounded'', a concept which doesn't make sense for general topological spaces.
 \end{rmk}
@@ -417,12 +417,12 @@ Define $X\coloneqq \{ 0,1\}$ and equip $X$ with the indiscrete topology (\cref{d
 Let $\lambda \mapsto x_{\lambda}$ be a net and let $x_{\infty}\in X$.  Then, it is \emph{not} the case that $\lambda \mapsto x_{\lambda}$ converges to $x_{\infty}$ iff there is an open neighborhood $U$ of $x$ such that $\lambda \mapsto x_{\lambda}$ is frequently contained in $U^{\comp}$.
 \end{prp}
 \begin{dfn}{Subnet}{Subnet}
-Let $x:\Lambda \rightarrow X$ be a be a net.  Then, a \emph{subnet}\index{Subnet} of $x$ is a net $y:\Lambda '\rightarrow X$ such that
+Let $x:\Lambda \rightarrow X$ be a be a net.  Then, a \term{subnet}\index{Subnet} of $x$ is a net $y:\Lambda '\rightarrow X$ such that
 \begin{enumerate}
 \item for all $\mu \in \Lambda '$, $y_\mu =x_{\lambda _\mu}$ for some $\lambda _\mu \in \Lambda$; and
 \item whenever $U\subseteq X$ eventually contains $x$, it eventually contains $y$.
 \end{enumerate}
-A \emph{cofinal subnet}\index{Cofinal subnet} of $x$ is a net of the form $\restr{x}{\Lambda'}$ for $\Lambda '\subseteq \Lambda$ cofinal.  A \emph{subsequence}\index{Subsequence} is a subnet that is a sequence.
+A \term{cofinal subnet}\index{Cofinal subnet} of $x$ is a net of the form $\restr{x}{\Lambda'}$ for $\Lambda '\subseteq \Lambda$ cofinal.  A \term{subsequence}\index{Subsequence} is a subnet that is a sequence.
 \end{dfn}
 \begin{prp}{}{prp3.2.7}
 Let $\lambda \mapsto x_{\lambda}\in X$ be a net.  Then, $\mu \mapsto x_{\lambda _{\mu}}$ is a subnet of $\lambda \mapsto x_{\lambda _{\mu}}$ iff for all $\lambda _0$ there is some $\mu _0$ such that
@@ -451,17 +451,17 @@ As far as \namerefpcref{KelleysConvergenceTheorem} is concerned, we can\footnote
 \begin{textequation}
 $\lim _{\lambda}x_{\lambda}=x_{\infty}$ iff every subnet $\mu \mapsto x_{\lambda _\mu}$ has in turn a subnet itself $\nu \mapsto x_{\lambda _{\mu _\nu}}$ such that $\lim _\nu x_{\lambda _{\mu _\nu}}=x_\infty$.
 \end{textequation}
-This is a bit cleaner, I suppose, if only because it cuts four axioms down to three.  That said, notice that the term ``strict'' has been dropped here.  This is because \cref{enmKelleysConvergenceAxioms.ii} without ``strict'' will imply \cref{enmKelleysConvergenceAxioms.iix} (so that, without the condition ``strict'' appearing in \cref{enmKelleysConvergenceAxioms.ii}, we needn't separately list \cref{enmKelleysConvergenceAxioms.iix}), but this should no longer be the case if you include the condition ``strict''.  As we will want to make use of the version with the ``strict'' appearing (and not just for the proof of \nameref{KelleysConvergenceTheorem}), we list the four-axiom version of Kelley's Convergence Axioms.
+This is a bit cleaner, I suppose, if only because it cuts four axioms down to three.  That said, notice that the term ``cofinal'' has been dropped here.  This is because \cref{enmKelleysConvergenceAxioms.ii} without ``cofinal'' will imply \cref{enmKelleysConvergenceAxioms.iix} (so that, without the condition ``cofinal'' appearing in \cref{enmKelleysConvergenceAxioms.ii}, we needn't separately list \cref{enmKelleysConvergenceAxioms.iix}), but this should no longer be the case if you include the condition ``cofinal''.  As we will want to make use of the version with the ``cofinal'' appearing (and not just for the proof of \nameref{KelleysConvergenceTheorem}), we list the four-axiom version of Kelley's Convergence Axioms.
 \end{rmk}
 \end{thm}
 \begin{dfn}{Limit point}{}
-Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is a \emph{limit point}\index{Limit point} of $S$ iff there exists a net $\lambda \mapsto x_\lambda \in S$ with $x_\lambda \neq x_0$ that converges to $x_0$.
+Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is a \term{limit point}\index{Limit point} of $S$ iff there exists a net $\lambda \mapsto x_\lambda \in S$ with $x_\lambda \neq x_0$ that converges to $x_0$.
 \begin{rmk}
 Note how in $\R ^d$ (\cref{LimitPoint}) we wrote ``such that $\lim _{\lambda}x_{\lambda}=x$'' here.  We can no longer do this as limits might not be unique---see the remark in \cref{LimitOfANet}.  Similar tweaks apply to statements throughout this section.
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Limit (of a function)}{dfnLimitOfAFunction}
-Let $f\colon X \rightarrow Y$ be a function between topological spaces, and let $x_0\in X$ and $y\in Y$.  Then, $y$ is a \emph{limit}\index{Limit (of a function)} of $f$ at $x_0$ iff for every net $\lambda \mapsto x_\lambda$ with $x_\lambda \neq x_0$ that converges to $x_0$, $\lambda \mapsto f(x_\lambda )$ converges to $y$.
+Let $f\colon X \rightarrow Y$ be a function between topological spaces, and let $x_0\in X$ and $y\in Y$.  Then, $y$ is a \term{limit}\index{Limit (of a function)} of $f$ at $x_0$ iff for every net $\lambda \mapsto x_\lambda$ with $x_\lambda \neq x_0$ that converges to $x_0$, $\lambda \mapsto f(x_\lambda )$ converges to $y$.
 \begin{rmk}
 Similarly as for limits of nets, we don't have uniqueness in general, in which case the notion $\lim _{x\to a}f(x)$ is ambiguous, though we will still make use of this notation when limits are unique.
 \end{rmk}
@@ -470,7 +470,7 @@ Warning:  While in the real numbers this might be true if you replace the word `
 \end{wrn}
 \end{dfn}
 \begin{dfn}{Limit superior and limit inferior (of a function)}{LimitSuperiorAndLimitInferiorOfAFunction}
-Let $D\subseteq \R ^d$, let $x_0\in \R ^d$ be a limit point of $D$, and let $f\colon D\rightarrow \R ^e$.  Then, the \emph{limit superior}\index{Limit superior (of a function)} and \emph{limit inferior}\index{Limit inferior (of a function)} of $f$ at $x_0$, $\limsup _{x\to x_0}f(x)$ and $\liminf _{x\to x_0}f(x)$ respectively, are defined by
+Let $D\subseteq \R ^d$, let $x_0\in \R ^d$ be a limit point of $D$, and let $f\colon D\rightarrow \R ^e$.  Then, the \term{limit superior}\index{Limit superior (of a function)} and \term{limit inferior}\index{Limit inferior (of a function)} of $f$ at $x_0$, $\limsup _{x\to x_0}f(x)$ and $\liminf _{x\to x_0}f(x)$ respectively, are defined by
 \begin{subequations}
 \begin{align}
 \limsup _{x\to x_0}f(x) & \ceqq \lim _{U\in \topology{U}_{x_0}}\sup \left\{ f(x):x\in U\right\} \\
@@ -489,10 +489,10 @@ If limits were unique, we could write this more transparently as $\lim _{x\to x_
 Let $f\colon X\rightarrow Y$ be a function.  Then, $f$ is continuous iff the preimage of every closed set is closed.
 \end{prp}
 \begin{dfn}{Accumulation point}{AccumulationPoint}
-Let $S\subseteq X$ and let $x\in X$.  Then, $x$ is an \emph{accumulation point}\index{Accumulation point} of $S$ iff every open neighborhood of $x$ intersects $S$ at a point distinct from $x$.
+Let $S\subseteq X$ and let $x\in X$.  Then, $x$ is an \term{accumulation point}\index{Accumulation point} of $S$ iff every open neighborhood of $x$ intersects $S$ at a point distinct from $x$.
 \end{dfn}
 \begin{dfn}{Adherent point}{AdherentPoint}
-Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is an \emph{adherent point}\index{Adherent point} of $X$ iff every open neighborhood of $x$ intersects $S$.
+Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is an \term{adherent point}\index{Adherent point} of $X$ iff every open neighborhood of $x$ intersects $S$.
 \end{dfn}
 \begin{prp}{}{prp3.2.14}
 Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is an accumulation point of $S$ iff it is a limit point of $S$.
@@ -504,7 +504,7 @@ If you replace ``net'' with ``sequence'' in the definition of a limit point, the
 Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is an adherent point of $S$ iff there is a net $\lambda \mapsto x_{\lambda} \in S$ that converges to $x_0$.
 \end{prp}
 \begin{dfn}{Isolated point}{IsolatedPoint}
-Let $S\subseteq X$ and let $x\in X$.  Then, $x$ is an \emph{isolated point}\index{Isolated point} iff there is an open neighborhood $U$ of $x$ such that $U\cap S=\{ x\}$.
+Let $S\subseteq X$ and let $x\in X$.  Then, $x$ is an \term{isolated point}\index{Isolated point} iff there is an open neighborhood $U$ of $x$ such that $U\cap S=\{ x\}$.
 \end{dfn}
 \begin{prp}{}{}
 Let $S\subseteq X$ and let $x_0\in X$.  Then, if $x_0$ is an adherent point of $S$, then either $x_0$ is an accumulation point of $S$ or $x_0$ is an isolated point of $S$.
@@ -525,7 +525,7 @@ Let $C\subseteq X$.  Then, the following are equivalent.
 \end{enumerate}
 \end{thm}
 \begin{dfn}{Perfect set}{}
-Let $C\subseteq X$.  Then, $C$ is \emph{perfect}\index{Perfect} iff it is equal to its set of accumulation points.
+Let $C\subseteq X$.  Then, $C$ is \term{perfect}\index{Perfect} iff it is equal to its set of accumulation points.
 \end{dfn}
 There are several equivalent ways to state this condition.
 \begin{prp}{}{}
@@ -550,10 +550,10 @@ a_m\coloneqq \begin{cases}x_2 & \text{if }m=0 \\ x_3 & \text{otherwise.}\end{cas
 Then, it is true that every open neighborhood of $x_1\in X$ contains an element of the set $\{ a_m:m\in \N \}$, namely $a_0\coloneqq x_2$, distinct from $x_1$.  On the other hand, no subsequence of $m\mapsto a_m$ converges to $x_1$ as it is eventually outside an open neighborhood of $x_1$ (namely the open neighborhood $\{ x_1,x_2\}$).
 \end{exm}
 \begin{dfn}{Interior point}{}
-Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is an \emph{interior point}\index{Interior point} of $S$ iff there is some open neighborhood $U$ of $x_0$ such that $U\subseteq S$.
+Let $S\subseteq X$ and let $x_0\in X$.  Then, $x_0$ is an \term{interior point}\index{Interior point} of $S$ iff there is some open neighborhood $U$ of $x_0$ such that $U\subseteq S$.
 \end{dfn}
 \begin{prp}{Closure}{Closure}
-Let $S\subseteq X$.  Then, there exists a unique set $\Cls (S)\subseteq X$\index[notation]{$\Cls (S)$}, the \emph{closure}\index{Closure} of $S$, that satisfies
+Let $S\subseteq X$.  Then, there exists a unique set $\Cls (S)\subseteq X$\index[notation]{$\Cls (S)$}, the \term{closure}\index{Closure} of $S$, that satisfies
 \begin{enumerate}
 \item $\Cls (S)$ is closed;
 \item $S\subseteq \Cls (S)$; and
@@ -577,7 +577,7 @@ Let $S,T\subseteq X$.  Then,
 \end{enumerate}
 \end{thm}
 \begin{prp}{Interior}{Interior}
-Let $S\subseteq X$.  Then, there exists a unique set $\Int (S)\subseteq \R$\index[notation]{$\Int (S)$}, the \emph{interior}\index{Interior} of $S$, that satisfies
+Let $S\subseteq X$.  Then, there exists a unique set $\Int (S)\subseteq \R$\index[notation]{$\Int (S)$}, the \term{interior}\index{Interior} of $S$, that satisfies
 \begin{enumerate}
 \item $\Int (S)$ is open;
 \item $\Int (S)\subseteq S$; and
@@ -609,7 +609,7 @@ Let $S\subseteq X$.  Then, $S$ is open iff $S=\Int (S)$.
 
 We postponed the following counter-examples because we technically had not introduced the notion of closure in a general topological space.
 \begin{exm}{A limit point that is not a sequential limit point}{exm4.2.8x}
-Define $X\coloneqq \R$.  We equip $\R$ with a nonstandard topology, the so-called \emph{cocountable topology}\index{Cocountable topology}.\footnote{\emph{Cocountable}\index{Cocountable} means that the complement is countable.  The name of the topology here derives from the fact that the \emph{open} sets have countable complement (except the empty-set of course).}  Let $C\subseteq X$ and declare that
+Define $X\coloneqq \R$.  We equip $\R$ with a nonstandard topology, the so-called \term{cocountable topology}\index{Cocountable topology}.\footnote{\term{Cocountable}\index{Cocountable} means that the complement is countable.  The name of the topology here derives from the fact that the \emph{open} sets have countable complement (except the empty-set of course).}  Let $C\subseteq X$ and declare that
 \begin{textequation}
 $C$ is closed iff either (i)~$C=X$ or (ii)~$C$ is countable.
 \end{textequation}
@@ -642,10 +642,10 @@ f(x)\coloneqq \begin{cases}1 & \text{if }x\in \Q \\ -1 & \text{if }x\in \Q ^{\co
 This function is certainly not continuous because, for example, the preimage of $\{ -1\}$ is not closed.  On the other hand, because every convergent sequence is eventually constant and the condition that $x_\lambda \neq x$ in the definition of a limit (\cref{dfnLimitOfAFunction}), it follows that $f$ vacuously satisfies the continuity condition for sequences.
 \end{exm}
 \begin{dfn}{Cover}{}
-Let $S\subseteq X$ and let $\topology{U}\subseteq 2^{X}$.  Then, $\topology{U}$ is a \emph{cover}\index{Cover} of $S$ iff $S\subseteq \bigcup _{U\in \topology{U}}U$.  $\topology{U}$ is an \emph{open cover}\index{Open cover} iff every $U\in \topology{U}$ is open.  A \emph{subcover} of $\topology{U}$ is a subset $\topology{V}\subseteq \topology{U}$ that is still a cover of $S$.
+Let $S\subseteq X$ and let $\topology{U}\subseteq 2^{X}$.  Then, $\topology{U}$ is a \term{cover}\index{Cover} of $S$ iff $S\subseteq \bigcup _{U\in \topology{U}}U$.  $\topology{U}$ is an \term{open cover}\index{Open cover} iff every $U\in \topology{U}$ is open.  A \term{subcover} of $\topology{U}$ is a subset $\topology{V}\subseteq \topology{U}$ that is still a cover of $S$.
 \end{dfn}
 \begin{dfn}{Quasicompact}{Quasicompact}
-Let $S\subseteq X$.  Then, $S$ is \emph{quasicompact}\index{Quasicompact} iff every open cover of $S$ has a finite subcover.
+Let $S\subseteq X$.  Then, $S$ is \term{quasicompact}\index{Quasicompact} iff every open cover of $S$ has a finite subcover.
 \end{dfn}
 \begin{exr}{}{exr4.2.33x}
 Show that finite spaces are quasicompact.
@@ -654,7 +654,7 @@ Show that finite spaces are quasicompact.
 Show that closed subsets of quasicompact spaces are quasicompact.
 \end{exr}
 \begin{dfn}{Finite-intersection property}{FiniteIntersectionProperty}
-Let $S\subseteq X$ and let $\collection{C}\subseteq 2^X$ be a collection of subsets of $X$.  Then, $\collection{C}$ has the \emph{finite-intersection property}\index{Finite-intersection property} with $S$ iff every finite subset $\{ C_1,\ldots ,C_m\} \subseteq \collection{C}$ intersects $S$:  $(C_1\cap \cdots \cap C_m)\cap S\neq \emptyset$.  For $S=X$, we simply say that $\collection{C}$ has the \emph{finite-intersection property}
+Let $S\subseteq X$ and let $\collection{C}\subseteq 2^X$ be a collection of subsets of $X$.  Then, $\collection{C}$ has the \term{finite-intersection property}\index{Finite-intersection property} with $S$ iff every finite subset $\{ C_1,\ldots ,C_m\} \subseteq \collection{C}$ intersects $S$:  $(C_1\cap \cdots \cap C_m)\cap S\neq \emptyset$.  For $S=X$, we simply say that $\collection{C}$ has the \term{finite-intersection property}
 \end{dfn}
 \begin{prp}{}{prp4.2.32}
 Let $K\subseteq X$ and let $\collection{C}$ be a collection of closed subsets of $X$.  Then, $K$ is quasicompact iff whenever $\collection{C}$ has the finite-intersection property with $K$, the entire intersection $\bigcap _{C\in \collection{C}}C$ also intersects $K$.
@@ -669,7 +669,7 @@ Note that the Heine-Borel and Bolzano-Weierstrass Theorems (\cref{HeineBorelTheo
 We present in this subsection a couple of facts that, while not technically review per se, make more sense to place here before we begin study of new topological concepts in earnest.
 
 \begin{dfn}{Dense}{Dense}
-Let $X$ be a topological space and let $S\subseteq X$.  Then, $S$ is \emph{dense}\index{Dense} in $X$ iff $\Cls (S)=X$.
+Let $X$ be a topological space and let $S\subseteq X$.  Then, $S$ is \term{dense}\index{Dense} in $X$ iff $\Cls (S)=X$.
 \begin{rmk}
 In other words, every element of $X$ is either an accumulation point of $S$ or an element of $S$ (or both).  Recall (the remark in \cref{dfn3.4.20}) our intuition for accumulation points are points which are ``infinitely close'' to the set.  Thus, intuitively, the statement ``$S$ is dense in $X$.'' can be understood as saying that every point of $X$ is ``infinitely close'' to $S$.
 \end{rmk}
@@ -702,7 +702,7 @@ This is of course just the defining property of quasicompactness, the only chang
 In particular, if $\collection{S}$ does not cover $X$, then $X$ is quasicompact.
 \end{rmk}
 \begin{rmk}
-The term \emph{subbase}\index{Subbase} is sometimes used for generating collections which cover the space.  In fact, people usually make the requirement that the generating collection cover the space, but there is no need.
+The term \term{subbase}\index{Subbase} is sometimes used for generating collections which cover the space.  In fact, people usually make the requirement that the generating collection cover the space, but there is no need.
 \end{rmk}
 \begin{proof}\footnote{Proof adapted from \cite[pg.~139]{Kelley}.}
 $(\Rightarrow )$ Of course, if $X$ is quasicompact, then \emph{every} open cover has a finite subcover, and so certainly open covers that come from $\collection{S}$ will have finite subcovers.
@@ -760,9 +760,9 @@ This section is a bit of an aside and can probably be skipped without too much t
 
 Filter bases are actually an alternative to nets.  In principle, one could do the entirety of topology never speaking of nets and instead using only filter bases.  This would be one motivation for introducing them (though we have decided to primarily stick to nets).
 \begin{dfn}{Filter base}{FilterBase}
-Let $\coord{X,\leq}$ be a partially-ordered set and let $F\subset X$ be nonempty and not containing a minimum.\footnote{As mentioned in the remark, the primary case of interest is when the partially-ordered set is the power set $2^X$ of some other set $X$, in which case the minimum is the $\emptyset$.  Thus, the condition of disallowing the minimum (if one exists) is put in place so as to disallow $\emptyset \in \filter{F}$.}  Then, $F$ is a \emph{filter base}\index{Filter base} of $X$ iff for $x_1,x_2\in F$, there is some $x_3\in F$ such that $x_3\leq x_1,x_2$.\footnote{This property is called being \emph{downward-directed}.}
+Let $\coord{X,\leq}$ be a partially-ordered set and let $F\subset X$ be nonempty and not containing a minimum.\footnote{As mentioned in the remark, the primary case of interest is when the partially-ordered set is the power set $2^X$ of some other set $X$, in which case the minimum is the $\emptyset$.  Thus, the condition of disallowing the minimum (if one exists) is put in place so as to disallow $\emptyset \in \filter{F}$.}  Then, $F$ is a \term{filter base}\index{Filter base} of $X$ iff for $x_1,x_2\in F$, there is some $x_3\in F$ such that $x_3\leq x_1,x_2$.\footnote{This property is called being \term{downward-directed}\index{Downward-directed}.}
 \begin{rmk}
-This is the definition of an abstract filter base in any partially-ordered set.  For us, we will essentially only be interested in filter bases of the partially-ordered set $\coord{2^X,\subseteq}$ for $X$ a topological space:  if $F$ is a filter base of $\coord{2^X,\subseteq}$, $X$ a topological space, then we shall say that $F$ is a \emph{filter base in $X$}.  (Note that the elements of a filter base do not have to be open sets.)
+This is the definition of an abstract filter base in any partially-ordered set.  For us, we will essentially only be interested in filter bases of the partially-ordered set $\coord{2^X,\subseteq}$ for $X$ a topological space:  if $F$ is a filter base of $\coord{2^X,\subseteq}$, $X$ a topological space, then we shall say that $F$ is a \term{filter base in $X$}.  (Note that the elements of a filter base do not have to be open sets.)
 \end{rmk}
 \begin{rmk}
 This condition is exactly analogous to the condition for directed sets $\Lambda$, that for $x_1,x_2\in \Lambda$, there is some $x_3\in \Lambda$ with $x_3\geq x_1,x_2$.  In fact, you might even say that the definition is what it is because \emph{a filter base ordered by reverse-inclusion is a directed set}.
@@ -777,7 +777,7 @@ Let $X$ be a topological space, let $\lambda \mapsto x_\lambda \in X$ be a net, 
 \begin{exr}[breakable=false]{}{}
 Show that $\filter{F}$ is a filter base.
 \end{exr}
-$\filter{F}_{\lambda \mapsto x_\lambda}$ is the \emph{derived filter}\index{Derived filter} of $\lambda \mapsto x_\lambda$.
+$\filter{F}_{\lambda \mapsto x_\lambda}$ is the \term{derived filter}\index{Derived filter} of $\lambda \mapsto x_\lambda$.
 \begin{rmk}
 Given a net, we just defined a canonically associated filter.  Of course, there will be many nets which give us this filter.  For example, I can change a single term of a net without affecting its derived filter.\footnote{In general at least.  In stupid cases, of course, e.g.~if the domain of the net is a single point, then this will change the derived filter.}
 \end{rmk}
@@ -791,7 +791,7 @@ I personally find nets much more intuitive than filter bases (probably because t
 
 At the bare minimum, in order for filter bases and nets to be effectively equivalent for the purposes of topology, we must at least (i)~define convergence of filter bases and (ii)~show that convergence of a net agrees with convergence of its derived filter.
 \begin{dfn}{Limit (of a filter base)}{}
-Let $X$ be a topological space, let $\filter{F}$ be a filter base in $X$, and let $x_\infty \in X$.  Then, $x_\infty$ is a \emph{limit}\index{Limit (of a filter)} of $\filter{F}$ iff for every open neighborhood $U$ of $x_\infty$ there is some $F\in \filter{F}$ such that $F\subseteq U$.  If a filter base has a limit, then we say that it \emph{converges}\index{Convergence (of a filter base)}.
+Let $X$ be a topological space, let $\filter{F}$ be a filter base in $X$, and let $x_\infty \in X$.  Then, $x_\infty$ is a \term{limit}\index{Limit (of a filter)} of $\filter{F}$ iff for every open neighborhood $U$ of $x_\infty$ there is some $F\in \filter{F}$ such that $F\subseteq U$.  If a filter base has a limit, then we say that it \term{converges}\index{Convergence (of a filter base)}.
 \end{dfn}
 \begin{prp}{}{prp4.3.6}
 Let $X$ be a topological space, let $\lambda \mapsto x_\lambda \in X$ be a net, and let $x_\infty \in X$.  Then, $\lambda \mapsto x_\lambda$ converges to $x_\infty$ iff $\filter{F}_{\lambda \mapsto x_\lambda}$ converges to $x_\infty$.
@@ -806,11 +806,11 @@ $(\Leftarrow )$ Suppose that $\filter{F}_{\lambda \mapsto x_\lambda}$ converges 
 
 Now we turn to filterings and subnets.  A filtering is to a filter base as a subnet is to a net.  Recall that one of our motivations for talking about filter bases at all was to argue that our definition of subnet was the `correct' one.  One nice thing about filter bases is that there is no confusion about what the definition of a filtering should be.\footnote{Though evidently there is some confusion as to what they should be called---see the remark in the definition below.}  We will then show that our definition of subnet coincides with the notion of a filtering.
 \begin{dfn}{Filtering}{Filtering}
-Let $\filter{F}$ be a filter base on $X$.  Then, a \emph{filtering}\index{Filtering} of $\filter{F}$ is a filter base $\filter{G}$ that has the property that, for every $F\in \filter{F}$, there is some $G\in \filter{G}$ such that $G\subseteq F$.
+Let $\filter{F}$ be a filter base on $X$.  Then, a \term{filtering}\index{Filtering} of $\filter{F}$ is a filter base $\filter{G}$ that has the property that, for every $F\in \filter{F}$, there is some $G\in \filter{G}$ such that $G\subseteq F$.
 \begin{rmk}
 Note that in some places\footnote{\emph{*cough*}---Wikipedia---\emph{*cough*}} this is called a \emph{refinement}.  This is poor terminology because it disagrees with the usual definition of refinements of covers---see \cref{dfnC.1}.  For comparison, we reproduce that definition here.
 \begin{textequation}
-$\filter{G}$ is a \emph{refinement} of $\filter{F}$ iff for every $G\in \filter{G}$ there is some $F\in \filter{F}$ such that $G\subseteq F$.
+$\filter{G}$ is a \term{refinement} of $\filter{F}$ iff for every $G\in \filter{G}$ there is some $F\in \filter{F}$ such that $G\subseteq F$.
 \end{textequation}
 \end{rmk}
 \end{dfn}
@@ -856,19 +856,19 @@ Let $X$ be a topological space.  Then,
 \item \label{enmKelleysFilterConvergenceAxioms.iix}Let $\filter{G}$ be a filtering of the filter base $\filter{F}$.  Then, if $\filter{F}$ converges to $x$, then $\filter{G}$ converges to $x$.
 \item \label{enmKelleysFilterConvergenceAxioms.ii}Let $\filter{F}$ be a filter.  Then, if every filtering $\filter{G}\supseteq \filter{F}$ has in turn a filtering $\filter{H}$ such that $\filter{H}$ converges to $x$, then $\filter{F}$ converges to $x$; and
 \item \label{enmKelleysFilterConvergenceAxioms.iii}for all directed sets $I$ and filters $\filter{F}^i$ converging to $x^i\in X$, for $i\in I$, if $\filter{F}_{i\mapsto x^i}$ converges to $x^\infty$, then
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \filter{F}_\infty & \coloneqq \left\{ U\subseteq X:\text{there exists }i_U\in I\text{ such that,}\right. \\
 & \qquad \left. \text{whenever }i\geq i_U\text{, }U\supseteq F^i\text{ for some }F^i\in \filter{F}^i.\right\}
 \end{split}
-\end{equation}
+\end{equation*}
 also converges to $x^\infty$.
 \end{enumerate}
 \begin{rmk}
 In other words, $\filter{F}_{\infty}$ consists of those sets that eventually contain some element of $\filter{F}^i$.
 \end{rmk}
 \begin{rmk}
-Note that these are completely analogous to Kelley's (Net) Convergence Axioms (\cref{KelleysConvergenceAxioms}), with one itsy-bitsy exception.  You'll recall that in the third axiom for nets, there is mention of \emph{strict} subnets.  I don't believe there is any concept for filterings that is analogous to cofinal subnets, and so there is no ``strict'' here.  That said, you'll notice I have written ``$\filter{G}\supseteq \filter{F}$''---this is not a big deal, but I write this instead of just ``$\filter{F}$ is a filtering of $\filter{G}$'' to make the axioms just a \emph{little} bit more parallel, even though the condition $\filter{G}\supseteq \filter{F}$ is \emph{not} the analogue of being strict.\footnote{Indeed, for derived filter bases, this is equivalent to being an (ordinary) subnet---see \cref{prp4.4.8}.}
+Note that these are completely analogous to Kelley's (Net) Convergence Axioms (\cref{KelleysConvergenceAxioms}), with one itsy-bitsy exception.  You'll recall that in the third axiom for nets, there is mention of \emph{cofinal} subnets.  I don't believe there is any concept for filterings that is analogous to cofinal subnets, and so there is no ``strict'' here.  That said, you'll notice I have written ``$\filter{G}\supseteq \filter{F}$''---this is not a big deal, but I write this instead of just ``$\filter{F}$ is a filtering of $\filter{G}$'' to make the axioms just a \emph{little} bit more parallel, even though the condition $\filter{G}\supseteq \filter{F}$ is \emph{not} the analogue of being strict.\footnote{Indeed, for derived filter bases, this is equivalent to being an (ordinary) subnet---see \cref{prp4.4.8}.}
 \end{rmk}
 \begin{rmk}
 Perhaps this could be made into an argument that somehow nets are more fundamental---to define a topology by convergence of filters, you have to make use of nets (in this case, $i\mapsto x^i$).\footnote{Or rather, I am not aware of a way to state the axioms without at least implicitly using nets.}
@@ -1018,9 +1018,9 @@ We wish to show that $\mrm{C}\left( \mrm{C}(S)\right) \subseteq \mrm{C}(S)$.  So
 We now show that $\mrm{C}(S\cup T)=\mrm{C}(S)\cup \mrm{C}(T)$.  We have that $S\subseteq \mrm{C}(S\cup T)$, and so $\mrm{C}(S)\subseteq \mrm{C}(S\cup T)$.  Similarly for $T$, and so we have $\mrm{C}(S)\cup \mrm{C}(T)\subseteq \mrm{C}(S\cup T)$.
 
 We now show that $\mrm{C}(S\cup T)\subseteq \mrm{C}(S)\cup \mrm{C}(T)$.  So, let $x_\infty \in \mrm{C}(S\cup T)$, so that there is a net $\Lambda \ni \lambda \mapsto x_\lambda \in S\cup T$ such that $(\lambda \mapsto x_\lambda )\to x_\infty$.  Define
-\begin{equation}
+\begin{equation*}
 \Lambda _S\coloneqq \left\{ \lambda \in \Lambda :x_\lambda \in S\right\} \text{ and }\Lambda _T\coloneqq \left\{ \lambda \in \Lambda :x_\lambda \in T\right\} .
-\end{equation}
+\end{equation*}
 As $\Lambda =\Lambda _S\cup \Lambda _T$, either $\Lambda _S$ or $\Lambda _T$ is cofinal in $\Lambda$.  Without loss of generality, suppose that $\Lambda _S$ is cofinal in $\Lambda$, so that $\restr{x}{\Lambda _S}$ is a cofinal subnet of $\lambda \mapsto x_\lambda$.  By hypothesis, this in turn must have a subnet $\mu \mapsto x_{\lambda _\mu}$, $\lambda _\mu \in \Lambda _S$, such that $(\mu \mapsto x_{\lambda _\mu})\to x_\infty$.  Thus, $x_\infty \in \mrm{C}(S)$, and so $\mrm{C}(S\cup T)\subseteq \mrm{C}(S)\cup \mrm{C}(T)$.
 
 It follows by \namerefpcref{KuratowskisClosureTheorem} that there is a unique topology on $X$ such that $\Cls (S)=\mrm{C}(S)$.
@@ -1058,9 +1058,9 @@ Now, suppose that every cofinal subnet $\mu \mapsto x_{\lambda _{\mu}}$ of $\lam
 \end{equation}
 
 Let $U\subseteq X$ eventually contain $\mu \mapsto x_{\lambda _{\mu}}$.  Then, there is some $\mu _U\in M$ such that, whenever $\mu \geq \mu _U$, it follows that $x_{\lambda _{\mu}}\in U$.  For $U\subseteq X$ that eventually contains $\mu \mapsto x_{\lambda _{\mu}}$ and $\lambda \in \Lambda$, let $\mu _{U,\lambda}\in M$ be at least as large as $\mu _U$ and $\mu _{\lambda}$.  In particular, $x_{\lambda _{\mu _{U,\lambda}}}\in \left\{ x_{\lambda '}:\lambda '\geq \lambda \right\}$, and so without loss of generality, assume that $\lambda _{\mu _{U,\lambda}}\geq \lambda$.  It follows that
-\begin{equation}
+\begin{equation*}
 \left\{ \lambda _{\mu _{U,\lambda}}:U\subseteq X\text{ eventually contains }\mu \mapsto x_{\lambda _{\mu}},\ \lambda \in \Lambda \right\}
-\end{equation}
+\end{equation*}
 is cofinal in $\Lambda$, and hence defines a corresponding cofinal subnet.  By hypothesis, this has in turn a subnet $N\ni \nu \mapsto x_{\lambda _{\mu _{U_{\nu},\lambda _{\nu}}}}$ such that $(\nu \mapsto x_{\lambda _{\mu _{U_{\nu},\lambda _{\nu}}}})\to x_{\infty}$.
 
 Now, for $\mu '\in M$ and $\nu '\in N$, let $\mu _{\mu ',\nu '}\in M$ be at least as large as both $\mu '$ and $\mu _{U_{\nu},\lambda _{\nu}}$.  It follows that
@@ -1174,11 +1174,11 @@ $(\cref{prp3.4.17.ii}\Rightarrow \cref{prp3.4.17.i})$ Suppose that (a) if $\filt
 \end{proof}
 \end{prp}
 
-\subsection{Definition by specification of continuous functions}
+\subsection[Definition by specification of cont.~functions]{Definition by specification of continuous functions}
 
 The following two results define a topology on a set by simply `declaring' that a collection of functions be continuous.  This is similar in nature to how we defined a topology with a generating collection (\cref{GeneratingCollection})---in that case, we started with a collection of subsets, and simply `declared' them to be open---here, we start with a collection of \emph{functions}, and simply `declare' them to be continuous.
 \begin{prp}{Initial topology}{InitialTopology}
-Let $X$ be a set, let $\collection{Y}$ be an indexed collection of topological spaces, and for each $Y\in \collection{Y}$ let $f_Y:X\rightarrow Y$ be a function.  Then, there exists a unique topology  $\topology{U}$ on $X$, the \emph{initial topology}\index{Initial topology} with respect to $\{ f_Y:Y\in \collection{Y}\}$, such that
+Let $X$ be a set, let $\collection{Y}$ be an indexed collection of topological spaces, and for each $Y\in \collection{Y}$ let $f_Y:X\rightarrow Y$ be a function.  Then, there exists a unique topology  $\topology{U}$ on $X$, the \term{initial topology}\index{Initial topology} with respect to $\{ f_Y:Y\in \collection{Y}\}$, such that
 \begin{enumerate}
 \item $f_Y:X\rightarrow Y$ is continuous with respect to $\topology{U}$ for all $Y\in \collection{Y}$; and
 \item if $\topology{U}'$ is another topology for which each $f_Y:X\rightarrow Y$ is continuous, then $\topology{U}\subseteq \topology{U}'$.
@@ -1262,7 +1262,7 @@ Extend $x\colon \Lambda \rightarrow X$ to a function on $\Lambda _{\infty}$ be d
 
 There is a `dual' version of the initial topology, in which the functions map \emph{into} the set on which we would like to define a topology.
 \begin{prp}{Final topology}{FinalTopology}
-Let $X$ be a set, let $\collection{Y}$ be an indexed collection of topological spaces, and for each $Y\in \collection{Y}$ let $f_Y:Y\rightarrow X$ be a function.  Then, there exists a unique topology $\topology{U}$ on $X$, the \emph{final topology}\index{Final topology} with respect to $\{ f_Y:Y\in \collection{Y}\}$, such that
+Let $X$ be a set, let $\collection{Y}$ be an indexed collection of topological spaces, and for each $Y\in \collection{Y}$ let $f_Y:Y\rightarrow X$ be a function.  Then, there exists a unique topology $\topology{U}$ on $X$, the \term{final topology}\index{Final topology} with respect to $\{ f_Y:Y\in \collection{Y}\}$, such that
 \begin{enumerate}
 \item $f_Y:Y\rightarrow X$ is continuous with respect to $\topology{U}$ for all $Y\in \collection{Y}$; and
 \item if $\topology{U}'$ is another topology for which each $f_Y$ is continuous, then $\topology{U}\supseteq \topology{U}'$.
@@ -1327,15 +1327,15 @@ We now quickly recap all the ways in which we know how to specify a topology on 
 \item We can declare that functions into the space are continuous (the final topology---see \cref{FinalTopology}.
 \end{enumerate}
 
-\section{The subspace, quotient, product, and disjoint-union topologies}
+\section{New topologies from old}
 
-The purpose of this section is to present several ways of constructing new topologies spaces from old.  In brief, the subspace topology will be the topology we put on subsets of topological spaces, the quotient topology will be the topology we put on quotients of topological spaces\footnote{Quotients in the sense of \cref{dfnA.1.42}.}, the product topology is the topology we put on cartesian-products, the disjoint-union topology (surprise, surprise) is the topology we put on disjoint-unions of topological spaces.  They key to defining all of these topologies are the initial (for the subspace and product topologies) and final topologies (for the quotient and disjoint-union topologies) (\cref{InitialTopology,FinalTopology}).
+The purpose of this section is to present several ways of constructing new topologies spaces from old.  In brief, the subspace topology will be the topology we put on subsets of topological spaces, the quotient topology will be the topology we put on quotients of topological spaces\footnote{Quotients in the sense of \cref{dfnA.1.42}.}, the product topology is the topology we put on Cartesian-products, the disjoint-union topology (surprise, surprise) is the topology we put on disjoint-unions of topological spaces.  They key to defining all of these topologies are the initial (for the subspace and product topologies) and final topologies (for the quotient and disjoint-union topologies) (\cref{InitialTopology,FinalTopology}).
 
 \subsection{The subspace topology}
 
 All \emph{subsets} of topological spaces have a canonically associated topology, called the \emph{subspace topology}.  Note that this is not completely immediate---for example, it is not the case that every subset of a ring is a ring.  There is definitely something to define and something to check (that the subspace topology is in fact a topology).
 \begin{prp}{Subspace topology}{SubspaceTopology}
-Let $X$ be a topological space and let $S\subseteq X$.  Then, there exists a unique topology $\topology{U}$ on $S$, the \emph{subspace topology}\index{Subspace topology}, that has the property that a function into $S$ is continuous iff it is continuous regarded as a function into $X$.  Furthermore, the subspace topology is the initial topology with respect to the inclusion $\iota :S\hookrightarrow X$.  In particular,
+Let $X$ be a topological space and let $S\subseteq X$.  Then, there exists a unique topology $\topology{U}$ on $S$, the \term{subspace topology}\index{Subspace topology}, that has the property that a function into $S$ is continuous iff it is continuous regarded as a function into $X$.  Furthermore, the subspace topology is the initial topology with respect to the inclusion $\iota :S\hookrightarrow X$.  In particular,
 \begin{equation}
 \topology{U}=\{ U\cap S:U\subseteq X\text{ is open.}\} .
 \end{equation}
@@ -1384,7 +1384,7 @@ that is, $\{ U_1,\ldots ,U_m\}$ is an open subcover of $\cover{U}$.
 
 Whenever we have a surjective function from a topological space $X$ onto a set $Y$, we can use this function and the topology on $X$ to place a topology on $Y$.  Recall (\cref{exrA.1.81}) that every surjective function can be viewed as a quotient function---this of course is the etymology of the term ``quotient topology''.
 \begin{prp}{}{QuotientTopology}
-Let $X$ be a topological space, let $Y$ be a set, and let $\q :X\rightarrow Y$ be surjective.  Then, there exists a unique topology $\topology{U}$ on $Y$, the \emph{quotient topology}\index{Quotient topology}, that has the property that a function on $Y$ is continuous iff its composition with $\q$ is continuous.  Furthermore, the quotient topology is the final topology with respect to $\q :X\rightarrow Y$.  In particular,
+Let $X$ be a topological space, let $Y$ be a set, and let $\q :X\rightarrow Y$ be surjective.  Then, there exists a unique topology $\topology{U}$ on $Y$, the \term{quotient topology}\index{Quotient topology}, that has the property that a function on $Y$ is continuous iff its composition with $\q$ is continuous.  Furthermore, the quotient topology is the final topology with respect to $\q :X\rightarrow Y$.  In particular,
 \begin{equation}
 \topology{U}=\{ U\subseteq Y:\q ^{-1}(U)\text{ is open.}\} .
 \end{equation}
@@ -1401,10 +1401,10 @@ All of this follows from the definition of the final topology and its characteri
 
 \subsection{The product topology}
 
-The product topology is the canonical topology we put on a cartesian-product of topological spaces $X\times Y$.  While we do technically use this in places, we use it in ways where we could have gotten-away with not speaking of the product topology per se (for example, the product topology on $\R \times \R$ is the same as the topology defined by $\varepsilon$-balls).  One significant reason we go to the trouble of talking about the product topology explicitly is for the proof of producing a \emph{counter-example} to the statement
-\begin{displayquote}
-A space is quasicompact iff every net has a convergent \emph{strict} subnet.\footnote{In case you're skimming and didn't read the context, this statement is \emph{false}.}
-\end{displayquote}
+The product topology is the canonical topology we put on a Cartesian-product of topological spaces $X\times Y$.  While we do technically use this in places, we use it in ways where we could have gotten-away with not speaking of the product topology per se (for example, the product topology on $\R \times \R$ is the same as the topology defined by $\varepsilon$-balls).  One significant reason we go to the trouble of talking about the product topology explicitly is for the proof of producing a \emph{counter-example} to the statement
+\begin{important}
+A space is quasicompact iff every net has a convergent \emph{cofinal} subnet.\footnote{In case you're skimming and didn't read the context, this statement is \emph{false}.}
+\end{important}
 We mentioned when we defined subnets (\cref{Subnet}) that the notion of a cofinal subnet was the more obvious ``naive'' notion (that is, you just take terms from the original net, subject to the only condition that your indices get arbitrarily large), but that this ``naive'' notion was insufficient because it didn't allow us to prove certain theorems.  They key result, that spaces are quasicompact iff every net has a convergent subnet (\cref{prp4.2.31}), was precisely the example of a theorem I had in mind.
 
 In brief, the counter-example will be
@@ -1415,7 +1415,7 @@ that is, an uncountable product (precisely, a product over the power set of $\N$
 
 So before we do anything else then, we must first define the product topology.
 \begin{prp}{Product topology}{ProductTopology}
-Let $\collection{X}$ be an indexed collection of topological spaces.  Then, there exists a unique topology, the \emph{product topology}\index{Product topology}, on $\prod _{X\in \collection{X}}X$, that has the property that a function into $\prod _{X\in \collection{X}}X$ is continuous iff each component of the function is continuous.  Furthermore, the product topology is the initial topology with respect to $\{ \pi _X:X\in \collection{X}\}$.\footnote{Recall (\cref{CartesianProductCollection}) that $\pi _X:\prod _{X\in \collection{X}}X\rightarrow X$ is just the projection.}  In particular, if $\collection{S}_X$ is a generating collection for the topology on $X\in \collection{X}$, then the collection
+Let $\collection{X}$ be an indexed collection of topological spaces.  Then, there exists a unique topology, the \term{product topology}\index{Product topology}, on $\prod _{X\in \collection{X}}X$, that has the property that a function into $\prod _{X\in \collection{X}}X$ is continuous iff each component of the function is continuous.  Furthermore, the product topology is the initial topology with respect to $\{ \pi _X:X\in \collection{X}\}$.\footnote{Recall (\cref{CartesianProductCollection}) that $\pi _X:\prod _{X\in \collection{X}}X\rightarrow X$ is just the projection.}  In particular, if $\collection{S}_X$ is a generating collection for the topology on $X\in \collection{X}$, then the collection
 \begin{equation}\label{4.5.4x}
 \{ \pi _X^{-1}(U):U\in \collection{S}_X\}
 \end{equation}
@@ -1435,7 +1435,7 @@ that is, a countably-infinite product of $\R$, the set
 \begin{equation}
 (0,1)\times (0,1)\times (0,1)\times \cdots 
 \end{equation}
-is \emph{not} even open in the product topology on $\prod _{\N}\R$ (much less an element of any base).  The topology in which all sets of the form $U_0\times U_1\times U_2\times \cdots$ with each $U_k$ open (and not necessarily equal to all of $\R$)\footnote{This is called the \emph{box topology}\index{Box topology}).} might be your more naive guess, but it is `wrong' in the sense that, if we allow things like this, then we lose the property that the continuity of a function is determined by the continuity of the components of the function---see \cref{exm4.5.20} below.
+is \emph{not} even open in the product topology on $\prod _{\N}\R$ (much less an element of any base).  The topology in which all sets of the form $U_0\times U_1\times U_2\times \cdots$ with each $U_k$ open (and not necessarily equal to all of $\R$)\footnote{This is called the \term{box topology}\index{Box topology}).} might be your more naive guess, but it is `wrong' in the sense that, if we allow things like this, then we lose the property that the continuity of a function is determined by the continuity of the components of the function---see \cref{exm4.5.20} below.
 \end{rmk}
 \begin{rmk}
 Unless otherwise stated, products of topological spaces are always equipped with the product topology.
@@ -1476,7 +1476,7 @@ Let $\collection{X}$ be an indexed collection of topological spaces, and for eac
 \begin{exr}{Projections are open}{ProjectionsAreOpen}
 Let $\collection{X}$ be an indexed collection of topological spaces, let $X\in \collection{X}$, and let $U\subseteq \prod _{X\in \collection{X}}X$ be open.  Show that $\pi _X(U)\subseteq X$ is open.
 \begin{rmk}
-Functions that have the property that the image of open sets are open are \emph{open functions}\index{Open function}.
+Functions that have the property that the image of open sets are open are \term{open functions}\index{Open function}.
 \end{rmk}
 \end{exr}
 
@@ -1495,7 +1495,7 @@ If a finite subset of $\cover {U}_X$ covered $X$, then its preimage would cover 
 \end{thm}
 
 And finally we are able to present our counter-example.
-\begin{exm}{A quasicompact space with a net that has no convergent \emph{strict} subnet}{Wofsey}\footnote{This example was shown to me by Eric Wofsey on \href{http://mathoverflow.net/questions/210947/a-quasicompact-space-with-a-net-that-contains-no-convergent-strict-subnet}{mathoverflow.net}.}
+\begin{exm}{A quasicompact space with a net that has no convergent \emph{cofinal} subnet}{Wofsey}\footnote{This example was shown to me by Eric Wofsey on \href{http://mathoverflow.net/questions/210947/a-quasicompact-space-with-a-net-that-contains-no-convergent-strict-subnet}{mathoverflow.net}.}
 Define
 \begin{equation}
 X\coloneqq \prod _{S\subseteq \N}\{ 0,1\} =\{ 0,1\} ^{2^{\N}}
@@ -1506,7 +1506,7 @@ x_m(S)\coloneqq \begin{cases}1 & \text{if }m\in S \\ 0 & \text{if }m\notin S,\en
 \end{equation}
 where $S\subseteq \N$.  ($x_m$ is a function from $2^{\N}$ into $\{ 0,1\}$, and so $x_m(S)$ is the value of this function at the element $S\in 2^{\N}$.)
 
-We now show that this sequence has no convergent cofinal subnet (necessarily also a sequence).  We proceed by contradiction:  suppose that there were a cofinal subset $\Lambda '\subseteq \N$, $\Lambda '=\{ m_0,m_1,m_2,\ldots \}$ (with $m_n\leq m_{n+1}$), such that $n\mapsto x_{m_n}$ converges.  Then, by \cref{crl4.5.15} (nets in products converge iff each component does), for each $S\subseteq \N$, the sequence $n\mapsto x_{m_n}(S)\in \{ 0,1\}$ would have to converge.  Thus, for each $S\subseteq \N$, the sequence $n\mapsto x_{m_n}(S)$ would have to be either eventually $0$ or eventually $1$.  In other words, either (i)~for all but finitely many $m_n\in \Lambda '$, $m_n\notin S$;  or (ii)~for all but finitely many $m_n\in \Lambda '$, $m_n\in S$.  In other words, for all $S\subseteq \N$, either (i)~there is a cofinite\footnote{Just as cocountable means that the complement is countable, \emph{cofinite}\index{Cofinite} means that the complement is finite.} subset of $\Lambda '$ that is contained in $S^{\comp}$ or (ii)~there is a cofinite subset of $\Lambda '$ that is contained in $S$.\footnote{Cofinite in $\Lambda '$, that is.}
+We now show that this sequence has no convergent cofinal subnet (necessarily also a sequence).  We proceed by contradiction:  suppose that there were a cofinal subset $\Lambda '\subseteq \N$, $\Lambda '=\{ m_0,m_1,m_2,\ldots \}$ (with $m_n\leq m_{n+1}$), such that $n\mapsto x_{m_n}$ converges.  Then, by \cref{crl4.5.15} (nets in products converge iff each component does), for each $S\subseteq \N$, the sequence $n\mapsto x_{m_n}(S)\in \{ 0,1\}$ would have to converge.  Thus, for each $S\subseteq \N$, the sequence $n\mapsto x_{m_n}(S)$ would have to be either eventually $0$ or eventually $1$.  In other words, either (i)~for all but finitely many $m_n\in \Lambda '$, $m_n\notin S$;  or (ii)~for all but finitely many $m_n\in \Lambda '$, $m_n\in S$.  In other words, for all $S\subseteq \N$, either (i)~there is a cofinite\footnote{Just as cocountable means that the complement is countable, \term{cofinite}\index{Cofinite} means that the complement is finite.} subset of $\Lambda '$ that is contained in $S^{\comp}$ or (ii)~there is a cofinite subset of $\Lambda '$ that is contained in $S$.\footnote{Cofinite in $\Lambda '$, that is.}
 
 So, take $S\coloneqq \{ m_0,m_2,m_4,\ldots \} \subset \Lambda '$.  Then, there is some cofinite subset $\Lambda ''\subseteq \Lambda '$ such that either $\Lambda ''\subseteq S$ or $\Lambda ''\subseteq S^{\comp}$.  In the former case, we have that
 \begin{equation}
@@ -1523,7 +1523,7 @@ a contradiction.  As both possibilities resulted in a contradiction, this itself
 
 Our inclusion of the disjoint-union topology is mostly because of its obvious duality to the product topology---it feels incomplete not to include it.  On the other hand, while in principle, being completely dual to the product topology, it should be no more or less difficult work with, in practice it seems that it is \emph{much} easier to get a handle on, and so probably doesn't deserve as in-depth a treatment.
 \begin{prp}{Disjoint-union topology}{DisjointUnionTopology}
-Let $\collection{X}$ be an indexed collection of topological spaces.  Then, there exists a unique topology, the \emph{disjoint-union topology}\index{disjoint-union topology}, on $\coprod _{X\in \collection{X}}X$, that has the property that a function defined on $\coprod _{X\in \collection{X}}X$ is continuous iff its restriction to each component is continuous.  Furthermore, the disjoint-union topology is the final topology with respect to $\{ \iota _X:X\in \collection{X}\}$.\footnote{Recall (\cref{DisjointUnionCollection}) that $\iota _X:X\rightarrow \coprod _{X\in \collection{X}}X$ is just the inclusion.}  In particular, a set $U\subseteq \coprod _{X\in \collection{X}}X$ is open iff $U\cap \iota _X(X)$ is open for all $X\in \collection{X}$.
+Let $\collection{X}$ be an indexed collection of topological spaces.  Then, there exists a unique topology, the \term{disjoint-union topology}\index{disjoint-union topology}, on $\coprod _{X\in \collection{X}}X$, that has the property that a function defined on $\coprod _{X\in \collection{X}}X$ is continuous iff its restriction to each component is continuous.  Furthermore, the disjoint-union topology is the final topology with respect to $\{ \iota _X:X\in \collection{X}\}$.\footnote{Recall (\cref{DisjointUnionCollection}) that $\iota _X:X\rightarrow \coprod _{X\in \collection{X}}X$ is just the inclusion.}  In particular, a set $U\subseteq \coprod _{X\in \collection{X}}X$ is open iff $U\cap \iota _X(X)$ is open for all $X\in \collection{X}$.
 \begin{rmk}
 Unless otherwise stated, disjoint-unions of topological spaces are always equipped with the disjoint-union topology.
 \end{rmk}
@@ -1545,7 +1545,7 @@ In this subsection, we will define various levels of ``separation'' of \emph{sub
 
 Throughout this subsection, let $S_1,S_2\subseteq X$ be \emph{disjoint} subsets of a topological space $X$.  In the various definitions will follow, we will say things like ``$S_1$ and $S_2$ are XYZ.''.  If $S_1=\{ x_1\}$ and $S_2=\{ x_2\}$ are singletons, then instead we will say that ``$x_1$ and $x_2$ are XYZ.''.  In fact, this\footnote{That is, the case when the sets are singletons.} is probably the case of most interest (though certainly not the only case).
 \begin{dfn}{Topologically-distinguishable\hfill}{TopologicallyDistinguishable}
-$S_1$ and $S_2$ are \emph{topologically-distinguishable}\index{Topologically-distinguishable} iff there is a neighborhood of $S_1$ not intersecting $S_2$ \emph{or} there is a neighborhood of $S_2$ not intersecting $S_1$.
+$S_1$ and $S_2$ are \term{topologically-distinguishable}\index{Topologically-distinguishable} iff there is a neighborhood of $S_1$ not intersecting $S_2$ \emph{or} there is a neighborhood of $S_2$ not intersecting $S_1$.
 \begin{wrn}
 Warning:  The term ``distinguishable'' comes from the fact that, in the case $S_1=\{ x_1\}$ and $S_2=\{ x_2\}$, then $x_1$ and $x_2$ being topologically-indistinguishable (i.e.~not topologically-distinguishable) means that $x_1$ and $x_2$ are contained in precisely the same open sets.  Thus, in this sense, the topology cannot tell the difference between $x_1$ and $x_2$, they are ``indistinguishable''.  However, if $S_1$ and $S_2$ are not singletons, then this need not be true, that is, the open sets containing $S_1$ and $S_2$ need not coincide---see \cref{exm3.6.4}.
 \end{wrn}
@@ -1568,7 +1568,7 @@ Define $X\coloneqq \{ x_1,x_2,x_3\}$ and
 Define $S_1\coloneqq \{ x_1\}$ and $S_2\coloneqq \{ x_2,x_3\}$.  Then, every neighborhood of $S_1$ (there are only two, $\{ x_1,x_2\}$ and $X$) intersects $S_2$.  Similarly, every neighborhood of $S_2$ (there is only one, $X$) intersects $S_1$.  Thus, $S_1$ and $S_2$ are topologically-indistinguishable.  On the other hand, $\{ x_1,x_2\}$ is an open set which contains $S_1$ but not $S_2$.
 \end{exm}
 \begin{dfn}{Separated}{Separated}
-$S_1$ and $S_2$ are \emph{separated}\index{Separated} iff there is a neighborhood $U_1$ of $S_1$ not intersecting $S_2$ \emph{and} a neighborhood $U_2$ of $S_2$ not intersecting $S_1$.
+$S_1$ and $S_2$ are \term{separated}\index{Separated} iff there is a neighborhood $U_1$ of $S_1$ not intersecting $S_2$ \emph{and} a neighborhood $U_2$ of $S_2$ not intersecting $S_1$.
 \begin{rmk}
 The difference between this and topological-distinguishability is that this has to happen to \emph{both} $S_1$ and $S_2$, whereas, in the case of topological-distinguishability, we only require that at least one of them has an open neighborhood that does not intersect the other.
 \end{rmk}
@@ -1580,11 +1580,11 @@ Define $X\coloneqq \{ x_1,x_2\}$ and
 \end{equation}
 Then, $x_1$ and $x_2$ are topologically-distinguishable as $\{ x_1\}$ is an open neighborhood of $x_1$ that does not contain $x_2$.  On the other hand, every neighborhood of $x_2$ contains $x_1$.
 \begin{rmk}
-This is the \emph{Sierpinski Space}\index{Sierpinski Space}.
+This is the \term{Sierpinski Space}\index{Sierpinski Space}.
 \end{rmk}
 \end{exm}
 \begin{dfn}{Separated by neighborhoods}{SeparatedByNeighborhoods}\index{Separated by neighborhoods}
-$S_1$ and $S_2$ are \emph{separated by neighborhoods}\index{Separated by neighborhoods} iff there is a neighborhood $U_1$ of $S_1$ and a neighborhood $U_2$ of $S_2$ with $U_1$ and $U_2$ disjoint.
+$S_1$ and $S_2$ are \term{separated by neighborhoods}\index{Separated by neighborhoods} iff there is a neighborhood $U_1$ of $S_1$ and a neighborhood $U_2$ of $S_2$ with $U_1$ and $U_2$ disjoint.
 \begin{rmk}
 Equivalently, we may replace $U_1$ and $U_2$ with open neighborhoods.
 \end{rmk}
@@ -1600,7 +1600,7 @@ Define $X\coloneqq \{ x_1,x_2,x_3\}$ and
 Then, $\{ x_1,x_3\}$ is an open neighborhood of $x_1$ which does not contain $x_2$ and $\{ x_2,x_3\}$ is an open neighborhood of $x_2$ which does not contain $x_1$.  On the other hand, every open neighborhood of $x_1$ intersects every open neighborhood of $x_2$ at $x_3$.
 \end{exm}
 \begin{dfn}{Separated by closed neighborhoods}{SeparatedByClosedNeighborhoods}
-$S_1$ and $S_2$ are \emph{separated by closed neighborhoods}\index{Separated by closed neighborhoods} iff there is a closed neighborhood $C_1$ of $S_1$ and a closed neighborhood $C_2$ of $S_2$ with $C_1$ and $C_2$ disjoint.
+$S_1$ and $S_2$ are \term{separated by closed neighborhoods}\index{Separated by closed neighborhoods} iff there is a closed neighborhood $C_1$ of $S_1$ and a closed neighborhood $C_2$ of $S_2$ with $C_1$ and $C_2$ disjoint.
 \begin{rmk}
 This is the same as being separated by neighborhoods, except that we further require that the neighborhoods are closed.\footnote{Recall that neighborhoods do not have to be open---see \cref{Neighborhood}.}
 \end{rmk}
@@ -1624,7 +1624,7 @@ $(\Leftarrow )$ Suppose that $S_1$ and $S_2$ are separated by open neighborhoods
 \end{proof}
 \end{prp}
 \begin{dfn}{Completely-separated}{CompletelySeparated}
-$S_1$ and $S_2$ are \emph{complete\-ly-separated}\index{Completely-separated} or \emph{separated by (continuous) functions}\index{Separated by continuous functions} iff there is a continuous function $f\colon X\rightarrow [0,1]$ such that $\restr{f}{S_1}=0$ and $\restr{f}{S_2}=1$.
+$S_1$ and $S_2$ are \term{complete\-ly-separated}\index{Completely-separated} or \term{separated by (continuous) functions}\index{Separated by continuous functions} iff there is a continuous function $f\colon X\rightarrow [0,1]$ such that $\restr{f}{S_1}=0$ and $\restr{f}{S_2}=1$.
 \begin{rmk}
 Why does being completely-separated imply being separated by closed neighborhoods?\footnote{All the other implications are true too (i.e.~separated implies topologically-distinguishable, separated by neighborhoods implies separated, etc.), this is just the first one that is not completely obvious, which is why it is the only one we have asked about.}
 \end{rmk}
@@ -1648,13 +1648,13 @@ and
 X\coloneqq S\cup T\cup \{ \coord{0,0})\} \cup \{ \coord{1,0})\}.
 \end{equation}
 We define a topology on $X$ by defining a neighborhood base at each point (see \cref{prp4.1.8}).  For $\coord{x,y}\in X$, there are four cases:  (i)~$\coord{x,y}=\coord{0,0}$, (ii)~$\coord{x,y}=\coord{1,0}$, (iii)~$\coord{x,y}\in T$, and (iv)~$\coord{x,y}\in S$.  We define
-{\small
+{\scriptsize
 \begin{equation}
 \topology{B}_{\coord{x,y}}\coloneqq \begin{cases}\left\{ U\subseteq S:U\text{ is open in }S\text{.}\footnote{Open in the usual topology (the subspace topology inherited from $(0,1)\times (0,1)$).}\right\} & \text{if }\coord{x,y}\in S \\ \left\{ U_{\coord{x,y}}^m:m\in \Z ^+\right\} & \text{if }\coord{x,y}\in T \\ & \enspace \text{or }x=\coord{0,0};\coord{1,0},\end{cases}
 \end{equation}
 }
 where
-{\small
+{\scriptsize
 \begin{equation}\label{4.5.20}
 \begin{split}
 U_{\coord{0,0}}^m & \coloneqq \{ \coord{0,0}\} \cup \left\{ \coord{x,y}\in (0,\tfrac{1}{4})\times (0,\tfrac{1}{m}):x,y\in \Q \right\} \\
@@ -1670,11 +1670,11 @@ The closures of $\{ \coord{0,0}\} \cup (0,\frac{1}{4})\times (0,\frac{1}{n})$ an
 
 On the other hand, $\coord{0,0}$ and $\coord{1,0}$ cannot be separated by a function.  To see this, suppose that $f\colon X\rightarrow \R$ were a continuous function such that $f(\coord{0,0})=0$ and $f(\coord{1,0})=1$.  Then, $f^{-1}([0,\frac{1}{4}))$ would be an open neighborhood of $\coord{0,0}$, and so must contain $U_{\coord{0,0}}^m$ for some $m\in \Z ^+$.  Similarly, $f^{-1}((\frac{3}{4},1])$ must contain $U_{\coord{1,0}}^n$ for some $n\in \Z ^+$.  Let $r\in \Q$ be such that $r\sqrt{2}<\min \{ \frac{1}{m},\frac{1}{n}\}$.  Obviously, $f(\coord{\frac{1}{2},r\sqrt{2}})$ cannot be in both $[0,\frac{1}{4})$ and $(\frac{3}{4},1]$ as these sets are disjoint, so without loss of generality assume that it is not contained in $[0,\frac{1}{4})$, so let $U \subseteq [0,1]$ be an open neighborhood of $f(\coord{\frac{1}{2},r\sqrt{2}})$ with $\Cls (U)$ disjoint from $\Cls \left( [0,\frac{1}{4})\right) $, so that the preimages of $\Cls (U)$ and $\Cls \left( [0,\frac{1}{4})\right)$ are disjoint closed neighborhoods of $\coord{\frac{1}{2},r\sqrt{2}}$ and $\coord{0,0}$ respectively.  On the other hand, a closed neighborhood of $\coord{\frac{1}{2},r\sqrt{2}}$ must contain $U_{\coord{\frac{1}{2},r\sqrt{2}}}^o$ for $o\in \Z ^+$ with $r\sqrt{2}-\frac{1}{o}>0$ (and $r\sqrt{2}+\frac{1}{o}<1$).  As $r<\frac{1}{\sqrt{2}m}<\frac{1}{m}$, we have that $\frac{1}{o}<\frac{\sqrt{2}}{m}$, and hence $r\sqrt{2}-\frac{1}{o}<\frac{1}{m}-\frac{1}{o}<\frac{1}{m}$, and so there is some rational $q\in \Q$ with $r\sqrt{2}-\frac{1}{o}<q<\frac{1}{m}$.  But then, $\Cls \left( U_{\coord{0,0}}^m\right)$ and $\Cls \left( U_{\coord{\frac{1}{2},r\sqrt{2}}}^o\right)$ must intersect at $\coord{\frac{1}{4},q}$,  a contradiction of disjointedness.
 \begin{rmk}
-This is the \emph{Arens Square}\index{Arens Square}.
+This is the \term{Arens Square}\index{Arens Square}.
 \end{rmk}
 \end{exm}
 \begin{dfn}{Perfectly-separated}{}
-$S_1$ and $S_2$ are \emph{perfectly-separated}\index{Perfectly-separated} or \emph{precisely-separated}\index{Precisely-separated} iff there is a continuous function $f\colon X\rightarrow [0,1]$ such that $S_1=f^{-1}(0)$ and $S_2=f^{-1}(1)$.
+$S_1$ and $S_2$ are \term{perfectly-separated}\index{Perfectly-separated} or \term{precisely-separated}\index{Precisely-separated} iff there is a continuous function $f\colon X\rightarrow [0,1]$ such that $S_1=f^{-1}(0)$ and $S_2=f^{-1}(1)$.
 \begin{rmk}
 Being completely-separated means that $f$ is $0$ on $S_1$ and $1$ on $S_2$.  Being perfectly-separated means that, furthermore, $f$ is $0$ \emph{nowhere else} except on $S_1$ and $f$ is $1$ \emph{nowhere else} except on $S_2$.
 \end{rmk}
@@ -1696,7 +1696,10 @@ We first check that $f$ is continuous.  Let $C\subseteq [0,1]$ be closed.  If $C
 
 Now we show that $0,1\in X$ are not \emph{perfectly}-separated.  Suppose that there exists a continuous function $f\colon X\rightarrow [0,1]$ such that $\{ 0\} =f^{-1}(0)$ and $\{ 1\} =f^{-1}(1)$.  Then,
 \begin{equation}\label{4.5.23}
-\{ 0\} =f^{-1}(0)=f^{-1}\left( \bigcap _{m\in \Z ^+}[0,\tfrac{1}{m})\right) =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.ii}}\bigcap _{m\in \Z ^+}f^{-1}\left( [0,\tfrac{1}{m})\right) .
+\begin{split}
+\{ 0\} & =f^{-1}(0)=f^{-1}\bigg( \bigcap _{m\in \Z ^+}[0,\tfrac{1}{m})\bigg) \\
+& =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.ii}}\bigcap _{m\in \Z ^+}f^{-1}\bigg( [0,\tfrac{1}{m})\bigg) .
+\end{split}
 \end{equation}
 That is, $\{ 0\}$ is a $G_\delta$ set.\footnote{Recall that this is just a fancy-shmancy term for a set which is a countable intersection of open sets---see \cref{GDeltaFSigma}.}  However, by definition, a set is open iff it does not contain $0\in X$ or its complement is finite.  Of course, all the sets appearing in \eqref{4.5.23} must be of the latter kind (because $0\in f^{-1}\left( [0,\frac{1}{m})\right)$).  However, taking the complement of this equation, we find
 \begin{equation}
@@ -1704,7 +1707,7 @@ That is, $\{ 0\}$ is a $G_\delta$ set.\footnote{Recall that this is just a fancy
 \end{equation}
 so that $\R \setminus \{ 0\}$ is a countably-infinite union of finite sets:  a contradiction.
 \begin{rmk}
-This is the \emph{Uncountable Fort Space}\index{Uncountable Fort Space}.
+This is the \term{Uncountable Fort Space}\index{Uncountable Fort Space}.
 \end{rmk}
 \end{exm}
 
@@ -1719,14 +1722,14 @@ Here, ``distinct'' literally means that $S_1$ and $S_2$ are not the same thing, 
 In the previous subsection, we defined several levels of ``separation'' between two disjoints subsets of a topological space.  We now use these definitions to put conditions on topological spaces themselves.
 
 Throughout this section, $X$ will be a topological space.
-\begin{displayquote}
+\begin{important}
 This is the first time in these notes that a result is stated `officially' that refers to material we have not yet covered.  For example, we are going to introduce a bunch of properties that a space may or may not possess, and for each of them, we are going to ask the question ``Is this preserved under subspaces, quotients, products, and disjoint unions?''.  In some cases, to answer the questions, we needed to refer to material coming as late as \cref{chp5x}, for example, to refer to the natural log.  However, the logical placement of such material is certainly in this section, in parallel with all the other analogous results, and so I didn't feel as if it made pedagogical sense to postpone such results by several chapters just because we don't `officially' know what $\ln$ is yet---the reality is that, if you're reading this, you almost certainly know\footnote{Or think you know anyways.} what $\ln$ is, and in any case, the development isn't actually circular, and you can flip to the definition (\cref{NaturalLogarithm}) and come back to the result when you feel comfortable.
-\end{displayquote}
+\end{important}
 
 \begin{dfn}{$T_0$}{T0}
-$X$ is \emph{$T_0$}\index{$T_0$} iff any two distinct points are topologically-distinguishable.
+$X$ is \term{$T_0$}\index{$T_0$} iff any two distinct points are topologically-distinguishable.
 \begin{rmk}
-Sometimes this condition is called \emph{Kolmogorov}\index{Kolmogorov (topological space)}.  You will find that a lot (if not all) of the separation axioms of spaces have other names.  We have chosen the names we have because (i)~other terminology is less consistent and (ii)~it carries less information (the subscript $0$ in $T_0$ has some significance).
+Sometimes this condition is called \term{Kolmogorov}\index{Kolmogorov (topological space)}.  You will find that a lot (if not all) of the separation axioms of spaces have other names.  We have chosen the names we have because (i)~other terminology is less consistent and (ii)~it carries less information (the subscript $0$ in $T_0$ has some significance).
 \end{rmk}
 \begin{rmk}
 This is an insanely reasonable condition.  I might even argue that if you have a space you're trying to study that is not $T_0$, you're doing something wrong.  If the topology cannot distinguish between two points, either (i)~you may as well identify those two points (see \cref{T0Quotient}) or (ii)~you should probably consider adding more structure to your space that does distinguish them.
@@ -1739,13 +1742,13 @@ Apparently the ``$T$'' in all these separation axioms is for the German ``Trennu
 Any indiscrete space with at least two points.  The example above in \cref{exm4.5.2} worked.
 \end{exm}
 \begin{prp}{$T_0$ quotient}{T0Quotient}
-Let $X$ be a topological space.  Then, there exists a unique\footnote{Up to homeomorphism.} topological space $\TZero (X)$, the \emph{$T_0$ quotient}\index{$T_0$ quotient} of $X$, and a surjective map $\q :X\rightarrow \TZero (X)$ such that
+Let $X$ be a topological space.  Then, there exists a unique\footnote{Up to homeomorphism.} topological space $\TZero (X)$, the \term{$T_0$ quotient}\index{$T_0$ quotient} of $X$, and a surjective map $\q :X\rightarrow \TZero (X)$ such that
 \begin{enumerate}
 \item \label{T0Quotient.i}$\TZero (X)$ is $T_0$; and
 \item \label{T0Quotient.ii}if $Y$ is another $T_0$ space with a continuous map $\phi :X\rightarrow Y$, then there is a unique continuous map $\phi ':\TZero (X)\rightarrow Y$ such that $\phi =\phi '\circ \q$.
 \end{enumerate}
 \begin{rmk}
-As $T_0$ is sometimes called Kolmogorov, so to this is sometimes called the \emph{Kolmogorov quotient}\index{Kolmogorov quotient}.
+As $T_0$ is sometimes called Kolmogorov, so to this is sometimes called the \term{Kolmogorov quotient}\index{Kolmogorov quotient}.
 \end{rmk}
 \begin{rmk}
 Compare this with the definitions of the integers, rationals, reals, closure, interior, generating collections, initial topology, and final topology (\cref{Integers,RationalNumbers,RealNumbers,Closure,Interior,InitialTopology,FinalTopology}).  Note how this is a bit different---the key difference here is that the map from $X$ to $\TZero (X)$ is now \emph{surjective} (i.e.~a quotient map) instead of in all the previous cases where it was \emph{injective} (i.e.~an inclusion).
@@ -1780,9 +1783,9 @@ Consider the partition $\left\{ (-\infty ,0]\cup (1,\infty ),(0,1]\right\}$ of $
 Recall (\cref{QuotientTopology}) that a set is open in the quotient topology iff its preimage under the quotient map is open.  In this case, the quotient has just two points, one represented by $(-\infty ,0]\cup (1,\infty )$ and the other represented by $(0,1]$.  The preimage of both of these points are just the respective sets, neither of which are open, and hence neither of the points in the quotient is open.  As these are the only two nonempty proper subsets, there are no nonempty proper open sets in the quotient, that is, the quotient has the indiscrete topology, which is never $T_0$.\footnote{Except on a one point set and the empty-set.}
 \end{exm}
 \begin{dfn}{$T_1$}{T1}
-$X$ is \emph{$T_1$}\index{$T_1$} iff any two distinct points are separated.
+$X$ is \term{$T_1$}\index{$T_1$} iff any two distinct points are separated.
 \begin{rmk}
-Sometimes this condition is called \emph{accessible}\index{Accessible (topological space)} of \emph{Fr\'{e}chet}\index{Fr\'{e}chet (topological space)}.  I also prefer $T_1$ over ``accessible'' because, not only does it carry slightly more information, but it's also a lot more common.  I would \emph{definitely} recommend not to use the term ``Fr\'{e}chet'' to describe this, as the term ``Fr\'{e}chet space'' is usually meant to describe something else entirely.
+Sometimes this condition is called \term{accessible}\index{Accessible (topological space)} of \term{Fréchet}\index{Fréchet (topological space)}.  I also prefer $T_1$ over ``accessible'' because, not only does it carry slightly more information, but it's also a lot more common.  I would \emph{definitely} recommend not to use the term ``Fréchet'' to describe this, as the term ``Fréchet space'' is usually meant to describe something else entirely.
 \end{rmk}
 \begin{wrn}
 Warning:  This is not the same as ``any two topologically-distinguishable points are separated''.  That condition is called $R_0$ and is rarely, if ever, used.\footnote{There is no difference between $R_0$ and $T_1$ for spaces which are $T_0$.}
@@ -1829,13 +1832,13 @@ Show that a subspace of a $T_1$ space is $T_1$.
 Show that an arbitrary product of $T_1$ spaces is $T_1$.
 \end{exr}
 \begin{dfn}{$T_2$}{T2}
-$X$ is \emph{$T_2$}\index{$T_2$} iff any two distinct points are separated by neighborhoods.
+$X$ is \term{$T_2$}\index{$T_2$} iff any two distinct points are separated by neighborhoods.
 \begin{rmk}
-This is quite often referred to as \emph{Hausdorff}\index{Hausdorff (topological space)}.  In contrast to most of the alternative terminologies, this actually might be more common than the term ``$T_2$''.
+This is quite often referred to as \term{Hausdorff}\index{Hausdorff (topological space)}.  In contrast to most of the alternative terminologies, this actually might be more common than the term ``$T_2$''.
 \end{rmk}
 \end{dfn}
 \begin{dfn}{Compact}{Compact}
-$X$ is \emph{compact}\index{Compact} iff it is quasicompact and $T_2$.
+$X$ is \term{compact}\index{Compact} iff it is quasicompact and $T_2$.
 \end{dfn}
 \begin{prp}{}{prp4.5.37}
 Let $X$ be a topological space.  Then, $X$ is $T_2$ iff limits are unique.
@@ -1870,7 +1873,7 @@ Now, if a subset of $X$ is quasicompact, it is finite, and hence closed (by the 
 \end{exm}
 On the other hand, the condition ``quasicompact subsets are closed'' is strictly stronger than being $T_1$ as well (this condition implies $T_1$ by \cref{prp4.5.32}).\footnote{To remember where the condition ``quasicompact subsets are closed'' fits into the series of implications (that is, strictly between $T_1$ and $T_2$), I secretly remember this condition as ``$T_{1\frac{3}{4}}$ ($T_{1\frac{1}{2}}$ is inappropriate because the $\frac{1}{2}$ should be reserved for some sort of ``separation by closed neighborhoods'').  I hesitate to make this an `official' term because, besides the fact that no one else uses it, I don't see how this property is really a \emph{separation} axiom.}
 \begin{exm}{A $T_1$ space for which not every quasicompact subset is closed}{}
-Define $X\coloneqq \N$.  We equip $X$ with a nonstandard topology, the so-called \emph{cofinite topology}\index{Cofinite topology}.  Let $C\subseteq X$ and declare that
+Define $X\coloneqq \N$.  We equip $X$ with a nonstandard topology, the so-called \term{cofinite topology}\index{Cofinite topology}.  Let $C\subseteq X$ and declare that
 \begin{textequation}
 $C$ is closed iff either (i)~$C=X$ or (ii)~$C$ is finite.
 \end{textequation}
@@ -1893,9 +1896,9 @@ Thus, by \namerefpcref{TychonoffsTheorem} an arbitrary product of compact spaces
 
 Here is where the consistency of the terminology breaks-down.  If you guessed that the term $T_3$ refers to spaces in which any two distinct points are separated by closed neighborhoods, you'd be wrong.  Unfortunately, it seems that the term $T_3$ was already taken (we'll see what it means in a bit) when someone went to write down the following definition, and so it is called $T_{2\frac{1}{2}}$.
 \begin{dfn}{$T_{2\frac{1}{2}}$}{T212}
-$X$ is \emph{$T_{2\frac{1}{2}}$}\index{$T_{2\frac{1}{2}}$} iff any two distinct points are separated by closed neighborhoods.
+$X$ is \term{$T_{2\frac{1}{2}}$}\index{$T_{2\frac{1}{2}}$} iff any two distinct points are separated by closed neighborhoods.
 \begin{rmk}
-The alternate terminology for this seems to be \emph{Urysohn}\index{Urysohn}.
+The alternate terminology for this seems to be \term{Urysohn}\index{Urysohn}.
 \end{rmk}
 \end{dfn}
 \begin{exm}{A space that is $T_2$ but not $T_{2\frac{1}{2}}$}{SimplifiedArensSquare}\footnote{This comes from \cite[pg.~100]{Steen}.}
@@ -1913,16 +1916,16 @@ and
 X\coloneqq S\cup \{ \coord{0,0}\} \cup \{ \coord{1,0}\} .
 \end{equation}
 (This is the rationals in the open unit square together with the bottom-left and bottom-right corners.)  We define a topology on $X$ by defining a neighborhood base at each point---see \cref{prp4.1.8}.  For $(x,y)\in X$, there are three cases:  (i)~$\coord{x,y}=\coord{0,0}$, (ii)~$\coord{x,y}=\coord{1,0}$, and (iii)~$\coord{x,y}\in S$.  We define
-\begin{equation}
+\begin{equation*}
 \topology{B}_{\coord{x,y}}\coloneqq \begin{cases}\left\{ U\subseteq S:U\text{ is open in }S\text{.}\footnote{Open in the usual topology (the subspace topology inherited from $(0,1)\times (0,1)$).}\right\} & \text{if }\coord{x,y}\in S \\ \left\{ U_{\coord{x,y}}^m:m\in \Z ^+\right\} & \text{otherwise,}\end{cases}
-\end{equation}
+\end{equation*}
 where
-\begin{equation}
+\begin{equation*}
 \begin{split}
 U_{\coord{0,0}}^m & \coloneqq \{ \coord{0,0}\} \cup \left\{ \coord{x,y}\in (0,\tfrac{1}{2})\times (0,\tfrac{1}{m}):x,y\in \Q \right\} \\
 U_{\coord{1,0}}^m & \coloneqq \{ \coord{1,0}\} \cup \left\{ \coord{x,y}\in (\tfrac{1}{2},1)\times (0,\tfrac{1}{m}):x,y \in \Q \right\} .
 \end{split}
-\end{equation}
+\end{equation*}
 By \cref{prp4.1.8}, there is a unique topology for which $\topology{B}_{\coord{x,y}}$ is a neighborhood base of $\coord{x,y}\in X$.
 
 The closure of any open neighborhood of $\coord{0,0}$ contains points with $x$-coordinate $\frac{1}{2}$ and $y$-coordinate arbitrarily small, and the same goes for any open neighborhood of $\coord{1,0}$.  Thus, these two points are not separated by closed neighborhoods.\footnote{Recall that two points are separated by closed neighborhoods iff they are separated by open neighborhoods with disjoint closure---see \cref{prp4.5.13}.}
@@ -1931,7 +1934,7 @@ On the other hand, the $x$-coordinate of every point in every open neighborhood 
 
 For any point $\coord{x,y}$ distinct from $\coord{0,0}$ and $\coord{1,0}$, we can separate $\coord{x,y}$ from $\coord{0,0}$ with neighborhoods by taking $U_{\coord{0,0}}^m\ni \coord{0,0}$ for $m\in \Z ^+$ with $\frac{1}{m}<y$ and any $\varepsilon$-ball about $\coord{x,y}$ of with radius less than $y-\frac{1}{m}$.  Similarly for $\coord{x,y}$ and $\coord{1,0}$.  Of course, any two points distinct from both $\coord{0,0}$ and $\coord{1,0}$ are separated by neighborhoods because they can be separated by neighborhoods in $S$.  Thus, $X$ is indeed $T_2$.
 \begin{rmk}
-This is the \emph{Simplified Arens Square}\index{Simplified Arens Square}.
+This is the \term{Simplified Arens Square}\index{Simplified Arens Square}.
 \end{rmk}
 \end{exm}
 \begin{exr}{}{exr3.6.67}
@@ -1943,12 +1946,12 @@ Show that an arbitrary product of $T_{2\frac{1}{2}}$ spaces is $T_{2\frac{1}{2}}
 
 You might be thinking to yourself ``Well, if $T_3$ wasn't separated by closed neighborhoods, then it must be completely-separated, right?''.  Sorry.  Wrong again.
 \begin{dfn}{Completely-$T_2$}{CompletelyT2}
-$X$ is \emph{completely-$T_2$}\index{Completely-$T_2$} iff any two distinct points are completely-separated.
+$X$ is \term{completely-$T_2$}\index{Completely-$T_2$} iff any two distinct points are completely-separated.
 \begin{rmk}
-Naturally, this is sometimes called \emph{completely-Hausdorff}\index{Completely-Hausdorff}.
+Naturally, this is sometimes called \term{completely-Hausdorff}\index{Completely-Hausdorff}.
 \end{rmk}
 \begin{rmk}
-Sometimes people will also say that \emph{continuous functions separate points}.
+Sometimes people will also say that \term{continuous functions separate points}.
 \end{rmk}
 \end{dfn}
 \begin{exm}{A space that is $T_{2\frac{1}{2}}$ but not completely-$T_2$}{}
@@ -1973,7 +1976,7 @@ Show that an arbitrary product of completely-$T_2$ spaces is completely-$T_2$.
 
 And of course, as now you probably saw coming, $T_3$ does not mean distinct points can be perfectly-separated.
 \begin{dfn}{Perfectly-$T_2$}{PerfectlyT2}
-$X$ is \emph{perfectly-$T_2$}\index{Perfectly-$T_2$} iff any two distinct points can be perfectly-separated.
+$X$ is \term{perfectly-$T_2$}\index{Perfectly-$T_2$} iff any two distinct points can be perfectly-separated.
 \begin{rmk}
 Disclaimer:  I have never seen this term before.  Then again, I've never seen \emph{any} term to describe such spaces.  But honestly, if completely-$T_2$ means you can completely-separate points, then a space in which you can perfectly-separate points is going to be called \textellipsis
 \end{rmk}
@@ -2005,13 +2008,13 @@ This is continuous by the \nameref{PastingLemma}, and furthermore satisfies $f^{
 Now, let $I$ be an \emph{uncountable} index set\footnote{``Index set'' is not a technical term, that is, it's not a special sort of set---it just means that it's some random set that we happen to be using for `indexing'.} and define $X\coloneqq \prod _I\R$.  We wish to show that $X$ is not perfectly-$T_2$.   It suffices to show that there is no continuous function $f\colon X\rightarrow [0,1]$ such that $\{ \coord{0,0,0,\ldots}\} =f^{-1}(0)$.\footnote{Because then we definitely cannot perfectly separate $\coord{0,0,0,\ldots}$ from any other point.  Also, note that, while my notation might suggest that this is a countable collection of coordinates, this is \emph{not} the case---I just mean that this is the element in $X$ all of whose coordinates are $0$.}  We proceed by contradiction:  let $f\colon X\rightarrow [0,1]$ be such a function.
 
 For each $n\in \mathbb{Z}^+$, $f^{-1}([0,\frac{1}{n}))$ is an open neighborhood of $\coord{0,0,\ldots}$, and so there are finitely many indices $i_1^n,\ldots ,i_{m_n}^n\in I$ and open sets $U_{i_1^n}^n,\ldots ,U_{i_{m_n}^n}^n\subseteq \mathbb{R}$ containing $0$ with
-\begin{equation}
+\begin{equation*}
 \coord{0,0,\ldots}\in U_{i_1^n}^n\times \cdots \times U_{i_{m_n}^n}^n\times \prod _{\substack{i\in I \\ i\neq i_1^n,\ldots ,i_{m_n}^n}}\mathbb{R}\subseteq f^{-1}([0,\tfrac{1}{n})).
-\end{equation}
+\end{equation*}
 Taking the intersection over all $n\in \mathbb{Z}^+$, we find that (because $\{ \coord{0,0,\ldots}\} =\bigcap _{n\in \Z ^+}f^{-1}([0,\frac{1}{n}))$).
-\begin{equation}
-\bigcap _{n\in \mathbb{Z}^+}\left( U_{i_1^n}^n\times \cdots \times U_{i_{m_n}^n}^n\times \prod _{\substack{i\in I \\ i\neq i_1^n,\ldots ,i_{m_n}^n}}\mathbb{R}\right) =\{ \coord{0,0,\ldots}\} .
-\end{equation}
+\begin{equation*}
+\bigcap _{n\in \mathbb{Z}^+}\bigg( U_{i_1^n}^n\times \cdots \times U_{i_{m_n}^n}^n\times \prod _{\substack{i\in I \\ i\neq i_1^n,\ldots ,i_{m_n}^n}}\mathbb{R}\bigg) =\{ \coord{0,0,\ldots}\} .
+\end{equation*}
 However, for each $n\in \mathbb{Z}^+$, we only have finitely many indices $i_1^n,\ldots ,i_{m_n}^n$, and so in total we have only countably many indices appearing at all.  This means that there are still uncountably many coordinates in the above intersection which are equal to $\mathbb{R}$:  a contradiction.
 \end{exm}
 Despite this, it \emph{is} true for countably-infinite products.
@@ -2046,7 +2049,7 @@ There is one important detail we have yet to check:  that our definition of $f$ 
 
 But now we've gone through all the separation properties, right?  How could $T_3$ be a thing?  Well, now we enter a collection of separation axioms of a different nature---now we will focus on separating \emph{closed sets}.  One unfortunate fact, however, is that, if points are not closed, then these new separation axioms are \emph{not} strictly stronger than the separation axioms we just presented.  There are thus two versions of the following separation axioms:  ones in which the points are closed and ones in which they aren't.
 \begin{dfn}{Regular}{Regular}
-$X$ is \emph{regular}\index{Regular (topological space)} iff any closed set and a point not contained in it can be separated by neighborhoods.
+$X$ is \term{regular}\index{Regular (topological space)} iff any closed set and a point not contained in it can be separated by neighborhoods.
 \begin{rmk}
 You'll note that we skipped right over being topologically-distinguishable and (just) separated.  This is because a point is automatically separated from a closed set---the complement of the closed set is an open neighborhood of the point which does not intersect the closed set.
 \end{rmk}
@@ -2121,7 +2124,10 @@ We first check that $X$ is not completely-$T_2$ by showing that no continuous fu
 
 Write $\alpha \coloneqq f(p_{n,k})$.  Then,
 \begin{equation}
-f^{-1}(\alpha )\cap T_{n,k}=f^{-1}\left( \bigcap _{m\in \Z ^+}(\alpha -\tfrac{1}{m},\alpha +\tfrac{1}{m})\right) \cap T_{n,k}=\bigcap _{m\in \Z ^+}S_m,
+\begin{split}
+f^{-1}(\alpha )\cap T_{n,k} & =f^{-1}\left( \bigcap _{m\in \Z ^+}(\alpha -\tfrac{1}{m},\alpha +\tfrac{1}{m})\right) \cap T_{n,k} \\
+& =\bigcap _{m\in \Z ^+}S_m,
+\end{split}
 \end{equation}
 where
 \begin{equation}
@@ -2158,14 +2164,14 @@ Now take $p=\coord{m,y}\in L_m$ and $C\subseteq X$ not containing $p$.  If $C$ i
 
 Finally if one of the points is some $p_{n,k}$, then using very similar logic as in the previous case, $C$ must intersect $T_{n,k}$ at at most finitely many points.  Removing these points from $T_{n,k}$ gives us an open neighborhood which is disjoint from the neighborhood formed from the union of these finitely many points (which are open) and the complement of $T_{n,k}$.
 \begin{rmk}
-I do not know of a name for this space, but in order to have something to refer to, I shall call it the \emph{Thomas Tent Space}\index{Thomas Tent Space}.\footnote{The $T_{n,k}$s are like ``tents'', and indeed, that is the word Scott used to describe them.}
+I do not know of a name for this space, but in order to have something to refer to, I shall call it the \term{Thomas Tent Space}\index{Thomas Tent Space}.\footnote{The $T_{n,k}$s are like ``tents'', and indeed, that is the word Scott used to describe them.}
 \end{rmk}
 \end{exm}
 \begin{exm}{A space that is perfectly-$T_2$ but not $T_3$}{CocountableExtensionTopology}
 \forwardref
 
 \noindent
-Define $X\coloneqq \R$.  We equip $\R$ with the so-called \emph{cocountable extension topology}\index{Cocountable extension topology}.  Let $C\subseteq X$ and declare that
+Define $X\coloneqq \R$.  We equip $\R$ with the so-called \term{cocountable extension topology}\index{Cocountable extension topology}.  Let $C\subseteq X$ and declare that
 \begin{textequation}
 $C$ is closed iff it is the union of a countable set and a set closed in the usual topology on $\R$.
 \end{textequation}
@@ -2187,7 +2193,7 @@ Show that an arbitrary product of $T_3$ spaces is $T_3$.
 \end{exr}
 
 \begin{dfn}{$T_{3\frac{1}{2}}$}{T312}
-$X$ is \emph{$T_{3\frac{1}{2}}$}\index{$T_{3\frac{1}{2}}$} iff it is $T_1$ and any closed set can be separated by closed neighborhoods from a point it does not contain.
+$X$ is \term{$T_{3\frac{1}{2}}$}\index{$T_{3\frac{1}{2}}$} iff it is $T_1$ and any closed set can be separated by closed neighborhoods from a point it does not contain.
 \begin{rmk}
 This is not universally accepted terminology.  Often people use the term $T_{3\frac{1}{2}}$ to refer to what I call completely-$T_3$.  I imagine this is the case because it turns out that my $T_{3\frac{1}{2}}$ is equivalent to $T_3$ (see the next proposition).
 \end{rmk}
@@ -2200,7 +2206,11 @@ $X$ is $T_3$ iff $X$ is $T_{3\frac{1}{2}}$.
 \begin{proof}
 $(\Rightarrow )$ Suppose that $X$ is $T_3$.  Let $C\subseteq X$ be closed and let $x\in C^{\comp}$.  As $X$ is $T_3$, there is an open neighborhood $U$ of $C$ and an open neighborhood $V$ of $x$ which are disjoint.  Then, $V^{\comp}$ is a closed set not containing $x$, and so there is an open neighborhood $W_1$ of $V^{\comp}$ and an open neighborhood $W_2$ of $x$ which are disjoint.  Then,
 \begin{equation}
-C\subseteq U\subseteq \Cls (U)\subseteq V^{\comp}\subseteq W_1\text{ and }x\in W_2\subseteq \Cls (W_2)\subseteq W_1^{\comp},
+C\subseteq U\subseteq \Cls (U)\subseteq V^{\comp}\subseteq W_1
+\end{equation}
+and
+\begin{equation}
+x\in W_2\subseteq \Cls (W_2)\subseteq W_1^{\comp},
 \end{equation}
 and so $U$ and $W_2$ are open neighborhoods of $C$ and $x$ respectively with disjoint closures, so that $X$ is $T_{3\frac{1}{2}}$ by \cref{prp4.5.13}.
 
@@ -2212,9 +2222,9 @@ $(\Leftarrow )$ This is immediate---if sets are separated by closed neighborhood
 Now would be the time to ask about subspaces and products of $T_{3\frac{1}{2}}$ spaces, but as $T_{3\frac{1}{2}}$ is equivalent to $T_3$, we\footnote{And by ``we'' I mean ``you''.} have already addressed these questions in \cref{exr3.6.99,exr3.6.100}.
 
 \begin{dfn}{Completely-$T_3$}{CompletelyT3}
-$X$ is \emph{completely-$T_3$}\index{Completely-$T_3$} iff it is $T_1$ and any closed set can be completely-separated from a point it does not contain.
+$X$ is \term{completely-$T_3$}\index{Completely-$T_3$} iff it is $T_1$ and any closed set can be completely-separated from a point it does not contain.
 \begin{rmk}
-As noted above, sometimes people use the term $T_{3\frac{1}{2}}$ for this property.  This is also sometimes called \emph{Tychonoff}\index{Tychonoff} (probably because of the \namerefpcref{TychonoffEmbeddingTheorem}.
+As noted above, sometimes people use the term $T_{3\frac{1}{2}}$ for this property.  This is also sometimes called \term{Tychonoff}\index{Tychonoff} (probably because of the \namerefpcref{TychonoffEmbeddingTheorem}.
 \end{rmk}
 \end{dfn}
 \begin{exm}{A space that is $T_{3\frac{1}{2}}$ but not completely-$T_3$}{}
@@ -2229,7 +2239,7 @@ Show that an arbitrary product of completely-$T_3$ spaces is completely-$T_3$.
 One characterization of completely-$T_3$ spaces that can be quite useful is that they are precisely the topological spaces which appear as (up to homeomorphism) subspaces of products of the closed interval $[0,1]$ (this is the \namerefpcref{TychonoffEmbeddingTheorem}, though we will have to wait for \nameref{UrysohnsLemma} to prove it.
 
 \begin{dfn}{Perfectly-$T_3$}{PerfectlyT3}
-$X$ is \emph{perfectly-$T_3$} iff it is $T_1$ and any closed set can be perfectly-separated from a point it does not contain.
+$X$ is \term{perfectly-$T_3$} iff it is $T_1$ and any closed set can be perfectly-separated from a point it does not contain.
 \end{dfn}
 \begin{exm}{A space that is completely-$T_3$ but not perfectly-$T_3$}{exm4.6.80}
 The Uncountable Fort Space from \cref{UncountableFortSpace} will do the trick.  In \cref{exm4.5.48}, we showed that this was completely-$T_2$ but not perfectly-$T_2$.  As it is not perfectly-$T_2$, it is certainly not perfectly-$T_3$, though we still need to check that it is completely-$T_3$.
@@ -2259,10 +2269,10 @@ And now we return to the issue of the product of two perfectly-$T_3$ spaces.
 \forwardref
 
 \noindent
-Define $X\coloneqq [0,1]\times [0,1]$ but do \emph{not} equip $X$ with the product topology.  Instead, we will equip it with the order topology (\cref{OrderTopology}) with respect to a particular total-order, the \emph{lexicographic ordering}\index{Lexicographic order}.\footnote{We saw this briefly once before in \cref{exm1.2.28}.}  For $\coord{x_1,y_1},\coord{x_2,y_2}\in X$, define
-\begin{equation}
+Define $X\coloneqq [0,1]\times [0,1]$ but do \emph{not} equip $X$ with the product topology.  Instead, we will equip it with the order topology (\cref{OrderTopology}) with respect to a particular total-order, the \emph{lexicographic ordering}.\footnote{We saw this briefly once before in \cref{exm1.2.28}.}  For $\coord{x_1,y_1},\coord{x_2,y_2}\in X$, define
+\begin{equation*}
 \coord{x_1,y_1}\leq \coord{x_2,y_2}\text{ iff }x_1<x_2\text{ or }(x_1=x_2\text{ and }y_1<y_2).
-\end{equation}
+\end{equation*}
 
 Now define $A\coloneqq \left\{ \coord{x,y}\in X:y=0\text{ or }y=1\text{.}\right\}$.  That is, $A$ is the union of the top and bottom edges of the unit square equipped with lexicographic ordering.  $A$ is our example of a perfectly-$T_3$ spaces such that $A\times A$ is not perfectly-$T_3$.
 
@@ -2271,7 +2281,7 @@ Note that the interior of the `top edge' of $A$ and the `bottom edge' of $A$ are
 Use the fact that the Sorgenfrey Line is perfectly-$T_4$ to show that $A$ is perfectly-$T_4$.
 \end{exr}
 
-As $A$ contains a copy (in fact, it contains two) of the Sorgenfrey Line, $A\times A$ contains a copy of the Sorgenfrey Plane, which we showed was not $T_4$ in \cref{SorgenfreyPlane}.  Thus, as $A\times A$ has a subspace that is not $T_4$, $A\times A$ cannot be homeomorphic to a metric space.\footnote{Because subspaces of metric spaces are of course metric spaces, and metric spaces are uniformly-perfectly-$T_4$ (\cref{prp5.4.13}).}\footnote{Topological spaces that are homeomorphic to metric spaces are called \emph{metrizable}\index{Metrizable}.}
+As $A$ contains a copy (in fact, it contains two) of the Sorgenfrey Line, $A\times A$ contains a copy of the Sorgenfrey Plane, which we showed was not $T_4$ in \cref{SorgenfreyPlane}.  Thus, as $A\times A$ has a subspace that is not $T_4$, $A\times A$ cannot be homeomorphic to a metric space.\footnote{Because subspaces of metric spaces are of course metric spaces, and metric spaces are uniformly-perfectly-$T_4$ (\cref{prp5.4.13}).}\footnote{Topological spaces that are homeomorphic to metric spaces are called \term{metrizable}\index{Metrizable}.}
 
 \begin{exr}{}{}
 Show that $A$ is compact.
@@ -2294,13 +2304,13 @@ Show that $\Delta$ is closed.
 \end{exr}
 As $A$ is compact, if $\Delta$ were a $G_{\delta}$ set, then $A$ would be homeomorphic to a metric space by the lemma, and so $A\times A$ would be homeomorphic to a metric space:  a contradiction.  Therefore, $\Delta$ is not a $G_{\delta}$ set.  However, if $A\times A$ were perfectly-$T_3$, then all closed subsets of $A\times A$ should be $G_{\delta}$s.  As $\Delta$ is closed but not a $G_{\delta}$, it follows that $A\times A$ cannot be perfectly-$T_3$.
 \begin{rmk}
-$A$ is the \emph{Double Arrow Space}\index{Double Arrow Space}.
+$A$ is the \term{Double Arrow Space}\index{Double Arrow Space}.
 \end{rmk}
 \end{exm}
 
 The separation axioms $T_0$ through perfectly-$T_2$ all had to do with separation of points.  All the $T_3$ separation axioms had to do with separating closed sets from points.  Finally, the $T_4$ axioms have to do with separating closed sets from closed sets.
 \begin{dfn}{Normal}{Normal}
-$X$ is \emph{normal}\index{Normal (topological space)} iff any two disjoint closed subsets can be separated by neighborhoods.
+$X$ is \term{normal}\index{Normal (topological space)} iff any two disjoint closed subsets can be separated by neighborhoods.
 \begin{rmk}
 Similarly as with the definition of regular (\cref{Regular}), we do not need to consider topological-distinguishability and mere separatedness.
 \end{rmk}
@@ -2313,7 +2323,7 @@ The indiscrete topology on any set with at least two points is (almost) vacuousl
 \end{exm}
 Stupid examples like this is why we almost always care about the case when we in addition impose the condition of being $T_1$.
 \begin{dfn}{$T_4$}{T4}
-$X$ is \emph{$T_4$}\index{$T_4$} iff it is $T_1$ and normal.
+$X$ is \term{$T_4$}\index{$T_4$} iff it is $T_1$ and normal.
 \begin{rmk}
 Just as before, the condition of $T_1$ is imposed so that this is a strict specialization of being $T_3$.
 \end{rmk}
@@ -2331,22 +2341,22 @@ Recall that (\cref{ThomasTentSpace}) there are $T_3$ spaces that are \emph{not} 
 
 \noindent
 Define $X\coloneqq \R \times \R _0^+$, the upper-half plane, and define a base for a topology on $X$ by
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \cover{B} & \coloneqq \left\{ B_\varepsilon (\coord{x,y})\subseteq \R \times \R ^+:\varepsilon >0,\ \coord{x,y}\in \R \times \R ^+\right\} \\
 & \qquad \cup \left\{ B_\varepsilon (\coord{x,\varepsilon})\cup \{ \coord{x,0}\} :x\in \R ,\ \varepsilon >0\right\} .
 \end{split}
-\end{equation}
+\end{equation*}
 That is, we take all $\varepsilon$-balls contained in the (strict) upper half-plane together with all $\varepsilon$-balls in the upper half-plane which are `tangent' to the $x$-axis (together with the point of tangency).
 
 We first check that $X$ is perfectly-$T_3$.  So, let $C\subseteq X$ be closed and let $\coord{x_0,y_0}\in C^{\comp}$.  The subspace topology of $\R ^+\times \R ^+\subseteq X$ is just the usual topology, which, being a metric space, is perfectly-$T_4$.  Thus, we only need to check the case where $y_0=0$.  Let $\varepsilon >0$ be such that $B_{\varepsilon}(\coord{x_0,\varepsilon})$ is disjoint from $C$.  Then let $\delta >0$ be sufficiently small and less than $1$ so that $\dist _C^{-1}([0,\delta ))\subseteq B_{\varepsilon}(\coord{x_0,\varepsilon})^{\comp}$.  Then define $f\colon X\rightarrow [0,1]$ by
 {\small
-\begin{equation}
+\begin{equation*}
 f(\coord{x,y})\coloneqq \begin{cases}0 & \text{if }\coord{x,y}=\coord{x_0,0} \\
 \delta \cdot \left( \frac{(x-x_0)^2+y^2}{2\varepsilon y} \right) & \text{if }\coord{x,y}\in D_{\varepsilon}(\coord{x_0,\varepsilon})\setminus \{ \coord{x_0,0}\} \\
 \delta & \text{if }\coord{x,y}\in B_{\varepsilon}(\coord{x_0,\varepsilon})\cap \\  & \ \enspace \dist _C^{-1}([0,\delta ))^{\comp}\cap (\R \times \R ^+) \\
 \dist _C(\coord{x,y}) & \text{if }\coord{x,y}\in \dist _C^{-1}([0,\delta ]).\end{cases}
-\end{equation}
+\end{equation*}
 }
 This is continuous by the \namerefpcref{PastingLemma}.
 
@@ -2375,12 +2385,12 @@ As $\R$ is a complete metric space, by the \namerefpcref{BaireCategoryTheorem}, 
 B_{1/m_0}(\coord{x_{\varepsilon},\tfrac{1}{m_0}})\subseteq \footnote{As $\frac{1}{m_0}<\varepsilon _{x_{\varepsilon}}$, the Triangle Inequality shows that if you are within $\frac{1}{m_0}$ of $\coord{x_{\varepsilon},\frac{1}{m_0}}$ then you must be within $\varepsilon _{x_{\varepsilon}}$ of $\coord{x_{\varepsilon},\varepsilon _{x_{\varepsilon}}}$.}B_{\varepsilon _{x_{\varepsilon}}}(\coord{x_{\varepsilon},\varepsilon _{x_{\varepsilon}}})\subseteq U.
 \end{equation}
 But then, for all $\varepsilon$ sufficiently small,
-\begin{equation}
+\begin{equation*}
 \coord{x_\varepsilon ,\varepsilon}\in B_{\varepsilon}(\coord{q_0,\varepsilon})\cap B_{1/m_0}(\coord{x_\varepsilon ,\tfrac{1}{m_0}})\subseteq B_{\varepsilon}(\coord{q_0,\varepsilon})\cap U.
-\end{equation}
+\end{equation*}
 Thus, every neighborhood of $\coord{q_0,0}\in \Q$ intersects $U$.
 \begin{rmk}
-This is \emph{Niemytzki's Tangent Disk Topology}\index{Niemytzki's Tangent Disk Topology}.
+This is \term{Niemytzki's Tangent Disk Topology}\index{Niemytzki's Tangent Disk Topology}.
 \end{rmk}
 \end{exm}
 It is at this point that we (should) turn to the issue of subspaces and products of $T_4$ spaces.  Unfortunately, probably a bit surprisingly, it is neither the case that a subspace of a $T_4$ space is necessarily $T_4$ nor the case that the product of two $T_4$ spaces is necessarily $T_4$.
@@ -2391,7 +2401,7 @@ By \namerefpcref{TychonoffsTheorem}, and the fact that compact spaces are $T_4$ 
 We mentioned that the product of two $T_4$ spaces need not be $T_4$.  In fact, it's worse than this:  the product of two \emph{perfectly}-$T_4$ spaces need not even be $T_4$, and so we wait for this counter-example until having defined ``perfectly-$T_4$''---see \cref{SorgenfreyPlane}.
 
 \begin{dfn}{$T_{4\frac{1}{2}}$}{T412}
-$X$ is \emph{$T_{4\frac{1}{2}}$}\index{$T_{4\frac{1}{2}}$} iff it is $T_1$ and any two disjoint closed subsets can be separated by closed neighborhoods.
+$X$ is \term{$T_{4\frac{1}{2}}$}\index{$T_{4\frac{1}{2}}$} iff it is $T_1$ and any two disjoint closed subsets can be separated by closed neighborhoods.
 \begin{rmk}
 Just as with $T_{3\frac{1}{2}}$ (\cref{T312}), this terminology is not standard, presumably because it is actually just equivalent to $T_4$.
 \end{rmk}
@@ -2401,7 +2411,7 @@ It turns out that $T_4$ is equivalent to $T_{4\frac{1}{2}}$.  We don't say any m
 \end{dfn}
 
 \begin{dfn}{Completely-$T_4$}{CompletelyT4}
-$X$ is \emph{completely-$T_4$} iff it is $T_1$ and any two disjoint closed subsets can be completely-separated.
+$X$ is \term{completely-$T_4$} iff it is $T_1$ and any two disjoint closed subsets can be completely-separated.
 \end{dfn}
 This is in fact \emph{equivalent} to being $T_4$, though this is relatively nontrivial, and the statement even has a name associated to it.  Before we prove that, however, we first present a useful 'lemma'.
 \begin{prp}{}{prp4.5.91}
@@ -2510,7 +2520,7 @@ $(\Leftarrow )$ Suppose that $X$ is homeomorphic to a subspace of $\prod _S[0,1]
 \end{thm}
 
 \begin{dfn}{}{PerfectlyT4}
-$X$ is \emph{perfectly-$T_4$} iff it is $T_1$ and any two disjoint closed can be perfectly-separated.
+$X$ is \term{perfectly-$T_4$} iff it is $T_1$ and any two disjoint closed can be perfectly-separated.
 \begin{rmk}
 For some reason, this is sometimes called $T_6$.  What is $T_5$ you ask?  Evidently $T_5$ means $T_1$ and every subspace is $T_4$.
 \end{rmk}
@@ -2591,11 +2601,11 @@ Unfortunately, products of perfectly-$T_4$ spaces need not even be $T_4$, much l
 \forwardref
 
 \noindent
-Define $S\coloneqq \R$\footnote{``$S$'' is for \emph{Sorgenfrey}, some dude's name.} and equip $S$ with the topology defined by the base
+Define $S\coloneqq \R$\footnote{``$S$'' is for \emph{Sorgenfrey}, some guy's name.} and equip $S$ with the topology defined by the base
 \begin{equation}
 \left\{ [a,b):a,b\in \R \cup \{ \pm \infty\} ,\ a<b\right\} .
 \end{equation}
-$S$ is called the \emph{Sorgenfrey Line}\index{Sorgenfrey Line}.\footnote{It is also sometimes called the \emph{lower-limit topology}\index{Lower-limit topology} because it has the property that a net $\lambda \mapsto x_{\lambda}$ converges to $x_{\infty}\in S$ iff it is eventually contained in $[x_{\infty},x_{\infty}+\varepsilon )$ for every $\varepsilon >0$, that is, iff it converges to $x_{\infty}$ ``from the right''.  I actually prefer this term for $S$ itself, as it is more descriptive, but as $S\times S$ is called the Sorgenfrey Plane (and no one calls this the ``lower-limit plane'' or something of the like), I have decided to just use ``Sorgenfrey'' for both.}  Note that
+$S$ is called the \term{Sorgenfrey Line}\index{Sorgenfrey Line}.\footnote{It is also sometimes called the \term{lower-limit topology}\index{Lower-limit topology} because it has the property that a net $\lambda \mapsto x_{\lambda}$ converges to $x_{\infty}\in S$ iff it is eventually contained in $[x_{\infty},x_{\infty}+\varepsilon )$ for every $\varepsilon >0$, that is, iff it converges to $x_{\infty}$ ``from the right''.  I actually prefer this term for $S$ itself, as it is more descriptive, but as $S\times S$ is called the Sorgenfrey Plane (and no one calls this the ``lower-limit plane'' or something of the like), I have decided to just use ``Sorgenfrey'' for both.}  Note that
 \begin{equation}
 (a,b)=\bigcup _{b-a>\varepsilon >0}[a-\varepsilon ,b)
 \end{equation}
@@ -2614,16 +2624,16 @@ g_D(x)\coloneqq \min \{ 1-\dist _D(x),\tfrac{1}{2}\} .
 As they are continuous with respect to the usual topology, they are continuous with respect to the Sorgenfrey Topology.
 
 Define
-\begin{equation}
+\begin{equation*}
 P\coloneqq \left\{ p\in (C\cup D)^{\comp}:\text{for every }\varepsilon >0,\ p-\varepsilon \in C\cup D\text{.}\right\} .
-\end{equation}
+\end{equation*}
 For $p\in P$, define $b_p\coloneqq \inf \left\{ x\in C\cup D:x\geq p\right\}$, and let us say that ``$C$ comes next'' iff $b_p$ is an accumulation point of $C$ in the usual topology, similarly for ``$D$ comes next'', and ``nothing comes next'' if this set is empty.  Finally pick $a_p$ such that $p<a_p<b_p$.\footnote{Such an $a_p$ exists because there must be some $[p,a_p)\subseteq (C\cup D)^{\comp}$.  If we happen to have $a_p=b_p$, instead replace $a_p$ with some element of $(p,a_p)$.}
 
 Now, let $f\colon S\rightarrow [0,1]$ be the function that is defined to be $0$, on $C$, $1$ on $D$, $\tfrac{1}{2}$ on $[p,\infty )$ if ``nothing comes next'', given by $g_C$ or $g_D$ on $(-\infty ,\min \{ \inf (C),\inf (D)\} )$ according to whether $\inf (C)\leq \inf (D)$ or vice-versa, change linearly from $\frac{1}{2}$ at $p$ to $g_C(a_p)$ at $a_p$ over $[p,a_p)$ if ``$C$ comes next'' and then is given by $g_C$ on $[a_p,b_p)$, and changes linearly from $\frac{1}{2}$ at $p$ to $g_D(a_p)$ at $a_p$ over $[p,a_p)$ if ``$D$ comes next'' and then is given by $g_D$ on $[a_p,b_p)$.  First note that this actually gives a well-defined function on all of $S$.  As all of domains of this `piece-wise' definition are closed, by the \nameref{PastingLemma}, this defines a continuous function.
 
 $f$ is obviously $0$ on $C$ and $1$ on $D$.  Conversely, the only way we might have $f(x)=0$ with $x\notin C$ is if $g_C(x)=0$ for $x\in [a_p,b_p)$ for some $p\in P$.  However, that $g_C(x)=0$ implies that $\dist _C(x)=0$, so that $x$ is an accumulation point of $C$ in the original topology.  The only time this would not automatically give that $x\in C$ is if $x-\varepsilon \in C$ for every $\varepsilon >0$, but then we would have $x\in P$, in which case $f(x)=\frac{1}{2}$.  Thus, $f(x)=0$ in fact implies that $x\in C$.  Similarly, $f(x)=1$ implies that $x\in D$.  Thus, $S$ is perfectly-$T_4$.
 
-We now check that $S\times S$ is not $T_4$.\footnote{$S\times S$ is the \emph{Sorgenfrey Plane}\index{Sorgenfrey Plane}.}
+We now check that $S\times S$ is not $T_4$.\footnote{$S\times S$ is the \term{Sorgenfrey Plane}\index{Sorgenfrey Plane}.}
 
 Define $L\coloneqq \left\{ \coord{x,-x}\in S\times S:x\in \R \right\}$.  Note that, as the topology of $S\times S$ is finer than that of $\R ^2$, $L$ is automatically closed.  Now define
 \begin{equation}
@@ -2666,11 +2676,11 @@ By the \namerefpcref{BaireCategoryTheorem}, there must be some $m_0\in \Z ^+$ su
 \end{split}
 \end{equation}
 But then, for all $\varepsilon$ sufficiently small, if $q_0\leq x_{\varepsilon}$,
-\begin{equation}
+\begin{equation*}
 \begin{split}
-\coord{x_{\varepsilon},-q_0} & \in \left( [q_0,q_0+\varepsilon )\times [-q_0,-q_0+\varepsilon )\right)  \\ & \qquad \qquad \cap \left( [x_{\varepsilon},x_{\varepsilon}+\tfrac{1}{m_0})\times [-x_{\varepsilon},-x_{\varepsilon}+\tfrac{1}{m_0})\right) \\ & \qquad \subseteq \left( [q_0,q_0+\varepsilon )\times [-q_0,-q_0+\varepsilon )\right) \cap U,
+\coord{x_{\varepsilon},-q_0} & \in \left( [q_0,q_0+\varepsilon )\times [-q_0,-q_0+\varepsilon )\right)  \\ & \qquad\cap \left( [x_{\varepsilon},x_{\varepsilon}+\tfrac{1}{m_0})\times [-x_{\varepsilon},-x_{\varepsilon}+\tfrac{1}{m_0})\right) \\ & \qquad \subseteq \left( [q_0,q_0+\varepsilon )\times [-q_0,-q_0+\varepsilon )\right) \cap U,
 \end{split}
-\end{equation}
+\end{equation*}
 and similarly, if $x_{\varepsilon}\leq q_0$, we have that $[q_0,q_0+\varepsilon )\times [-q_0,-q_0+\varepsilon )$ intersects $U$ at $\coord{q_0,-x_{\varepsilon}}$.  Thus, every neighborhood of $\coord{q_0,0}\in \Q$ intersects $U$, and so $S\times S$ is in fact not even $T_4$.
 \end{exm}
 
@@ -2679,9 +2689,9 @@ and similarly, if $x_{\varepsilon}\leq q_0$, we have that $[q_0,q_0+\varepsilon 
 We summarize what we have covered so far in this section.
 
 First of all, there are several levels of separation between two different objects in a space
-\begin{displayquote}
+\begin{important}
 Distinct $\Leftarrow$\footnote{A two-point space with the indiscrete topology---see \cref{exm4.5.2}.} Topologically-distinguishable $\Leftarrow$\footnote{The Sierpinski Space---see \cref{exm4.5.3}.} Separated \\ $\Leftarrow$\footnote{A certain three-point space---see \cref{exm4.5.8}.} Separated by neighborhoods $\Leftarrow$\footnote{Another three-point space---see \cref{exm4.5.11}.} Separated by closed neighborhoods $\Leftarrow$\footnote{The Arens Square---see \cref{ArensSquare}.} Completely-separated $\Leftarrow$\footnote{The Uncountable Fort Space---see \cref{UncountableFortSpace}.} Perfectly-separated
-\end{displayquote}
+\end{important}
 The arrows indicated implication of course, and all these implications are strict, as indicated by the examples referenced in the footnotes.
 
 There are three `families' of separation axioms of spaces:  (i)~separation of pairs of points, (ii)~separation of closed sets from points, and (iii)~and separation of disjoint closed sets.
@@ -2719,6 +2729,7 @@ And similarly for the third family:
 \end{enumerate}
 
 We now illustrate how all these axioms are related to each other.  All implications are strict (unless otherwise indicated by a $\Leftrightarrow$), in which case the offending counter-example is given in the indicated footnote.  Perhaps the only real surprise is the equivalence of $T_{4\frac{1}{2}}$ and completely-$T_4$:  \namerefpcref{UrysohnsLemma}.\footnote{Though perhaps it's worth nothing that $T_{k\frac{1}{2}}$ is equivalent to completely-$T_k$ for $k=3,4$ but \emph{not} $k=2$.}
+{\small
 \begin{savenotes}
 \begin{equation}\label{4.6.105}
 \begin{tikzcd}[column sep=tiny]
@@ -2731,6 +2742,7 @@ T_{2\tfrac{1}{2}} \ar[u,Rightarrow,"\footnote{The Simplified Arens Square---see 
 \end{tikzcd}.
 \end{equation}
 \end{savenotes}
+}
 
 Finally, we review which of these separation properties are preserved under subspaces and products.\footnote{Recall that (\cref{exm3.6.36}) none of them should be preserved under quotienting and all of them should be preserved under disjoint union.}
 
@@ -2753,7 +2765,7 @@ On the other hand, products of perfectly-$T_3$ spaces, $T_4\Leftrightarrow T_{4\
 
 For most topological properties, there is a ``local'' version.
 \begin{mdf}{Locally XYZ}{LocallyXYZ}
-A topological space is \emph{locally XYZ}\index{Locally XYZ} iff each point has a neighborhood base consisting of sets that are XYZ.
+A topological space is \term{locally XYZ}\index{Locally XYZ} iff each point has a neighborhood base consisting of sets that are XYZ.
 \end{mdf}
 The following result is probably the most useful for checking whether or not a space is actually locally XYZ.
 \begin{mpr}{}{prp3.7.2}
@@ -2764,9 +2776,9 @@ $(\Rightarrow )$ Suppose that $X$ is locally XYZ.  Let $x\in X$ and let $U\subse
 \blankline
 \noindent
 $(\Leftarrow )$ Suppose that for every $x\in X$ and open set $U\subseteq X$ containing $x$, there is a neighborhood $N\subseteq U$ of $x$ that is XYZ.  Define
-\begin{equation}
+\begin{equation*}
 \topology{B}_x\ceqq \left\{ N\subseteq X:N\text{ a neighborhood of }x\text{ that is XYZ.}\right\} .
-\end{equation}
+\end{equation*}
 We claim that this is a neighborhood base for the topology.  To show this, we must show that $U\subseteq X$ is open iff for every $x\in U$ there is some element $B\in \topology{B}_x$ with $x\in B\subseteq U$.
 
 So, suppose that $U\subseteq X$ is open.  By hypothesis, there is a neighborhood $N\subseteq U$ of $x$ that is XYZ, that is, there is some $N\in \topology{B}_x$ with $x\in N\subseteq U$.  Conversely, suppose that for every $x\in U$ there is some element $B\in \topology{B}_x$ with $x\in B\subseteq U$.  Then, in particular, every point in $U$ has a neighborhood contained in $U$, and so $U$ is open.
@@ -2796,7 +2808,10 @@ V_x\subseteq W_x^{\comp}\subseteq B_x^{\comp}\cup U_x
 \end{equation}
 and hence
 \begin{equation}
-V_x=V_x\cap \Cls (B_x)\subseteq W_x^{\comp}\cap \Cls (B_x)\subseteq U_x\cap \Cls (B_x)=U_x,
+\begin{split}
+V_x & =V_x\cap \Cls (B_x)\subseteq W_x^{\comp}\cap \Cls (B_x)\subseteq \\
+& U_x\cap \Cls (B_x)=U_x,
+\end{split}
 \end{equation}
 so that $\Cls (U_x)\subseteq W_x^{\comp}\cap \Cls (B_x)\subseteq U_x$.
 
@@ -2817,7 +2832,7 @@ Thus, $V_{x_1}\cup \cdots \cup V_{x_m}$ works.
 
 Given topological spaces $X$ and $Y$, we haven't yet discussed much possible topologies one may put on $\Mor _{\Top}(X,Y)$.  An important one you are almost certain to encounter in your mathematical career is the \emph{quasicompact-open topology}\index{Quasicompact-open topology}\index{Compact-open topology}, which has the following natural generalization.
 \begin{mdf}{XYZ-open topology}{XYZOpenTopology}
-	Let $X$ and $Y$ be topological spaces.  Then, the \emph{XYZ-open topology}\index{XYZ-open topology} on $\Mor _{\Top}(X,Y)$ is the topology generated by the collection
+	Let $X$ and $Y$ be topological spaces.  Then, the \term{XYZ-open topology}\index{XYZ-open topology} on $\Mor _{\Top}(X,Y)$ is the topology generated by the collection
 	\begin{equation}
 		\begin{multlined}
 		\left\{ \left\{ f\in \Mor _{\Top}(X,Y):f(N)\subseteq V\right\} :\right. \\ \left. N\subseteq X\text{ is XYZ and }V\subseteq Y\text{ is open.}\right\} .
@@ -2863,9 +2878,9 @@ The relevance to local properties is given by the following result, which itself
 \end{exr}
 For an application of the quasicompact-open topology in particular, see \cref{prp4.2.99}.
 
-\section{The Intermediate and Extreme Value Theorems}
+\section[The IVT and EVT]{The Intermediate and Extreme Value Theorems}
 
-\subsection{Connectedness and the Intermediate Value Theorem}
+\subsection[Connectedness and the IVT]{Connectedness and the Intermediate Value Theorem}
 
 You'll recall from calculus that the classical statement of the Intermediate Value Theorem is
 \begin{textequation}
@@ -2873,7 +2888,7 @@ Let $f\colon [a,b]\rightarrow \R$ be continuous.  Then, for all $y$ between $f(a
 \end{textequation}
 We will see that the proper way to interpret this statement is that the image of $f$ is connected, so that the image must contain everything in-between $f(a)$ and $f(b)$ as well.  Of course, in order to make this precise, we have to first define what it means to be connected.
 \begin{dfn}{Connected and disconnected}{Connected}
-Let $X$ be a topological space.  Then, $X$ is \emph{disconnected}\index{Disconnected} iff there exist disjoint nonempty closed sets $C,D\subset X$ such that $X=C\cup D$.  $X$ is \emph{connected}\index{Connected} iff it is not disconnected.  A subset $S$ of $X$ is connected iff it is connected in its subspace topology.
+Let $X$ be a topological space.  Then, $X$ is \term{disconnected}\index{Disconnected} iff there exist disjoint nonempty closed sets $C,D\subset X$ such that $X=C\cup D$.  $X$ is \term{connected}\index{Connected} iff it is not disconnected.  A subset $S$ of $X$ is connected iff it is connected in its subspace topology.
 \begin{rmk}
 The intuition for the definition of disconnected of course is that we `break up' the space into two separate pieces which have no overlap.
 \end{rmk}
@@ -2916,14 +2931,14 @@ for all $U\in \collection{U}$.  As $U$ is connected, it follows that, for each $
 \end{proof}
 \end{prp}
 \begin{dfn}{Connected component}{}
-Let $X$ be a topological space and let $x_1,x_2$.  Then, $x_1$ and $x_2$ are \emph{connected} (to each other) iff there exists a connected set $U\subseteq X$ with $x_1,x_2\in U$.
+Let $X$ be a topological space and let $x_1,x_2$.  Then, $x_1$ and $x_2$ are \term{connected}\index{Connected (relation)} (to each other) iff there exists a connected set $U\subseteq X$ with $x_1,x_2\in U$.
 \begin{prp}[breakable=false]{}{}
 The relation of being connected to is an equivalence relation on $X$.
 \begin{proof}
 $x$ is connected to itself because $\{ x\}$ is connected.  The relation is symmetric because the definition of the relation is symmetric.  If $x_1$ is connected to $x_2$ and $x_2$ is connected to $x_3$, then there is some connected set $U$ which contains $x_1$ and $x_2$, and there is some connected set $V$ which contains $x_2$ and $x_3$.  As $U$ and $V$ both contain $x_2$, it follows from the previous proposition that $U\cup V$ is connected, and hence $x_1$ is connected to $x_3$.
 \end{proof}
 \end{prp}
-A \emph{connected component}\index{Connected component} of $X$ is an equivalence class of some point with respect to the relation of being connected to.
+A \term{connected component}\index{Connected component} of $X$ is an equivalence class of some point with respect to the relation of being connected to.
 \end{dfn}
 We have a pretty explicit description of connected components.
 \begin{prp}{}{prp3.7.9}
@@ -2962,7 +2977,7 @@ $(\Leftarrow )$ Suppose that every connected component of every open subset is o
 Is it true that a space is locally connected iff every connected component is clopen?
 \end{exr}
 \begin{dfn}{Totally-disconnected}{}
-Let $X$ be a topological space.  Then, $X$ is \emph{totally-disconnected} iff every connected component of $X$ is a point.
+Let $X$ be a topological space.  Then, $X$ is \term{totally-disconnected}\index{Totally-disconnected} iff every connected component of $X$ is a point.
 \end{dfn}
 \begin{prp}{}{}
 Let $X$ be a discrete topological space.  Then, $X$ is totally-disconnected.
@@ -3049,10 +3064,13 @@ And now we finally get to the statement of the `true' Intermediate Value Theorem
 \begin{thm}{Intermediate Value Theorem}{IntermediateValueTheorem}\index{Intermediate Value Theorem}
 Let $f\colon X\rightarrow Y$ be a continuous function and let $S\subseteq X$ be connected.  Then, $f(S)$ is connected.
 \begin{rmk}
+	Sometimes this is abbreviated \term{IVT}\index{IVT}.
+\end{rmk}
+\begin{rmk}
 In other words, the continuous image of a connected set is connected.
 \end{rmk}
 \begin{rmk}
-In general, if a function $f\colon X\rightarrow Y$ has the property that the image of a connected set is connected, then we say that $f$ has the \emph{intermediate value property}\index{Intermediate Value Property}.  Thus, the Intermediate Value Theorem says that ``Continuous functions have the intermediate value property.''.  Continuous functions are not the only such functions with this property, however.  \namerefpcref{DarbouxsTheorem} says that any function that is the derivative of another function (from $\R$ to $\R$) has the intermediate value property.  See also \cref{exr3.8.32}.
+In general, if a function $f\colon X\rightarrow Y$ has the property that the image of a connected set is connected, then we say that $f$ has the \term{intermediate value property}\index{Intermediate Value Property} (also referred to as \emph{Darboux continuous}---see \cref{DarbouxsTheorem}).  Thus, the Intermediate Value Theorem says that ``Continuous functions have the intermediate value property.''.  Continuous functions are not the only such functions with this property, however.  \namerefpcref{DarbouxsTheorem} says that any function that is the derivative of another function (from $\R$ to $\R$) has the intermediate value property.  See also \cref{exr3.8.32}.
 \end{rmk}
 \begin{proof}
 We proceed by contradiction:  suppose that $f(S)$ is disconnected.  Then, $f(S)=U\cup V$ for $U,V\subseteq f(S)$ open in $f(S)$ disjoint and nonempty.  By continuity, we have that\footnote{Also recall that $f^{-1}(f(S))\supseteq S$---see \cref{exrA.1.47}.\cref{enmA.1.47.ii}.}
@@ -3079,7 +3097,7 @@ $[a,b]$ is connected by \cref{thm4.5.14}, and so, by the Intermediate Value Theo
 Are there functions which are not continuous but which still have the intermediate value property?
 \end{exr}
 
-\subsection{Quasicompactness and the Extreme Value Theorem}
+\subsection[Quasicompactness and the EVT]{Quasicompactness and the Extreme Value Theorem}
 
 You'll recall from calculus that the classical statement of the Extreme Value Theorem is
 \begin{textequation}
@@ -3089,10 +3107,13 @@ This is actually a special case of (or follows easily from) a \emph{much} more g
 \begin{thm}{Extreme Value Theorem}{ExtremeValueTheorem}\index{Extreme Value Theorem}
 Let $f\colon X\rightarrow Y$ be continuous and let $K\subseteq X$.  Then, if $K$ is quasicompact, then $f(K)$ is quasicompact.
 \begin{rmk}
+	Sometimes this is abbreviated \term{EVT}\index{EVT}.
+\end{rmk}
+\begin{rmk}
 In other words, the continuous image of a quasicompact set is quasicompact.
 \end{rmk}
 \begin{rmk}
-In general, if a function $f\colon X\rightarrow Y$ has the property that the image of a quasicompact set is quasicompact, then we say that $f$ has the \emph{extreme value property}\index{Extreme Value Property}.  Thus, the Extreme Value Theorem says that ``Continuous functions have the extreme value property.''.
+In general, if a function $f\colon X\rightarrow Y$ has the property that the image of a quasicompact set is quasicompact, then we say that $f$ has the \term{extreme value property}\index{Extreme Value Property}.  Thus, the Extreme Value Theorem says that ``Continuous functions have the extreme value property.''.
 \end{rmk}
 \begin{proof}
 Suppose that $K$ is quasicompact.  Let $\topology{U}$ be an open cover of $f(K)$.  Then, $f^{-1}(\cover{U})\coloneqq \left\{ f^{-1}(U):U\in \cover{U}\right\}$ is an open cover of $K$, and therefore it has a finite subcover $\{ f^{-1}(U_1),\ldots f^{-1}(U_m)\}$.  In other words,
@@ -3140,9 +3161,9 @@ What follows is a summary of all the equivalent characterizations of quasicompac
 
 First of all, we will need one last definition before getting to our final characterization.
 \begin{dfn}{Ultranet}{UltraNet}
-Let $X$ be a set and let $\lambda \mapsto x_{\lambda}$ be a net.  Then, $\lambda \mapsto x_{\lambda}$ is an \emph{ultranet}\index{Ultranet} iff for every $S\subseteq X$, $\lambda \mapsto x_{\lambda}$ is eventually contained in $S$ or eventually contained in $S^{\comp}$.
+Let $X$ be a set and let $\lambda \mapsto x_{\lambda}$ be a net.  Then, $\lambda \mapsto x_{\lambda}$ is an \term{ultranet}\index{Ultranet} iff for every $S\subseteq X$, $\lambda \mapsto x_{\lambda}$ is eventually contained in $S$ or eventually contained in $S^{\comp}$.
 \begin{rmk}
-This is sometimes also called a \emph{universal net}\index{Universal net}.  I prefer the term ``ultranet'' because (i) the word ``universal'' here isn't really being used in the sense in which it is usually meant and (ii) ``ultranet'' is meant to suggest a similarity with something called an \emph{ultra-filter}.  An \emph{ultra-filter}\index{Ultra-filter} is just a fancy word for a proper maximal filter, and it turns out that\footnote{Disclaimer:  I didn't actually check this because it doesn't matter for us, so I don't guarantee that this statement is exactly true on those nose.} the derived filter of an ultranet is an ultra-filter, hence the terminology.
+This is sometimes also called a \term{universal net}\index{Universal net}.  I prefer the term ``ultranet'' because (i) the word ``universal'' here isn't really being used in the sense in which it is usually meant and (ii) ``ultranet'' is meant to suggest a similarity with something called an \emph{ultra-filter}.  An \term{ultra-filter}\index{Ultra-filter} is just a fancy word for a proper maximal filter, and it turns out that\footnote{Disclaimer:  I didn't actually check this because it doesn't matter for us, so I don't guarantee that this statement is exactly true on those nose.} the derived filter of an ultranet is an ultra-filter, hence the terminology.
 \end{rmk}
 \end{dfn}
 This allows us to present our final characterization (together with a couple of `lemmas' that can be of use in their own right).

@@ -14,12 +14,12 @@ Intuitively, you could start by trying to label all the elements in $Y$ by eleme
 
 The more precise intuition is then that the two sets $X$ and $Y$ have the same number of elements, that is, the same cardinality, iff there is a bijection $f\colon X\rightarrow Y$ between them:  that $f$ is an injection says that we don't use a label more than once (or equivalently that $Y$ has at least as many elements as $X$) and that $f$ is a surjection says that we label everything at least once (or equivalently that $X$ has at least as many elements as $Y$).  In other words, according to \cref{exr2.1.3}, two sets should have the same cardinality iff they are isomorphic in $\Set$.\footnote{$\Set$ is the category of sets.  If you are reading this linearly and you see something you don't recognize, chances are it's in the appendix.  Use the index and index of notation at the end of the notes to find exactly where.}
 \begin{dfn}{Equinumerous}{}
-Let $X$ and $Y$ be sets.  Then, $X$ and $Y$ are \emph{equinumerous}\index{Equinumerous} iff $X\cong _{\Set}Y$.
+Let $X$ and $Y$ be sets.  Then, $X$ and $Y$ are \term{equinumerous}\index{Equinumerous} iff $X\cong _{\Set}Y$.
 \end{dfn}
 
 So we've determined what it means for two sets to have the same cardinality, but what actually \emph{is} a cardinality?  The trick is to identify a cardinal with the collection of all sets which have that cardinality.
 \begin{dfn}{Cardinal number}{dfn1.1.2}
-A \emph{cardinal number}\index{Cardinal number} is an element of
+A \term{cardinal number}\index{Cardinal number} is an element of
 \begin{equation}
 \aleph \coloneqq \Obj (\Set )/\cong _{\Set}\coloneqq \left\{ [X]_{\cong _{\Set}}:X\in \Obj (\Set )\right\} .
 \end{equation}
@@ -32,14 +32,14 @@ The idea then is that the natural numbers are precisely those cardinals which ar
 
 Of course, we don't have a precise definition yet, but everyone has an intuitive idea of what it means to be infinite.  So, consider an `infinite set' $X$.  Now remove one element $x_0\in X$ to form the set $U\coloneqq X\setminus \{ x_0\}$.  For any reasonable definition of ``infinite'', removing a single element from an infinite set should not change the fact that it is infinite, and so $U$ should still be infinite.  In fact, more should be true.  Not only should $U$ still be infinite, but it should still have the same cardinality as $X$.\footnote{We will see in the next chapter that there are infinite sets which are not of the same cardinality.  That is, in this sense, there is more than one type of infinity.}  It is this idea that we take as the defining property of being infinite.
 \begin{dfn}{Finite and infinite}{}
-Let $X$ be a set.  Then, $X$ is \emph{infinite}\index{Infinite} iff there is a bijection from $X$ to a proper subset of $X$.  $X$ is \emph{finite} iff it is not infinite.
+Let $X$ be a set.  Then, $X$ is \term{infinite}\index{Infinite} iff there is a bijection from $X$ to a proper subset of $X$.  $X$ is \term{finite} iff it is not infinite.
 \begin{rmk}
 The keyword here is \emph{proper}---there is a bijection from every set $X$ to some subset of $X$, namely $X\subseteq X$ itself.
 \end{rmk}
 \end{dfn}
 And now finally:
 \begin{dfn}{Natural numbers}{}
-The \emph{natural numbers}\index{Natural numbers}, $\N$, are defined as
+The \term{natural numbers}\index{Natural numbers}, $\N$, are defined as
 \begin{equation}
 \N \index[notation]{$\N$}\coloneqq \left\{ \abs{X}:X\in \Obj (\Set )\text{ is finite.}\right\} .
 \end{equation}
@@ -59,7 +59,7 @@ m+n\coloneqq \abs{M\sqcup N}\text{ and }mn\coloneqq \abs{M\times N}
 \end{equation}
 are well-defined.
 \begin{rmk}
-Recall that $\abs{M}$ means the equivalence class of the set $M$ under the equivalence relation of equinumerosity (see the definition of a cardinal, \cref{dfn1.1.2}).  Whenever we define an operation on equivalence classes that makes reference to a specific representative of that equivalence class, we must check that our definition does not depend on this representative.  For example, perhaps if I take a different set $M'$ with $\abs{M'}=\abs{M}$, it will turn out that $\abs{M'\sqcup N}\neq \abs{M\sqcup N}$.  If this happens, then our definition doesn't make sense.  Of course, it doesn't happen, but we need to check that it doesn't happen.  This is what it means to be \emph{well-defined}\index{Well-defined}.
+Recall that $\abs{M}$ means the equivalence class of the set $M$ under the equivalence relation of equinumerosity (see the definition of a cardinal, \cref{dfn1.1.2}).  Whenever we define an operation on equivalence classes that makes reference to a specific representative of that equivalence class, we must check that our definition does not depend on this representative.  For example, perhaps if I take a different set $M'$ with $\abs{M'}=\abs{M}$, it will turn out that $\abs{M'\sqcup N}\neq \abs{M\sqcup N}$.  If this happens, then our definition doesn't make sense.  Of course, it doesn't happen, but we need to check that it doesn't happen.  This is what it means to be \emph{well-defined}.
 \end{rmk}
 \begin{proof}
 Let $M_1,M_2,N_1,N_2$ be sets with $\abs{M_1}=\abs{M_2}$ and $\abs{N_1}=\abs{N_2}$.  By definition, this means that there are bijections $f\colon M_1\rightarrow M_2$ and $g\colon N_1\rightarrow N_2$.  We would like to show that $\abs{M_1\sqcup N_1}=\abs{M_2\sqcup N_2}$.  To show this, by definition, we need to construct a bijection from $M_1\sqcup N_1$ to $M_2\sqcup N_2$.  We do this as follows.  Define $h \colon M_1\sqcup N_1\rightarrow M_2\sqcup N_2$ by
@@ -265,7 +265,7 @@ M\coloneqq \prod _{m\in S}M_m
 and
 \begin{equation}\label{1.1.39}
 \begin{split}
-\mcal{T} & \coloneqq \left\{ T\subseteq M:T\in \Obj (\Set );\text{ for all }x,y\in T,\right. \\ & \qquad \left. \text{if }x\neq y\text{ it follows that }x_m\neq y_m\text{ for all }m\in S\text{.}\right\} .
+\mcal{T} & \coloneqq \left\{ T\subseteq M:T\in \Obj (\Set );\text{ for all }x,y\in T,\right. \\ & \qquad \left. \text{if }x\neq y\text{ it follows that} \right. \\ & \qquad \left. x_m\neq y_m\text{ for all }m\in S\text{.}\right\} .
 \end{split}
 \end{equation}
 Order $\mcal{T}$ by inclusion.
@@ -295,11 +295,11 @@ for all $m\in S$.  That is, $m_0$ is the smallest element of $S$, and so $\aleph
 $\coord{\N ,\leq}$ is a well-ordered set.
 \end{crl}
 
-\subsection{The natural numbers as a well-ordered integral crig}
+\subsection{The natural numbers as a well-ordered rig}
 
 We have shown that $\coord{\N ,+,\cdot}$ is a crig and that $\coord{\N ,\leq}$ is a well-ordered.  We now finally show how these two different structures, the algebraic structure and the order structure, are compatible.  But before we do that, of course, we have to make precise what we mean by the word ``compatible''.
 \begin{dfn}{Preordered rg}{dfn1.1.38}
-A \emph{preordered rg}\index{Preordered rg} is a set $X$ equipped with two binary operations $+$ and $\cdot$, and a relation $\leq$, so that
+A \term{preordered rg}\index{Preordered rg} is a set $X$ equipped with two binary operations $+$ and $\cdot$, and a relation $\leq$, so that
 \begin{enumerate}
 \item \label{enm1.1.38.1}$\coord{X,+,0,\cdot}$ is a rg,
 \item \label{enm1.1.38.2}$\coord{X,\leq}$ is a preordered set,
@@ -325,7 +325,7 @@ In a totally-ordered ring, we define $\sgn :X\rightarrow \{ 0,1,-1\} \subseteq X
 \sgn (x):=\begin{cases}1 & \text{if }x>0 \\ 0 & \text{if }x=0 \\ -1 & \text{if }x<0.\end{cases}
 \end{equation}\index[notation]{$\sgn$}
 \end{rmk}
-This is the \emph{signum function}\index{Signum function} and is meant merely to return the sign of an element.
+This is the \term{signum function}\index{Signum function} and is meant merely to return the sign of an element.
 \end{dfn}
 \begin{exr}{}{exr1.1.45}
 Let $\coord{R,+,0,\cdot ,\leq}$ satisfy all the axioms of a preordered rg except $0\leq 1$.
@@ -475,7 +475,7 @@ It is not uncommon for textbooks to introduce the natural numbers via the Peano 
 
 People who do use the Peano axioms to introduce the natural numbers, instead of constructing the natural numbers and proving they have the desired properties, will simply assume that a structure which satisfies the Peano axioms exists.  We, however, will instead \emph{prove} the Peano axioms are true; for us, they are theorems.  Before you try to go off and prove them, however, I had probably better tell you what they are.
 \begin{thm}{The Peano axioms}{PeanoAxioms}\index{Peano axioms}
-There exists a set $\N '$ which contains an element $0'\in \N'$ and a function $s:\N '\rightarrow \N '$ (called the \emph{successor function}\index{Successor function}), such that
+There exists a set $\N '$ which contains an element $0'\in \N'$ and a function $s:\N '\rightarrow \N '$ (called the \term{successor function}\index{Successor function}), such that
 \begin{enumerate}
 \item \label{enm1.1.23.i}$m\in \N '$ is in the image of $S$ iff $m\neq 0'$;
 \item \label{enm1.1.23.ii}$s$ is injective, and
@@ -519,7 +519,7 @@ We thus would like to find a set with algebraic structure (which will turn out t
 To understand what it means to be a cring $Z$ that contains $\N$ is quite easy, but how does one make sense of the statement that $Z$ is the `simplest' cring with this property?  The precise sense in which $Z$ should be the simplest cring which contains $\N$ is, if $Z'$ is any other cring which contains $\N$, then $Z'$ contains $Z$ as well.  That is, $Z$ is contained in every cring which contains $\N$.
 
 \begin{thm}{Integers}{Integers}
-There exists a unique totally-ordered integral cring $\Z$\index[notation]{$\Z$}, the \emph{integers}\index{Integers}, such that
+There exists a unique totally-ordered integral cring $\Z$\index[notation]{$\Z$}, the \term{integers}\index{Integers}, such that
 \begin{enumerate}
 \item \label{enm1.2.1.1}$\N \subseteq \Z$; and
 \item \label{enm1.2.1.2}if $Z$ is any other totally-ordered integral cring such that $\N \subseteq Z$, then $\Z \subseteq Z$.
@@ -550,7 +550,7 @@ The order itself doesn't really play a role here.  The significance is in going 
 This is actually a special case of a more general construction, the construction of the \emph{Grothendieck Group}\index{Grothendieck Group} of a commutative monoid.  We don't need this general construction and we are already pushing the envelope for level of abstraction in an introductory analysis course, so we don't present it in this level of generality.
 \end{rmk}
 \begin{rmk}
-Integral crings are usually called \emph{integral domains}\index{Integral domain}.  In fact, this term is the origin of our use of the word ``integral''.
+Integral crings are usually called \term{integral domains}\index{Integral domain}.  In fact, this term is the origin of our use of the word ``integral''.
 \end{rmk}
 \begin{proof}
 \Step{Define an equivalence relation on $\N \times \N$}
@@ -692,7 +692,7 @@ This should make sense:  the integers are, by definition, the `smallest' (totall
 \end{rmk}
 \begin{proof}
 We leave this as an exercise.
-\begin{exr}{}{}
+\begin{exr}[breakable=false]{}{}
 Do the proof yourself.
 \end{exr}
 \end{proof}
@@ -751,17 +751,17 @@ Uniqueness up to unique isomorphism now follows from the usual argument:  if $Z$
 
 We end this section with an example that is a bit off track:  when writing this section, the question came to mind whether it was true or not that a totally-ordered cring was necessarily integral (in particular, I wanted to know whether we could get integrality for free from other properties of the integers).  It turns out this is false.
 \begin{exm}{A totally-ordered cring that is not integral}{exm1.2.28}
-Define $R\coloneqq \Z \times \Z$, and for $\coord{m_1,n_1},\coord{m_2,n_2}\in R$, define
+Define $R\coloneqq \Z \times \Z$, and for $\coord{m_1,n_1},\coord{m_2,n_2}\in R$,\footnote{Secretly, I am thinking of $\coord{m,n}$ as $m+nx$ where $x$ is some `variable' that satisfies $x^2=0$.} define
 \begin{subequations}
-\begin{align}
+\begin{align*}
 \coord{m_1,n_1}+\coord{m_2,n_2} & \coloneqq \coord{m_1+m_2,n_1+n_2} \\
-\coord{m_1,n_1}\cdot \coord{m_2,n_2} & \coloneqq \coord{m_1m_2,m_1n_2+n_1m_2},\footnote{Secretly, I am thinking of $\coord{m,n}$ as $m+nx$ where $x$ is some `variable' that satisfies $x^2=0$.}
-\end{align}
+\coord{m_1,n_1}\cdot \coord{m_2,n_2} & \coloneqq \coord{m_1m_2,m_1n_2+n_1m_2},
+\end{align*}
 \end{subequations}
 as well as
-\begin{equation}
-\coord{m_1,n_1}\leq \coord{m_2,n_2}\text{ iff }m_1<m_2\text{ or }(m_1=m_2\text{ and }n_1\leq n_2).\footnote{This is often called the \emph{lexicographic order}\index{Lexicographic order} because the order is defined similarly to alphabetical order, that is, you compare the first entry first, and if those are equal, you look at the next entry, etc..}
-\end{equation}
+\begin{equation*}
+\coord{m_1,n_1}\leq \coord{m_2,n_2}\text{ iff }m_1<m_2\text{ or }(m_1=m_2\text{ and }n_1\leq n_2).\footnote{This is often called the \term{lexicographic order}\index{Lexicographic order} because the order is defined similarly to alphabetical order, that is, you compare the first entry first, and if those are equal, you look at the next entry, etc..}
+\end{equation*}
 
 \begin{exr}[breakable=false]{}{}
 Show that $\coord{R,+,\coord{0,0},-,\cdot ,\coord{1,0}}$ is a cring.
@@ -792,7 +792,7 @@ In case $m_1<m_2$ and $0<m_3$, it follows that $m_1m_3<m_2m_3$, as desired.  In 
 On the other hand, it is not integral as $\coord{0,1}\cdot \coord{0,1}=\coord{0,0}$.
 \end{exm}
 
-\section{Multiplicative inverses and the rational numbers}
+\section{Multiplicative inverses and the rationals}
 
 The motivation of the introduction to the rationals is essentially the same as the motivation for the introduction of the integers, just with multiplication instead of division.  That is, we would like to be able to solve equations of the form $mn=o$ for $m,n,o\in \Z$.  There is one significant difference however.  Unlike with addition, we cannot invert everything:  in particular, we cannot invert $0$.
 \begin{exr}{}{}
@@ -802,7 +802,7 @@ That is, the only ring in which $0$ is invertible is the $0$ ring.  On the other
 \begin{exm}{Tropical integers}{exm1.3.2}
 The tropical integers are an example of a nonzero integral crig in which $0$ is invertible.\footnote{As a matter of fact, $0$ is the \emph{only} invertible element.}  Thus, you do indeed need additive inverses for the result of the previous exercise to hold.
 
-Define $R\coloneqq \N$, $m+_Rn\coloneqq \max \{ m,n\}$, $m\cdot _Rn\coloneqq m+n$, and $0_R\coloneqq 0\eqqcolon 1_R$.  Then, $\coord{R,+_R,0_R,\cdot _R,1_R}$ are the \emph{tropical integers}\index{Tropical integers}.  The subscript $R$ is meant to distinguish `tropical' version from the usual version (e.g.~$+_R\coloneqq \max$ vs.~$+$).
+Define $R\coloneqq \N$, $m+_Rn\coloneqq \max \{ m,n\}$, $m\cdot _Rn\coloneqq m+n$, and $0_R\coloneqq 0\eqqcolon 1_R$.  Then, $\coord{R,+_R,0_R,\cdot _R,1_R}$ are the \term{tropical integers}\index{Tropical integers}.  The subscript $R$ is meant to distinguish `tropical' version from the usual version (e.g.~$+_R\coloneqq \max$ vs.~$+$).
 \begin{exr}[breakable=false]{}{}
 Show that indeed $\coord{R,+_R,0_R,\cdot _R,1_R}$ is a crig.  Furthermore, show that $0_R\cdot _R0_R=1_R$, so that indeed $0_R$ is invertible with multiplicative inverse $0_R^{-1}=0_R$.
 \end{exr}
@@ -861,7 +861,7 @@ Just as with the the natural numbers (\cref{prp1.1.54}) and the integers (\cref{
 \begin{prp}{}{prp1.3.4}
 For all $x\in \Q$, there exist unique $m\in \Z$ and $n\in \Z^+$ such that (i)~$\gcd (m,n)=1$ and (ii)~$x=\frac{m}{n}$.
 \begin{rmk}
-$m$ is the \emph{numerator}\index{Numerator} of $x$ and $n$ is the \emph{denominator}\index{Denominator} of $x$.\footnote{More generally, you might say that any integers $m,n\in \Z$ for which $x=\frac{m}{n}$ are numerators and denominators of $x$ respectively, regardless of whether or not $n$ is positive or $\gcd (m,n)=1$.}
+$m$ is the \term{numerator}\index{Numerator} of $x$ and $n$ is the \term{denominator}\index{Denominator} of $x$.\footnote{More generally, you might say that any integers $m,n\in \Z$ for which $x=\frac{m}{n}$ are numerators and denominators of $x$ respectively, regardless of whether or not $n$ is positive or $\gcd (m,n)=1$.}
 \end{rmk}
 \begin{rmk}
 Thus, this theorem says that not only can we write every rational number as the quotient of two integers, but furthermore, if we require that the denominator be positive and the two integers have ``no common factors'', then there is only one way to write a given rational number in this form.
@@ -899,13 +899,13 @@ Just as the integers corrected the `deficiency' of the natural numbers that was 
 \subsection{Least upper-bounds and why you should care}
 
 \begin{dfn}{Suprema}{Suprema}
-Let $\coord{X,\leq}$ be a preordered set, let $S\subseteq X$, and let $x\in X$.  Then, $x$ is a \emph{supremum}\index{Supremum} of $S$ iff
+Let $\coord{X,\leq}$ be a preordered set, let $S\subseteq X$, and let $x\in X$.  Then, $x$ is a \term{supremum}\index{Supremum} of $S$ iff
 \begin{enumerate}
 \item $x$ is an upper-bound of $S$, and
 \item if $x'$ is any other upper-bound of $S$, then $x\leq x'$.
 \end{enumerate}
 \begin{rmk}
-Supremum is synonymous with \emph{least upper-bounds} (because they are an upper-bound that is less than or equal to every other upper-bound).
+Supremum is synonymous with \term{least upper-bound}\index{Least upper-bound} (because they are an upper-bound that is less than or equal to every other upper-bound).
 \end{rmk}
 \begin{rmk}
 If $S$ has a supremum $x$, then we write $x\coloneqq \sup (S)$.  This is justified by the following exercise.
@@ -932,13 +932,13 @@ It is because of counter-examples like these that we shall primarily concern our
 \end{exr}
 We similarly have a notion of infimum, which is just the same concept with inequalities reversed.
 \begin{dfn}{Infimum}{}
-Let $\coord{X,\leq}$ be a preordered set, let $S\subseteq X$, and let $s\in X$.  Then, $x$ is a \emph{infimum}\index{Infimum} of $S$ iff
+Let $\coord{X,\leq}$ be a preordered set, let $S\subseteq X$, and let $s\in X$.  Then, $x$ is a \term{infimum}\index{Infimum} of $S$ iff
 \begin{enumerate}
 \item $x$ is a lower-bound of $S$, and
 \item if $x'$ is any other lower-bound of $S$, then $x'\leq x$.
 \end{enumerate}
 \begin{rmk}
-A you might have guessed, infima are also called \emph{greatest lower-bounds}\index{Greatest lower-bounds}.
+A you might have guessed, infima are also called \term{greatest lower-bounds}\index{Greatest lower-bounds}.
 \end{rmk}
 \begin{rmk}
 Similarly, if $S$ has an infimum $x$, then we write $x\coloneqq \inf (S)$.
@@ -961,14 +961,14 @@ Though we don't even have the definition to make sense of it yet, you'll recall 
 
 Thus, the desired property which $\Q$ lacks is the following.
 \begin{dfn}{Least upper-bound property}{}
-A preordered set has the \emph{least upper-bound property}\index{Least upper-bound property} iff every nonempty subset that is bounded above has a least upper-bound.
+A preordered set has the \term{least upper-bound property}\index{Least upper-bound property} iff every nonempty subset that is bounded above has a least upper-bound.
 \begin{rmk}
 You'll recall from \eqref{eqn1.4.3} that the empty-set has supremum $-\infty$ and that sets which are not bounded above have supremum $+\infty$.  Thus, the reason for the conditions ``nonempty'' and ``bounded above'' is that we don't want to necessarily require the existence of $\pm \infty$.  Besides these two extremes, however, we would like everything else to have a supremum.
 \end{rmk}
 \end{dfn}
 Of course, we have the inequality-reversed notion as well.
 \begin{dfn}{Greatest lower-bound property}{}
-A preordered set has the \emph{greatest lower-bound property}\index{Greatest lower-bound property} iff every nonempty subset that is bounded below has a greatest lower-bound.
+A preordered set has the \term{greatest lower-bound property}\index{Greatest lower-bound property} iff every nonempty subset that is bounded below has a greatest lower-bound.
 \end{dfn}
 It turns out that it doesn't actually matter which property we require:
 \begin{prp}{}{prp1.4.12}
@@ -994,7 +994,7 @@ $(\Leftarrow )$ This proof is the inequality-reversed version of the $(\Rightarr
 \end{proof}
 \end{prp}
 \begin{rmk}
-Sometimes preordered sets which possess both of these properties are called \emph{Dedekind-complete}\index{Dedekind-complete}.  The term \emph{Dedekind}-complete is to contrast with the term ``\emph{Cauchy}-complete'', which we will meet in \crefnameref{chp5}---see \cref{Completeness}.  Indeed, you should probably try to avoid saying the word ``complete'' by itself because (i)~this can lead to confusion with Cauchy-completeness and (ii)~in order theory the term ``complete'' (I believe?) usually implies the existence of suprema and infima of \emph{all} subsets (not necessarily nonempty and bounded).  That said, I can guarantee you I'm going to be sloppy about this myself.
+Sometimes preordered sets which possess both of these properties are called \term{Dedekind-complete}\index{Dedekind-complete}.  The term \emph{Dedekind}-complete is to contrast with the term ``\emph{Cauchy}-complete'', which we will meet in \crefnameref{chp5}---see \cref{Completeness}.  Indeed, you should probably try to avoid saying the word ``complete'' by itself because (i)~this can lead to confusion with Cauchy-completeness and (ii)~in order theory the term ``complete'' (I believe?) usually implies the existence of suprema and infima of \emph{all} subsets (not necessarily nonempty and bounded).  That said, I can guarantee you I'm going to be sloppy about this myself.
 \end{rmk}
 
 The real numbers will turn out to be a Dedekind-complete \emph{totally}-ordered set, and so it will be useful to have the following equivalent characterization of suprema and infima in totally-ordered sets.
@@ -1036,7 +1036,7 @@ D_{x_0}\coloneqq \left\{ x\in \Q :x\leq x_0\right\} .
 \end{equation}
 This subset of $\Q$ uniquely determines $x_0$ because $\sup (D_{x_0})=x_0$.  The idea then is to use sets of the form \eqref{1.4.14} to define the real numbers.  The only thing we have to do for this to make sense in $\Q$ alone is to get rid of the reference to $x_0$.  We do that as follows.
 \begin{dfn}{Dedekind-cut}{DedekindCut}
-Let $\coord{X,\leq}$ be a preordered set and let $D\subseteq X$.  Then, $D$ is a \emph{Dedekind-cut}\index{Dedekind-cut} in $X$ iff
+Let $\coord{X,\leq}$ be a preordered set and let $D\subseteq X$.  Then, $D$ is a \term{Dedekind-cut}\index{Dedekind-cut} in $X$ iff
 \begin{enumerate}
 \item \label{DedekindCut.i}$D\neq \emptyset$, 
 \item \label{DedekindCut.ii}$D\neq X$, and
@@ -1127,7 +1127,7 @@ In case you're wondering why we're asking, check out \namerefpcref{KuratowskisCl
 
 And now we finally turn to the real numbers themselves.
 \begin{thm}{Real numbers}{RealNumbers}
-There exists a unique Dedekind-complete totally-ordered field $\R$, the \emph{real numbers}\index{Real numbers}, such that
+There exists a unique Dedekind-complete totally-ordered field $\R$, the \term{real numbers}\index{Real numbers}, such that
 \begin{enumerate}
 \item $\Q \subseteq \R$; and
 \item if $R$ is any other Dedekind-complete totally-ordered field such that $\Q \subseteq R$, then $\R \subseteq R$.
@@ -1246,7 +1246,10 @@ Check that $D\cdot E$ is in fact a Dedekind-cut.
 
 From the definition \eqref{1.4.31}, it suffices to show associativity and commutativity for the case $0\leq D,E$.  Then,
 \begin{equation}
-D\cdot (E\cdot F)=D\cdot \left( E_0^+F_0^+\cup 0\right) =D_0^+E_0^+F_0^+\cup 0=(D\cdot E)\cdot F,
+\begin{split}
+D\cdot (E\cdot F) & =D\cdot \left( E_0^+F_0^+\cup 0\right) =D_0^+E_0^+F_0^+\cup 0 \\
+& =(D\cdot E)\cdot F,
+\end{split}
 \end{equation}
 and similarly for commutativity.  
 
@@ -1306,9 +1309,11 @@ D\cdot (E+F).
 Let us first do the case with $0\leq D,E,F$.  Then, by the previous step,
 \begin{equation}
 \begin{split}
-D\cdot (E+F) & \coloneqq \left( D_0^+[E+F]_0^+\right) \cup 0=\left( D_0^+(E_0^++F_0^+)\right) \cup 0 \\
+D\cdot (E+F) & \coloneqq \left( D_0^+[E+F]_0^+\right) \cup 0 \\
+& =\left( D_0^+(E_0^++F_0^+)\right) \cup 0 \\
 & =\left( D_0^+E_0^++D_0^+F_0^+\right) \cup 0 \\
-& =D_0^+E_0^+\cup 0+D_0^+F_0^+\cup 0\eqqcolon D\cdot E+D\cdot F.
+& =D_0^+E_0^+\cup 0+D_0^+F_0^+\cup 0 \\
+& \eqqcolon D\cdot E+D\cdot F.
 \end{split}
 \end{equation}
 
@@ -1408,7 +1413,7 @@ Show that $\phi$ is an isomorphism of preordered fields.
 Once again, as with the the natural numbers (\cref{prp1.1.54}), the integers (\cref{prp1.2.23}), and the rationals \cref{prp1.3.4}, we would like to know that this agrees with our naive idea of what the real numbers are.  For better or for worse,\footnote{No, definitely for worse.} your naive idea of a real number is probably in terms of decimal expansions.  We don't yet have the tools to prove the analogous result for the reals, however, and so we postpone this until \nameref{sssDecimalExpansions} in \crefnameref{sbs3.3.5}.
 
 \begin{dfn}{Irrational numbers}{}
-An element $x\in \R$ is \emph{irrational}\index{Irrational numbers} iff $x\notin \Q$.
+An element $x\in \R$ is \term{irrational}\index{Irrational numbers} iff $x\notin \Q$.
 \begin{rmk}
 In fact, it will be a little while before we can show that $\Q ^{\comp}$ is even nonempty.  For example, it is easy to show that there is no rational number whose square is $2$---but can you show that there \emph{is} a \emph{real} number whose square is $2$?  (See the subsubsection \nameref{sssSquareRoots} in \crefnameref{sbs3.3.3}.)
 \end{rmk}
@@ -1423,9 +1428,9 @@ Let $A,B\subseteq \R$ be nonempty and bounded above.
 \end{enumerate}
 \begin{rmk}
 To clarify,
-\begin{equation}
+\begin{equation*}
 A+B\coloneqq \left\{ a+b:a\in A,\ b\in B\right\} \text{ and }AB\coloneqq \left\{ ab:a\in A,\ b\in B\right\} .
-\end{equation}\index[notation]{$A+B$}\index[notation]{$AB$}
+\end{equation*}\index[notation]{$A+B$}\index[notation]{$AB$}
 \end{rmk}
 \end{exr}
 

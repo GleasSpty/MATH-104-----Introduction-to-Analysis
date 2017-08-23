@@ -486,6 +486,7 @@ In a general rg $\coord{R,+,0,\cdot}$ (\cref{Rg}), if $\{ x_m,\ldots ,x_n\} \sub
 \end{split}
 \end{equation}\index[notation]{$\sum _{k=m}^nx_k$}
 Similarly, we write
+\intomargin
 \begin{equation}\label{eqn2.4.24}
 \begin{split}
 \prod _{\{ x_m,\ldots ,x_n\}}x_k & \ceqq \prod _{k=m}^nx_k \\
@@ -500,9 +501,9 @@ The definition in \eqref{eqn2.4.23} is \term{sigma notation}\index{Sigma notatio
 Define $b\coloneqq \frac{1}{\abs{a}}$.  Let $M>0$.  We show that $m\mapsto b^m$ is eventually larger than $M$.  It will then follows that $m\mapsto \abs{a}^m$ is eventually smaller than $\frac{1}{M}$, or in other words, $m\mapsto \abs{a}^m$ is eventually contained in $B_{\frac{1}{M}}(0)$.  As $\frac{1}{M}$ is just as arbitrary as $\varepsilon >0$, this will show that $\lim _ma^m=0$.
 
 We have
-\begin{equation}
+\begin{equation*}
 b^m=(1+(b-1))^m=\sum _{k=0}^m\binom{m}{k}(b-1)^k\geq 1+m(b-1).\footnote{$\binom{m}{k}$ is the $\coord{m,k}$ \term{binomial coefficient} and is defined by $\binom{m}{k}\ceqq \frac{m(m-1)(m-2)\cdots (m-(k+1))}{\prod _{j=1}^kj}$---see \cref{BinomialCoefficient} for elaboration if you need it.}
-\end{equation}
+\end{equation*}
 Because $b-1>0$, it follows from the Archimedean Property (\cref{thm3.2.3})\footnote{Choose $m\in \N$ to be strictly larger than $\frac{M-1}{b-1}$, so that $1+m(b-1)>M$.} that $m\mapsto b^m$ is eventually larger than $M$, which completes the proof.
 \end{proof}
 \begin{rmk}
@@ -839,14 +840,16 @@ Hence,
 \begin{equation}
 \begin{split}
 \abs{x_{\lambda '}-x_\infty} & =\abs{(x_{\lambda '}-u_\lambda )+(u_\lambda -x_\infty )} \\
-& \leq \abs{x_{\lambda '}-u_\lambda}+\abs{u_\lambda -x_\infty}<\varepsilon +\varepsilon =2\varepsilon .
+& \leq \abs{x_{\lambda '}-u_\lambda}+\abs{u_\lambda -x_\infty} \\
+& <\varepsilon +\varepsilon =2\varepsilon .
 \end{split}
 \end{equation}
 We're almost done.  The only problem with this is that $\lambda '$ is a specific index.  We need this inequality to hold for all $\lambda$ sufficiently large, not just a single $\lambda '$.  Fortunately, the Cauchyness can do this for us:  it follows from \eqref{3.3.45} that, whenever $\lambda \geq \lambda _0$, $\abs{x_\lambda -x_{\lambda '}}<2\varepsilon$.  Hence, for $\lambda \geq \lambda _0$,
 \begin{equation}
 \begin{split}
 \abs{x_\lambda -x_\infty} & =\abs{(x_\lambda -x_{\lambda '})+(x_{\lambda '}-x_\infty)} \\
-& \leq \abs{x_\lambda -x_{\lambda '}}+\abs{x_{\lambda '}-x_\infty}<2\varepsilon +2\varepsilon =4\varepsilon .
+& \leq \abs{x_\lambda -x_{\lambda '}}+\abs{x_{\lambda '}-x_\infty} \\
+& <2\varepsilon +2\varepsilon =4\varepsilon .
 \end{split}
 \end{equation}
 \end{proof}
@@ -1142,14 +1145,14 @@ In this case, we may write $a_k=\pm (-1)^kb_k$ where $b_k\geq 0$ and the $\pm$ i
 Let $m\mapsto a_m$ be a nonincreasing sequence that converges to $0$.  Then, $\sum _{m\in \N}(-1)^ma_m$ converges.
 \begin{proof}
 The first thing to notice is that
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \MoveEqLeft
 \sum _{k=m}^n(-1)^{k-m}a_k \\
 & =a_m-(a_{m+1}-a_{m+2})-(a_{m+3}-a_{m+4})-\cdots \\ & \quad -(a_{n-1}-a_n) \\
 & \leq a_m
 \end{split}
-\end{equation}
+\end{equation*}
 because each $a_k-a_{k+1}\geq 0$.\footnote{Depending on whether $m-n$ is even or odd, the last term might have instead just be $-a_n$ instead of $-(a_{n-1}-a_n)$.  Either way, the same inequality holds.}
 
 Using this, we see that
@@ -1248,13 +1251,13 @@ Prove the case where
 \end{prp}
 \begin{exm}{Harmonic Series}{HarmonicSeries}
 Consider the series $\sum _{m\in \Z ^+}(-1)^{m+1}\frac{1}{m}$ with terms $a_m\coloneqq (-1)^{m+1}\frac{1}{m}$.  This is called the \term{Alternating Harmonic Series}\index{Alternating Harmonic Series}, whereas the series of absolute values $\sum _{m\in \Z ^+}\frac{1}{m}$ is the \term{Harmonic Series}\index{Harmonic Series}.  We see immediately from the Alternating Series Test that the alternating harmonic series converges.  In fact, it converges to $\ln (2)$,\footnote{See \cref{exr6.4.76}.} though we don't know that yet (we don't even know what $\ln (2)$ is!).  The harmonic series itself though diverges (so that the alternating harmonic series is conditionally convergent).  To see this, we apply the Comparison Test:
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \sum _{m\in \Z ^+}\tfrac{1}{m} & =1+\tfrac{1}{2}+\tfrac{1}{3}+\tfrac{1}{4}+\tfrac{1}{5}+\tfrac{1}{6}+\tfrac{1}{7}+\tfrac{1}{8}+\cdots \\
 & \geq 1+\tfrac{1}{2}+\left( \tfrac{1}{4}+\tfrac{1}{4}\right) +\left( \tfrac{1}{8}+\tfrac{1}{8}+\tfrac{1}{8}+\tfrac{1}{8}+\tfrac{1}{8}\right) \\
 & =1+\tfrac{1}{2}+\tfrac{1}{2}+\tfrac{1}{2}+\cdots =\infty .
 \end{split}
-\end{equation}
+\end{equation*}
 \begin{rmk}
 If you take a string and fix its endpoints, then there are only countably many ``fundamental'' frequencies that the string can vibrate at (fundamental in the sense that any way in which the string might vibrate can be written as a sum of the fundamental frequency solutions).  These are called the \emph{harmonics} and the wavelength of every harmonic is of the form $\frac{1}{m}2L$, where $L$ is the length of the string.  This is where the term ``harmonic'' comes from (or so it seems).
 \end{rmk}
@@ -2508,8 +2511,10 @@ Let $\lambda \mapsto x_\lambda \in S$ be a net converging to $x_\infty \in \R ^d
 \begin{split}
 \abs{x_{\lambda _0}-s_k} & =\left| (x_{\lambda _0}-x_\infty )+(x_\infty -s_k)\right| \\
 & \geq \left| \left| x_{\lambda _0}-x_\infty \right| -\left| x_\infty -s_k\right| \right| \\
-& \geq \left| x_\infty -s_k\right| -\left| x_{\lambda _0}-x_\infty \right| >\abs{x_{\infty}-s_k}-\varepsilon _0 \\
-& \geq \abs{x_{\infty}-s_k}-\left( \abs{s_k-x_{\infty}}-\varepsilon _k\right) =\varepsilon _k,
+& \geq \left| x_\infty -s_k\right| -\left| x_{\lambda _0}-x_\infty \right| \\
+& >\abs{x_{\infty}-s_k}-\varepsilon _0 \\
+& \geq \abs{x_{\infty}-s_k}-\left( \abs{s_k-x_{\infty}}-\varepsilon _k\right) \\
+& =\varepsilon _k,
 \end{split}
 \end{equation}
 and so, $x_{\lambda _0}\notin B_{\varepsilon _{s_k}}(s_k)$, a contradiction of the fact that $\{ B_{\varepsilon _{s_1}}(s_1),\ldots ,B_{\varepsilon _{s_m}}(s_m)\}$ is a cover of $S$.  Therefore, $\lim _\lambda x_\lambda =x_\infty \in S$, and we are done.

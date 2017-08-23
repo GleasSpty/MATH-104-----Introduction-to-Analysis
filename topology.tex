@@ -728,7 +728,8 @@ Let $U\in \collection{U}_0$ and suppose that $U_1\cap \cdots \cap U_m\subseteq U
 \begin{equation}
 \begin{split}
 U\cup \bigcup _{k=1}^m\bigcup _{l=1}^{n_k}U_k^l & \supseteq \left( \bigcap _{k=1}^mU_k\right) \cup \left( \bigcup _{k=1}^m\bigcup _{l=1}^{n_k}U_k^l\right) \\
-& \supseteq \bigcap _{k=1}^m\left( U_k\cup U_k^1\cup \cdots \cup U_k^{n_k}\right) =X,
+& \supseteq \bigcap _{k=1}^m\left( U_k\cup U_k^1\cup \cdots \cup U_k^{n_k}\right) \\
+& =X,
 \end{split}
 \end{equation}
 so that
@@ -771,9 +772,9 @@ This condition is exactly analogous to the condition for directed sets $\Lambda$
 The relation between nets and filter bases is given by the following.
 \begin{dfn}{Derived filter base}{DerivedFilterBase}
 Let $X$ be a topological space, let $\lambda \mapsto x_\lambda \in X$ be a net, and define
-\begin{equation}
+\begin{equation*}
 \filter{F}_{\lambda \mapsto x_\lambda}\coloneqq \left\{ F\subseteq X:F\text{ eventually contains }\lambda \mapsto x_\lambda \right\} .
-\end{equation}\index[notation]{$\filter{F}_{\lambda \mapsto x_\lambda}$}
+\end{equation*}\index[notation]{$\filter{F}_{\lambda \mapsto x_\lambda}$}
 \begin{exr}[breakable=false]{}{}
 Show that $\filter{F}$ is a filter base.
 \end{exr}
@@ -1083,6 +1084,7 @@ Let $X$ be a set, denoted by $\tilde{\filter{F}}$ the collection of all filter b
 \item \label{enmKelleysFilterConvergenceTheorem.iix}if $\filter{F}\to x$, then $\filter{G}\to x$ for every filtering $\filter{G}$ of $\filter{F}$;
 \item \label{enmKelleysFilterConvergenceTheorem.ii}every filtering $\filter{G}\supseteq \filter{F}$ has in turn a filtering $\filter{H}$ such that $\filter{H}\to x$, then $\filter{F}\to x$; and
 \item \label{enmKelleysFilterConvergenceTheorem.iii}for all directed sets $I$ and convergent filters $\filter{F}^i\to x^i\in X$, for $i\in I$, if $\filter{F}_{i\mapsto x^i}\to x^\infty$, then
+\intomargin
 \begin{equation}
 \begin{split}
 \filter{F}_\infty & \coloneqq \left\{ U\subseteq X:\text{there exists }i_U\in I\text{ such that,}\right. \\
@@ -1509,13 +1511,13 @@ where $S\subseteq \N$.  ($x_m$ is a function from $2^{\N}$ into $\{ 0,1\}$, and 
 We now show that this sequence has no convergent cofinal subnet (necessarily also a sequence).  We proceed by contradiction:  suppose that there were a cofinal subset $\Lambda '\subseteq \N$, $\Lambda '=\{ m_0,m_1,m_2,\ldots \}$ (with $m_n\leq m_{n+1}$), such that $n\mapsto x_{m_n}$ converges.  Then, by \cref{crl4.5.15} (nets in products converge iff each component does), for each $S\subseteq \N$, the sequence $n\mapsto x_{m_n}(S)\in \{ 0,1\}$ would have to converge.  Thus, for each $S\subseteq \N$, the sequence $n\mapsto x_{m_n}(S)$ would have to be either eventually $0$ or eventually $1$.  In other words, either (i)~for all but finitely many $m_n\in \Lambda '$, $m_n\notin S$;  or (ii)~for all but finitely many $m_n\in \Lambda '$, $m_n\in S$.  In other words, for all $S\subseteq \N$, either (i)~there is a cofinite\footnote{Just as cocountable means that the complement is countable, \term{cofinite}\index{Cofinite} means that the complement is finite.} subset of $\Lambda '$ that is contained in $S^{\comp}$ or (ii)~there is a cofinite subset of $\Lambda '$ that is contained in $S$.\footnote{Cofinite in $\Lambda '$, that is.}
 
 So, take $S\coloneqq \{ m_0,m_2,m_4,\ldots \} \subset \Lambda '$.  Then, there is some cofinite subset $\Lambda ''\subseteq \Lambda '$ such that either $\Lambda ''\subseteq S$ or $\Lambda ''\subseteq S^{\comp}$.  In the former case, we have that
-\begin{equation}
+\begin{equation*}
 \text{finite set }=\Lambda '\setminus \Lambda '' \supseteq \Lambda '\setminus S=\{ m_1,m_3,m_5,\ldots \} :
-\end{equation}
+\end{equation*}
 a contradiction.  Thus, we must have that $\Lambda ''\subseteq S^{\comp}$, and so
-\begin{equation}
+\begin{equation*}
 \text{finite set }=\Lambda '\setminus \Lambda ''\supseteq \Lambda '\setminus S^{\comp}=\{ m_0,m_2,m_4,\ldots \} :
-\end{equation}
+\end{equation*}
 a contradiction.  As both possibilities resulted in a contradiction, this itself is a contradiction, and so our assumption that there was a convergent cofinal subnet must have been incorrect.  Therefore, $m\mapsto x_m$ contains no convergent cofinal subnet, despite the fact that $X$ is quasicompact.
 \end{exm}
 
@@ -2123,12 +2125,12 @@ Note that in all cases, every element of $\topology{B}_p$ is \emph{open},\footno
 We first check that $X$ is not completely-$T_2$ by showing that no continuous function can separate $p_1$ from $p_2$.  So, let $f\colon X\rightarrow [0,1]$ be continuous.
 
 Write $\alpha \coloneqq f(p_{n,k})$.  Then,
-\begin{equation}
+\begin{equation*}
 \begin{split}
 f^{-1}(\alpha )\cap T_{n,k} & =f^{-1}\left( \bigcap _{m\in \Z ^+}(\alpha -\tfrac{1}{m},\alpha +\tfrac{1}{m})\right) \cap T_{n,k} \\
 & =\bigcap _{m\in \Z ^+}S_m,
 \end{split}
-\end{equation}
+\end{equation*}
 where
 \begin{equation}
 S_m\coloneqq f^{-1}((\alpha -\tfrac{1}{m},\alpha +\tfrac{1}{m}))\cap T_{n,k}
@@ -2731,6 +2733,7 @@ And similarly for the third family:
 We now illustrate how all these axioms are related to each other.  All implications are strict (unless otherwise indicated by a $\Leftrightarrow$), in which case the offending counter-example is given in the indicated footnote.  Perhaps the only real surprise is the equivalence of $T_{4\frac{1}{2}}$ and completely-$T_4$:  \namerefpcref{UrysohnsLemma}.\footnote{Though perhaps it's worth nothing that $T_{k\frac{1}{2}}$ is equivalent to completely-$T_k$ for $k=3,4$ but \emph{not} $k=2$.}
 {\small
 \begin{savenotes}
+\intomargin
 \begin{equation}\label{4.6.105}
 \begin{tikzcd}[column sep=tiny]
 T_0 & & & & \\
@@ -3031,7 +3034,11 @@ We show that in fact $\sup (S)\in U$.  We proceed by contradiction:  suppose tha
 
 Because $U$ is open, there is some $\varepsilon >0$ such that $(\sup (S)-\varepsilon ,\sup (S)+\varepsilon )\subseteq U$.  By \cref{prp1.4.11}, there must be some $x\in S$ with $\sup (S)-\varepsilon <x\leq \sup (S)$, so that $[(a,x)\subseteq U$.  But then,
 \begin{equation}
-[(a,x))\cup (\sup (S)-\varepsilon ,\sup (S)+\varepsilon )=[(a,\sup (S)+\varepsilon )\subseteq U,
+\begin{split}
+\MoveEqLeft
+[(a,x))\cup (\sup (S)-\varepsilon ,\sup (S)+\varepsilon ) \\
+& =[(a,\sup (S)+\varepsilon )\subseteq U,
+\end{split}
 \end{equation}
 and so, in particular, there is some $x'>\sup (S)$ such that $[(a,x')\subseteq U$,  a contradiction as $S$ is the supremum of the set of all such elements.  Therefore, we must have that $\sup (S)=b$.
 

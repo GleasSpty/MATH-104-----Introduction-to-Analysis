@@ -125,7 +125,10 @@ Furthermore, if $f$ is injective, then we have equality.
 \noindent
 \cref{prpC.2.3.ii} Note that we have that (\cref{exrA.1.30}.\cref{enmA.1.30.iv} and \cref{exrA.1.47}.\cref{enmA.1.47.ii}) $U\cap S\subseteq f^{-1}(f(U)\cap f(S))$.  Therefore, if $U$ intersects $S$, it must be the case that $f(U)$ intersects $f(S)$.  Furthermore, note that as $f$ is injective, $f(S_1\cap S_2)=f(S_1)\cap f(S_2)$ (\cref{exrA.1.30}) and $f^{-1}(f(S'))=S'$ (\cref{exrA.1.47}) for all subsets $S_1,S_2,S'\subseteq X$.  Thus, if $f$ is injective,
 \begin{equation}
-U\cap S=f^{-1}(f(U))\cap f^{-1}(f(S))=f^{-1}(f(U)\cap f(S)),
+\begin{split}
+U\cap S & =f^{-1}(f(U))\cap f^{-1}(f(S)) \\
+& =f^{-1}(f(U)\cap f(S)),
+\end{split}
 \end{equation}
 and hence
 \begin{equation}
@@ -134,8 +137,10 @@ f(U\cap S)=f(U)\cap f(S),
 so in this case $U$ intersects $S$ iff $f(U)$ intersects $f(S)$.  Hence,
 \begin{equation}
 \begin{split}
-f(\Star _{\cover{U}}(S)) & \coloneqq f\biggg( \bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}U\biggg) =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.iii}}\bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}f(U) \\
-& \subseteq \footnote{Here we are using the fact that $U$ intersects $S$ implies that $f(U)$ intersects $f(S)$.  Also note that we have equality here if $f$ is injective.}\bigcup _{\substack{U\in \cover{U} \\ f(U)\cap f(S)\neq \emptyset}}f(U)\eqqcolon \Star _{f(\cover{U})}f(S).
+f(\Star _{\cover{U}}(S)) & \coloneqq f\biggg( \bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}U\biggg) \\
+& =\footnote{\cref{exrA.1.30}.\cref{enmA.1.30.iii}}\bigcup _{\substack{U\in \cover{U} \\ U\cap S\neq \emptyset}}f(U) \\
+& \subseteq \footnote{Here we are using the fact that $U$ intersects $S$ implies that $f(U)$ intersects $f(S)$.  Also note that we have equality here if $f$ is injective.}\bigcup _{\substack{U\in \cover{U} \\ f(U)\cap f(S)\neq \emptyset}}f(U) \\
+& \eqqcolon \Star _{f(\cover{U})}f(S).
 \end{split}
 \end{equation}
 
@@ -225,18 +230,18 @@ We simply `compute'.
 \begin{equation}
 \begin{split}
 \MoveEqLeft
-\Star _{\cover{U}}(x)\cap \Star _{\cover{V}}(x)\coloneqq \left( \bigcup _{\substack{U\in \cover{U} \\ x\in U}}U\right) \cap \left( \bigcup _{\substack{V\in \cover{V} \\ x\in V}}V\right) \\
-& =\bigcup _{\substack{U\in \cover{U}\st x\in U \\ V\in \cover{V}\st x\in V}}U\cap V \\
-& =\bigcup _{\substack{U\in \cover{U},V\in \cover{V} \\ x\in U\cap V}}U\cap V\eqqcolon \Star _{\cover{U}\wedge \cover{V}}(x).
+\Star _{\cover{U}}(x)\cap \Star _{\cover{V}}(x)\coloneqq \biggg( \bigcup _{\substack{U\in \cover{U} \\ x\in U}}U\biggg) \cap \biggg( \bigcup _{\substack{V\in \cover{V} \\ x\in V}}V\biggg) \\
+& =\bigcup[0]_{\substack{U\in \cover{U}\st x\in U \\ V\in \cover{V}\st x\in V}}U\cap V \\
+& =\bigcup[0]_{\substack{U\in \cover{U},V\in \cover{V} \\ x\in U\cap V}}U\cap V\eqqcolon \Star _{\cover{U}\wedge \cover{V}}(x).
 \end{split}
 \end{equation}
 \end{proof}
 \end{prp}
 \begin{exm}{$\Star _{\cover{U}}(S)\cap \Star _{\cover{V}}(S)\neq \Star _{\cover{U}\wedge \cover{V}}(S)$}{}
 Define $X\coloneqq \{ 0,1,2,3\}$, and
-\begin{equation}
+\begin{equation*}
 \cover{U}\coloneqq \left\{ \{ 0,1\} ,\{ 2\} ,\{ 3\} \right\} \text{ and }\cover{V}\coloneqq \left\{ \{ 0,2\} ,\{ 1,3\} \right\} .
-\end{equation}
+\end{equation*}
 Then,
 \begin{equation}
 \cover{U}\wedge \cover{V}=\left\{ \emptyset ,\{ 0\} ,\{ 1\} ,\{ 2\} ,\{ 3\} \right\} .
@@ -833,7 +838,8 @@ Let $\varepsilon >0$.  Let $x_1,x_2\in X$ lie in some $\varepsilon$ ball.  Choos
 \begin{equation}
 \begin{split}
 \dist _C(x_2) & \leq \metric{x_2}{c}\leq \metric{x_2}{x_1}+\metric{x_1}{c} \\
-& <2\varepsilon +(\dist _C(x_1)+\varepsilon )=3\varepsilon +\dist _C(x_1),
+& <2\varepsilon +(\dist _C(x_1)+\varepsilon ) \\
+& =3\varepsilon +\dist _C(x_1),
 \end{split}
 \end{equation}
 and so
@@ -1423,6 +1429,7 @@ Another reason to believe that the topology of uniform convergence on quasicompa
 		and hence contains $h$, as desired. 
 		
 		For the other direction, let $f\in \Mor _{\Top}(X,\R )$, $K_1,\ldots ,K_n\subseteq X$ quasicompact, and $\varepsilon _1,\ldots ,\varepsilon _m>0$ all be arbitrary.  Then,
+		{\small
 		\begin{equation}\label{eqn4.2.105}
 			\begin{split}
 				\MoveEqLeft
@@ -1431,6 +1438,7 @@ Another reason to believe that the topology of uniform convergence on quasicompa
 				& =f+\left\{ g\in \Mor _{\Top}(X,\R ):g(K_k)\subseteq B_{\varepsilon _k}(0)\right\} 
 			\end{split}
 		\end{equation}
+		}
 		is an arbitrary set of the form \eqref{2.20}.  Finally, let $h$ be an arbitrary element of this set.   The function $x\mapsto \abs{h(x)-f(x)}$ achieves a maximum $\delta _k$ on $K_k$.  By hypothesis, we have $\delta _k<\varepsilon _k$.  Replace $\delta _k$ with $\frac{\delta _k+\varepsilon _k}{2}$, so that we still have $\delta _k<\varepsilon _k$, but we now also have the strict inequality $\abs{h(x)-f(x)}<\delta _k$ for all $x\in K_k$.
 		
 		For each $K_i$ and $x\in K_k$, let $U_x\subseteq K_k$ be open and such that $f$ is strictly within $\tfrac{\varepsilon _k-\delta _k}{2}$ of $f(x)$ on $U_x$.  Then, there is a finite cover---denote the \emph{closure} (in $K_k$) of each element of of this finite cover by $L_{k,1},\ldots ,L_{k,n_k}$ with $x_{k,l}\in L_{k,l}$ being the $x$ of $U_x$.  Thus, $K_k$ is covered by $L_{k,1},\ldots ,L_{k,n_k}$ and $f$ is strictly within $\varepsilon _k-\delta _k$ of $f(x_{k,l})$ on $L_{k,l}$  Do this for each $K_k$ to get compact sets $L_{k,l}$ for $1\leq k\leq n$ and $1\leq l\leq m_n$.  As $h$ is within $\delta _k$ of $f$ on all of $K_k$, it will certainly be within $\delta _k$ of $f(x_{k,l})$ for all $l$ as $x_{k,l}\in K_k$.  Thus,
@@ -1626,13 +1634,13 @@ Thus, without loss of generality assume that $\ell (x^\infty,x^1)<2^{1-m}$, so t
 \ell (x^{k_0},x^{k_0+1})+\cdots +\ell (x^{l_0-1},x^{l_0})\leq 2^{-m}
 \end{equation}
 By choice of $k_0$ and $l_0$, we have
-\begin{equation}
+\begin{equation*}
 \ell (x^{\infty},x^1)+\cdots +\ell (x^{k_0-1},x^{k_0})+\ell (x^{k_0},x^{k_0+1})>2^{-m}
-\end{equation}
+\end{equation*}
 and
-\begin{equation}
+\begin{equation*}
 \ell (x^{k_0},x^{k_0+1})+\cdots +\ell (x^{l_0-1},x^{l_0})+\ell (x^{l_0},x^{l_0+1})>2^{-m}.
-\end{equation}
+\end{equation*}
 In order that \eqref{4.8.53} still be satisfied, it thus must be the case that
 \begin{equation}
 \ell (x^{l_0},x^{l_0+1})+\cdots +\ell (x^{n-1},x^n)\leq 2^{-m}.
@@ -1688,9 +1696,9 @@ Thus, $\Mor _{\Set}(\R ,\R )$ is canonically a uniform space.  Furthermore, as i
 We now shows that $\Mor _{\Set}(\R ,\R )$ is not completely-$T_4$ with respect to this topology.  To do this, we first show that $\Mor _{\Set}(\R ,\Z )\subseteq \Mor _{\Set}(\R ,\R )$ is not completely-$T_4$.\footnote{The proof of this is adapted from \cite[pg.~206]{Munkres}.}  Note that it is \emph{not} immediate just from this that $\Mor _{\Set}(\R ,\R )$ is not $T_4$, as subspaces of $T_4$ spaces need not be $T_4$ in general (\cref{exm4.4.69}).
 
 For $m\in \Z$, define
-\begin{equation}
+\begin{equation*}
 P_m\coloneqq \left\{ f\in \Mor _{\Set}(\R ,\Z ):\restr{f}{[f^{-1}(m)]^{\comp}}\text{ is injective.}\right\} ,
-\end{equation}
+\end{equation*}
 that is, the set of all functions that are injective `modulo sending more than one point to $m$'.  We show that $P_0$ and $P_1$ are closed and disjoint, but cannot be separated by open neighborhoods.
 
 We first check that $P_0$ is closed (the proof that $P_1$ is closed is nearly identical).  So, let $\lambda \mapsto f_\lambda \in P_0$ converge to $f_\infty$.  Suppose that $f_\infty (x_1)=f_\infty (x_2)$ is distinct from $0$.  Then, by our definition of convergence and the fact that our functions are taking values in the integers, it must be the case that $\lambda \mapsto f_\lambda (x_i)$ is eventually equal to $f_\infty (x_i)$ for $i=1,2$.  Then, in particular, we will have that $f_{\lambda _0}(x_1)=f_{\infty}(x_1)=f_{\infty}(x_2)=f_{\lambda _0}(x_2)$ for $\lambda _0$ sufficiently large, and hence $x_1=x_2$.  Thus, $f_\infty \in P_0$.
@@ -1871,7 +1879,7 @@ We first show that $f_\infty$ is continuous.  Let $\varepsilon >0$.  Let $\lambd
 \begin{split}
 \MoveEqLeft
 \abs{f_\infty (x)-f_\infty (x_\infty )} \\
-& \leq \abs{f_\infty (x)-f_{\lambda _1}(x)}+\abs{f_{\lambda _1}(x)-f_{\lambda _0}(x)} \\ & \qquad +\abs{f_{\lambda _0}(x)-f_{\lambda _0}(x_\infty )}+\abs{f_{\lambda _0}(x_\infty )-f_{\lambda _2}(x_\infty )} \\ & \qquad +\abs{f_{\lambda _2}(x_\infty )-f_\infty (x_\infty )} \\
+& \leq \abs{f_\infty (x)-f_{\lambda _1}(x)}+\abs{f_{\lambda _1}(x)-f_{\lambda _0}(x)} \\ & \quad +\abs{f_{\lambda _0}(x)-f_{\lambda _0}(x_\infty )} \\ & \quad +\abs{f_{\lambda _0}(x_\infty )-f_{\lambda _2}(x_\infty )} \\ & \quad +\abs{f_{\lambda _2}(x_\infty )-f_\infty (x_\infty )} \\
 & <5\varepsilon .
 \end{split}
 \end{equation}
@@ -1912,9 +1920,9 @@ Take $X\coloneqq \R$ equipped with the cocountable extension topology.  Recall t
 The same proof in the previous example shows that the only quasicompact subsets of $X$ are the finite sets.\footnote{In fact, the more open sets you have, the fewer quasicompact sets you have.  Thus, as the cocountable extension topology is finer than the cocountable topology, there are fewer quasicompact sets in the cocountable extension topology in the sense that, if $K$ is quasicompact for the cocountable extension topology, $K$ is quasicompact for the cocountable topology, hence finite.}  Let $f\colon X\rightarrow \R$ be the Dirichlet function.  As $f^{-1}(0)=\Q ^{\comp}$ is not closed, $f$ is not continuous.  We construct a net of functions in $\Mor _{\Top}(X,\R )$ converging to $f$ uniformly on each quasicompact (i.e.~each finite) subset of $X$.
 
 Our directed set $\Lambda$ is the collection of all finite subsets of $X$ ordered by inclusion.  For $S\in \Lambda$, let us write $S=\{ x_1,\ldots ,x_m\}$ with $x_k<x_{k+1}$ and define
-\begin{equation}
+\begin{equation*}
 f_S(x)\coloneqq \begin{cases}f(x) & \text{if }x\in S \\ f(x_1) & \text{if }x<x_1 \\ \frac{f(x_{k+1}-f(x_k)}{x_{k+1}-x_k}(x-x_k) & \text{for }x_k<x<x_{k+1} \\ f(x_m) & \text{if }x_m<x,\end{cases}
-\end{equation}
+\end{equation*}
 That is, it is a constant $f(x_1)$ for all $x\leq x_1$, and similarly for $x\geq x_m$.  For $x$ between $x_k$ and $x_{k+1}$, is it a just the line segment going from $f(x_k)$ at $x=x_k$ to $f(x_{k+1})$ at $x=x_{k+1}$.  By construction, this is continuous with respect to the usual topology, and hence continuous with respect to the cocountable extension topology.
 
 Now, for $K\subseteq X$ quasicompact, $K$ is finite, and hence $K\in \Lambda$.  Thus, whenever $S\geq K$, that is, whenever $S\supseteq K$, we have that $f_S(x)=f(x)$ for all $x\in S$, so that $\norm{f_S-f}=0$.  In particular, (i)~$S\mapsto f_S$ is Cauchy; and (ii)~if it converges in $\Mor _{\Top}(X,\R )$, it must converge to $f\in \Mor _{\Top}(X,\R )$.  However, as $f$ is not continuous, i.e.~not an element of $\Mor _{\Top}(X,\R )$, evidently $S\mapsto f_S$ does not converge, and so $\Mor _{\Top}(X,\R )$ is not complete.
@@ -2162,7 +2170,7 @@ We define
 Denote the uniformity on $X$ by $\uniformity{U}$.  For every uniform cover $\cover{U}\in \uniformity{U}$, we define a corresponding cover $\cover{U}'$ of $X'$ as follows.  For $\cover{U}\in \uniformity{U}$ and $U\in \cover{U}$, define
 \begin{equation}\label{B.26}
 \begin{split}
-U' & \coloneqq \left\{ (\lambda \mapsto x_{\lambda}\in X':\right. \\ & \qquad \qquad \left. \lambda \mapsto x_{\lambda}\text{ is eventually contained in }U\text{.}\right\} \\
+U' & \coloneqq \left\{ (\lambda \mapsto x_{\lambda}\in X':\right. \\ & \qquad \left. \lambda \mapsto x_{\lambda}\text{ is eventually contained in }U\text{.}\right\} \\
 \cover{U}' & \coloneqq \{ U':U\in \cover{U}\} \\
 \uniformity{U}' & \coloneqq \{ \cover{U}':\cover{U}\in \uniformity{U}\} .
 \end{split}
@@ -2235,7 +2243,9 @@ that is, a cover of $\iota (X)$ is uniform iff it is a cover that is obtained fr
 To show this, we first check that $\q (U')\cap \q (\c (X))=\q (U'\cap \c (X))$.  We always have that $\supseteq$ inclusion (\cref{exrA.1.30}), and so it suffices to prove the $\subseteq$ inclusion.  So, let $\lambda \mapsto x_{\lambda}\in X$ be a Cauchy net that is equivalent to a Cauchy net $\mu \mapsto y_{\mu}$ that is eventually contained in $U$ and the constant Cauchy net $\nu \mapsto z_{\infty}\in X$.  This implies in particular that $\nu \mapsto z_{\infty}$ is eventually contained in $U$, so that $(\nu \mapsto z_{\infty})\in U'\cap \c (X)$, so that $\q (\lambda \mapsto x_{\lambda})\in \q (U'\cap \c (X))$.  Thus,
 \begin{equation}
 \begin{split}
-\Cmp (\cover{U}) \wedge \{ \iota (X)\} & \coloneqq \left\{ \q (U')\cap \q (\c (X)):U\in \cover{U}\right\}  \\
+\MoveEqLeft
+\Cmp (\cover{U}) \wedge \{ \iota (X)\} \\
+& \coloneqq \left\{ \q (U')\cap \q (\c (X)):U\in \cover{U}\right\}  \\
 & =\left\{ \q (U'\cap \c (X)):U\in \cover{U}\right\} \\
 & =\left\{ \iota (U):U\in \cover{U}\right\} ,
 \end{split}
@@ -2455,12 +2465,12 @@ x_m\coloneqq f(x_{m-1}).
 We wish to show that the sequence $m\mapsto x_m$ is Cauchy.  If we can do so, then its limit $x_\infty$ must exist, and so by taking the limit of the previous equation, we would find that $x_\infty =f(x_\infty )$ ($f$ is Lipschitz-continuous, hence uniformly-continuous, hence continuous).  Thus, it suffices to show that $m\mapsto x_m$ is Cauchy.
 
 To see this, we first notice that\footnote{We're using $y$s instead of $x$s because those symbols are already used-up.}
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \metric{y_1}{y_2} & \leq \metric{y_1}{f(y_1)}+\metric{f(y_1)}{f(y_2)}+\metric{f(y_2)}{y_2} \\
 & \leq \metric{y_1}{f(y_1)}+M\metric{y_1}{y_2}+\metric{f(y_2)}{y_2},
 \end{split}
-\end{equation}
+\end{equation*}
 and so
 \begin{equation}\label{4.5.75}
 \metric{y_1}{y_2}\leq \frac{1}{1-M}\left( \metric{y_1}{f(y_1)}+\metric{f(y_2)}{y_2}\right) 
@@ -2470,13 +2480,13 @@ Also note that
 \metric{f^m(y_1)}{f^m(y_2)}\leq M^m\metric{y_1}{y_2},
 \end{equation}
 which follows of course from just applying \eqref{4.5.70} inductively.  Taking $y_1\coloneqq f^m(x_0)$ and $y_2\coloneqq f^n(x_0)$ in \eqref{4.5.75}, we find
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \metric{x_m}{x_n} & \leq \frac{1}{1-M}\left( \metric{x_m}{x_{m+1}}+\metric{x_{n+1}}{x_n}\right) \\
 & \leq \frac{1}{1-M}\left( M^m\metric{x_0}{f(x_0)}+M^n\metric{f(x_0)}{x_0}\right) \\
 & =\frac{M^m+M^n}{1-M}\metric{x_0}{f(x_0)}.
 \end{split}
-\end{equation}
+\end{equation*}
 Because $M<1$, we can make $\frac{M^m+M^n}{1-M}$ arbitrarily small by taking $m$ and $n$ sufficiently large.\footnote{If you are not comfortable with this amount of detail, I suggest you fill in the gaps.  You will want to get to the point where you feel comfortable just asserting Cauchyness after obtaining an inequality like this.}  Hence, this sequence is Cauchy, and we are done.
 \end{proof}
 \end{thm}

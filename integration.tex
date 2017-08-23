@@ -185,13 +185,13 @@ As was explained in a remark, we need not show \cref{CaratheodorysTheorem.iii} i
 
 \Step{Prove \cref{CaratheodorysTheorem.ii} for finite unions}
 We first show that the union of finitely many measurable sets is measurable.  It suffices of course to then just show that the union of two measurable sets is measurable.  So, let $M_1,M_2\subseteq X$ be measurable and let $S\subseteq X$.  Then,
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \meas (S) & =\footnote{Because $M_2$ is measurable.}\meas (S\cap M_2)+\meas (S\cap M_2^{\comp}) \\
 & =\footnote{Because $M_1$ is measurable (applied twice).}\meas (S\cap M_2\cap M_1)+\meas (S\cap M_2\cap M_1^{\comp}) \\ & \qquad +\meas (S\cap M_2^{\comp}\cap M_1)+\meas (S\cap M_2^{\comp}\cap M_1^{\comp}) \\
 & \geq \footnote{By subadditivity and the fact that $M_1\cup M_2=(M_1\cap M_2)\cup (M_1\cap M_2^{\comp})\cup (M_1^{\comp}\cap M_2)$.}\meas (S\cap (M_1\cup M_2))+\meas (S\cap (M_1\cup M_2)^{\comp})
 \end{split}
-\end{equation}
+\end{equation*}
 Thus, indeed, $M_1\cup M_2$ is measurable.
 
 \Step{Complete the proof of \cref{CaratheodorysTheorem.ii}}
@@ -536,7 +536,8 @@ and so $\meas$ is inner-regular on $S$.
 Let $S\subseteq X$ be measurable.  Suppose that $\meas (S)=\infty$.  This time, write $X=\bigcup _{m\in \N}K_m$ for $K_m\subseteq X$ compact and $K_m\subseteq K_{m+1}$.\footnote{By definition, $\sigma$-compact just means we can write $X=\bigcup _{m\in \N}K_m'$ for $K_m\subseteq X$ compact, not necessarily with $K_m'\subseteq K_{m+1}'$.  Given this, we may define $K_m\ceqq \bigcup _{k=0}^mK_m'$ so that now $X=\bigcup _{m\in \N}$, $K_m\subseteq X$ is compact, and $K_m\subseteq K_{m+1}$.}  Define $S_m\ceqq S\cap K_m$.  Then, $K_m\setminus S_m$ has finite measure, and so by outer-regularity, there is some open $U_m\subseteq X$ such that $K_m\setminus S_m\subseteq U_m$ and $\meas \left( U_m\setminus (K_m\setminus S_m)\right) <1$.\footnote{Here, we have taken $\varepsilon =1$.}  Now define $L_m\ceqq K_m\cap U_m^{\comp}$.  $L_m$ is compact and $L_m\subseteq S_m$.  Furthermore,
 \begin{equation}
 \begin{split}
-\meas (S_m\setminus L_m) & \ceqq \meas (S_m\cap (K_m^{\comp}\cup U_m)=\meas (S_m\cap U_m) \\
+\meas (S_m\setminus L_m) & \ceqq \meas (S_m\cap (K_m^{\comp}\cup U_m) \\
+& =\meas (S_m\cap U_m) \\
 & \leq \meas (U_m\setminus (K_m\setminus S_m))<1.
 \end{split}
 \end{equation}
@@ -662,11 +663,17 @@ $\meas ((0,1))=0$ for example, so this is definitely not strictly-positive.  Wha
 
 We first check that it is regular.  $\meas$ itself is finite, and so certainly finite on quasicompact sets.  Let $U\subseteq \R$ be open.  If $0\in U$, then as $\{ 0\}$ is quasicompact, we have that
 \begin{equation}
-\meas (U)=1=\sup \{ \meas (K):K\subseteq U,\ K\text{ quasicompact}\} .
+\begin{split}
+\meas (U) & =1 \\
+& =\sup \{ \meas (K):K\subseteq U,\ K\text{ quasicompact}\} .
+\end{split}
 \end{equation}
 On the other hand, if $0\notin U$, then no subset of $U$ will contain $0$, and so once again we have
 \begin{equation}
-\meas (U)=0=\sup \{ \meas (K):K\subseteq U,\ K\text{ quasicompact}\} .
+\begin{split}
+\meas (U) & =0 \\
+& =\sup \{ \meas (K):K\subseteq U,\ K\text{ quasicompact}\} .
+\end{split}
 \end{equation}
 Thus, $\meas$ is inner-regular on opens.  Now let $S\subseteq \R$ be arbitrary.  If $0\in S$, then every open set which contains $S$ will also contain $0$, and so we definitely have
 \begin{equation}
@@ -873,9 +880,9 @@ An \term{isogeneous space} is a uniform space $X$ equipped with a group of unifo
 \uniformity{B}_\Phi \coloneqq \{ \mcal{B}_U\}
 \end{equation}
 where
-\begin{equation}
+\begin{equation*}
 \mcal{B}_U\coloneqq \{ \phi (U):\phi \in \Phi\} \text{ and }U\subseteq X\text{ nonempty open}.
-\end{equation}
+\end{equation*}
 is a uniform base for $X$.
 \begin{rmk}
 That is to say, for every open subset $U\subseteq X$, you obtain a single uniform cover in $\uniformity{B}_{\Phi}$, and that single cover is given by `translating' $U$ around using $\Phi$.
@@ -1201,9 +1208,9 @@ for $U\in \collection{G}$ open (the exact same proof will work for $\meas '$).  
 and so to show that this suprema is at most the suprema in \eqref{5.1.75}, it suffices to show that, for every $K\subseteq U$ quasicompact, there is some $V_K\in \collection{G}\cap Z(\collection{G})$ with $K\subseteq V_K\Subset U$.
 
 So, let $U\subseteq X$ be open and let $K\subseteq U$ be quasicompact.  We want to find such a $V_K$.  As $X$ is $T_0$, it is uniformly-completely-$T_3$, and so we may uniformly-separate quasicompact sets from closed sets, and so there is some uniform cover $\cover{B}\in \uniformity{B}_\Phi$ such that $\Star _{\cover{B}}(K)$ is disjoint from $\Star _{\cover{B}}(U^{\comp})$.  Because $X$ is a locally compact $T_2$ isogeneous space, by taking a star-refinement if necessary, we can without loss of generality assume that each element of $\cover{B}$ has compact closure (i.e.~is an element of $\collection{G}$).\footnote{Take any open set $U$ with compact closure (which exists by local compactness).  Then, $\cover{B}_U$ will be a cover whose elements are in $\collection{G}$.  Take a common star-refinement of this and $\cover{B}$.  The closures of elements of this new cover will be contained in the elements of $\cover{B}_U$, which themselves will be compact as closed sets of compact sets are compact.}  Take a star-refinement $\cover{C}\in \uniformity{B}_{\Phi}$.  Once again, every element of $\cover{C}$ has compact closure.  By quasicompactness of $K$, there are finitely many $C_1,\ldots ,C_m\in \cover{C}$ that cover $K$.  Define $C\coloneqq C_1\cup \cdots \cup C_m\in \collection{G}$.  Furthermore,
-\begin{equation}
+\begin{equation*}
 K\subseteq C\subseteq \Star _{\cover{C}}(C)\subseteq \Star _{\cover{B}}(K)\subseteq \Star _{\cover{B}}(U^{\comp})^{\comp}\subseteq U.
-\end{equation}
+\end{equation*}
 Thus, we have shown that for $U\in \collection{G}$ and $K\subseteq U$ quasicompact, there is some $V_K\in \collection{G}$ with $K\subseteq V_K\Subset U$.  However, we still need to show that we can find such a $V_K\in \collection{G}\cap Z(\collection{G})$.  From what we have just shown, it suffices to show that, for every $U,V\in \collection{G}$ with $U\Subset V$, there is some $W\in Z(\collection{G})\cap \collection{G}$ with $U\Subset W\Subset V$.
 
 So, let $U,V\in \mcal{G}$ with $U\Subset V$.  We showed before in \cref{Haar.17} that this implies that $\Cls (U)\subseteq \Int (V)$.  Then, because we may uniformly separate quasicompact sets from closed sets in uniformly-completely-$T_3$ spaces, there is some uniform cover $\cover{B}\in \uniformity{B}_{\Phi}$ such that $\Star _{\cover{B}}(\Cls (U))$ is disjoint from $\Star _{\cover{B}}(V^{\comp})$.  Define
@@ -1398,7 +1405,7 @@ Then,
 \meas _1(U_1)\meas _2(U_2)\geq \meas _1(K_1)\meas _2(K_2) \\
 & >\left( \meas _1(U_1)-\frac{\varepsilon}{\meas _1(U_2)+\meas _2(U_2)}\right) \\
 & \quad \cdot \left( \meas _2(U_2)-\frac{\varepsilon}{\meas _1(U_1)+\meas _2(U_2)}\right) \\
-& =\meas _1(U_1)\meas _2(U_2)-\varepsilon +\frac{\varepsilon ^2}{(\meas _1(U_1)+\meas _2(U_2))^2} \\
+& =\meas _1(U_1)\meas _2(U_2)-\varepsilon \\ & \quad +\frac{\varepsilon ^2}{(\meas _1(U_1)+\meas _2(U_2))^2} \\
 & >\meas _1(U_1)\meas _2(U_2)-\varepsilon ,
 \end{split}
 \end{equation}
@@ -1409,9 +1416,9 @@ Let $S\subseteq X_1\times X_2$ be open.  We must show that $[\meas _1\times \mea
 
 \Step{Show that $[\meas _1\times \meas _2](S_1\times S_2)=\meas _1(S_1)\meas _2(S)$ for $\meas _i(S_i)<\infty$}[stpProductMeasure.5]
 Let $S_i\subseteq X_i$ with $\meas _i(S_i)<\infty$.  We want to show that $[\meas _1\times \meas _2](S)=\meas _1(S_1)\meas _2(S_2)$.  In other words, we want to show that
-\begin{equation}
+\begin{equation*}
 \meas _1(S_1)\meas _2(S_2)=\inf \{ \meas _{\mrm{U}}(U):S_1\times S_2\subseteq U,\ U\text{ open}\} .
-\end{equation}
+\end{equation*}
 Let $\varepsilon >0$.  Choose $\delta >0$ such that $\delta (\meas _1(S_1)+\meas _2(S_2))+\delta ^2<\varepsilon$.  Because $\meas _i$ is regular, there is some open $U_i\subseteq X_i$ with $S_i\subseteq U_i$ and
 \begin{equation}
 \meas _i(S_i)\leq \meas _i(U_i)<\meas _i(S_i)+\delta .
@@ -1502,12 +1509,12 @@ Let $K_{i,k}\subseteq X_i$ be compact for $0\leq k\leq m$ be such that $\bigcup 
 \end{multlined}
 \end{equation}
 The $\leq$ equality follows from subadditivity.  To show the other inequality, let $\varepsilon >0$, and let $U\subseteq X_1\times X_2$ be open and such that
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \bigcup _{k=0}^mK_{1,k}\times K_{2,k} & \subseteq U\text{ and }[\meas _1\times \meas _2](U) \\
 & <[\meas _1\times \meas _2]\left( \bigcup _{k=0}^mK_{1,k}\times K_{2,k}\right) +\varepsilon .
 \end{split}
-\end{equation}
+\end{equation*}
 Then,
 \begin{equation}
 \begin{split}
@@ -1615,7 +1622,8 @@ Hence,
 \begin{split}
 \MoveEqLeft {}
 [\meas _1\times \meas _2](S)\leq [\meas _1\times \meas _2](U) \\
-& \leq \sum _{m\in \N}\meas _1(U_{1,m})\meas _2(U_{2,m})<[\meas _1\times \meas _2](U)+\varepsilon \\
+& \leq \sum _{m\in \N}\meas _1(U_{1,m})\meas _2(U_{2,m}) \\
+& <[\meas _1\times \meas _2](U)+\varepsilon \\
 & <[\meas _1\times \meas _2](S)+2\varepsilon ,
 \end{split}
 \end{equation}
@@ -1652,9 +1660,9 @@ Note that $P_x$ is open (and has positive measure for $x\in S_1$ because $S_2$ h
 L_x\subseteq V_{x,y_1}\cup \cdots \cup V_{x,y_{n_x}}.
 \end{equation}
 Define
-\begin{equation}
+\begin{equation*}
 U_x\ceqq U_{x,y_1}\cap \cdots \cap U_{x,y_{n_x}}\text{ and }V_x\ceqq V_{x,y_1}\cup \cdots \cup V_{x,y_{n_x}},
-\end{equation}
+\end{equation*}
 and
 \begin{equation}
 U_1\ceqq \bigcup _{x\in S_1}U_x.
@@ -1684,9 +1692,9 @@ Note that
 \meas _2(V_{x_k})\geq \meas _2(L_{x_k})>\min \{ M_{x_1},\ldots ,M_{x_m}\} .
 \end{equation}
 As $M_{x_k}<\meas _2(P_{x_k})$ was arbitrary, in fact we have
-\begin{equation}
+\begin{equation*}
 \meas _2(V_{x_k})\geq \min \{ \meas _2(P_{x_1}),\ldots ,\meas _2(P_{x_m})\} \geq \meas _2(S_2).
-\end{equation}
+\end{equation*}
 
 By \eqref{eqn5.2.45}, we have that $\bigcup _{k=1}^mU_k'\times V_{x_k}\subseteq U$ (because $U_k'\subseteq U_{x_k}$), and so, as this union is disjoint (because the $U_k'$s are disjoint), we have that
 \begin{equation}
@@ -1934,8 +1942,8 @@ From the above, if $C_k$ is the disjoint union of $2^k$ intervals each of length
 By \cref{exr5.1.29} (``continuity from above'') then, it follows that
 \begin{equation}
 \begin{split}
-\meas (C) & \ceqq \meas \left( \bigcap _{m\in \N}C_m\right) =\lim _m(C_m)=\lim _m\prod _{k=0}^{m-1}(1-\alpha _k)\\
-& \eqqc \prod _{m\in \N}(1-\alpha _m).
+\meas (C) & \ceqq \meas \left( \bigcap _{m\in \N}C_m\right) =\lim _m(C_m) \\
+& =\lim _m\prod _{k=0}^{m-1}(1-\alpha _k)\eqqc \prod _{m\in \N}(1-\alpha _m).
 \end{split}
 \end{equation}
 
@@ -2030,7 +2038,9 @@ is a disjoint union of measurable sets, all of which have the same measure $M\co
 Let $N$ be as in the previous example.  We showed there that it was not measurable.  Therefore, there must exist some $S\subseteq \R$ such that
 \begin{equation}
 \begin{split}
-\meas \left( (S\cap N)\cup (S\cap N^{\comp})\right) & =\meas (S) \\
+\MoveEqLeft
+\meas \left( (S\cap N)\cup (S\cap N^{\comp})\right) \\
+& =\meas (S) \\
 & \neq \meas (S\cap N)+\meas (S\cap N^{\comp}).
 \end{split}
 \end{equation}
@@ -2156,13 +2166,13 @@ It follows that
 \end{equation}
 This completes the base case.  As for the inductive case, fix $m\geq 1$ and assume that \eqref{5.2.28} holds for $0\leq n<m$.  We prove that it holds for $m$ as well.  From the definition \eqref{5.2.22} again, we have that
 {\small
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \MoveEqLeft
 \abs{f_{m+1}(x)-f_m(x)} \\
 & =\tfrac{1}{2}\cdot \begin{cases}\abs{f_m(3x)-f_{m-1}(3x)} & \text{if }x\in [0,\tfrac{1}{3}] \\ 0 & \text{if }x\in [\tfrac{1}{3},\tfrac{2}{3}] \\ \abs{f_m(3x-2)-f_{m-1}(3x-2)} & \text{if }x\in [\tfrac{2}{3},1].\end{cases}
 \end{split}
-\end{equation}
+\end{equation*}
 }
 Thus, by the induction hypothesis,
 \begin{equation}
@@ -2284,7 +2294,7 @@ is measurable iff
 is.  Furthermore, they both have the same measure.
 \begin{proof}
 We leave this as an exercise.
-\begin{exr}{}{}
+\begin{exr}[breakable=false]{}{}
 Prove the result yourself.
 \begin{rmk}
 Hint:  For the $\Rightarrow$ direction, consider the sequence $m\mapsto \left( 1+\frac{1}{m}\right) f$.  For the $\Leftarrow$ direction, consider the sequence $m\mapsto \left( 1-\frac{1}{m}\right) f$.
@@ -2701,13 +2711,13 @@ So, now, let us change notation, let $M_X\subseteq X$ be measurable of finite me
 \sum _{m\in \N}\meas (U_{1,m})\meas _{\mrm{L}}(U_{2,m})-\varepsilon <[\meas \times \meas _{\mrm{L}}](M).
 \end{equation}
 Without loss of generality,\footnote{Because every open set can be written as the countable disjoint union of closed-open intervals---see \cref{exr5.2.77}.} we may assume that each $U_{2,m}=[a_m,b_m)$, in which case the previous case applies, so that
-\begin{equation}
+\begin{equation*}
 \begin{split}
 [\meas \times \meas _{\mrm{L}}](\tau _f(M))& \leq \sum _{m\in \N}[\meas \times \meas _{\mrm{L}}](\tau _f(U_{1,m}\times U_{2,m})) \\
 & =\sum _{m\in \N}[\meas \times \meas _{\mrm{L}}](U_{1,m}\times U_{2,m}) \\
 & <[\meas \times \meas _{\mrm{L}}](M)+\varepsilon ,
 \end{split}
-\end{equation}
+\end{equation*}
 and so as $\varepsilon >0$ is arbitrary
 \begin{equation}\label{eqn5.2.206}
 [\meas \times \meas _{\mrm{L}}](\tau _f(M))\leq [\meas \times \meas _{\mrm{L}}](M).
@@ -2720,7 +2730,7 @@ Similarly,
 \end{equation}
 Hence,
 {\small
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \MoveEqLeft \relax
 [\meas \times \meas _{\mrm{L}}](\tau _f(M))+[\meas \times \meas _{\mrm{L}}]\left( \tau _f\left( (M_X\times [n,n+1))\setminus M\right) \right) \\
@@ -2730,7 +2740,7 @@ Hence,
 & \leq [\meas \times \meas _{\mrm{L}}](\tau _f(M)) \\ & \qquad +[\meas \times \meas _{\mrm{L}}]\left( \tau _f(M_X\times [n,n+1))\setminus \tau _f(M)\right) \\
 & =[\meas \times \meas _{\mrm{L}}](\tau _f(M)) \\ & \qquad +[\meas \times \meas _{\mrm{L}}]\left( \tau _f\left( (M_X\times [n,n+1))\setminus M\right) \right) .
 \end{split}
-\end{equation}
+\end{equation*}
 }
 Thus, all of the inequalities must be inequalities, which in particular implies that
 \begin{equation}
@@ -2746,7 +2756,7 @@ Hint:  See \cite[Theorem 6.4.13]{Pugh}.
 \end{exr}
 Hence,
 {\scriptsize
-\begin{equation}
+\begin{equation*}
 \begin{split}
 0 & =[\meas \times \meas _{\mrm{L}}](M_X\times [n,n+1))-[\meas \times \meas _{\mrm{L}}](\tau _f(M_X\times [n,n+1))) \\
 & =\left( [\meas \times \meas _{\mrm{L}}](M)+[\meas \times \meas _{\mrm{L}}]((M_X\times [n,n+1))\setminus M)\right) \\
@@ -2754,7 +2764,7 @@ Hence,
 & =\left( [\meas \times \meas _{\mrm{L}}](M)-[\meas \times \meas _{\mrm{L}}](\tau _f(M))\right) \\
 & \qquad +\left( [\meas \times \meas _{\mrm{L}}]((M_X\times [n,n+1))\setminus M) \right. \\ & \qquad \left. -[\meas \times \meas _{\mrm{L}}]\left( \tau _f\left( (M_X\times [n,n+1))\setminus M\right) \right) \right) .
 \end{split}
-\end{equation}
+\end{equation*}
 }
 We already showed in \eqref{eqn5.2.206} that $[\meas \times \meas _{\mrm{L}}](M)\leq [\meas \times \meas _{\mrm{L}}](\tau _f(M))$ (and similarly for the complement), so that both of these terms are nonnegative, and hence $0$.  This gives us $[\meas \times \meas _{\mrm{L}}](\tau _f(M))=[\meas \times \meas _{\mrm{L}}](M)$, as desired.
 
@@ -3024,6 +3034,7 @@ Let $\coord{X,\meas}$ be a topological measure space and let $m\mapsto f_m\in \B
 \end{equation}
 \begin{rmk}
 In particular, by the \nameref{TriangleInequality}, it follows that
+\intomargin
 \begin{equation}
 \lim _\lambda \int _X\dif \meas (x)\, f_\lambda (x)=\int _X\dif \meas (x)\, \lim _\lambda f_\lambda (x).
 \end{equation}
@@ -3312,7 +3323,7 @@ for $M_{i,k}\subseteq X_i$ quasicompact such that
 \end{multlined}
 \end{equation}
 Hence,
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \meas (S) & >\meas (U)-\varepsilon \\
 & \geq \meas \bigg( \bigcup _{k=0}^mL_{1,k}\times L_{2,k}\cup \bigcup _{k=0}^nM_{1,k}\times M_{2,k}\bigg) -\varepsilon \\
@@ -3320,7 +3331,7 @@ Hence,
 & >\meas \left( U\cap (K_1\times K_2)^{\comp}\right) \\ & \qquad +\meas \bigg( U\cap \bigg( \bigcup _{k=0}^mL_{1,k}\times L_{2,k}\bigg) ^{\comp}\bigg) -3\varepsilon \\
 & \geq \meas (U\cap (K_1\times K_2)^{\comp}) \\ & \qquad +\meas (U\cap (K_1\times K_2))-3\varepsilon .
 \end{split}
-\end{equation}
+\end{equation*}
 As $\varepsilon >0$ was arbitrary, we obtain the desired result.
 
 \Step{Deduce the result for $f$ a characteristic function}\label{stpFubinisTheorem.11}
@@ -3783,7 +3794,10 @@ This is called \term{convexity}.
 \end{exr}
 Using this, we obtain
 \begin{equation}
-\abs{f}\abs{g}=2^{s/p}2^{t/q}=2^{s/p+t/q}\leq \tfrac{2^s}{p}+\tfrac{2^t}{q}=\tfrac{\abs{f}^p}{p}+\tfrac{\abs{g}^q}{q}.
+\begin{split}
+\abs{f}\abs{g} & =2^{s/p}2^{t/q}=2^{s/p+t/q}\leq \tfrac{2^s}{p}+\tfrac{2^t}{q} \\
+& =\tfrac{\abs{f}^p}{p}+\tfrac{\abs{g}^q}{q}.
+\end{split}
 \end{equation}
 Integrating this inequality gives
 \begin{equation}
@@ -3843,13 +3857,13 @@ First take $1<p<\infty$.  Then,
 \end{split}
 \end{equation*}
 where $q$ is the Hölder conjugate of $p$.  This implies that $(p-1)q=p$, and so
-\begin{equation}
+\begin{equation*}
 \begin{split}
 \norm{(f+g)^{p-1}}_q & \coloneqq \left( \int _X\dif \meas (x)\, \left| (f(x)+g(x))^{p-1}\right| ^q\right) ^{\tfrac{1}{q}} \\
 & =\left( \int _X\dif \meas (x)\, \left| f(x)+g(x)\right| ^p\right) ^{\tfrac{1}{q}} \\
 & \eqqc \norm{(f+g)^p}_1^{\tfrac{1}{q}}.
 \end{split}
-\end{equation}
+\end{equation*}
 So in fact, the previous inequality reads
 \begin{equation}
 \norm{(f+g)^p}_1\leq \norm{(f+g)^p}_1^{\tfrac{1}{q}}\left( \norm{f}_p+\norm{g}_p\right),

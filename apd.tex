@@ -993,16 +993,16 @@ We will say that a well-ordered subset $S\subseteq X$ is a $u$-set iff $x_0=u\le
 \Step{Show that for $u$-sets $S$ and $T$, either $S$ is downward-closed in $S$ or $T$ is downward closed in $S$}[ZornsLemma.5]
 Define
 \begin{equation}
-D\coloneqq \bigcup _{\substack{A\subseteq X \\ A\text{ is downward-closed in }S \\ A\text{ is downward-closed in }T}}A.
+D\coloneqq \bigcup[0]_{\substack{A\subseteq X \\ A\text{ is downward-closed in }S \\ A\text{ is downward-closed in }T}}A.
 \end{equation}
 That is, $D$ is the union of all sets that are downward-closed in both $S$ and $T$.
 
 We first check that $D$ itself is downward-closed in both $S$ and $T$.  Let $d\in D$, let $s\in S$, and suppose that $s\leq d$.  As $d\in D$, it follows that $d\in A$ for some $A\subseteq X$ downward-closed in both $S$ and $T$.  As $A$ is in particular downward-closed in $S$, it follows that $s\in D$, and so $D$ is downward-closed in $S$.  Similarly it is downward-closed in $T$.
 
 If $D=S$, then $S=D$ is downward-closed in $T$, and we are done.  Likewise if $D=T$.  Thus, we may as well assume that $D$ is a proper subset of both $S$ and $T$.  Then, by \cref{prpA.1.56}, there are $s_0\in S$ and $t_0\in T$ such that $\{ s\in S:s<s_0\} =D=\{ t\in T:t<t_0\}$.  Because $S$ and $T$ are $u$-sets, it follows that
-\begin{equation}
+\begin{equation*}
 s_0=u\left( \{ s\in S:s<s_0\} \right) =u\left( \{ t\in T:t<t_0\} \right) =t_0.
-\end{equation}
+\end{equation*}
 Define $D\cup \{ s_0\} \eqqcolon D'\coloneqq D\cup \{ t_0\}$.
 Let $d\in D'$, let $s\in S$, and suppose that $s\leq d$.  Either $d=s_0$ or $d\in D$.  In the latter case, $d<s_0$.  Either way, $d\leq s_0$, and so we have that $s\leq d\leq s_0$, and so either $s=s_0$ or $s<s_0$; either way, $s\in D'$.  The conclusion is that $D'$ is downward-closed in $S$.  It is similarly downward-closed in $T$.  By the definition of $D$, we must have that $D'\subseteq D$:  a contradiction.  Thus, it could not have been the case that $D$ was a proper subset of both $S$ and $T$.
 
@@ -1376,7 +1376,7 @@ First of all, a disclaimer:  it is probably not best pedagogically speaking to s
 \section{What is a category?}
 
 In mathematics, we study many different types of objects:  sets, preordered sets, monoids, rngs, topological spaces, schemes, etc..\footnote{No, you are not expected to know what all of these are.}  In all of these cases, however, we are not only concerned with the objects themselves, but also with maps between them that `preserve' the relevant structure.  In the case of a set, there is no extra structure to preserve, and so the relevant maps are \emph{all} the functions.  In contrast, however, for topological spaces, we will see that the relevant maps are not all the functions, but instead all \emph{continuous} functions.\footnote{You might say that the entire point of the notion of a topological space is it is one of the most general contexts in which the notion of continuity makes sense.  We will see exactly how this works later in the body of the text.}  Similarly, the relevant maps between monoids are not all the functions but rather the \emph{homomorphisms}.  The idea then is to come up with a definition that deals with both the objects and the relevant maps, or morphisms, simultaneously.  This is the motivating idea of the definition of a category.
-\begin{dfn}{Category}{}
+\begin{dfn}{Category}{Category}
 A \term{category}\index{Category} $\cat{C}$ is
 \begin{data}
 \item a collection $\Obj (\cat{C})$\index[notation]{$\Obj (\cat{C})$}, the \term{objects}\index{Objects} of $\cat{C}$; together with
@@ -1606,6 +1606,206 @@ Let $\cat{C}$ be either the category $\Set$, $\Rg$, or $\Mag$.
 \end{enumerate}
 \end{exr}
 
+\section{Functors and natural-transformations}
+
+\subsection{Functors}
+
+The motivating idea behind the definition of a category is we wanted a definition that would contain the data of both the objects under study and the \emph{morphisms} which `preserve' the relevant structure.\footnote{Of course, any choice of morphisms can work so long as they satisfy the axioms, but most of the examples we're interested in the morphisms will be taken to be the ones which ``preserve'' the structure, and furthermore, when dealing with general abstract categories, I find this to be my guiding intuition.}  We've just now introduced a new type of object, namely, a category, and so now what might ask ``What is the `right' notion of morphisms between categories?''.  Well, looking back at the definition (\cref{Category}), we see that there are four pieces of data (I) the objects, (II) the morphisms, (III) the composition, and (IV) the identity morphisms.  One thus comes up with the following definition of a `morphism of categories', what is called a \emph{functor}.
+\begin{dfn}{Functor}{Functor}
+	Let $\cat{C}$ and $\cat{D}$ be categories.  A \term{functor}\index{Functor} is
+	\begin{data}
+		\item a function $\functor{f}\colon \Obj (\cat{C})\rightarrow \Obj (\cat{D})$; together with
+		\item for every $A,B\in \Obj (\cat{C})$, a function\footnote{Of course, this function depends on $A$ and $B$, but by abuse of notation we omit this dependence.}
+		\begin{equation}
+		\functor{f}\colon \Mor _{\cat{C}}(A,B)\rightarrow \Mor _{\cat{D}}(\functor{f}(A),\functor{f}(B))
+		\end{equation}
+	\end{data}
+	such that
+	\begin{enumerate}
+		\item $\functor{f}(g\circ f)=\functor{f}(g)\circ \functor{f}(f)$ for all composable morphisms $f,g\in \Mor _{\cat{C}}$; and
+		\item $\functor{f}(\id _A)=\id _{\functor{f}(A)}$ for all $A\in \Obj (\cat{C})$.
+	\end{enumerate}
+	\begin{rmk}
+		Thus, a functor between two categories maps the objects to objects and the morphisms to the morphisms, and does so in such a way so as to ``preserve'' composition and the identities.
+	\end{rmk}
+\end{dfn}
+\begin{exm}{The category of categories}{}
+	The category of categories is the category $\Cat$
+	\begin{enumerate}
+		\item whose collection of objects $\Obj (\Cat )$ is the collection of all categories;
+		\item with morphism set $\Mor _{\Cat}(\cat{C},\cat{D})$ precisely the set of all functors from $\cat{C}$ to $\cat{D}$;
+		\item whose composition is given by ordinary function composition of both the functions on objects and morphisms;
+		\item and whose identities are given by the functors for which both the functions on objects and morphisms is the identity function.
+	\end{enumerate}
+	\begin{rmk}
+		Okay, so I won't blame you if you think this is total nonsense.  ``Category of categories''?  That's just asking for some sort of paradox.  The answer to this of course is that we're being sloppy.
+		
+		You'll recall during our discussion of Russell's Paradox (around \eqref{A.1.1}), we explained that our method of resolving the paradox was to fix some set $U$, the ``universe'', that satisfied certain properties which made it reasonable to do ``all of mathematics'' inside $U$.  Russel's Paradox was then resolved by concluding that the set in question simply was just not an element of $U$.
+		
+		Something nearly identity is going on here.  Implicitly, we pick a smallest ``universe'' we wish to work in $U_0$.  Then, whenever we say something like ``the category of all rgs'', it is implicit that all those rgs are coming from $U_0$.  Doing this will usually result in categories that are themselves not contained in $U_0$, but rather, a larger universe $U_1$.  Then, when we form ``the category of all categories'', it is implicit that all our categories are coming from $U_1$.  And again, the resulting category will not be in $U_1$.  But so what.  99\% of the time, that doesn't matter.  Yes, yes, technically we should be saying ``The category of all categories in $U_1$.'', but you can see how that would get really annoying really fast, and as it will never matter for us, we are sloppy.\footnote{And also give this remark because we feel guilty about being sloppy.}
+	\end{rmk}
+\end{exm}
+
+When I think of functors intuitively, I think of them as some sort of mathematical ``constructions'', something that takes in objects of $\cat{C}$ and spits out objects of $\cat{D}$.  For example, the entire subject of algebraic topology originated as studying ``constructions'' that associate algebraic objects (like groups) to ``geometric'' objects (like topological spaces).  Unfortunately, our limited background gives us a limited supply of examples, but we do have some things.
+\begin{exm}{The power-set functor}{}
+	Consider the functor $\Set \rightarrow \Pos$ from the category of sets to the category of partially-ordered sets defined by
+	\begin{subequations}
+		\begin{align}
+		\Obj (\Set )\ni X & \mapsto \coord{2^X,\subseteq}\in \Obj (\Pos ) \\
+		\Mor _{\Set}(X,Y)\ni f & \mapsto f\in \Mor _{\Pos}(2^X,2^Y),
+		\end{align}
+	\end{subequations}
+	where $f\in \Mor _{\Pos}(2^X,2^Y)$ is the function that sends $S\subseteq X$ to $f(Y)\subseteq Y$.
+	\begin{exr}[breakable=false]{}{}
+		Check that this defines a functor.
+	\end{exr}
+\end{exm}
+
+The next example we would like to consider is the \emph{dual-space} functor $V\mapsto V^{\T}$ on the category of vector spaces.  Unfortunately, however, we run into a bit of a problem when trying to do this naively.  This functor on objects acts as $V\mapsto V^{\T}$, and so naturally on morphisms this functor acts as $T\mapsto T^{\T}$.  The definition of a functor, however, requires that, if $T\in \Mor _{\Mod{\K}}(V,W)$, then $T^{\T}\in \Mor _{\Mod{\K}}(V^{\T},W^{\T})$.  But it's not.  $T^{\T}$ is not a map from $V^{\T}$ to $W^{\T}$, but rather, a map from $W^{\T}$ to $V^{\T}$.  We get around this little hiccup by defining the \emph{opposite category}.
+\begin{dfn}{Opposite category}{OppositeCategory}
+	Let $\cat{C}$ be a category.  Then, the \term{opposite category}\index{Opposite category} of $\cat{C}$, $\cat{C}^{\op}$\index[notation]{$\cat{C}^{\op}$}, is defined by
+	\begin{data}
+		\item $\Obj (\cat{C}^{\op})\ceqq \Obj (\cat{C})$;
+		\item for $A,B\in \Obj (\cat{C}^{\op})$,
+		\begin{equation}
+		\Mor _{\cat{C}^{\op}}(A,B)\ceqq \Mor _{\cat{C}^{\op}}(B,A);
+		\end{equation}
+		\item for $f,g\in \Mor _{\cat{C}^{\op}}$ composable,
+		\begin{equation}
+		f\circ _{\op}g\ceqq g\circ f;
+		\end{equation}
+		and
+		\item for $A\in \Obj (\cat{C}^{\op})$, $\id _A\ceqq \id _A$.
+	\end{data}
+	\begin{rmk}
+		In brief, $\cat{C}^{\op}$ has the same objects as $\cat{C}$, but the morphisms go in the \emph{opposite} direction.
+	\end{rmk}
+\end{dfn}
+Such a construction might seem a bit silly, but it allows us to make the following convenient definition.
+\begin{dfn}{Cofunctor}{Cofunctor}
+	Let $\cat{C}$ and $\cat{D}$ be categories.  Then, a \term{cofunctor}\index{Cofunctor} from $\cat{C}$ to $\cat{D}$ is a functor $\cat{C}^{\op}\rightarrow \cat{D}$.
+	\begin{rmk}
+		We will often write things like ``Let $\functor{f}\colon \cat{C}\rightarrow \cat{D}$ be a cofunctor\textellipsis ''.  Strictly speaking, the domain category is $\cat{C}$, not $\cat{C}^{\op}$, but this notation is convenient for what will eventually be obvious reasons.
+	\end{rmk}
+	\begin{rmk}
+		This is more commonly referred to as a \term{contravariant functor}\index{Contravariant functor} (in which case an `ordinary' functor is called a \term{covariant functor}\index{Covariant functor} for contrast).  I actually think this is pretty terrible terminology as in pretty much every other context in mathematics something with the prefix ``co'' is the ``dual'' thing, not the `primary' thing.
+	\end{rmk}
+\end{dfn}
+\begin{prp}{}{}
+	Let $\cat{C}$ and $\cat{D}$ be categories, let $\functor{f}\colon \Obj (\cat{C})\rightarrow \Obj (\cat{D})$ be a function, and for every $A,B\in \Obj (\cat{C})$ let $\functor{f}\colon \Mor _{\cat{C}}(A,B)\rightarrow \Mor _{\cat{D}}(\functor{f}(B),\functor{f}(A))$ be a function.  Then, this defines a cofunctor iff
+	\begin{enumerate}
+		\item $\functor{f}(g\circ f)=\functor{f}(f)\circ \functor{f}(g)$ for all composable morphisms $f,g\in \Mor _{\cat{C}}$; and
+		\item $\functor{f}(\id _A)=\id _{\functor{f}(A)}$.
+	\end{enumerate}
+	\begin{rmk}
+		Note that this is exactly the same as the definition of a functor (\cref{Functor}), except here the requirement is $\functor{f}(g\circ f)=\functor{f}(f)\circ \functor{f}(g)$ (instead of $\functor{f}(g\circ f)=\functor{f}(g)\circ \functor{f}(f)$).  In this sense, cofunctors are just functors which `flip' the order of composition.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
+With this language in hand, we can now return to what is probably the most relevant example for us.
+\begin{exm}{Dual-space}{}
+	Let $\K$ be a cring and consider the \emph{co}functor $\Mod{\K}\rightarrow \Mod{\K}$ defined by
+	\begin{subequations}
+		\begin{align*}
+		\Obj (\Mod{\K})\ni V & \mapsto V^{\T}\in \Obj (\Mod{\K}) \\
+		\Mor _{\Mod{\K}}(V,W)\ni T & \mapsto T^{\T}\in \Mor _{\Mod{\K}}(W^{\T},V^{\T})
+		\end{align*}
+	\end{subequations}
+	\begin{exr}[breakable=false]{}{}
+		Check that this defines a functor.
+	\end{exr}
+\end{exm}
+
+\subsection{Natural-transformations}\label{sbsB.2.2}
+
+We can compose the dual-space functor with itself to obtain the ``double-dual-space'' functor $V\mapsto [V^{\T}]^{\T}$.  Recall that (\cref{DualityOfTheDual}), for every $\K$-module $V$, we actually have a linear-transformation $V\rightarrow [V^{\T}]^{\T}$, and in fact, this is an isomorphism in the context of finite-dimensional vector spaces.
+
+On the other hand, if $V$ is a finite-dimensional vector space, then so is $V^{\T}$.  Furthermore, they have the same dimension, and hence are isomorphic.\footnote{Because they are both isomorphic to $\K ^d$ by taking coordinates (after choosing bases).}  The isomorphisms $V\cong V^{\T}$ and $V\cong [V^{\T}]^{\T}$ are fundamentally different, however.  The latter is what is called a \emph{natural isomorphism}.  To see more clearly how these isomorphisms are different, let us recall more explicitly what they are.
+
+First of all, the map $V\rightarrow [V^{\T}]^{\T}$ is given by
+\begin{equation}
+v\mapsto \braket{\blankdot ,v}.
+\end{equation}
+On the other hand, the isomorphism $V\rightarrow V^{\T}$ is more complicated.  Let $\{ b_1,\ldots ,b_d\}$ be a basis for $V$, so that the dual basis $\{ b_1^{\T},\ldots ,b_d^{\T}\}$ is a basis for $V^{\T}$.  Then,
+\begin{equation}
+V\ni \alpha _1\cdot b_1+\cdots +\alpha _d\cdot b_d\mapsto \alpha _1\cdot b_1^{\T}+\cdots +\alpha _d\cdot b_d^{\T}\in V^{\T}
+\end{equation}
+is an isomorphism.  The significant thing to note here is that the definition of this morphism \emph{depended on an arbitrary choice} of a basis for $V$.
+
+Thus, in order to define the morphism $V\rightarrow V^{\T}$ for every vector space $V$, you'll have to pick a basis for every single vector space, and there is no single ``natural'' way to do so.  The isomorphisms that I happen to use are almost certainly going to be different than the ones you choose to use.  On the other hand, there is \emph{no choice} when it comes to the isomorphism $V\rightarrow [V^{\T}]^{\T}$.  Intuitively, this isomorphism doesn't depend on $V$, the same definition works for every vector space, whereas the isomorphisms $V\rightarrow V^{\T}$ do depend on $V$.
+
+The precise notion which distinguishes these two is that of a \emph{natural transformation}:  $V\rightarrow [V^{\T}]^{\T}$ will be a natural isomorphism, whereas $V\rightarrow V^{\T}$ will not be.
+\begin{dfn}{Natural-transformation}{NaturalTransformation}
+	Let $\cat{C}$ and $\cat{D}$ be functors, and let $\functor{f},\functor{g}\colon \cat{C}\rightarrow \cat{D}$ be functors.  Then, a \term{natural transformation}\index{Natural transformation} from $\functor{f}$ to $\functor{g}$ is, for every $A\in \Obj (\cat{C})$, a morphism $\eta _A\colon \functor{f}(A)\rightarrow \functor{f}(B)$, such that
+	\begin{equation}
+	\begin{tikzcd}
+	\functor{f}(A) \ar[r,"\functor{f}(f)"] \ar[d,"\eta _A"'] & \functor{f}(B) \ar[d,"\eta _B"] \\
+	\functor{g}(A) \ar[r,"\functor{g}(f)"'] & \functor{g}(B)
+	\end{tikzcd}
+	\end{equation}
+	commutes for every morphism $f\in \Mor _{\cat{C}}(A,B)$ and $A,B\in \Obj (\cat{C})$.
+	\begin{rmk}
+		A \emph{diagram} in this sense of the word refers to a set of objects and morphisms between them indicated by drawing arrows for each morphism (from the domain to the codomain).  A path from one object to another (in the direction indicated by the arrows) then corresponds to the composition of the corresponding morphisms.  If you select any two objects in a given diagram, in general, there will be more than one path from the first to the second; the diagram is said to \emph{commute} iff all corresponding compositions agree.
+		
+		For example, in this case, the phrase ``the following diagram commutes'' should be understood as short-hand for the statement ``$\functor{g}(f)\circ \eta _A=\eta _B\circ \functor{f}(f)$''.
+	\end{rmk}
+	\begin{rmk}
+		The entire natural-transformation is usually just denoted ``$\eta$'', in which case $\eta _A$ is referred to as the \term{component}\index{Component (of a natural-transformation)} of $\eta$ at $A$.
+	\end{rmk}
+	\begin{rmk}
+		Admittedly, this definition is difficult to understand at first sight.  For one thing, it's not clear how this captures ``doesn't depend on $A$/$B$''.  I will do the best I can to explain.
+		
+		The idea is that, if I can define the morphisms $\eta _A$ in such a way that doesn't make use of anything special to this particular $A$, then it shouldn't matter whether I `go to a different object' and then apply the morphism, or if I first apply the morphism and then ``go to a different object''.  (Here, ``going to a different object'' corresponds to $\functor{f}(f)$ and $\functor{g}(f)$, and ``the morphism'' refers to $\eta _A$ and $\eta _B$.)
+	\end{rmk}
+\end{dfn}
+It turns out that, in the following sense, natural-transformations should themselves be thought of as \emph{morphisms of functors}.
+\begin{dfn}{Category of functors}{CategoryOfFunctors}
+	Let $\cat{C}$ and $\cat{D}$ be categories.  Then, the \term{category of functors}\index{Category of functors} from $\cat{C}$ to $\cat{D}$, $\Mor _{\Cat}(\cat{C},\cat{D})$, is defined by
+	\begin{data}
+		\item $\Obj \left( \Mor _{\Cat}(\cat{C},\cat{D})\right) \ceqq \Mor _{\Cat}(\cat{C},\cat{D})$;
+		\item $\Mor _{\Mor _{\Cat}(\cat{C},\cat{D})}(\functor{f},\functor{g})$ is the collection of natural-transformations from $\functor{f}$ to $\functor{g}$;
+		\item composition of natural-transformations is defined componentwise; and
+		\item $[\id _{\functor{f}}]_A\ceqq \id _A$.
+	\end{data}
+	\begin{rmk}
+		Thus, the objects are functors, the morphisms are the natural-transformations, composition is done the way you would expect (componentwise), and the identity on $\functor{f}\in \Obj \left( \Mor _{\Cat}(\cat{C},\cat{D})\right)$ is the natural-transformation whose component as the object $A\in \cat{C}$ is $\id _A$.
+	\end{rmk}
+	\begin{rmk}
+		We are abusing notation and using $\Mor _{\Cat}(\cat{C},\cat{D})$ to denote the collection of functors from $\cat{C}$ to $\cat{D}$ as well as the corresponding category.
+	\end{rmk}
+\end{dfn}
+As in every category, we have a notion of isomorphism.  In the case of categories of functors, the following term is used.
+\begin{dfn}{Natural-isomorphism}{NaturalIsomorphism}
+	Let $\eta \colon \functor{f}\rightarrow \functor{g}$ be a natural-transformation of functors $\functor{f},\functor{g}\colon \cat{C}\rightarrow \cat{D}$.  Then, $\eta$ is a \term{natural-isomorphism}\index{Natural-isomorphism} iff $\eta$ is an isomorphism in $\Mor _{\Cat}(\cat{C},\cat{G})$.
+	\begin{rmk}
+		If we're thinking of functors as some sort of mathematical `constructions' (e.g.~taking the dual of a vector space), then, intuitively speaking, saying that ``$\functor{f}$ is naturally-isomorphic to $\functor{g}$'' is saying more than just ``$\functor{f}(A)$ is isomorphic to $\functor{g}(A)$ for all $A\in \Obj (\cat{C})$'', but rather that the entire ``constructions'' $A\mapsto \functor{f}(A)$ and $A\mapsto \functor{g}(A)$ are isomorphic.
+	\end{rmk}
+\end{dfn}
+Fortunately, this is equivalent to what you would hope.
+\begin{prp}{}{}
+	Let $\eta \colon \functor{f}\rightarrow \functor{g}$ be a natural-transformation of functors $\functor{f},\functor{g}\colon \cat{C}\rightarrow \cat{D}$.  Then, $\eta$ is a natural-isomorphism iff $\eta _A\colon \functor{f}(A)\rightarrow \functor{g}(A)$ is an isomorphism for all $A\in \Obj (\cat{C})$.
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
+
+We now finally return to the example of primary interest.
+\begin{exm}{$V\rightarrow [V^{\T}]^{\T}$}{}
+	Let $\K$ be a cring and consider the linear-transformation $\eta _V\colon V\rightarrow [V^{\T}]^{\T}$ defined by $v\mapsto \braket{\blankdot ,v}$.
+	\begin{exr}[breakable=false]{}{}
+		Show that this is a natural-transformation.
+	\end{exr}
+	Thus, by \cref{DualityOfTheDual}, it is in fact a natural-isomorphism in the category of finite-dimensional vector spaces.
+\end{exm}
+
 \cleardoublepage
 \chapter{Basic number theory}
 
@@ -1806,11 +2006,6 @@ Linear algebra is the study of vector spaces.\footnote{Or possibly \emph{finite-
 Elements of a general vector space will simply be referred to as \term{vectors}.  Elements of the specific vector space $\R ^d$ will be referred to as \term{column vectors}\index{Column vector}.\footnote{More precisely, we will use this terminology when regarding $\R ^d$ as an object in $\Vect _{\R}$, the category of vector spaces over $\R$---see \cref{TheCategoryOfVectorSpaces}.}
 \end{important}
 
-Of fundamental importance in linear algebra is the relationship between the abstract and the concrete.  Of course, the set of all column vectors (with a fixed number of components) forms a vector space, and matrices define linear transformations.  In the other direction, given a vector space $V$,\footnote{Over $\R$, for the moment.} for every choice of a basis $\basis{B}$ of $V$, there is a unique isomorphism $V\rightarrow \R ^d$ that satisfies such and such properties.\footnote{See \cref{thmD.1.7} below for the precise statement.}  Thus, having fixed a basis, one can associate \emph{column vectors to vectors} and \emph{matrices to linear transformations}.  I mention this now only to help solidify the distinction between vectors (in a general vector space) and column vectors (and also to foreshadow one of the more important results in elementary linear algebra)---you are not supposed to know what any of this precisely means just yet.  In brief:
-\begin{important}
-Vectors are to column vectors as linear transformations are to matrices.
-\end{important}
-
 Okay, now that that caveat is out of the way, let us return to the definition of a vector space.  A vector space is (i) a set, the elements of which are called \emph{vectors}\footnote{Though are most definitely not necessarily ``actual'' column vectors---we just spent the last couple of paragraphs harping on this point.}; together with (ii) rules for adding and scaling the vectors.\footnote{Subject to various axioms of course.}  This is the intuition anyways.  In this way, the definition of vector spaces in general is an abstraction of the set of column vectors $\R ^d$ that you know and love.  This is not unlike how we `abstracted' the definition of a general topological space (\cref{TopologicalSpace}) from the properties of open sets in $\R ^d$ (\cref{exr3.4.14,exr3.4.7,thm3.4.34,thm3.4.36}).
 
 To specify the scaling operation, however, we first need to say what the ``scalars'' are.  For vector spaces, the scalars are taken to be a field.  That said, the axioms of a vector spaces make no references to the existence of multiplicative inverses, and so in fact the definition makes just as much sense if you allow your field to be a more general ring.  This is what is called an \emph{$R$-module}.  As there is no reason to needlessly throw away this extra generality,\footnote{Except for perhaps, you know, pedagogy.} we present the definition in this form.
@@ -1829,13 +2024,7 @@ such that
 \end{enumerate}
 for all $\alpha ,\alpha _1,\alpha _2\in R$ and $v,v_1,v_2\in M$.
 \begin{rmk}
-See \cref{prpD.1.3} for an equivalent slicker but less transparent definition.  In general in mathematics, it is often the case that there are two (or more) ways to think of something---one is the conceptually concise, slick, but not very explicit way; and the other is not as elegant but easier to work with in practice.  This definition is of the latter type and the statement in \cref{prpD.1.3} of the former.
-\end{rmk}
-\begin{rmk}
 In elementary linear algebra textbooks, this is often listed as eight (or more) axioms.  This is quite a bit, and I think it is easy to remember them as follows:  four of those axioms are simply equivalent to the statement that $\coord{M,+,0,-}$ is a commutative group, two of them are distributive axioms, and the other two are natural ``compatibility'' axioms between the multiplication in $R$ and $\cdot$.
-\end{rmk}
-\begin{rmk}
-In fact, phrasing the definition in this way makes sense even more generally for rigs---see \cref{prpD.1.3} for an explanation of why it is `natural' to specialize to rings.
 \end{rmk}
 \begin{rmk}
 This is sometimes referred to as a \emph{left} $R$-module because the ``scalars'' appear on the left.  Of course, rewriting things a bit, it is easy enough to write down the definition of a \emph{right} $R$-module as well.  There really isn't any serious difference between the two definitions, but one convention can be more convenient than the other in certain contexts.\footnote{This is not unlike how it is sometimes convenient to write composition in \term{postfix notation}\index{Postfix notation}:  $f\cdot g\ceqq g\circ f$.}
@@ -1843,8 +2032,7 @@ This is sometimes referred to as a \emph{left} $R$-module because the ``scalars'
 \begin{rmk}
 In case you're wondering why we're not using the letter $m$ for elements of $M$ (like we would use $r$ for elements of a ring $R$), it's because I really would like to reserve the symbol ``$m$'' for elements of $\N$ (or $\Z$).
 \end{rmk}
-\end{dfn}
-Our first order of business is to give another equivalent definition of an $R$-module (\cref{prpD.1.3}).  Before we get there, however, we must prove some basic facts about $R$-modules that follow immediately from the axioms (as well as \cref{prpD.1.2}).
+\end{dfn}.
 \begin{exr}{}{exrD.1.2}
 Let $R$ be a ring and let $M$ be an $R$-module.
 \begin{enumerate}
@@ -1852,105 +2040,20 @@ Let $R$ be a ring and let $M$ be an $R$-module.
 \item Show that $-v=(-1)\cdot v$ for all $v\in M$.
 \end{enumerate}
 \end{exr}
-\begin{prp}{}{prpD.1.2}
-Let $M$ be a commutative group.  Then, $\coord{\End _{\Grp}(M),+,0,-,\circ ,\id _M}$ is a ring.
-\begin{rmk}
-Recall that (\cref{Endomorphism,TheCategoryOfMagmas}) $\End _{\Grp}(M)$ is the set of all group homomorphisms (\cref{HomomorphismOfMagmas}) from $M$ to itself.
-\end{rmk}
-\begin{rmk}
-$+$ is defined ``pointwise'', that is, $[\phi +\psi ](v)\ceqq \phi (v)+\psi (v)$.  Similarly, $0$ here denotes the \emph{function} that is $0$ for all $v$.
-\end{rmk}
-\begin{proof}
-$\coord{\End _{\Grp}(M),+,0,-}$ is a commutative group because $\coord{M,+,0,-}$ is (write out the verification of the axioms yourself if you don't believe me).  $\coord{\End _{\Grp}(M),\circ ,\id _M}$ is a monoid by \cref{prpB.2.9}.  From the definition of a ring \cref{Rg}, we see that it only remains to check that $\circ$ distributes over $+$, and so, we check.
-\begin{equation}
-\begin{split}
-\left[ \phi \circ (\psi +\chi )\right] (v) & \ceqq \phi \left( [\psi +\chi ](v)\right) \ceqq \phi \left( \psi (v)+\chi (v)\right) \\
-& =\footnote{Because $\phi$ is a homomorphism.}\phi (\psi (v))=\phi (\chi (v)) \\
-& \eqqc [\phi \circ \psi ](v)+[\phi \circ \chi ](v) \\
-& \eqqc \left[ \phi \circ \psi +\phi \circ \chi\right] (v).
-\end{split}
-\end{equation}
-As this is true for all $v$, in fact, the functions themselves must be equal, that is $\phi \circ (\psi +\chi )=\phi \circ \psi +\phi \circ \chi$.  Similarly,
-\begin{equation}
-\begin{split}
-\left[ (\psi +\chi )\circ \phi \right] (v) & \ceqq [\psi +\chi ]\left( \phi (v)\right) \\
-& \ceqq \psi (\phi (v))+\chi (\phi (v)) \\
-& \eqqc [\psi \circ \phi ](v)+[\chi \circ \phi ](v) \\
-& \eqqc \left[ \psi \circ \phi +\chi \circ \phi \right] (v),
-\end{split}
-\end{equation}
-as desired.
-\end{proof}
-\end{prp}
-\begin{thm}{}{prpD.1.3}
-Let $R$ be a ring.
-\begin{enumerate}
-\item \label{prpD.1.3.i}Let $M$ be a commutative group and let $\rho \colon R\rightarrow \End _{\Grp}(M)$ be a ring homomorphism.  Then, $\coord{M,\cdot _{\rho}}$ is an $R$-module, where $\cdot _{\rho}\colon R\times M\rightarrow M$ is defined by
-\begin{equation}
-\alpha \cdot _{\rho}v\ceqq \rho _{\alpha}(v).\footnote{We have writen $\rho _{\alpha}(v)\ceqq [\rho (\alpha )](v)$, as I find this notation more transparent---for each $\alpha$, you obtain a group homomorphism called $\rho _{\alpha}\colon M\rightarrow M$, and so $\rho _{\alpha}(v)$ is the value of that group homomorphism at $v\in M$.  We use similar notation throughout.}
-\end{equation}
-\item \label{prpD.1.3.ii}Let $\coord{M,\cdot}$ be an $R$-module.  Then, $\rho _{\cdot}\colon R\rightarrow \End _{\Grp}(M)$, defined by,
-\begin{equation}
-[\rho _{\cdot}]_{\alpha}(v)\ceqq \alpha \cdot v
-\end{equation}
-is a ring homomorphism.
-\end{enumerate}
-Furthermore, these two constructions are inverse two each other, that is, $\cdot _{\rho _{\cdot}}=\cdot$ and $\rho _{\cdot _{\rho}}=\rho$.
-\begin{rmk}
-This remark is more important than usual so pay attention.  This result is the precise statement of the fact that we could have equivalently defined an $R$-module to be a pair $\coord{M,\rho}$, where $M$ is a commutative group and $\rho \colon R\rightarrow \End _{\Grp}(M)$ is a ring homomorphism.  This is hugely important as it says that, in language which you will eventually encounter (though not in these notes), \emph{$R$-modules are `the same' as ``representations'' of $R$}.\footnote{In fact, ``$\rho$'' is for \emph{representation}.}
-\end{rmk}
-\begin{rmk}
-Note that $\End _{\Grp}(M)$ is in fact a ring by the previous result.
-\end{rmk}
-\begin{rmk}
-Note that, by \cref{prpD.1.2}, $\End _{\Grp}(M)$ is a \emph{ring}, not just a \emph{rig}, and so it is natural to require that $R$ likewise be a ring, not just a rig.
-\end{rmk}
-\begin{proof}
-\cref{prpD.1.3.i} For the sake of brevity, we shall simply write $\cdot \ceqq \cdot _{\rho}$.  We must verify the four axioms in \cref{RModule}.  So, let $\alpha ,\alpha _1,\alpha _2\in R$ and $v,v_1,v_2\in M$.  Then,
-\begin{equation}
-\begin{split}
-(\alpha _1\alpha _2)\cdot v & \ceqq \rho _{\alpha _1\alpha _2}(v)=\footnote{As $\rho$ is a ring homomorphism, it ``preserves'' multiplication.}[\rho _{\alpha _1}\circ \rho _{\alpha _2}](v)\ceqq \rho _{\alpha _1}\left( \rho _{\alpha _2}(v)\right) \\
-& \ceqq \rho _{\alpha _1}(\alpha _2\cdot v)\ceqq \alpha _1\cdot (\alpha _2\cdot v).
-\end{split}
-\end{equation}
-As $\rho _1=\id _M$ (as it is a ring homomorphism, it must ``preserve'' the multiplicative identity), we have that $1\cdot v\ceqq \rho _1(v)=\id _M(v)=v$. As for the first distributive axiom, we have
-\begin{equation}
-\begin{split}
-(\alpha_1+\alpha _2)\cdot v & \ceqq \rho _{\alpha _1+\alpha _2}(v)=\footnote{As $\rho$ is a ring homomrphism, it ``preserves'' addtion.}[\rho _{\alpha _1}+\rho _{\alpha _2}](v) \\
-& \ceqq \rho _{\alpha _1}(v)+\rho _{\alpha _2}(v)\eqqc \alpha _1\cdot v+\alpha _2\cdot v.
-\end{split}
-\end{equation}
-Finally, for the second distributive axiom, we have
-\begin{equation*}
-\alpha \cdot (v_1+v_2)\ceqq \rho _{\alpha}(v_1+v_2)=\footnote{Becasue $\rho _{\alpha}$ itself is a group homomorphism.}\rho _{\alpha}(v_1)+\rho _{\alpha}(v_2)\eqqc \alpha \cdot v_1+\alpha \cdot v_2.
-\end{equation*}
+\begin{exm}{Commutative groups are $\Z$-mod\-ules}{exm1.1.22}
+	Let $\coord{V,+,0,-}$ be a commutative group, and for $n\in \Z$, define
+	\begin{equation}
+	n\cdot v\ceqq \sgn (n) (\underbrace{v+\cdots +v}_{\abs{n}}).
+	\end{equation}
+	\begin{exr}[breakable=false]{}{}
+		Check that indeed $\coord{V,+,0,-,\Z ,\cdot}$ is a $\Z$-module.
+	\end{exr}
+	\begin{rmk}
+		In fact, every $\Z$-module also determines a commutative group, simply by ``forgetting'' about the scaling operation.  These constructions, from commutative groups to $\Z$-modules and from $\Z$-modules to commutative groups, are inverse to one another.  (The intuition is that the group structure determines the scaling operation by integers, and so adding the additional structure of a $\Z$-module gives nothing new.)  For this reason, one often does not distinguish between commutative groups and $\Z$-modules, and you may freely change how you think about things depending on what is most convenient to the objective at hand.
+	\end{rmk}
+\end{exm}
 
-\blankline
-\noindent
-\cref{prpD.1.3.ii} For the sake of brevity, we shall simply write $\rho \ceqq \rho _{\cdot}$.  First of all, note that each $\rho _{\alpha}$ is in fact a group homomorphism because $\alpha \cdot (v_1+v_2)=\alpha \cdot v_1+\alpha \cdot v_2$ for all $v_1,v_2\in M$.  We first check that $\rho$ preserve addition.
-\begin{equation*}
-\begin{split}
-\rho _{\alpha _1+\alpha _2}(v) & \ceqq (\alpha _1+\alpha _2)\cdot v \\
-& =\alpha _1\cdot v+\alpha _2\cdot v\eqqc \rho _{\alpha _1}(v)+\rho _{\alpha _2}(v) \\
-& \eqqc [\rho _{\alpha _1}+\rho _{\alpha _2}](v),
-\end{split}
-\end{equation*}
-and so $\rho _{\alpha _1+\alpha _2}=\rho _{\alpha _1}+\rho _{\alpha _2}$.  Similarly, $\rho$ preserves the additive identity and additive inverses by \cref{exrD.1.2}.  Likewise, $\rho$ preserves multiplication as $(\alpha _1\alpha _2)\cdot v=\alpha _1\cdot (\alpha _2\cdot v)$.  Finally, $\rho$ preserves the multiplicative identity as $1\cdot v=v$.
-
-\blankline
-\noindent
-It remains to check that these constructions are inverse to each other.  This is quite easy and is just a matter of unraveling the definitions.
-\begin{equation}
-\alpha \cdot _{\rho _{\cdot}}v\ceqq [\rho _{\cdot}]_{\alpha}(v)\ceqq \alpha \cdot v,
-\end{equation}
-and so $\alpha _{\rho _{\cdot}}=\cdot$.  Similarly,
-\begin{equation}
-[\rho _{\cdot _{\rho}}]_{\alpha}(v)\ceqq \alpha \cdot _{\rho}v\ceqq \rho _{\alpha}(v),
-\end{equation}
-and hence $[\rho _{\cdot _{\rho}}]_{\alpha}=\rho _{\alpha}$ for all $\alpha \in R$, and hence $\rho _{\cdot _{\rho}}=\rho$.
-\end{proof}
-\end{thm}
-Now that we've seen two equivalent definitions of $R$-module, we actually get to the definition of a vector space.
+Having defined $R$-modules, we are now able to present the definition of a vector space.
 \begin{dfn}{Vector space}{VectorSpace}
 A \term{vector space}\index{Vector space} over $F$ is an $F$-module where $F$ is a field.
 \begin{rmk}
@@ -1998,155 +2101,243 @@ Let $F$ be a field.  Then, the category of vector spaces over $F$ is the categor
 \end{enumerate}
 \end{exm}
 
-\section{Basic concepts}
+\subsection{Bimodules}\label{sss1.1.2}
+
+In fact, we would like the morphism sets $\Mor _{\Mod{\K}}(V,W)$ themselves to furnish examples of $\K$-modules.  Unfortunately, if $\K$ is not commutative, we can't quite do this.  To see this, we would need to be able to define a notion of scaling of linear-transformations, and essentially the only thing one could write down is
+\begin{equation}
+[\alpha \cdot T](v)\ceqq \alpha \cdot T(v).
+\end{equation}
+Unfortunately, however, this is not linear in general:
+\begin{equation}
+\begin{split}
+[\alpha \cdot T](\beta \cdot v) & \ceqq \alpha \cdot T(\beta \cdot v)=\alpha \beta \cdot T(v)\neq \beta \cdot (\alpha \cdot T(v)) \\
+& \eqqc \beta \cdot [\alpha \cdot T](v).
+\end{split}
+\end{equation}
+In order for what we have written as an inequality to be an equality, we would need to know that $\K$ is commutative.  There is a silly way to fix this, however---instead, let us try scaling $T$ \emph{on the right}:
+\begin{equation}
+[T\cdot \alpha ](\beta \cdot v)\ceqq T(\beta \cdot v)\cdot \alpha =\beta \cdot T(v)\cdot \alpha =\beta \cdot [T\cdot \alpha ](v),
+\end{equation}
+and so $T\cdot \alpha$ is again $\K$-linear (on the left).\footnote{Note that the scaling in $W$ has to be written on the right in order for this to make sense.}
+\begin{dfn}{$\K$-$\L$-bimodule}{KLBimodule}
+	Let $\K$ and $\L$ be rings.  Then, a \term{$\K$-$\L$-bimodule}\index{$\K$-$\L$ bimodule} is
+	\begin{data}
+		\item a left $\K$-module $\coord{V,+,0,-,\K ,\cdot}$; and
+		\item a right $\L$-module $\coord{V,+,0,-,\L ,\cdot}$\footnote{Of course, the two scaling operations here are not the same, even those we abuse notation and simply write ``$\cdot$'' for both.}
+	\end{data}
+	such that
+	\begin{equation}
+	(\alpha \cdot v)\cdot \zeta =\alpha \cdot (v\cdot \zeta )
+	\end{equation}
+	for all $v\in V$, $\alpha \in \K$, and $\zeta \in \K$.
+	\begin{rmk}
+		Similarly as we may view commutative groups as $\Z$-modules (\cref{exm1.1.22}), we may view any left $\K$-module as a $\K$-$\Z$ bimodule, and likewise, we may view any right $\L$-module as a $\Z$-$\L$ bimodule.
+	\end{rmk}
+\end{dfn}
+\begin{exm}{The $R$-$R$-bimodule $R$}{RingBimodule}
+	Let $R$ be a ring.  Writing $V\ceqq R$ to keep conceptually straight which $R$s are being thought of as rings and which ones are being thought of as bimodules, the left scaling $R\times V\rightarrow V$ is defined by $\coord{r,v}\mapsto r\cdot v$ and the right scaling $V\times R\rightarrow V$ is defined by $\coord{v,r}\mapsto v\cdot r$.  That is, left (right) scaling is just given by multiplication on the left (right).
+\end{exm}
+\begin{exm}{$\K$-modules over crings}{exm1.1.55}
+	Let $\K$ be a cring and let $V$ be a $\K$-module.  Then in fact we can view $V$ as a $\K$-$\K$-bimodule by defining
+	\begin{equation}
+	v\cdot \alpha \ceqq \alpha \cdot v.
+	\end{equation}
+	\begin{exr}[breakable=false]{}{}
+		Check that this does indeed make $V$ into a $\K$-$\K$-bimodule.
+		\begin{rmk}
+			Note how this requires commutativity.
+		\end{rmk}
+	\end{exr}
+	Thus, if $\K$ is commutative, left $\K$-modules are `the same as' $\K$-$\K$-bimodules are `the same as' right $\K$-modules, and so in this case, there is no need to really distinguish.
+\end{exm}
+Now that we have bimodules, however, we are again morally obligated to introduce the new relevant of morphism.
+\begin{dfn}{Linear-transformation (of bimodules)}{BilinearTransformation}
+	Let $\K$ and $\L$ be rings, let $V$ and $W$ be $\K$-$\L$ bimodules, and let $T\colon V\rightarrow W$ be a function.  Then, $T$ is a \term{$\K$-$\L$-linear-transformation}\index{$\K$-$\L$-linear transformation} iff
+	\begin{enumerate}
+		\item \label{BilinearTransformation(i)}$T$ is a $\K$-linear-transformation; and
+		\item \label{BilinearTransformation(ii)}$T$ is an $\L$-linear-transformation.
+	\end{enumerate}
+	\begin{rmk}
+		Explicitly, this means that (i) $T(v_1+v_2)=T(v_1)+T(v_2)$, (ii) $T(\alpha \cdot v)=\alpha \cdot T(v)$, and (iii) $T(v\cdot \zeta )=T(v)\cdot \zeta$.
+	\end{rmk}
+	\begin{rmk}
+		If $\K$ and $\L$ are clear from context, we shall simply say \term{Linear-transformation}\index{Linear-transformation (of bimodules)}.
+	\end{rmk}
+	\begin{rmk}
+		If $T$ only satisfies \cref{BilinearTransformation(i)}, then we may say that $T$ is \term{left linear}\index{Left linear-transformation} or \term{linear on the left}.  Likewise, if $T$ only satisfies \cref{BilinearTransformation(ii)}, we may say that $T$ is \term{right linear}\index{Right linear-transformation} or \term{linear on the right}.  In this context, we may say that $T$ is \term{two-sided linear}\index{Two-sided linear} if $T$ satisfies both \cref{BilinearTransformation(i),BilinearTransformation(ii)} for emphasis to distinguish between just ``left-linear'' and ``right-linear''.
+	\end{rmk}
+	\begin{rmk}
+		A synonym for ``linear-transformation of bimodules'' is \term{bimodule-homomorphism}\index{Bimodule-homomorphism}.
+	\end{rmk}
+	\begin{rmk}
+		Warning:  Don't use the term ``bilinear-transformation'' for this.  That means something else---see \cref{MultilinearTransformation}.
+	\end{rmk}
+\end{dfn}
+Again, having defined a new type of object as well as the relevant notion of morphism, we obtain a corresponding category.
+\begin{exm}{The category of $\K$-$\L$-bimodules}{}
+	Let $\K$ and $\L$ be rings.  Then, the category of $\K$-$\L$-bimodules is the concrete category $\Mod{\K}[\L]$\index[notation]{$\Mod{\K}[\L]$}
+	\begin{enumerate}
+		\item whose collection of objects $\Obj (\Mod{\K}[\L])$ is the collection of all $\K$-$\L$-bimodules; and
+		\item with morphism set $\Mor _{\Mod{\K}[\L]}(V,W)$ precisely the set of all linear-transformations from $V$ to $W$.
+	\end{enumerate}
+\end{exm}
+
+We now turn to the issue of equipping morphism sets of \emph{bimodules} with another bimodule structure.  As we can view any $\K$-module $V$ as a $\K$-$\Z$-bimodule, this will allow us to equip $\Mor _{\Mod{\K}}(V,W)$ with the structure of a bimodule.  We will find, however, that the bimodule structure on $\Mor _{\Mod{\K}}(V,W)$ is not just that of a left $\K$-module---if it were that simple, we wouldn't have needed to take this excursion on bimodules in the first place.
+\begin{exm}{$\Mor _{\Mod{R}}(V,W)$ is an $S$-$T$-bimodule}{exm1.1.72}
+	Let $R$, $S$, and $T$ be rings, and let $V$ be an $R$-$S$-bimodule and let $W$ be an $R$-$T$-bimodule.  Then, as $V$ and $W$ are both left $R$-modules, and so while we cannot speak of linear-transformations, we can speak of left linear-transformations.  In fact, $\Mor _{\Mod{R}}(V,W)$ can be given the structure of an $S$-$T$-bimodule:\footnote{Addition is defined pointwise.  We don't mention this explicitly because addition is always pointwise and the sum of two linear-transformations is always again linear.}
+	\begin{equation}
+	[s\cdot T\cdot t](v)\ceqq T(v\cdot s)\cdot t.
+	\end{equation}
+	\begin{exr}[breakable=false]{}{}
+		Check that $s\cdot T\cdot t$ is still left linear.
+	\end{exr}
+	\begin{exr}[breakable=false]{}{}
+		Check that $\Mor _{\Mod{R}}(V,W)$ is an $S$-$T$-bimodule.
+	\end{exr}
+\end{exm}
+\begin{exm}{$\Mor _{\Mod*{S}}(V,W)$ is a $T$-$R$-bimodule}{exm1.1.75}
+	Let $R$, $S$, and $T$ be rings, let $V$ be an $R$-$S$-bimodule and let $W$ be a $T$-$S$-bimodule.\footnote{Note that $V$ is still an $R$-$S$-bimodule as in the previous example, but now $W$ is a $T$-$S$-bimodule (before it was an $R$-$T$-bimodule).}  Thus, in this case, we can speak of the \emph{right} linear-transformations.  In fact, $\Mor _{\Mod{}[S]}(V,W)$ can be given the structure of a $T$-$R$-bimodule:
+	\begin{equation}
+	[t\cdot T\cdot r](v)\ceqq t\cdot T(r\cdot v).
+	\end{equation}
+	\begin{exr}[breakable=false]{}{}
+		Check that $t\cdot T\cdot t$ is still right linear.
+	\end{exr}
+	\begin{exr}[breakable=false]{}{}
+		Check that $\Mor _{\Mod*{S}}(V,W)$ is an $T$-$R$-bimodule.
+	\end{exr}
+\end{exm}
+While this might seem complicated, there is actually a relatively simple mnemonic to keep this straight.  You can remember these respectively as
+\begin{equation}
+(R\text{-}S)^{\co}\times (R\text{-}T)\mapsto S\text{-}T
+\end{equation}
+and
+\begin{equation}
+(R\text{-}S)^{\co}\times (T\text{-}S)\mapsto T\text{-}R.
+\end{equation}
+(The common $R$s and $S$s `annihilate' each other, similar to the mnemonic for the dimensions for multiplication of matrices.)  That is, the morphism set\footnote{Note how it only makes sense to speak of the left linear transformations, and so I there is no ambiguity as to what morphism set I could possibly be referring to.} from a $R$-$S$-bimodule to a $R$-$T$-bimodule is and $S$-$T$-bimodule, and the morphism set from a $R$-$S$-bimodule to a $T$-$S$-bimodule is a $T$-$R$-bimodule.
+
+\section{Linear-ind., spanning, bases, and dimension}
 
 In the previous section, we gave two equivalent definitions of $R$-modules, and likewise gave the definition of a linear transformation.  We now turn to the basic theory $R$-modules and linear transformations.
 
-\subsection{Submodules and quotient modules}
-
-If you've studied linear algebra before, you're almost certainly familiar with the concept of a \emph{subspace}.  In the more general context of $R$-modules, this concept is instead usually called \emph{submodule}
-\begin{dfn}{Submodule}{Submodule}
-Let $R$ be a ring and let $\coord{M,\cdot}$ be an $R$-module.  Then, a \term{submodule}\index{Submodule} of $M$ is a subset $N\subseteq M$ such that $\coord{N,\cdot}$ is an $R$-module.
-\begin{rmk}
-That is, a submodule is a subset that is also an $R$-module (with respect to the same scaling operation).
-\end{rmk}
-\end{dfn}
-A priori, to show that $\coord{N,\cdot}$ is an $R$-module, there are quite a few axioms one would have to check.  Fortunately, in practice, it is relatively easy to check whether or not something is a submodule.
-\begin{prp}{}{}
-Let $R$ be a ring, let $M$ be an $R$-module, and let $N\subseteq M$.  Then, $N$ is a submodule iff
-\begin{enumerate}
-\item $0\in N$;
-\item $v_1,v_2\in N$ implies $v_1+v_2\in N$; and
-\item $v\in N$ implies $\alpha \cdot v\in N$ for all $\alpha \in R$.
-\end{enumerate}
-\begin{rmk}
-The first condition here is just to excluded the stupid case of the empty-set.  Thus, In other words, a nonempty subset of $M$ is a submodule iff it is closed under addition and scaling.
-\end{rmk}
-\begin{proof}
-We leave this as an exercise.
-\begin{exr}{}{}
-Prove this yourself.
-\end{exr}
-\end{proof}
-\end{prp}
-`Dual' to the concept of submodule is that of \emph{quotient module}, something you likely did not encounter in a first course on linear algebra.  We won't have much use for this concept, but it feels wrong to talk about submodules with no mention of quotient modules.
-
-Quotient objects are actually relatively difficult the first time one encounters them.  However, the intuition is essentially always the same---whether for quotient groups, quotient rings, quotient modules, etc.---and we have already discussed this intuition before \cref{Cosets}, and so don't repeat this intuition here.  Finally, I want to add that the ratio of difficulty to usefulness (for us) regarding the material on quotient modules here is pretty large, and so I might even go so far as to recommend you skip the quotient stuff---it's really here for the sake of completeness, not pedagogy.\footnote{In fact, I would not expect anyone to be able to fully understand this material from what little I have written about it, but that's okay, because that's not why it's here.}
-\begin{prp}{Cosets (in $R$-modules)}{CosetsInRModules}
-Let $R$ be a ring, let $M$ be an $R$-module, let $N\subseteq M$, and define
-\begin{equation}
-v_1\cong v_2\bpmod{N}\text{ iff }-v_2+v_1\in N\text{ for }v_1,v_2\in M.
-\end{equation}
-Then, $\cong \bpmod{N}$ is an equivalence relation iff $\coord{N,+,0,-}$ is a subgroup of $\coord{M,+,0,-}$.
-
-Furthermore, in the case this is an equivalence relation,
-\begin{equation}
-[v]_{\cong \bpmod{N}}=v+N.
-\end{equation}
-\begin{rmk}
-To clarify, $[v]_{\cong \bpmod{N}}$ is the equivalence class of $v$ with respect to $\cong \bpmod{N}$ and $v+N\ceqq \{ v+w:w\in N\}$.
-\end{rmk}
-\begin{rmk}
-The equivalence class of $v$ with respect $\cong \bpmod{N}$ is the \term{left $N$-coset}.  The set of all left $N$-cosets is denoted by $M/N\ceqq M/\sim _{\cong \bpmod{N}}=\left\{ v+N:v\in M\right\}$\index[notation]{$M/N$}.
-\end{rmk}
-\begin{rmk}
-By changing the definition of the equivalent relation to ``\textellipsis iff $v_1-v_2\in N$'', then we obtain the corresponding definition of \term{right $N$-cosets}, given explicitly by $N+v$.  In this case, however, the binary operation in question ($+$) is commutative, and so $r+S=S+r$, that is, the left and right cosets coincide, and so we can simply say \term{coset}.  In particular, there is no need to talk about the set of right $N$-cosets, which would have been denoted $N\backslash M$.
-\end{rmk}
-\begin{rmk}
-Note how this result itself says nothing about the action of $R$.  The action of $R$ itself will definitely play a role in the next definition, however, when we attempt to make the set of cosets $M/N$ itself into an $R$-module.
-\end{rmk}
-\end{prp}
-\begin{dfn}{Quotient modules}{QuotientModules}
-Let $R$ be a ring, let $\coord{M,\cdot}$ be an $R$-module, let $N\subseteq \coord{M,0,+,-}$ be a subgroup, and let $v,v_1,v_2\in M$ and $\alpha \in R$.  Define
-\begin{equation*}
-(v_1+N)+(v_2+N)\coloneqq (v_1+v_2)+N\text{ and }\alpha \cdot (v+N)\ceqq \alpha \cdot v+N.
-\end{equation*}
-$N$ is an \term{ideal}\index{Ideal (in an $R$-module)} iff both of these operations are well-defined.  In this case, $M/N$ is the \term{quotient module}\index{Quotient module} of $M$ modulo $N$.
-\begin{rmk}
-The term ``ideal'' is never used in this context.  This is because, by the the following result, this condition is equivalent to being a submodule, and so people use only term the ``submodule''.
-\end{rmk}
-\begin{rmk}
-By now, as we've seen the concepts of subobject and quotient object of algebraic structures pop up on several occasions, you might be wondering whether one can develop theory that would generalize and be capable of tackling all these cases at once (so that we don't have to separately define ``quotient group'', ``quotient rng'', ``quotient module'', etc.).  Of course the answer is ``Yes, there is such a generalization.'', and this generalization is known as \emph{general algebra}\index{General algebra} or \emph{universal algebra}\index{Universal algebra}.  As this is an introductory \emph{analysis} text, it would be insane to develop any of this theory at all.  Indeed, all of the algebra we're doing is being done for tangential reasons as it is.
-\end{rmk}
-\end{dfn}
-\begin{exr}{}{}
-Let $R$ be a ring, let $M$ be an $R$-module, and let $N\subseteq M$ be a subset.  Show that $N$ is an ideal iff it is a submodule.
-\begin{rmk}
-Hereafter, we shall adhere to the standard convention and only use the term ``submodule'' in this context.
-\end{rmk}
-\end{exr}
-
-A fact with which you are likely familiar is that, to each linear transformation, are associated two submodules, a submodule of the domain and a submodule of the codomain.  A fact with which you are unlikely familiar is that there are likewise two \emph{quotient} modules associated to each linear transformation as well.  One of the submodules is just the image, something you (hopefully) are already quite comfortable with.  The other three, however, we should probably define.
-\begin{dfn}{Kernel}{Kernel}
-Let $T\colon M\rightarrow N$ be a linear transformation.  Then, the \term{kernel}\index{Kernel} of $T$, $\Ker (T)$\index[notation]{$\Ker (T)$}, is defined by
-\begin{equation}
-\Ker (T)\ceqq \left\{ v\in M:T(v)=0\right\} .
-\end{equation}
-\begin{rmk}
-If the term ``kernel'' is unfamiliar to you, perhaps the term \term{null-space}\index{Null-space} is.  While I prefer to try to reserve the term ``null-space'' for matrices and ``kernel'' for linear transformations, they are essentially the same thing.
-\end{rmk}
-\begin{rmk}
-Note the \emph{capital} ``$\mrm{K}$'' in ``$\Ker$''.    I don't promise you that everyone will be strict about this, but it is common to use a capital letter to refer to the kernel as an object (set) and to use a lowercase letter to refer to the corresponding map $\Ker (T)\xrightarrow{\ker (T)}M$\index[notation]{$\ker (T)$}.  In this context, this distinction is a pedantic one, but it's a distinction that will matter in more general contexts.
-\end{rmk}
-\end{dfn}
-\begin{prp}{}{}
-Let $T\colon M\rightarrow N$ be a linear transformation.  Then,
-\begin{enumerate}
-\item $\Ker (T)\subseteq M$ is a submodule; and
-\item $\Ima (T)\subseteq N$ is a submodule.
-\end{enumerate}
-\begin{proof}
-We leave this as an exercise.
-\begin{exr}{}{}
-Prove this yourself.
-\end{exr}
-\end{proof}
-\end{prp}
-We now turn to the two quotient modules.
-\begin{dfn}{Coimage}{Coimage}
-Let $T\colon M\rightarrow N$ be a linear transformation.  Then, the \term{coimage}\index{Coimage} of $T$, $\Coima (T)$\index[notation]{$\Coima (T)$} is defined by
-\begin{equation}
-\Coima (T)\ceqq M/\Ker (T).
-\end{equation}
-\end{dfn}
-\begin{dfn}{Cokernel}{Cokernel}
-Let $T\colon M\rightarrow N$ be a linear transformation.  Then, the \term{cokernel}\index{Cokernel} of $T$, $\Coker (T)$\index[notation]{$\Coker (T)$} is defined by
-\begin{equation}
-\Coker (T)\ceqq N/\Ima (T).
-\end{equation}
-\end{dfn}
-Thus, to each linear transformation is associated a submodule of the domain and a submodule of the codomain (the kernel and image respectively).  Quotienting by these respective submodules gives you a quotient of the domain and a quotient of the codomain (the coimage and cokernel respectively).
-
-\subsection{Linear-ind., spanning, bases, and dimension}
-
-If you've studied linear algebra before, you'll almost certainly recall that the concepts of linear-independence, spanning, and basis are of fundamental importance.  We next turn to the study of these concepts.
 \begin{dfn}{Linear-combination}{LinearCombination}
-Let $R$ be a ring and let $M$ be an $R$-module.  Then, a \term{linear-combination}\index{Linear-combination} of $v_1,\ldots ,v_m\in M$ is an element in $M$ of the form $\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m$ for $\alpha _1,\ldots ,\alpha _m\in R$.
+	Let $V$ be a $\K$-module and let $S\subseteq V$.  Then, a \term{linear-combination}\index{Linear-combination} of elements of $S$ is an element in $V$ of the form
+	\begin{equation}
+	\sum _{v\in S}\alpha _v\cdot v
+	\end{equation}
+	for $\alpha _v\in \K$.
+	\begin{rmk}
+		We will find that many concepts are most clearly illustrated in the finite case, and the definition of linear-combination is no exception:  If $S=\{ v_1,\ldots ,v_m\}$, then a linear-combination of $v_1,\ldots ,v_m$ is an element in $V$ of the form
+		\begin{equation}
+		\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m
+		\end{equation}
+		for $\alpha _1,\ldots ,\alpha _m\in \K$.
+	\end{rmk}
 \end{dfn}
 \begin{dfn}{Linear-independence}{LinearIndependence}
-Let $R$ be a ring, let $M$ be an $R$-module, and let $S\subseteq M$.  Then, $S$ is \term{linearly-independent}\index{Linearly-independent} iff for all $m\in \Z ^+$, $\alpha _1,\ldots ,\alpha _m\in R$, and $v_1,\ldots ,v_m\in S$,
-\begin{equation}
-\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m=0\text{ implies }\alpha _1=0,\ldots ,\alpha _m=0.
-\end{equation}
-$S$ is \term{linearly-dependent}\index{Linearly-dependent} iff it is not linearly-independent.
-\begin{wrn}
-Warning:  For vector spaces, linear-\emph{dependence} is equivalent to the statement that some element of $S$ can be written as a (finite)\footnote{We say ``finite'' here only for emphasis---an infinite linear combination doesn't make sense.  To take an infinite linear combination, one would need to take a limit, and this does not make sense unless we specify a topology.} linear-combination of other elements of $S$, but this is \emph{not} true for $R$-modules in general---see the following example.\footnote{If you think of the proof, you'll note that at some point you'll have to \emph{divide} by one of the coefficients.}  Instead, what is true is that linear-dependence is equivalent to the statement that some nonzero scalar multiple of some element of $S$ can be written as a linear-combination of other elements of $S$.
-\end{wrn}
+	Let $V$ be a $\K$-module and let $S\subseteq M$.  Then, $S$ is \term{linearly-independent}\index{Linearly-independent} iff whenever
+	\begin{equation}
+	\sum _{v\in S}\alpha _v\cdot v=0
+	\end{equation}
+	for $\alpha _v\in \K$, it follows that $\alpha _v=0$ for all $v\in S$.
+	
+	$S$ is \term{linearly-dependent}\index{Linearly-dependent} iff it is not linearly-independent.
+	\begin{rmk}
+		In words, $S$ is linearly-independent iff the only way to obtain $0$ by taking linear-combinations of elements of $S$ is with the trivial linear combination.
+	\end{rmk}
+	\begin{rmk}
+		If $S=\{ v_1,\ldots ,v_m\}$ is finite, this definition is equivalent to the statement that $S$ is linearly-independent iff
+		\begin{equation}
+		\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m
+		\end{equation}
+		implies that $\alpha _1=0,\ldots ,\alpha _m=0$.
+		
+		Furthermore, even if $S$ is not necessarily finite, you may prefer to use the equivalent definition:  ``$S$ is linearly-independent iff for every $m\in \N$ and $v_1,\ldots ,v_m\in S$
+		\begin{equation}
+		\alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m=0
+		\end{equation}
+		implies
+		\begin{equation}
+		\alpha _1=0,\ldots ,\alpha _m=0.
+		\end{equation}
+	\end{rmk}
+	\begin{rmk}
+		Explicitly, $S$ is linearly-dependent iff there are $\alpha _1,\ldots ,\alpha _m\in \K$ \emph{not all zero} and $v_1,\ldots ,v_m\in S$ such that
+		\begin{equation}
+		\alpha _1\cdot s_1+\cdots +\alpha _m\cdot s_m=0.
+		\end{equation}
+	\end{rmk}
+	\begin{rmk}
+		Note that $S$ is automatically linearly-dependent if $0\in S$.\footnote{Why?}
+	\end{rmk}
 \end{dfn}
-\begin{exm}{}{}
-Take $R\ceqq \Z$, $M\ceqq \Z$, and $m\cdot n\ceqq mn$.  Then, the set $\{ 2,3\}$ is linearly-\emph{dependent} as $3\cdot 2+(-2)\cdot 3=0$, but yet $2$ is not a linear-combination of other elements of $\{ 2,3\}$:  this would mean that $2$ is a multiple of $3$, but of course it's not.
-\end{exm}
+\begin{prp}{}{prp1.2.26}
+	Let $V$ be a $\K$-module, and let $S\subseteq V$.  Then, $S$ is linearly-independent iff for every $w\in \Span (S)$ there are unique $w^v\in \K$ such that
+	\begin{equation}
+	w=\sum _{v\in S}w^v\cdot v.
+	\end{equation}
+	\begin{rmk}
+		The significant thing here is the \emph{uniqueness}.  We of course know automatically that there exist some coefficients for which this works from the definition of $\Span$ (\cref{Span})---the linear-independence of $S$ tells us that these coefficients are \emph{unique}.
+	\end{rmk}
+	\begin{rmk}
+		If $S=\{ v_1,\ldots ,v_m\}$ is finite, then this is equivalent to the statement that for every $w\in \Span (S)$ there are unique $w^1,\ldots ,w^m\in \K$ such that
+		\begin{equation}
+		w=w^1\cdot v_1+\cdots +w^m\cdot v_m.
+		\end{equation}
+	\end{rmk}
+	\begin{proof}
+		$(\Rightarrow )$ Suppose that $S$ is linearly-independent.  Let $w\in \Span (S)$.  From \cref{Span}, the definition of $\Span$, it follows that there are $w^v\in \K$ such that
+		\begin{equation}\label{eqn2.1.17}
+		w=\sum _{v\in S}w^v\cdot v.
+		\end{equation}
+		We wish to show that this linear-combination is unique.  So, suppose also that
+		\begin{equation}\label{eqn2.1.18}
+		w=\sum _{v\in S}\alpha ^v\cdot v
+		\end{equation}
+		for $\alpha ^v\in \K$.  Subtracting \eqref{eqn2.1.18} from \eqref{eqn2.1.17}, we find
+		\begin{equation}
+		0=\sum _{v\in S}(w^v-\alpha ^v)\cdot v.
+		\end{equation}
+		The definition of linear-independence then implies that $w^v-\alpha ^v=0$, that is, $w^v=\alpha ^v$.
+		
+		\blni
+		Suppose that for every $w\in \Span (S)$ there are unique $w^v\in \K$ such that
+		\begin{equation}
+		w=\sum _{v\in S}w^v\cdot v.
+		\end{equation}
+		Suppose that
+		\begin{equation}
+		0=\sum _{v\in S}\alpha _v\cdot v
+		\end{equation}
+		for $\alpha _v\in \K$.  As we also have
+		\begin{equation}
+		0=\sum _{v\in S}0\cdot v,
+		\end{equation}
+		by uniqueness, we have that $\alpha _v=0$.  Hence, by definition, $S$ is linearly-independent.
+	\end{proof}
+\end{prp}
 
 We're currently heading towards the definition of dimension, and hence of basis.  You might recall that a basis is a linearly-independent \emph{spanning} set, which brings us to the following result.
 \begin{thm}{Span}{Span}
-	Let $R$ be a ring, let $M$ be an $R$-module, and let $S\subseteq M$.  Then, there is a unique submodule of $M$, the \term{span}\index{Span} of $S$, $\Span (S)$\index[notation]{$\Span (S)$}, such that
+	Let $V$ be a $\K$-module and let $S\subseteq V$.  Then, there is a unique subspace of $V$, the \term{span}\index{Span} of $S$, $\Span (S)$\index[notation]{$\Span (S)$}, such that
 	\begin{enumerate}
 		\item $S\subseteq \Span (S)$; and
-		\item if $N\subseteq M$ is another submodule containing $S$, it follows that $\Span (S)\subseteq N$.
+		\item if $W\subseteq V$ is another subspace containing $S$, it follows that $\Span (S)\subseteq W$.
 	\end{enumerate}
 	Furthermore, explicitly, $\Span (S)$ is the set of all linear-combinations of elements of $S$.
 	\begin{rmk}
-		In the context of $R$-modules, this is usually referred to as the submodule \term{generated} by $S$.
+		Thus, if $S=\{ v_1,\ldots ,v_m\}$, we have that
+		\begin{equation}
+		\begin{split}
+		\MoveEqLeft
+		\Span (v_1,\ldots ,v_m)\ceqq \Span (S) \\
+		& =\left\{ \alpha _1\cdot v_1+\cdots +\alpha _m\cdot v_m:\right. \\ & \qquad \left. \alpha _k\in \K \right\} .
+		\end{split}
+		\end{equation}\index[notation]{$\Span (v_1,\ldots ,v_m)$}
+	\end{rmk}
+	\begin{rmk}
+		In the context of $R$-modules, this is usually referred to as the subspace \term{generated} by $S$.
 	\end{rmk}
 	\begin{proof}
 		We leave this as an exercise.
@@ -2155,9 +2346,967 @@ We're currently heading towards the definition of dimension, and hence of basis.
 		\end{exr}
 	\end{proof}
 \end{thm}
+\begin{dfn}{Spanning}{Spanning}
+	Let $V$ be a $\K$-module and let $S\subseteq V$.  Then, $S$ is \term{spanning}\index{Spanning} iff $\Span (S)=V$.
+	\begin{rmk}
+		Synonymously, we also say that $S$ \term{spans}\index{Spans} $V$.
+	\end{rmk}
+	\begin{rmk}
+		In other words, this means that every vector in $V$ can be written as a linear combination of elements of $S$.
+	\end{rmk}
+\end{dfn}
+\begin{dfn}{Basis}{Basis}
+	Let $V$ be a $\K$-module, and let $\basis{B}\subseteq V$.  Then, $\basis{B}$ is a \term{basis} of $V$ iff for every $v\in V$ there are unique $v^b\in \K$ such that
+	\begin{equation}
+	v=\sum _{b\in \basis{B}}v^b\cdot b.
+	\end{equation}
+	\begin{rmk}
+		In words, $\basis{B}$ is a basis iff every vector can be written as a \emph{unique} linear-combination of elements of $\basis{B}$.
+	\end{rmk}
+\end{dfn}
+\begin{prp}{}{prp1.2.37}
+	Let $V$ be a $\K$-module, and let $\basis{B}\subseteq V$.  Then, $\basis{B}$ is a basis of $V$ iff $\basis{B}$ is linearly-independent and spans $V$.
+	\begin{proof}
+		$(\Rightarrow )$ Suppose that $\basis{B}$ is a basis of $V$.  By definition, every element of $V$ is a linear-combination of elements of $\basis{B}$, and so $\basis{B}$ spans $V$.  It is linearly-independent by \cref{prp1.2.26}.
+		
+		\blni
+		$(\Leftarrow )$ Suppose that $\basis{B}$ is linearly-independent and spans $V$.  Let $v\in V$.  As $\basis{B}$ spans $V$, there are $v^b\in \K$ such that
+		\begin{equation}
+		v=\sum _{b\in \basis{B}}v^b\cdot b.
+		\end{equation}
+		As $\basis{B}$ is linearly-independent, by \cref{prp1.2.26}, this is the unique such linear-combination, and so $\basis{B}$ is a basis by definition.
+	\end{proof}
+\end{prp}
+If we start with a collection of linearly-independent vectors, adding more vectors to our collection runs of the risk of making our collection linearly-\emph{dependent}.  In the other direction, if we start with a collection of vectors which span the vector space, removing vectors from our collection runs the risk of obtaining a collection that fails to span.  Likewise, adding vectors makes it easier to span and removing vectors makes it easier to be linearly-independent.  A basis is an exact middle ground between spanning and linear-independence in the following sense.
+\begin{prp}{}{prp1.2.39}
+	Let $V$ be a vector space and let $\basis{B}\subseteq V$.  Then, the following are equivalent.
+	\begin{enumerate}
+		\item \label{prp1.2.39(i)}$\basis{B}$ is a basis.
+		\item \label{prp1.2.39(ii)}$\basis{B}$ is a maximal linearly-independent set.
+		\item \label{prp1.2.39(iii)}$\basis{B}$ is a minimal spanning set.
+	\end{enumerate}
+	\begin{rmk}
+		Intuitively, ``maximal linearly-independent set'' means that if you add any new vector at all to $\basis{B}$, the resulting set must fail to be linearly-independent.  Similarly, ``minimal spanning set'' means that if you remove any vector at all from $\basis{B}$, the resulting set must fail to span.  See \cref{MaximalAndMinimal} for the precise definitions of maximal and minimal.
+	\end{rmk}
+	\begin{rmk}
+		Warning:  This fails over general $R$-modules.  That said, $\cref{prp1.2.39(i)}$ implies both $\cref{prp1.2.39(ii)}$ and $\cref{prp1.2.39(iii)}$ no matter what.
+	\end{rmk}
+	\begin{proof}
+		Denote the ground division ring by $\F$.
+		
+		\blni
+		$(\cref{prp1.2.39(i)}\Rightarrow \cref{prp1.2.39(ii)})$ Suppose that $\basis{B}$ is a basis.  $\basis{B}$ is linearly-independent by \cref{prp1.2.37}, so it only remains to show maximality.  Let $\basis{C}\subseteq V$ be linearly-independent and such that $\basis{C}\supseteq \basis{B}$.  We wish to show that $\basis{B}=\basis{C}$, that is, that $\basis{C}\subseteq \basis{B}$.  So, let $c\in \basis{C}$.  If $c\in \basis{B}$, we're done, so suppose $c\notin \basis{B}$.  As $\basis{B}$ spans by \cref{prp1.2.37} again, there are unique $c^b\in \K$ such that
+		\begin{equation}
+		c=\sum _{b\in \basis{B}}c^b\cdot b.
+		\end{equation}
+		It follows that
+		\begin{equation}
+		\sum _{b\in \basis{B}}c^b\cdot b-1\cdot c=0,
+		\end{equation}
+		and so as each $b\in \basis{C}$ and $\basis{C}$ is linearly-independent, it follows that $1=0$,\footnote{This implicitly uses the fact that $c\not \basis{B}$, for otherwise we might have, for example, $c=b_1$, in which case we would instead deduce that $c^1=1$.} and so $\F =0$.  But then the only linear-combinations of elements of $\basis{B}$ is $0$, and so $V=0$, in which case we must have $\basis{B}=\emptyset =\basis{C}$.
+		
+		\blni
+		$(\cref{prp1.2.39(ii)}\Rightarrow \cref{prp1.2.39(i)})$ $\basis{B}$ is a maximal linearly-independent set.  It remains to show that $\basis{B}$ spans.  So, let $v\in V$.  If $v\in \basis{B}$, of course $v\in \Span (\basis{B})$.  Otherwise, $\basis{B}\cup \{ v\}$ is strictly larger than $\basis{B}$, and so as $\basis{B}$ is a maximal linearly-independent set, it must be the case that $\basis{B}\cup \{ v\}$ is linearly-dependent, so that there are $\alpha ^b,\alpha \in \F$, not all $0$, such that
+		\begin{equation}
+		\sum _{b\in \basis{B}}\alpha ^b\cdot b+\alpha \cdot v=0.
+		\end{equation}
+		If $\alpha =0$, linear-independent of $\basis{B}$ implies that every $\alpha ^b=0$ as well, which is impossible (not all of these coefficients are $0$).  Therefore, $\alpha \neq 0$.  Rearranging and multiplying by $\alpha ^{-1}$ yields
+		\begin{equation}
+		v=-\alpha ^{-1}\sum _{b\in \basis{B}}\alpha ^b\cdot b\in \Span (\basis{B}).
+		\end{equation}
+		
+		\blni
+		$(\cref{prp1.2.39(i)}\Rightarrow \cref{prp1.2.39(iii)})$ Suppose that $\basis{B}$ is a basis.  Let $\basis{C}\subseteq V$ be a spanning set such that $\basis{C}\subseteq \basis{B}$.  We wish to show that $\basis{B}\subseteq \basis{C}$.  So, let $b\in \basis{B}$.  If $b\in \basis{C}$, we're done, so suppose that $b\notin \basis{C}$.  As $\basis{C}$ is a spanning set, there are $b^c\in \F$ such that
+		\begin{equation}
+		b=\sum _{c\in \basis{C}}b^c\cdot c.
+		\end{equation}
+		It follows that
+		\begin{equation}
+		\sum _{c\in \basis{C}}b^c\cdot c-b=0,
+		\end{equation}
+		and so, as each $c\in \basis{B}$ and $\basis{B}$ is linearly-independent, it follows in particular that $1=0$, so that $\F =0$, and hence $V=0$, and hence $\basis{B}=\emptyset =\basis{C}$.
+		
+		\blni
+		$(\cref{prp1.2.39(iii)}\Rightarrow \cref{prp1.2.39(i)})$ Suppose that $\basis{B}$ is a minimal spanning set.  We wish to show that $\basis{B}$ is linearly-independent.  So, suppose that
+		\begin{equation}
+		0=\sum _{b\in \basis{B}}\alpha _b\cdot b
+		\end{equation}
+		for $\alpha _b\in \K$.  If every $\alpha _b=0$, we're done, so suppose this is not the case.  Then, there is some $b_0\in \basis{B}$ such that $\alpha _{b_0}\neq 0$.  Then, we can rearrange this to find
+		\begin{equation}
+		b_0=-\alpha _{b_0}^{-1}\sum _{\substack{b\in \basis{B} \\ b\neq b_0}}\alpha _b\cdot b\in \Span (\basis{B}).
+		\end{equation}
+		It then follows that $\basis{B}\setminus \{ b_0\}$ is again a spanning set, which contradicts minimality.
+	\end{proof}
+\end{prp}
 
-\begin{thm}{}{thmD.1.7}
-Insert abstract concrete correspondence here.
+We are now able to define the \emph{dimension} of a vector space.
+\begin{thm}{Fundamental Theorem of Dimension}{thm1.2.66}
+	Let $V$ be a vector space.
+	\begin{enumerate}
+		\item \label{thm1.2.66(i)}$V$ has a basis.
+		\item \label{thm1.2.66(ii)}Let $\basis{B}_1$ and $\basis{B}_2$ be bases of $V$.  Then, $\basis{B}_1$ and $\basis{B}_2$ have the same cardinality.
+	\end{enumerate}
+	\begin{rmk}
+		Warning:  $\K$-modules in general need not have a basis.
+	\end{rmk}
+	\begin{rmk}
+		In fact, those $\K$-modules which do have a basis are called \term{free modules}\index{Free module}.\footnote{Using this terminology, \cref{thm1.2.66(i)} becomes the statement that modules over division rings are free.}  However, even when $\K$-modules do have bases, distinct bases need not have the same cardinality.  On the other hand, if $\K$ is commutative, then distinct bases do have the same cardinality.
+	\end{rmk}
+	\begin{rmk}
+		``Fundamental Theorem of Dimension'' is not a standard name for this result (it doesn't have a standard name), so don't expect other people to know what you're talking about if you decide to use it.
+	\end{rmk}
+	\begin{proof}
+		\Step{Introduce notation}
+		Denote the ground division ring by $\F$.  To simplify notation by getting rid of some subscripts, let us instead write $\basis{B}\ceqq \basis{B}_1$ and $\basis{C}\ceqq \basis{B}_2$.
+		
+		\Step{Prove \cref{thm1.2.66(i)}}
+		The idea of the proof is to show that $V$ has a maximal linearly-independent set.  This will be a basis by \cref{prp1.2.39}.  The reason this is the strategy is because we have a result that asserts the existence of maximal things---\emph{\namerefpcref{ZornsLemma}}.
+		
+		So, define
+		\begin{equation}
+		\collection{B}\ceqq \left\{ S\subseteq V:S\text{ is linearly-independent.}\right\} .
+		\end{equation}
+		We consider $\collection{B}$ as a partially-ordered set with respect to the relation of inclusion.  As just explained, a maximal element of $\collection{B}$ will be a basis.  Furthermore, Zorn's Lemma states that $\collection{B}$ will have a maximal element if every well-ordered subset of $\collection{B}$ has an upper-bound in $\collection{B}$, and so it suffices to show this.
+		
+		So, let $\collection{S}\subseteq \collection{B}$ be a well-ordered subset of $\collection{B}$.  Define
+		\begin{equation}
+		\basis{B}\ceqq \bigcup _{S\in \collection{S}}S
+		\end{equation}
+		This certainly contains every element of $\collection{S}$, and so it only remains to check that $\basis{B}\in \collection{B}$, that is, we need to check that $\basis{B}$ is linearly-independent.  So, let $b_1,\ldots ,b_m\in \basis{B}$ and suppose that
+		\begin{equation}
+		\alpha _1\cdot b_1+\cdots +\alpha _m\cdot b_m=0
+		\end{equation}
+		for $\alpha _k\in \F$.  As $b_k\in \basis{B}$, there is some $S_k\in \collection{S}$ such that $b_k\in S_k$.  As $\collection{S}$ is totally-ordered, some $S_k$ contains all the others.  Without loss of generality, suppose that $S_1\supseteq S_1,\ldots ,S_m$.  It follows that $b_k\in S_1$ for all $1\leq k\leq m$, and so as $S_1$ is linearly-independent, we find that each $\alpha _k=0$, as desired.
+		
+		\Step{Prove that if $\basis{B}$ is finite, then $\basis{C}$ is finite}
+		Suppose that $\basis{B}$ is finite.  Write $\basis{B}\eqqc \{ b_1,\ldots ,b_d\}$.  For each $b_k\in \basis{B}$, there is a nonempty finite subset $\basis{C}_k\subseteq \basis{C}$ such that $b_k\in \Span (\basis{C}_k)$.  Thus,
+		\begin{equation}
+		\{ b_1,\ldots ,b_d\} \subseteq \Span \bigg( \bigcup _{k=1}^d\basis{C}_k\bigg) ,
+		\end{equation}
+		and hence
+		\begin{equation}
+		\begin{split}
+		V & =\Span (b_1,\ldots ,b_d) \\
+		& \subseteq \Span \bigg( \bigcup _{k=1}^d\basis{C}_k\bigg) \subseteq \Span (\basis{C})=V,
+		\end{split}
+		\end{equation}
+		and so all of these inclusions must be equalities.  In particular,
+		\begin{equation}
+		\Span \bigg( \bigcup _{k=1}^d\basis{C}_k\bigg) =V.
+		\end{equation}
+		However, as $\basis{C}$ is a basis, it is a minimal spanning set, and so
+		\begin{equation}
+		\basis{C}=\bigcup _{k=1}^d\basis{C}_k,
+		\end{equation}
+		and so $\basis{C}$ is finite.
+		
+		\Step{Prove \cref{thm1.2.66(ii)} in the case one is finite}
+		Without loss of generality, suppose that $\basis{B}$ is finite.  By the previous step, $\basis{C}$ must also be finite.  Write $\basis{B}=\{ b_1,\ldots ,b_d\}$ and $\basis{C}=\{ c_1,\ldots ,c_e\}$.  We wish of course to show that $d=e$.  Without loss of generality, suppose that $d\leq e$.
+		
+		$b_1\in \Span (\basis{C})$, so we may write
+		\begin{equation}
+		b_1=b\indices{^1_1}\cdot c_1+\cdots +b\indices{^e_1}\cdot c_e
+		\end{equation}
+		for $b\indices{^k_1}\in \F$.  Not all of these coefficients can be $0$, so without loss of generality, suppose that $b\indices{^1_1}\neq 0$.  Then, rearranging, we see that $c_1\in \Span (b_1,c_2,\ldots ,c_e)$, and hence
+		\begin{equation}
+		V=\Span (c_1,\ldots ,c_e)=\Span (b_1,c_2,\ldots ,c_e).
+		\end{equation}
+		\begin{exr}[breakable=false]{}{}
+			Verify that $\{ b_1,c_2,\ldots ,c_e\}$ is still linearly-independent.
+		\end{exr}
+		We thus have a new basis $\{ b_1,c_2,\ldots ,c_e\}$ with exactly $e$ elements.  In particular, $b_2\in \Span (b_1,c_2,\ldots ,c_e)$, and so we can write
+		\begin{equation}
+		b_2=a\indices{^1_2}\cdot b_1+b\indices{^2_2}\cdot c_2+\cdots +b\indices{^e_2}\cdot c_e.
+		\end{equation}
+		We can't have all of the $b\indices{^k_2}=0$, for then $\{ b_1,b_2\}$ would be linearly-dependent.  Thus, again, without loss of generality, $b\indices{^2_2}\neq 0$, and so $c_2\in \Span (b_1,b_2,c_3,\ldots ,c_e)$.  Proceeding as before, we find that $V=\Span (b_1,b_2,c_3,\ldots ,c_e)$.
+		
+		Proceeding inductively, we may replace the $c_k$s with the corresponding $b_k$s to obtain bases, and eventually we find that
+		\begin{equation}
+		\{ b_1,\ldots ,b_d,c_{d+1},\ldots ,c_e\}
+		\end{equation}
+		is a basis, and in particular, is a linearly-independent set that contains $\{ b_1,\ldots ,b_d\}$.  As $\{ b_1,\ldots ,b_d\}$ is maximal linearly-independent, it follows that
+		\begin{equation}
+		\{ b_1,\ldots ,b_d\} =\{ b_1,\ldots ,b_d,c_{d+1},\ldots ,c_e\} ,
+		\end{equation}
+		and hence $d=e$, as desired.
+		
+		\Step{Prove \cref{thm1.2.66(ii)} in the case both are infinite}
+		Now suppose that the cardinalities of both $\basis{B}$ and $\basis{C}$ are infinite.  We wish to show that $\abs{\basis{B}}\leq \abs{\basis{C}}$.  If we can show this, then by $\basis{B}\leftrightarrow \basis{C}$ symmetry, the same argument can be used to show that $\abs{\basis{C}}\leq \abs{\basis{B}}$, whence we will have $\abs{\basis{B}}=\abs{\basis{C}}$ by the \namerefpcref{thm1.1.26}, as desired.
+		
+		So, we would like to show that $\abs{\basis{B}}\leq \abs{\basis{C}}$.  Let $c\in \basis{C}$.  As $\basis{B}$ spans $V$, there are $b_1,\ldots ,b_m\in \basis{B}$ and $c^1,\ldots ,c^m\in \F$ nonzero such that
+		\begin{equation}
+		c=c^1\cdot b_1+\cdots +c^m\cdot b_m.
+		\end{equation}
+		Define $\basis{B}_c\ceqq \{ b_1,\ldots ,b_m\}$, and for $F\subseteq \basis{B}$ finite, define
+		\begin{equation}
+		\basis{C}_F\ceqq \{ c\in \basis{C}:\basis{B}_c=F\} .
+		\end{equation}
+		We have that
+		\begin{equation}
+		\basis{C}=\bigcup _{\substack{F\subseteq \basis{B} \\ F\text{ finite}}}\basis{C}_F.
+		\end{equation}
+		By \cref{prpA.5.25}, the cardinality of the collection of finite subsets of $\basis{B}$ is just $\abs{\basis{B}}$, and so the above is a union of $\abs{\basis{B}}$ many nonempty finite sets, and hence $\abs{\basis{C}}\leq \abs{\basis{B}}$ by \cref{prpA.5.27}.
+	\end{proof}
+\end{thm}
+\begin{dfn}{Dimension}{Dimension}
+	Let $V$ be a vector space.  Then, the \emph{dimension} of $V$, $\dim (V)$\index[notation]{$\dim (V)$}, is the cardinality of a basis of $V$.
+	\begin{rmk}
+		Of course, this makes sense and is well-defined by \cref{thm1.2.66}.  Indeed, in some sense, that was the entire point of this theorem.
+	\end{rmk}
+	\begin{rmk}
+		Sometimes we will want to consider the same set of vectors as a vector space over different division rings.  In such a case, we will write $\dim _{\F}(V)$\index[notation]{$\dim _{\F}(V)$} to clarify what ground division ring we mean to work over.  For example, we have $\dim _{\C}(\C )=1$ but $\dim _{\R}(\C )=2$.
+	\end{rmk}
+\end{dfn}
+\begin{prp}{}{crl2.2.74}
+	Let $V$ and $W$ be finite-dimensional vector spaces with $\dim (V)=\dim (W)$ and let $T\colon V\rightarrow W$ be linear.  Then, the following are equivalent.
+	\begin{enumerate}
+		\item $T$ is injective.
+		\item $T$ is surjective.
+		\item $T$ is bijective.
+	\end{enumerate}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
 
-TO DO
+\section{The tensor product and dual space}
+
+You do not need to understand the precise definition of a tensor product to use tensors to the extent necessary in these notes.  If this bothers you, think how you (probably) knew how to use integrals quite awhile before you knew how to define the integral.  Similarly, here, one does not need to know the technical details\footnote{Of course, they're not really technical details---it's an absolutely fundamental definition!  Only for our purposes is this content to be regarded as ``technical details''.} to work with tensors.  In particular:
+\begin{important}
+	Do not worry if nothing in this section makes sense.  You only need to understand tensors insofar as they are used in the differentiation chapter.
+\end{important}
+Anyways, let's begin our definition-theorem-proof extravaganza.
+
+\subsection{The dual space}
+
+\begin{dfn}{Dual-space}{DualSpace}
+	Let $V$ be a $\K$-$\K$-bimodule.  Then, the \term{dual-space}\index{Dual-space} of $V$ is the $\K$-$\K$-bimodule
+	\begin{equation}
+	V^{\T}\ceqq \Mor _{\Mod{\K}}(V,\K ).
+	\end{equation}\index[notation]{$V^{\T}$}
+	\begin{rmk}
+		We also say simply that $V^{\T}$ is the \term{dual}\index{Dual (of a bimodule)} of $V$.
+	\end{rmk}
+	\begin{rmk}
+		Elements of $V^{\T}$ are \term{covectors}\index{Covectors} or \term{linear-functionals}\index{Linear-functional}.  The terms are synonymous, though ``covector'' is more commonly used in the context of tensors while ``linear-functional'' tends to be used elsewhere.
+	\end{rmk}
+	\begin{rmk}
+		In other words, the elements of $V^{\T}$ take in elements of $V$ and spit out scalars.  Recall that the motivating example of this was the derivative:  this takes in a vector (the direction in which to differentiate) and spits out a number (the directional derivative in that direction).
+	\end{rmk}
+	\begin{rmk}
+		Recall that (\cref{sss1.1.2}) $\Mor _{\Mod{\K}}(V,W)$ does not have the structure of a module if $V$ and $W$ are just modules.  If we want morphism sets to have some sort of nontrivial module structure, we need to work with \emph{bimodules} from the get-go.  Requiring that $V$ be a $\K$-$\K$-bimodule ensures that $\Mor _{\Mod{\K}}(V,\K )$ is a $\K$-$\K$-bimodule as well, so that $V$ and $V^{\dagger}$ are the same type of object.\footnote{Note that $\K$ is a $\K$-$\K$-bimodule (\cref{RingBimodule}), and hence $V^{\T}\ceqq \Mor _{\Mod{\K}}(V,\K )$ is a $\K$-$\K$-bimodule by \cref{exm1.1.72}.}
+		
+		That said, recall that (\cref{exm1.1.55}) modules over commutative rings have a canonical bimodule structure, and so if we're working over commutative rings, we can get away with just saying ``$\K$-module'' everywhere.
+	\end{rmk}
+	\begin{rmk}
+		The ``$\T$'' is for ``transpose''---we'll see why later.  This is uncommon notation.  More common notation includes $V^*$ and $V'$.  The former I choose not to use as I reserve this notation for the \emph{conjugate}-dual, and the latter, well, $V'$ just looks weird to me.  There's also the fact that ``$\T$'' kind of just looks like a ``t''.\footnote{In English, ``$\T$'' is actually read as ``dagger'' (the \TeX \ command for this is ``\texttt{\textbackslash dagger}, though I imagine the English usage came first).}
+	\end{rmk}
+	\begin{rmk}
+		If $V$ comes with a topology, you're only going to want to look at the \emph{continuous} linear functionals.  Of course, you can look at all of them (including the discontinuous ones), but this is probably not going to be as useful.
+	\end{rmk}
+	\begin{rmk}
+		You might say that this is the ``left dual-space'' and that $\Mor _{\Mod*{\K}}(V,\K )$ would be the ``right dual-space''.  Just as we only worked with left modules by default (even though there was a corresponding notion of right module), we won't every worry about the right dual-space.  Besides, if $\K$ is commutative, there isn't going to be any difference anyways.
+	\end{rmk}
+\end{dfn}
+There is an analogous notion for linear-transformations, the \emph{transpose}.
+\begin{dfn}{Transpose}{Transpose}
+	Let $V_1$ and $V_2$ be $\K$-$\K$-bimodules and let $T\colon V_1\rightarrow V_2$.  Then, the \term{transpose}\index{Transpose} of $T$, $T^{\T}\colon V_2^{\T}\rightarrow V_1^{\T}$\index[notation]{$T^{\T}$}, is defined by
+	\begin{equation}
+	\pinnerprod{T^{\T}(w_2)|v_1}\ceqq \pinnerprod{w_2|T(v_1)}
+	\end{equation}
+	for $w_2\in V_2^{\T}$ and $v_1\in V_1$.
+	\begin{rmk}
+		$T^{\T}$ is also called the \term{dual-map}\index{Dual-map} or just \term{dual}\index{Dual (of a linear-transformation)} of $T$.
+	\end{rmk}
+\end{dfn}
+
+\begin{prp}{The dual basis}{TheDualBasis}
+	Let $V$ be a $\K$-$\K$-bimodule, let $\basis{B}$ be a basis of $V$, for $b\in \basis{B}$ let $b^{\T}\colon V\rightarrow \K$ be the unique linear map such that
+	\begin{equation}
+	b^{\T}(c)=\begin{cases}1 & \text{if }c=b \\ 0 & \text{otherwise,}\end{cases}
+	\end{equation}
+	and define $\basis{B}^{\T}\ceqq \{ b^{\T}:b\in \basis{B}\}$.
+	\begin{enumerate}
+		\item If $V$ is a vector space, then $\basis{B}^{\T}\subseteq V^{\T}$ is linearly-independent.
+		\item If $V$ is a finite-dimensional vector space, then $\basis{B}^{\T}\subseteq V^{\T}$ is a basis.
+	\end{enumerate}
+	\begin{rmk}
+		If $\basis{B}^{\T}$ is actually a basis of $V^{\T}$, then it is referred to as the \term{dual basis}\index{Dual basis} of $\basis{B}$.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
+One reason the term ``dual'' is used is because, while on one hand, we can obviously view elements of $V^{\T}$ as linear-functionals on $V$, we can ``dually'' view elements of $V$ as linear-functionals on $V^{\T}$.
+\begin{thm}{Duality of the dual}{DualityOfTheDual}
+	Let $V$ be a $\K$-$\K$-bimodule.  Then, the map $V\rightarrow [V^{\T}]^{\T}$ defined by
+	\begin{equation}
+	v\mapsto (\phi \mapsto \phi (v))
+	\end{equation}
+	is linear and natural.
+	
+	Furthermore,
+	\begin{enumerate}
+		\item \label{DualityOfTheDual(i)}if $V$ is a vector space, this map is injective; and
+		\item \label{DualityOfTheDual(ii)}if $V$ is a finite-dimensional vector space, this map is an isomorphism.
+	\end{enumerate}
+	\begin{rmk}
+		See \cref{sbsB.2.2} for a discussion of what is meant here by the term ``natural''.  You should note, however, that it's not particularly important and could require a relatively large effort to fully understand, especially if you've never seen anything like this before.  Thus, you might consider just pretending the word ``natural'' didn't appear anywhere in the statement above---you won't be missing out on all \emph{that} much.
+	\end{rmk}
+	\begin{rmk}
+		For $v\in V$ and $\phi \in V^{\T}$, we write
+		\begin{equation}
+		\pinnerprod{\phi |v}\ceqq \phi (v).
+		\end{equation}\index[notation]{$\pinnerprod{\phi |v}$}
+		Using this notation, the map $V\rightarrow [V^{\T}]^{\T}$ can be written as
+		\begin{equation}
+		v\mapsto \pinnerprod{\blankdot |v},
+		\end{equation}
+		where $\pinnerprod{\blankdot |v}$ is the linear-functional on $V^{\T}$ that sends $\phi \in V^{\T}$ to $\pinnerprod{\phi |v}\ceqq \phi (v)\in \K$.
+		
+		This notation is used suggestively when we want to think of $V$ and $V^{\T}$ as `on the same footing'---on one hand, we can view elements of $V^{\T}$ as linear-functionals on $V$ (e.g.~for $\phi \in V^{\T}$, $\pinnerprod{\phi |\blankdot}$ is a linear-functional on $V$), but on the other hand we can also view elements of $V$ as linear-functional on $V^{\T}$ (e.g.~for $v\in V$, $\pinnerprod{\blankdot |v}$ is a linear-functional on $V^{\T}$).  Thinking of things in terms of this ``duality'' is particularly appropriate when $V$ is a finite-dimensional vector space, so that, up to natural isomorphism, $V$ is `the same as' $[V^{\T}]^{\T}$.
+	\end{rmk}
+	\begin{rmk}
+		Warning:  \cref{DualityOfTheDual(i)} need not hold if $V$ is not a vector space and \cref{DualityOfTheDual(ii)} need not hold if $V$ is a vector space but not finite-dimensional.
+	\end{rmk}
+	\begin{proof}
+		We first check that it is linear.  Let $v,w\in V$ and let $\alpha ,\beta \in \K$.  We wish to show that
+		\begin{equation}
+		\pinnerprod{|\alpha v+\beta w}=\alpha \pinnerprod{|v}+\beta \pinnerprod{|w}.
+		\end{equation}
+		However, this will be the case iff for all $\phi \in V^{\dagger}$ we have
+		\begin{equation}
+		\pinnerprod{\phi|\alpha v+\beta w}=\alpha \pinnerprod{\phi |v}+\beta \pinnerprod{\phi |w}.
+		\end{equation}
+		However, by definition of the notation $\pinnerprod$, this equation is the same as
+		\begin{equation}
+		\phi (\alpha v+\beta w)=\alpha \phi (v)+\beta \phi (w),
+		\end{equation}
+		which is of course true as $\phi$ is linear.
+		
+		We now check that it is natural.\footnote{This part of the proof makes uses of things we have not yet encountered.  You can verify it is not circular as these new things don't make use of this result.  (It doesn't make sense to move this result so drastically just to avoid this small worry about potential circularity).  It makes use of the concept of a \emph{commutative diagram}, which is explained in a remark of \cref{TensorProduct}.}  Let $T\colon V\rightarrow W$ be a linear-transformation between $\K$-modules.  By definition (\cref{NaturalTransformation}), $V\mapsto [V^{\T}]^{\T}$ is natural iff the following diagram commutes.
+		\begin{equation}
+		\begin{tikzcd}
+		V \ar[r] \ar[d,"T"'] & \left[ V^{\T}\right] ^{\T} \ar[d,"{[T^{\T}]^{\T}}"] \\
+		W \ar[r] & \left[ W^{\T}\right] ^{\T}
+		\end{tikzcd}
+		\end{equation}
+		By definition, this means that we want to show that
+		\begin{equation}
+		\pinnerprod{\psi |[[T^{\T}]^{\T}](\pinnerprod{|v})}=\pinnerprod{\psi|T(v)}
+		\end{equation}
+		for al $v\in V$ and $\psi \in W^{\T}$.  However, by definition of the transpose and $\pinnerprod{|v}$,
+		\begin{equation}
+		\begin{split}
+		\MoveEqLeft
+		\pinnerprod{\psi |[[T^{\T}]^{\T}](\pinnerprod{|v})}\ceqq \pinnerprod{[T^{\T}](\psi )|\pinnerprod{|v}} \\
+		& \ceqq \pinnerprod{[T^{\T}](\psi )|v}\ceqq \pinnerprod{\psi |T(v)},
+		\end{split}
+		\end{equation}
+		as desired.
+		
+		\blni
+		\cref{DualityOfTheDual(i)} Suppose that $V$ is a vector space.  To show that it is injective, we check that the kernel is $0$.  So, let $v\in V$ suppose that $\pinnerprod{\phi |v}=0$ for all $\phi \in V^{\T}$.  If $\K =0$, then $V=0$, and so we are immediately done.  Otherwise, if $v\neq 0$, then there is a linear-functional $\phi \colon V\rightarrow \K$ that sends $v$ to $1$, in which case $\pinnerprod{\phi |v}=1\neq 0$, a contradiction.  Thus, it must be the case that $v=0$.
+		
+		\blni
+		\cref{DualityOfTheDual(ii)} Suppose that $V$ is a finite-dimensional vector space.  We know from the defining result of the dual basis (\cref{TheDualBasis}) that $\dim (V)=\dim (V^{\T})=\dim ([V^{\T}]^{\T})$.  Thus, we have a injective linear map $V\rightarrow [V^{\T}]^{\T}$ between two finite-dimensional vector spaces of the same dimension, and hence it must in fact be an isomorphism (\cref{crl2.2.74}).
+	\end{proof}
+\end{thm}
+
+\subsection{The tensor product}
+
+\begin{dfn}{Multilinear-transformation\hfill}{MultilinearTransformation}
+	Let $V_1,\ldots ,V_m$ be respectively $\K _k$-$\K _{k+1}$-bimodules, let $V$ be a $\K _1$-$\K _{m+1}$-bimodule, and let $T\colon V_1\times \cdots \times V_m\rightarrow V$ be a function.  Then, $T$ is \term{multilinear}\index{Multilinear-transformation} iff
+	\begin{enumerate}
+		\item
+		\begin{equation*}
+		V_k\in v\mapsto T(v_1,\ldots ,v_{k-1},v,v_{k+1},\ldots ,v_m)\in V
+		\end{equation*}
+		is a group homomorphism for all $1\leq k\leq m$;
+		\item
+		\begin{equation*}
+		T(\alpha \cdot v_1,v_2,\ldots ,v_{m-1},v_m\cdot \beta )=\alpha \cdot T(v_1,v_2\ldots ,v_{m-1},v_m)\cdot \beta
+		\end{equation*}
+		for $\alpha \in \K _1$ and $\beta \in \K _{m+1}$; and
+		\item
+		\begin{equation}
+		\begin{multlined}
+		T(v_1,\ldots ,v_k\cdot \alpha ,v_{k+1},\ldots ,v_m) \\ =T(v_1,\ldots ,v_k,\alpha \cdot v_{k+1},\ldots ,v_m)
+		\end{multlined}
+		\end{equation}
+		for $\alpha \in \K _k$.
+	\end{enumerate}
+	\begin{rmk}
+		If $m=2$, the term \term{bilinear}\index{Bilinear-transformation} is more commonly used instead of ``multilinear-transformation''.  While I can't say I've heard the term before, it would stand to reason that \term{trilinear}\index{Trilinear-transformation} would be used for the $m=3$ case, etc..
+	\end{rmk}
+	\begin{rmk}
+		In essence, this means that (i) each argument preserves addition and (ii) you can move scalars around as you please just so long as you don't move scalars past vectors.
+		
+		If you find this confusing, I wouldn't worry.  Our interest is primarily in the commutative case, in which case these conditions simplify to something more understandable---see \cref{prp5.1.1}.
+	\end{rmk}
+	\begin{rmk}
+		At this level of generality, you might hear this concept being referred to as \term{balanced}\index{Balanced linear-transformation}, in which case ``multilinear-linear transformation'' would only be used in the commutative case where the condition simplifies---see \cref{prp5.1.1}.
+	\end{rmk}
+\end{dfn}
+\begin{prp}{}{prp5.1.1}
+	Let $V_1,\ldots ,V_m,V$ be $\K$-modules, $\K$ a cring, and let $T\colon V_1\times \cdots \times V_m\rightarrow V$ be a function.  Then, $T$ is multilinear iff
+	\begin{equation}
+	V_k\ni v\mapsto T(v_1,\ldots ,v_{k-1},v,v_{k+1},\ldots ,v_m)\in V
+	\end{equation}
+	is linear for all $1\leq k\leq m$.
+	\begin{rmk}
+		In other words, over commutative rings, multilinear is equivalent to being linear in every argument.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
+\begin{thm}{Tensor product (of bimodules)}{TensorProduct}
+	Let $V$ be an $R$-$S$-bimodule and let $W$ be an $S$-$T$-bimodule.  Then, there is a unique bilinear map $\blank \otimes \blank \colon V\times W\rightarrow V\otimes _SW$ into the $R$-$T$-bimodule $V\otimes _SW$\index[notation]{$V\otimes _SW$}, the \term{tensor product}\index{Tensor product (of bimodules)} of $V$ and $W$ over $S$, such that if $V\times W\rightarrow U$ is any other bilinear map into an $R$-$T$-bimodule $U$, then there is a unique map of bimodules $V\otimes _SW\rightarrow U$ such that the following diagram commutes.
+	\begin{equation}\label{eqn5.3.2}
+	\begin{tikzcd}
+	V\times W \ar[r,"\blank \otimes \blank "] \ar[rd] & V\otimes _SW \ar[d,dashed] \\
+	& U
+	\end{tikzcd}
+	\end{equation}
+	\begin{rmk}
+		For $v\in V$ and $w\in W$, the image under the bilinear map $V\times W\rightarrow V\otimes _SW$ is written $v\otimes w\in V\otimes _SW$\index[notation]{$v\otimes w$} and is the \term{tensor product}\index{Tensor product (of vectors)} of $v$ and $w$.
+	\end{rmk}
+	\begin{rmk}
+		There is an analogous result for not just bilinear maps, but all types of multilinear maps.  Specifically, if $V_k$ is a $\K _k$-$\K _{k+1}$-bimodules, then we have a multilinear map $V_1\times \cdots \times V_m\rightarrow V_1\otimes _{\K _1}\cdots \otimes _{\K _{m-1}}V_m$ into a $\K _1$-$\K _m$-bimodule that is ``universal'' in a sense exactly analogous to \eqref{eqn5.3.2}.
+		
+		Additionally, the empty tensor product over $\K$, that is, the tensor product of no spaces, is defined to be $\K$ itself.  In symbols:
+		\begin{equation}
+		\underbrace{V\otimes _{\K}\cdots \otimes _{\K}V}_0\ceqq \K .
+		\end{equation}
+	\end{rmk}
+	\begin{rmk}
+		To clarify, there are tensor products of \emph{bimodules}, and then there are tensor products of \emph{vectors themselves}.  The tensor product of two vectors `lives in' the tensor product of the corresponding bimodules.  And in fact, \emph{everything} in $V\otimes _SW$, while \emph{not} of the form $v\otimes w$ itself necessarily, can be written as a finite sum of elements of this form---see \cref{prp5.3.15}.  (Elements of the form $v\otimes w$ are sometimes called \term{pure}\index{Pure tensor} or \term{simple}\index{Simple tensor}, as opposed to, e.g.~, $v_1\otimes w_1+v_2\otimes w_2$).
+	\end{rmk}
+	\begin{rmk}
+		If $S$ is clear from context, it may be omitted:  $V\otimes W\ceqq V\otimes _SW$\index[notation]{$V\otimes W$}.
+	\end{rmk}
+	\begin{rmk}
+		For the purpose of (hopefully) increasing clarity, we are actually being sloppy here.  When we say that $V\otimes _SW$ is ``unique'', what we actually mean is that $V\otimes _SW$ is ``unique up to unique isomorphism'' in the sense that, if $V\times W\rightarrow U$ is some other bilinear map into an $R$-$T$-bimodule $U$ that satisfies this property, then there is a unique isomorphism (of $R$-$T$-bimodules) $V\otimes _SW\rightarrow U$ such that the following diagram commutes.
+		\begin{equation}
+		\begin{tikzcd}
+		V\times W \ar[r] \ar[rd] & V\otimes _SW \ar[d,dashed] \\
+		& U
+		\end{tikzcd}
+		\end{equation}
+		
+		Thus, while people do often say ``unique up to \emph{unique} isomorphism'', the isomorphism is itself not unique---it would be more accurate to say ``unique up to unique isomorphisms which commute with blah blah blah diagram''.  That is to say, while there might be many isomorphisms between $V\otimes _SW$ and $U$, there is only one which makes the above diagram commute.  Given that the latter option, while more accurate, is incredibly verbose, people just stick to ``unique up to unique isomorphism''.
+	\end{rmk}
+	\begin{rmk}
+		A common question I've gotten from students is ``But what actually \emph{is} $v\otimes w$?''.  I'm afraid there's not a terribly good answer for that.  It is what it is:  the image of $\coord{v,w}\in V\times W$ under the canonical bilinear map $V\times W\rightarrow V\otimes _SW$.  As that's probably not very satisfying, I ask you to consider the following.
+		
+		What if I asked you ``But what actually \emph{is} $\sqrt{2}\cdot \uppi$?''.  The answer is that it is what it is:  it's the product of $\sqrt{2}$ and $\uppi$.  You can't really reduce it to something simpler without going so far out of your way so as to not be worth it.  For example, what are you going to do?  Try to argue that the number $\sqrt{2}\cdot \uppi$ is $\uppi$ added to itself $\sqrt{2}$ times?  Good luck with that.
+		
+		Anyways, I'm sure you probably don't feel very uncomfortable talking about ``$\sqrt{2}\cdot \uppi$'', and my claim is that if you feel comfortable working with this, then you should feel comfortable working with $v\otimes w$.
+		
+		That said, in special cases, one can be a bit more explicit---see the blue box in the remark of \cref{Tensor}.  I personally don't find this perspective particularly useful, but I have found that some students to.
+	\end{rmk}
+	\begin{rmk}
+		Thus you can take the tensor product of an $R$-$S$-bimodule and an $S$-$T$-bimodule, the result being an $R$-$T$-bimodule.  To remember this, you might note that this is exactly analogous to matrix multiplication:  the `inner' things have to be the same in which case the result has the structure coming from the `outer' things.
+		
+		This was one motivation for working with bimodules.\footnote{The other big motivation is that you will need to learn tensor products in this level of generality at some point in your mathematical life, so may as well learn it now.}  If I were working just with vector spaces, then you could take the tensor product of any two things you like, but in this context, you can only take the tensor product of an $R\times S$-bimodule and an $S$-$T$-bimodule with the result being an $R$-$T$-bimodule---this makes it clearer what roles everything is playing. 
+	\end{rmk}
+	\begin{rmk}
+		\emph{This is important---do not ignore.}  Essentially what this result says is that, instead of working with \emph{bilinear} maps $V\times W\rightarrow U$, instead, we can work with \emph{linear} maps $V\otimes _SW\rightarrow U$.  You'll find in time that this `trade-off' is worth it.
+		
+		In practice, this is often used in the following way.  Suppose you want to define a function $T\colon V\otimes _SW\rightarrow U$.  The definition of the tensor product says that \emph{you only need to say where elements of the form $v\otimes w$ map to}.  In practice, you will say something like ``Let $T(v\otimes w)\ceqq \text{blah blah blah}$\textellipsis'', and while superficially it doesn't look like you're defining $T$ on all of $V\otimes _SW$ (because you're not), this is enough.  As long as your ``$\text{blah blah blah}$'' is bilinear in $\coord{v,w}\in V\times W$, the definition of the tensor product says that this corresponds to a unique linear map $V\otimes _SW\rightarrow U$.  Thus, you can define a linear-transformation on all of $V\otimes _SW$ by only specifying what happens to elements of the form $v\otimes w$.
+		
+		TL;DR:
+		\begin{important}
+			To define linear maps $V\otimes _SW\rightarrow U$, it suffices to say where elements of the form $v\otimes w\in V\otimes _SW$ get mapped to.  As long as what you write down is bilinear in $\coord{v,w}$, the definition of the tensor product says that this serves to define a unique linear map on all of $V\otimes _SW$.
+		\end{important}
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{thm}
+This result says that if I every have a bilinear map $V\times W\rightarrow U$, I can `replace' it with a linear map $V\otimes _SW\rightarrow U$.  In this sense, the tensor product reduces the study of multilinear maps to linear maps.
+
+Another way of thinking about $V\otimes W$ that might help your intuition is in terms of bases.  Though this is only true for vector spaces,\footnote{Duh.  We don't have bases for general modules.} it essentially says the following:  if you have a bunch of $b_k$s that are a basis for $V$ and a bunch of $c_l$s that are a basis for $W$, then the collection of all $b_k\otimes c_l$s forms a basis for $V\otimes W$.  Thus, the elements of $V\otimes W$ are precisely those things that can be written (uniquely) as a linear combinations of $b_k\otimes c_l$s.
+\begin{prp}{Basis for $V\otimes W$}{}
+	Let $V$ and $W$ be vector spaces over a field $\F$, and let $\basis{B}$ and $\basis{C}$ be bases for $V$ and $W$ respectively.  Then,
+	\begin{equation}
+	\left\{ b\otimes c:b\in \basis{B},c\in \basis{C}\right\}
+	\end{equation}
+	is a basis for $V\otimes W$.
+	\begin{rmk}
+		In particular, $\dim (V\otimes W)=\dim (V)\dim (W)$.
+	\end{rmk}
+	\begin{rmk}
+		We see immediately from working in the level of generality that we did that the ground division ring need be commutative, that is, a field.  If it weren't, then $V$ would be just an $\F$-$\Z$-bimodule and $W$ would be a $\F$-$\Z$-bimodule, in which case we could not take their tensor product!
+	\end{rmk}
+	\begin{rmk}
+		This result can probably be generalized to the noncommutative case, but then we will need to take $V$ to be a $\K _1$-$\L$-bimodule and $W$ to be an $\L$-$\K _2$-bimodule, with $\K _1$ and $\K _2$ division rings.  Furthermore, the statement would require us to have a notion of ``basis'' for bimodules.  It's easy enough to write one down, but as we have not done so, we refrain from `officially' giving this noncommutative version.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
+\begin{crl}{}{crl5.3.59}
+	Let $V$ and $W$ be vector spaces over a field, and let $v\in V$ and $w\in W$.  Then, if $v\otimes w=0$, then $v=0$ or $w=0$.
+	\begin{rmk}
+		Warning:  This may fail for general $\K$-modules.
+	\end{rmk}
+	\begin{rmk}
+		Just as the previous result should generalize to the noncommutative case, so to should this one.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{crl}
+
+The following result is important in that it will allow us to change our perspective on things, that is, we can think of something as a map $U\otimes V\rightarrow W$, or alternatively we can think of it as a map $U\rightarrow V^{\dagger}\otimes W$.
+
+\begin{prp}{}{prp5.3.15}
+	Let $R$, $S$, and $T$ be rings, let $V$ be an $R$-$S$-bimodule and let $W$ be an $S$-$T$-bimodule.  Then,
+	\begin{equation}
+	V\otimes _SW=\Span \left\{ v\otimes w:v\in V,w\in W\right\} .
+	\end{equation}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{prp}
+
+What follows is one of the most important properties of the tensor product.
+\begin{thm}{Tensor-Hom Adjunction}{TensorHomAdjunction}
+	Let $R$, $S$, and $T$ be rings, and let $U$ be an $R$-$S$ bimodule, $V$ and $S$-$T$ bimodule, and $W$ an $R$-$T$ bimodule.
+	\begin{enumerate}
+		\item \label{TensorHomAdjunction(i)}The map
+		\begin{equation}\label{eqn5.3.7}
+		\begin{multlined}
+		\Mor _{\Mod{R}[T]}(U\otimes _SV,W)\leftarrow \\ \Mor _{\Mod{S}[T]}(V,\Mor _{\Mod{R}}(U,W))
+		\end{multlined}
+		\end{equation}
+		defined by
+		\begin{equation}\label{eqn5.3.8}
+		(u\otimes v\mapsto [\phi (v)](u))\mapsfrom \phi
+		\end{equation}
+		is an isomorphism of commutative groups.
+		\item \label{TensorHomAdjunction(ii)}The map
+		\begin{equation}\label{eqn5.3.9}
+		\begin{multlined}
+		\Mor _{\Mod{R}[T]}(U\otimes _SV,W)\leftarrow \\ \Mor _{\Mod{R}[S]}(U,\Mor _{\Mod*{T}}(V,W))
+		\end{multlined}
+		\end{equation}
+		defined by
+		\begin{equation}
+		(u\otimes v\mapsto [\phi (u)](v))\mapsfrom \phi
+		\end{equation}
+		is an isomorphism of commutative groups.
+	\end{enumerate}
+	\begin{rmk}
+		The $R$, $S$, and $T$s everywhere clutter things up.  Dropping all of the notational baggage, these become the more readable
+		\begin{align*}
+		\Mor (U\otimes V,W) & \cong \Mor (V,\Mor (U,W)) \\
+		\Mor (U\otimes V,W) & \cong \Mor (U,\Mor (V,W)).
+		\end{align*}
+	\end{rmk}
+	\begin{rmk}
+		To understand this, it might first help to understand an analogous result in a different category:  the map defined analogously as above yields an isomorphism
+		\begin{equation*}
+		\Mor _{\Set}(X\times Y,Z)\rightarrow \Mor _{\Set}(X,\Mor _{\Set}(Y,Z)).
+		\end{equation*}
+		In other words, functions from $X\times Y$ into $Z$ are `the same as' functions from $X$ into $\Mor _{\Set}(Y,Z)$; given a function of two variables, we can instead think of it as a function-valued function $f\mapsto (x\mapsto (y\mapsto f(x,y)))$.  In computer science, this concept is called \emph{currying}.  Thus, you could say that this result is just the linear algebraic analogue of currying.
+	\end{rmk}
+	\begin{rmk}
+		The ``Hom'' in ``Tensor-Hom Adjunction'' comes from the fact that ``$\Mor$'' is often written as ``$\Hom$''.
+	\end{rmk}
+	\begin{rmk}
+		Though you (probably) don't know what the term means yet, it turns out that this (by which I mean \cref{TensorHomAdjunction(i)}) actually yields what is called an adjunction\footnote{This means that not only is \eqref{eqn5.3.8} an isomorphism, but it defines an isomorphism that is natural (\cref{NaturalTransformation}) in both $V$ and $W$.} between the functors $U\otimes _S\blank \colon \Mod{S}[T]\rightarrow \Mod{R}[T]$ and $\Mor _{\Mod{R}}(U,\blank )\colon \Mod{R}[T]\rightarrow \Mod{S}[T]$, hence ``Tensor-Hom Adjunction''.  In this case, we say that $U\otimes _S\blank$ is \emph{left adjoint} to $\Mor _{\Mod{R}}(U,\blank )$, and the other way around, that $\Mor _{\Mod{R}}(U,\blank )$ is \emph{right adjoint} to $U\otimes _S\blank$.  Thus, as the tensor product is the \emph{left} adjoint and the ``Hom'' is the \emph{right} adjoint, I recommend you say ``tensor-hom adjunction'' and \emph{not} ``hom-tensor adjunction''.
+		
+		Dually, \cref{TensorHomAdjunction(ii)} yields an adjunction between the functors $\blank \otimes _SV$ and $\Mor _{\Mod*{T}}(V,\blank )$.
+	\end{rmk}
+	\begin{proof}
+		We prove \cref{TensorHomAdjunction(i)}.  The proof of \cref{TensorHomAdjunction(ii)} is essentially identical.
+		
+		Given $f\colon U\otimes _SV\rightarrow W$ a map of $R$-$T$-bimodules, define $g_f\colon V\rightarrow \Mor _{\Mod{R}}(U,W)$ by
+		\begin{equation}
+		[g_f(v)](u)\ceqq f(u\otimes v).
+		\end{equation}
+		First of all, note that $g_f(v)\in \Mor _{\Mod{R}}(U,W)$ as $f$ is linear and the tensor product is bilinear.
+		
+		To show that $g_f\colon V\rightarrow \Mor _{\Mod{R}}(U,W)$ is a map of $S$-$T$-bimodules, we must show that
+		\begin{equation}
+		[g_f(s\cdot v\cdot t)](u)=[s\cdot [g_f(v)]\cdot t](u)
+		\end{equation}
+		for all $u\in U$.  However, recall from \cref{exm1.1.72} that the $S$-$T$-bimodule action on $\Mor _{\Mod{R}}(U,W)$ is given by
+		\begin{equation}
+		[s\cdot T\cdot t](u)\ceqq T(u\cdot s)\cdot t,
+		\end{equation}
+		and hence what we would actually like to show is that
+		\begin{equation}
+		[g_f(s\cdot v\cdot t)](u)=[g_f(v)](u\cdot s)\cdot t.
+		\end{equation}
+		From the definition of $g_f$, this means we would like to show that
+		\begin{equation}
+		f\left( u\otimes (s\cdot v\cdot t)\right) =f\left( (u\cdot s)\otimes v\right) \cdot t.
+		\end{equation}
+		This is of course true because $f$ is linear and because of properties of the tensor product.
+		
+		Finally, to check that $f\mapsto g_f$ is a group homomorphism
+		\begin{equation*}
+		\Mor _{\Mod{R}[T]}(U\otimes _SV,W)\rightarrow \Mor _{\Mod{S}[T]}(V,\Mor _{\Mod{R}}(U,W)),
+		\end{equation*}
+		we must show that $g_{f_1+f_2}=g_{f_1}+g_{f_2}$.  In other words, we must show that
+		\begin{equation}
+		\begin{split}
+		\MoveEqLeft
+		[f_1+f_2](u\otimes v)=[g_{f_1+f_2}(v)](u) \\
+		& =[[g_{f_1}+g_{f_2}](v)](u) \\
+		& =f_1(u\otimes v)+f_2(u\otimes v)
+		\end{split}
+		\end{equation}
+		for all $u\in U$ and $v\in U$.  This is of course true because of the definition of addition of functions.
+		
+		To show that $f\mapsto g_f$ is an isomorphism, we construct an inverse $g\mapsto f_g$ from $\Mor _{\Mod{S}[T]}(V,\Mor _{\Mod{R}}(U,W))$ to $\Mor _{\Mod{R}[T]}(U\otimes _SV,W)$.  So, let $g\colon V\rightarrow \Mor _{\Mod{R}}(U,W)$ be a map of $S$-$T$-bimodules and define $f_g\colon \Mor _{\Mod{R}[T]}(U\otimes _SV,W)$ by
+		\begin{equation}
+		f_g(u\otimes v)\ceqq [g(v)](u).
+		\end{equation}
+		As this is bilinear in $u$ and $v$, this serves to define a map of $S$-$T$-bimodules $U\otimes _SV\rightarrow W$---see the last remark in the definition of the tensor product (\cref{TensorProduct}).  As the check that $g\mapsto f_g$ is a group homomorphism is similar to before, we omit it (it comes down to the definition of addition of functions).
+		
+		It remains to check that $f\mapsto g_f$ and $g\mapsto f_g$ are inverse to each other.  To do that, we must show that $g_{f_g}=g$ and $f_{g_f}=f$.  For the first one, note that
+		\begin{equation}
+		[[g_{f_g}](v)](u)\ceqq f_g(u\otimes v)\ceqq [g(v)](u).
+		\end{equation}
+		As this holds for all $u\in U$ and $v\in V$, we have $g_{f_g}=g$.  For the other one, note that
+		\begin{equation}
+		[f_{g_f}](u\otimes v)\ceqq [g_f(v)](u)\ceqq f(u\otimes v),
+		\end{equation}
+		and again we have that $f_{g_f}=f$, as desired.
+	\end{proof}
+\end{thm}
+What follows are a couple of results similar in flavor to the tensor-hom adjunction.  While the tensor-hom adjunction is probably more important in mathematics in general, for us, the following three results will be more important, and you should take note of them, especially the case of finite-dimensional vector spaces.
+\begin{thm}{$\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)\cong \Mor (V_1\otimes V_2,W_1\otimes W_2)$}{TensorProductLinearTransformation}
+	Let $V_1$, $W_1$, $V_2$, and $W_2$ be $\K$-$\K$-bimodules.  Then, the map
+	\begin{equation*}
+	\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)\rightarrow \Mor (V_1\otimes V_2,W_1\otimes W_2)
+	\end{equation*}
+	defined by
+	\begin{equation}
+	S\otimes T\mapsto (v_1\otimes v_2\mapsto S(v_1)\otimes T(v_2))
+	\end{equation}
+	is linear and natural.
+	
+	Furthermore,
+	\begin{enumerate}
+		\item \label{TensorProductLinearTransformation(i)}if $V_1$, $W_1$, $V_2$, and $W_2$ are vector spaces, then this map is injective; and
+		\item \label{TensorProductLinearTransformation(ii)}if $V_1$, $W_1$, $V_2$, and $W_2$ are finite-dimensional vector spaces, then this map is an isomorphism.
+	\end{enumerate}
+	\begin{rmk}
+		We will abuse notation write write $S\otimes T$\index[notation]{$S\otimes T$} for both the element in the tensor product $\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)$ and the linear-transformation it defines $V_1\otimes V_2\rightarrow W_1\otimes W_2$.  Of course, this result says that this isn't even really an abuse of notation if everything involved is a vector space, but even if they weren't, this abuse should not cause any confusion.
+	\end{rmk}
+	\begin{rmk}
+		Warning:  This need not be an isomorphism even for vector spaces if they are not finite-dimensional.
+	\end{rmk}
+	\begin{proof}
+		As this is bilinear in $S$ and $T$, it defines a linear-transformation on the tensor product.
+		
+		To show naturality, let $f\colon U_1\rightarrow V_1$ be a linear-transformation.  By definition (\cref{NaturalTransformation}), this will be natural in the first space iff the following diagram commutes.
+		\begin{equation*}
+		\begin{tikzcd}[column sep=scriptsize]
+		\Mor (V_1,W_1)\otimes \Mor (V_2,W_2) \ar[r] \ar[d] & \Mor  (V_1\otimes V_2,W_1\otimes W_2) \ar[d] \\
+		\Mor (U_1,W_1)\otimes \Mor (V_2,W_2) \ar[r] & \Mor (U_1\otimes V_2,W_1\otimes W_2)
+		\end{tikzcd}
+		\end{equation*}
+		By definition, this commutes iff
+		\begin{equation}
+		S(f(u_1))\otimes T(v_2)=S(f(u_1))\otimes T(v_2),
+		\end{equation}
+		which if tautologically true.\footnote{Going right then down essentially gives $S(v_1)\otimes T(v_2)$ and then replaces $v_1$ with $f(u_1)$.  Going down then right replaces $v_1$ with $f(u_1)$ and then takes $S(f(u_1))\otimes T(u_1)$.}  By $V_1\leftrightarrow V_2$ symmetry, it is natural in $V_2$ as well.  A similar check shows that it is natural in $W_1$, and hence $W_2$ as well.
+		
+		\blni
+		\cref{TensorProductLinearTransformation(i)} Suppose that $V_1$, $W_1$, $V_2$, and $W_2$ are vector spaces.  Let $\sum _{k=1}^m\sum _{l=1}^nS_k\otimes T_l$ be an arbitrary nonzero element of $\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)$.  Without loss of generality, let $m,n\in \Z ^+$ be the smallest such positive integers.  \footnote{So, for example, if you can simplify $S_1\otimes T_1+S_2\otimes T_2$ to something of the form $S\otimes T$, do that, and take $m=1=n$ instead of $m=2=n2$.}
+		
+		Now suppose that this element of $\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)$ is sent to $0$.  In other words,
+		\begin{equation}
+		\sum _{k=1}^m\sum _{l=1}^nS_k(v_1)\otimes T_l(v_2)=0
+		\end{equation}
+		for all $v_1\in V_1$ and $v_2\in V_2$.  Writing this as
+		\begin{equation}
+		\bigg( \sum _{k=1}^mS_k(v_1)\bigg) \bigg( \sum _{l=1}^nT_l(v_2)\bigg) =0,
+		\end{equation}
+		using \cref{crl5.3.59}, we deduce that either $\sum _{k=1}^mS_k(v_1)=0$ or $\sum _{l=1}^nT_l=0$.  In the the former case, we can replace $S_m$ in $\sum _{k=1}^m\sum _{l=1}^nS_k\otimes T_l$ with $-\sum _{k=1}^{n-1}S_k$, thereby writing this element with only $n-1$ $w_l$s:  a contradiction.  The latter case is identical.  Thus, it cannot be the case that a nonzero element of $\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)$ is sent to $0$, and this map is injective.
+		
+		\blni
+		\cref{TensorProductLinearTransformation(ii)} Suppose that $V_1$, $W_1$, $V_2$, and $W_2$ are finite-dimensional vector spaces.  $\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)$ and $\Mor (V_1\otimes V_2,W_1\otimes W_2)$ have the same dimension, namely $\dim (V_1)\dim (W_1)\dim (V_2)\dim (W_2)$, and hence the injective map $\Mor (V_1,W_1)\otimes \Mor (V_2,W_2)\rightarrow \Mor (V_1\otimes V_2,W_1\otimes W_2)$ must in fact be an isomorphism (\cref{crl2.2.74}).
+	\end{proof}
+\end{thm}
+\begin{crl}{$V^{\T}\otimes W\cong \Mor (V,W)$}{prp5.4.9}
+	Let $V$ and $W$ be $\K$-$\K$-bimodules.  Then, the map
+	\begin{equation*}
+	V^{\dagger}\otimes _{\K}W\ni \phi \otimes w\mapsto (v\mapsto \phi (v)w)\in \Mor _{\Mod{\K}}(V,W)
+	\end{equation*}
+	is linear and natural.
+	
+	Furthermore,
+	\begin{enumerate}
+		\item if $V$ and $W$ are vector spaces, this map is injective; and
+		\item if $V$ and $W$ are finite-dimensional vector spaces, this map is an isomorphism.
+	\end{enumerate}
+	\begin{rmk}
+		In particular, for finite-dimensional vector spaces, using language that we will learn shortly (\cref{Tensor}), $\coord{1,1}$ tensors are `the same as' linear-transformations.\footnote{We technically don't define ``tensor'' unless $W=V$, but that doesn't really affect what's going on here---this is just a matter of language.}
+	\end{rmk}
+	\begin{rmk}
+		Warning:  This need not be an isomorphism even for vector spaces if they are not finite-dimensional.
+	\end{rmk}
+	\begin{proof}
+		Take $W_1=\K$, $V_2=\K$, $V_1=V$, and $W_2=W$ in the previous result (\cref{TensorProductLinearTransformation}).  Using the fact that $W\cong \Mor _{\Mod{\K}}(\K ,W)$, $V\cong V\otimes _{\K}\K$, and $W\cong \K \otimes _{\K}W$ naturally, \cref{TensorProductLinearTransformation} reduces to exactly the statement of this corollary.
+	\end{proof}
+\end{crl}
+\begin{crl}{$\Mor (U\otimes V,W)\cong \Mor (U,V^{\T}\otimes W)$}{crl5.4.10}
+	Let $U$, $V$, and $W$ be $\K$-$\K$-bimodules.  Then, the map
+	\begin{equation*}
+	\Mor _{\Mod{\K}}(U,V^{\T}\otimes _{\K}W)\rightarrow \Mor _{\Mod{\K}}(U\otimes V,W),
+	\end{equation*}
+	given by the composition of the maps
+	{\small
+		\begin{subequations}
+			\begin{align*}
+			& \Mor _{\Mod{\K}}(U,V^{\T}\otimes _{\K}W)\rightarrow \Mor _{\Mod{\K}}(U,\Mor _{\Mod{\K}}(V,W)) \\
+			\intertext{and}
+			& \Mor _{\Mod{\K}}(U,\Mor _{\Mod{\K}}(V,W))\rightarrow \Mor _{\Mod{\K}}(U\otimes V,W),
+			\end{align*}
+		\end{subequations}
+	}
+	is linear and natural.
+	
+	Furthermore,
+	\begin{enumerate}
+		\item if $V$ and $W$ are vector spaces, this map is injective; and
+		\item if $V$ and $W$ are finite-dimensional vector space, this map is an isomorphism.
+	\end{enumerate}
+	\begin{proof}
+		This map is a composition of the map from the previous corollary and the \namerefpcref{TensorHomAdjunction}, and so this corollary follows immediately from those two results.
+	\end{proof}
+\end{crl}
+
+We now turn to tensors themselves.
+\begin{dfn}{Tensor}{Tensor}
+	Let $V$ be a $\K$-$\K$-bimodule.  Then, a \term{tensor}\index{Tensor of rank $\coord{k,l}$} of \term{rank}\index{Rank (of a tensor)} $\coord{k,l}$ over $V$ is an element of
+	\begin{equation}\label{eqn5.4.2}
+	\tensoralg _l^kV\ceqq \Mor _{\Mod{\K}}(\underbrace{V\otimes \cdots \otimes V}_l,\underbrace{V\otimes \cdots \otimes V}_k).
+	\end{equation}\index[notation]{$\bigotimes _l^kV$}
+	\begin{rmk}
+		$k$ is the \term{contravariant rank}\index{Contravariant rank} and $l$ is the \term{covariant rank}\index{Covariant rank}.  If $l=0$, then the tensor is \term{contravariant}\index{Contravariant tensor}, and if $k=0$, then the tensor is \term{covariant}\index{Covariant tensor}.
+		
+		We write
+		\begin{equation}
+		\tensoralg ^kV\ceqq \tensoralg _0^kV
+		\end{equation}\index[notation]{$\tensoralg ^kV$}
+		and
+		\begin{equation}
+		\tensoralg _lV\ceqq \tensoralg _l^0V
+		\end{equation}\index[notation]{$\tensoralg _lV$}
+		respectively for the spaces of rank $k$ contravariant tensors and rank $l$ covariant tensors.
+	\end{rmk}
+	\begin{rmk}
+		Though uncommon, I have seen the term \term{valence}\index{Valence} used synonymously with ``rank'' in this context.
+	\end{rmk}
+	\begin{rmk}
+		Instead of saying ``$T$ is a tensor of rank $\coord{k.l}$'', we may use the less verbose ``$T$ is a $\coord{k,l}$ tensor''.
+	\end{rmk}
+	\begin{rmk}
+		Thus, by the definition of the tensor product (\cref{Tensor}), a tensor of rank $\coord{k,l}$ is `the same as' a multilinear map from $\underbrace{V\times \cdots \times V}_l$ to $\underbrace{V\otimes \cdots \otimes V}_k$.  Thus, a tensor of rank $\coord{k,l}$ is a thing that takes in $l$ vectors and `spits out' `$k$ vectors'\footnote{More accurately, a contravariant tensor of rank $k$.} in a multilinear manner.
+	\end{rmk}
+	\begin{rmk}
+		Using the same sort of isomorphisms referenced in the previous remark, for $V$ a finite-dimensional vector space, there is a natural isomorphism
+		\begin{equation*}
+		\begin{split}
+		\tensoralg _l^kV & \ceqq \Mor _{\Mod{\K}}(\underbrace{V\otimes \cdots \otimes V}_l,\underbrace{V\otimes \cdots \otimes V}_k) \\
+		& \cong \Mor _{\Mod{\K}}(\underbrace{V\otimes \cdots \otimes V}_l\otimes \underbrace{V^{\T}\otimes \cdots \otimes V^{\T}}_k,\K ).
+		\end{split}
+		\end{equation*}
+		Thus, in regards to the question ``But what actually \emph{is} a tensor?'', this says that, for $V$ a finite-dimensional vector space anyways:
+		\begin{important}
+			A tensor of rank $\coord{k,l}$ is a multilinear map
+			\begin{equation*}
+			\underbrace{V\times \cdots \times V}_l\times \underbrace{V^{\T}\times \cdots \times V^{\T}}_k\rightarrow \K .
+			\end{equation*}
+		\end{important}
+	\end{rmk}
+	\begin{rmk}
+		Note that the notation $\tensoralg _l^kV$ is nonstandard (though based on the standard notation $\Lambda ^lV$ for something new which we will become acquainted with later on).
+	\end{rmk}
+\end{dfn}
+
+\section{The determinant}
+
+Again, the purpose of this section is primarily just so the notes are technically self-contained---it would be difficult to learn from here without having previously encountered the determinant.
+
+\subsection{Permutations}
+
+\begin{dfn}{Symmetric group}{SymmetricGroup}
+	Let $S$ be a set.  Then, the \term{symmetric group}\index{Symmetric group} of $S$ is $\Aut _{\Set}(S)$.
+	\begin{rmk}
+		In this context, elements of $\Aut _{\Set}(S)$ tend to be referred to as \term{permutations}\index{Permutation} of $S$.
+	\end{rmk}
+	\begin{rmk}
+		$\Aut _{\Set}(S)$ is our fancy-schmancy category-theoretic notation for the set of all bijections $S\rightarrow S$.
+	\end{rmk}
+\end{dfn}
+\begin{dfn}{Cycle notation}{CycleNotation}
+	Let $S=\{ 1,\ldots ,m\}$ be a finite set and let $x_1,\ldots ,x_n\in S$ be distinct.  Then, $(x_1\ldots \, x_n)\in \Aut _{\Set}(S)$\index[notation]{$(x_1\ldots \, x_n)$} is the unique bijection that sends $x_k$ to $x_{k+1}$ for $1\leq k\leq n-1$, sends $x_n$ to $x_1$, and fixes everything else.
+	\begin{rmk}
+		Permutations of the form $(x_1\ldots \, x_n)$ are \term{cycles}\index{Cycle}.
+	\end{rmk}
+	\begin{rmk}
+		The \term{length}\index{Length (of a cycle)} of $(x_1\ldots x_n)$ is $n$.
+	\end{rmk}
+	\begin{rmk}
+		A \term{transposition}\index{Transposition} is a cycle of length $2$.
+	\end{rmk}
+	\begin{rmk}
+		For example, $(325)\in \Aut _{\Set}(\{ 1,2,3,4,5\} )$ is short-hand for the function $\{ 1,2,3,4,5\} \rightarrow \{ 1,2,3,4,5\}$
+		\begin{subequations}
+			\begin{align}
+			1 & \mapsto 1 \\
+			2 & \mapsto 5 \\
+			3 & \mapsto 2 \\
+			4 & \mapsto 4 \\
+			5 & \mapsto 3.
+			\end{align}
+		\end{subequations}
+	\end{rmk}
+\end{dfn}
+To discuss antisymmetry, we're going to need to discuss the \emph{sign} of a permutation.
+\begin{thm}{Sign of a permutation}{SignOfAPermutation}
+	Let $S$ be a finite set and let $\sigma \in \Aut _{\Set}(S)$.
+	\begin{enumerate}
+		\item $\sigma$ can be written as a product of transpositions.
+		\item If $s_1\cdots s_m=\sigma =t_1\cdots t_n$ with each $s_k$ and $t_k$ a transposition, then $m$ and $n$ have the same parity $\sgn (\sigma )\in \{ 1,-1\}$\index[notation]{$\sgn (\sigma )$}, the \term{sign}\index{Sign (of a permutation)} $\sigma$.\footnote{That is, $m$ is even/odd iff $n$ is even/odd.}
+		\item $\sgn \colon \Aut _{\Set}(S)\rightarrow \{ 1,-1\} \cong \Z /2\Z$ is a group homomorphism.
+	\end{enumerate}
+	\begin{rmk}
+		This says that every permutation can be written as a product of transpositions, and furthermore, the number of these transpositions is unique modulo $2$.
+	\end{rmk}
+	\begin{rmk}
+		For $X=\{ 1,\ldots ,m\}$ a finite set and $S=\{ i_1,\ldots ,i_k\} \subseteq S$, write $S^{\comp}\eqqc \{ j_{k+1},\ldots ,j_m\}$ with $j_1<\cdots <j_m$.  Then, we shall write $\sgn (S)\ceqq \sgn (\sigma _S)$\index[notation]{$\sgn (S)$} for the unique permutation $\sigma \colon X\rightarrow X$ such that
+		\begin{equation}
+		\sigma (x)\ceqq \begin{cases}i_x & \text{if }x\leq k \\ j_x & \text{if }x\geq k+1\text{.}\end{cases}
+		\end{equation}
+		
+		For example, for $S\ceqq \{ 2,4,5\} \subseteq \{ 1,2,3,4,5\}$, $\sigma _S$ sends $1$ to $2$, $2$ to $4$, $3$ to $5$, $4$ to $1$, and $5$ to $3$, that is, $\sigma _S=(124)(35)$, and so
+		\begin{equation}
+		\sgn (S)=-1.
+		\end{equation}
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
+\end{thm}
+
+\subsection{(Anti)symmetric tensors}
+
+\begin{dfn}{(Anti)symmetric}{Antisymmetric}
+	Let $V$ be a $\K$-$\K$-bimodule and let $T^{a_1\cdots a_k}\in \bigotimes ^kV$.
+	\begin{enumerate}
+		\item $T^{a_1\cdots a_k}$ is \term{symmetric}\index{Symmetric (tensor)} iff
+		\begin{equation}
+		T^{a_1\cdots a_k}=T^{a_{\sigma (1)}\cdots a_{\sigma (k)}}
+		\end{equation}
+		for all $\sigma \in \Aut _{\Set}(\{ 1,\ldots ,k\} )$.
+		\item $T^{a_1\cdots a_k}$ is \term{antisymmetric}\index{Antiymmetric (tensor)} iff
+		\begin{equation}
+		T^{a_1\cdots a_k}=\sgn (\sigma )T^{a_{\sigma (1)}\cdots a_{\sigma (k)}}
+		\end{equation}
+		for all
+		\begin{equation}
+		\sigma \in \Aut _{\Set}(\{ 1,\ldots ,k\}).
+		\end{equation}
+	\end{enumerate}
+	\begin{rmk}
+		The condition of being \term{(anti)symmetric} is defined for covariant tensors in an essentially identical manner.  A general tensor is then \term{(anti)symmetric} iff it is (anti)symmetric in both its contravariant and covariant indices.
+	\end{rmk}
+	\begin{rmk}
+		The set of symmetric tensors of rank $\coord{k,l}$ is a subspace of $\tensoralg _l^k$ which is denoted
+		\begin{equation}
+		\symalg _l^kV.
+		\end{equation}\index[notation]{$\symalg _l^kV$}
+		
+		The set of antisymmetric tensors of rank $\coord{k,l}$ is a subspace of $\tensoralg _l^k$ which is denoted
+		\begin{equation}
+		\antialg _l^kV.
+		\end{equation}\index[notation]{$\antialg _l^kV$}
+	\end{rmk}
+	\begin{rmk}
+		We write
+		\begin{equation}
+		\symalg ^kV\ceqq \symalg _0^kV
+		\end{equation}\index[notation]{$\symalg ^kV$}
+		and
+		\begin{equation}
+		\symalg _lV\ceqq \symalg _l^0V
+		\end{equation}\index[notation]{$\symalg _lV$}
+		respectively for the spaces of symmetric rank $k$ contravariant tensors and symmetric rank $l$ covariant tensors.
+		
+		Similarly, we write
+		\begin{equation}
+		\antialg ^kV\ceqq \antialg _0^kV
+		\end{equation}\index[notation]{$\antialg ^kV$}
+		and
+		\begin{equation}
+		\antialg _lV\ceqq \antialg _l^0V
+		\end{equation}\index[notation]{$\antialg _lV$}
+		respectively for the spaces of antisymmetric rank $k$ contravariant tensors and antisymmetric rank $l$ covariant tensors.
+	\end{rmk}
+	\begin{rmk}
+		As we had with $\tensoralg _l^kV$ (\cref{Tensor}), we have that $\symalg _0^0V\cong \K \cong \antialg _0^0V$, $\symalg _0^1V\cong V\cong \antialg _0^1V$, and $\symalg _1^0V=V^{\T}=\antialg _1^0V$---tensors of these ranks (along with $\symalg _1^1V=\Mor _{\Mod{\K}}(V,V)=\antialg _1^1V$) are vacuously (anti)symmetric.
+	\end{rmk}
+	\begin{rmk}
+		This is nonstandard notation.  First of all, usually people only work with covariant tensors in this context, in which case they denote these respectively by $\operatorname{Sym}^l(V)$\index[notation]{$\operatorname{Sym}^l(V)$} and $\Lambda ^l(V)$\index[notation]{$\Lambda ^l(V)$}.
+	\end{rmk}
+	\begin{rmk}
+		Sometimes people will say \term{totally symmetric}\index{Totally symmetric (tensor)} and \term{totally antisymmetric}\index{Totally antisymmetric (tensor)} for these concepts respectively, presumably to emphasize that one is discussing \emph{all} the indices.
+	\end{rmk}
+	\begin{rmk}
+		Elements of $\antialg _lV$ are sometimes called \term{differential forms}\index{Differential form} or just \term{forms}\index{Form}, for reasons obviously having to do with calculus.  As such, these terms are usually reserved when doing manifold theory, in which case they probably referred not to just a single tensor but a tensor \emph{field}.\footnote{``Field'' in this context intuitively means that you associate a different tensor to each point (e.g.~``vector field'').}
+	\end{rmk}
+\end{dfn}
+
+\subsection{The determinant itself}
+
+\begin{thm}{Determinant}{Determinant}
+	Let $V$ be a finite-dimensional vector space over a field $\F$ and let $T\colon V\rightarrow V$ be linear.  Then, there is a unique scalar $\det (T)\in \F$\index[notation]{$\det (T)$}, the \term{determinant}\index{Determinant} of $T$, such that
+	\begin{equation}
+	\antialg* ^dT=\det (T)\id ,
+	\end{equation}
+	where $d\ceqq \dim (V)$ and $\id$ is the identity on $\antialg ^dV$.
+	\begin{rmk}
+		Some authors write $|A|$ to denote the determinant of $A$.  We shall not make use of this notation.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove the result.
+		\end{exr}
+	\end{proof}
 \end{thm}

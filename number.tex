@@ -37,6 +37,38 @@ Let $X$ be a set.  Then, $X$ is \term{infinite}\index{Infinite} iff there is a b
 The keyword here is \emph{proper}---there is a bijection from every set $X$ to some subset of $X$, namely $X\subseteq X$ itself.
 \end{rmk}
 \end{dfn}
+Before getting to the natural numbers themselves, let's discuss a couple of interesting properties about infinite sets.
+\begin{prp}{}{prpA.5.25}
+	Let $X$ be a set and define
+	\begin{equation}
+	\collection{F}_X\ceqq \left\{ S\subseteq X:S\text{ is finite.}\right\} .
+	\end{equation}
+	Then, if $X$ is infinite, then $\abs{X}=\abs{\collection{F}_X}$.
+	\begin{rmk}
+		In words, for infinite sets, the cardinality of the set itself is the same as the cardinality of its collection of finite subsets.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove this yourself.
+		\end{exr}
+	\end{proof}
+\end{prp}
+\begin{prp}{}{prpA.5.27}
+	Let $\collection{F}$ be an infinite collection of finite sets.  Then,
+	\begin{equation}
+	\abs*{\bigcup _{F\in \collection{F}}F}=\abs{\collection{F}}.
+	\end{equation}
+	\begin{rmk}
+		In words, if $\kappa$ is an infinite cardinal, the union of $\kappa$ many finite sets still has cardinality $\kappa$.
+	\end{rmk}
+	\begin{proof}
+		We leave this as an exercise.
+		\begin{exr}[breakable=false]{}{}
+			Prove this yourself.
+		\end{exr}
+	\end{proof}
+\end{prp}
 And now finally:
 \begin{dfn}{Natural numbers}{}
 The \term{natural numbers}\index{Natural numbers}, $\N$, are defined as
@@ -99,8 +131,10 @@ $\coord{\aleph ,+,\cdot ,0,1}$ is an integral crig.
 We simply need to verify the properties of the definition of a crig, \cref{dfnA.1.33} (and also check that it is integral, \cref{dfnA.1.69}).  We first check that $+$ is associative, so let $m,n,o\in \N$ and write $m=\abs{M},n=\abs{N},o=\abs{O}$ for sets $M$, $N$, and $O$.  Then,
 \begin{equation}
 \begin{split}
-(m+n)+o & =\left( \abs{M}+\abs{N}\right) +\abs{O}=\abs{M\sqcup N}+\abs{O} \\
-& =\abs{(M\sqcup N)\sqcup O}=\abs{M\sqcup (N\sqcup O)} \\
+(m+n)+o & =\left( \abs{M}+\abs{N}\right) +\abs{O} \\
+& =\abs{M\sqcup N}+\abs{O} \\
+& =\abs{(M\sqcup N)\sqcup O} \\
+& =\abs{M\sqcup (N\sqcup O)} \\
 & =m+(n+o).
 \end{split}
 \end{equation}
@@ -193,11 +227,12 @@ f^{-1}\circ f=\id _M\text{ and }g^{-1}\circ g=\id _N.\footnote{Note that it is \
 
 \Step{Define $C_x$}
 Fix an element $x\in M$ and define
-{\small
+{\footnotesize
 \begin{equation}\label{1.1.26}
-\begin{multlined}
-C_x\coloneqq \left\{ \ldots ,g^{-1}\left( f^{-1}\left( g^{-1}(x)\right) \right) ,f^{-1}\left( g^{-1}(x)\right) ,g^{-1}(x),x, \right. \\ \left. f(x),g\left( f(x)\right) ,f\left( g\left( f(x)\right) \right) ,\ldots \right\} \\ \subseteq M\sqcup N.\footnote{The ``$C$'' is for ``chain''.}
-\end{multlined}
+\begin{split}
+C_x & \coloneqq \left\{ \ldots ,g^{-1}\left( f^{-1}\left( g^{-1}(x)\right) \right) ,f^{-1}\left( g^{-1}(x)\right) ,g^{-1}(x),x, \right. \\ & \qquad \left. f(x),g\left( f(x)\right) ,f\left( g\left( f(x)\right) \right) ,\ldots \right\} \\ 
+& \subseteq M\sqcup N.\footnote{The ``$C$'' is for ``chain''.}
+\end{split}
 \end{equation}
 }
 Note that $C_x$ is `closed' under application of $f$, $g$, $f^{-1}$, and $g^{-1}$, in the sense that, if $x'\in C_x$ and $f(x')$ makes sense (i.e.~if $x'\in M$), then $f(x')\in C_x$, and similarly for $g$, $f^{-1}$, and $g^{-1}$.
@@ -313,9 +348,9 @@ If $X$ is a \emph{totally}-ordered ring, we automatically have $0\leq 1$.  By to
 In general, however, we do need to make the requirement that $0\leq 1$---see the following exercise (\cref{exr1.1.45}).
 \end{rmk}
 For $X$ a preordered rg, we write
-\begin{equation}
+\begin{equation*}
 X^+\index[notation]{$X^+$}\coloneqq \left\{ x\in X:x>0\right\} \text{ and }X_0^+\index[notation]{$X_0^+$}\coloneqq \left\{ x\in X:x\geq 0\right\} .
-\end{equation}
+\end{equation*}
 \begin{rmk}
 A partially-ordered rg, totally-ordered rg, etc.~are just preordered rgs whose underlying preorder is respectively a partial-order, total-order, etc..  Similarly if you replace ``rg'' with ``rig'', ``ring'', etc..
 \end{rmk}
@@ -781,11 +816,11 @@ Now suppose additionally that $\coord{0,0}\leq \coord{m_3,n_3}$, so that $0<m_3$
 \end{equation}
 
 As $\coord{m_1,n_1}\coord{m_3,n_3}=\coord{m_1m_3,m_1n_3+n_1m_3}$ and $\coord{m_2,n_2}\coord{m_3,n_3}=\coord{m_2m_3,m_2n_3+n_2m_3}$, we wish to show that
-\begin{equation}
+\begin{equation*}
 \begin{multlined}
 m_1m_3<m_2m_3\text{ or } \\ \left( m_1m_3=m_2m_3\text{ and }m_1n_3+n_1m_3\leq m_2n_3+n_2m_3\right) .
 \end{multlined}
-\end{equation}
+\end{equation*}
 
 In case $m_1<m_2$ and $0<m_3$, it follows that $m_1m_3<m_2m_3$, as desired.  In case $m_1<m_2$, and $0=m_3$ and $0\leq n_3$, it follows that $m_1m_3=0=m_2m_3$ and $m_1n_3+n_1m_3=m_1n_3<m_2n_3=m_2n_3+n_2m_3$, as desired.  In case $m_1=m_2$ and $n_1\leq n_2$, and $0<m_3$, we have that $m_1m_3=m_2m_3$ and $m_1n_3+n_1m_3\leq m_2n_3+n_2m_3$, as desired.  Finally, in case $m_1=m_2$ and $n_1\leq n_2$, and $0=m_3$ and $0\leq n_3$, we have that $m_1m_3=0=m_2m_3$ and $m_1n_3+n_1m_3\leq m_2n_3+n_2m_3$, as desired.  Thus, this is indeed a totally-ordered cring.
 
@@ -1044,6 +1079,7 @@ Let $\coord{X,\leq}$ be a preordered set and let $D\subseteq X$.  Then, $D$ is a
 \end{enumerate}
 \begin{rmk}
 To ease notation a bit, for $D\subseteq X$, we shall write
+\intomargin
 \begin{equation}
 \begin{aligned}
 D^{\mrm{U}} & \coloneqq \left\{ u\in X:u\text{ is an upper-bound of }D\text{.}\right\} \\
@@ -1217,9 +1253,9 @@ Associativity and commutativity follow from the fact that set addition is associ
 Check that $0$ is an additive identity.
 \end{exr}
 Note that we have
-\begin{equation}
+\begin{equation*}
 D+(-D)=\left\{ d+(x-y):d\in D,\ x\leq 0,\ y\notin D\right\} .
-\end{equation}
+\end{equation*}
 As $y\notin D$, we have that $d<y$, and so $d-y<0$, and so $d+(x-y)<0$, and so $d+(x-y)\in 0$.  In the other direction, let $x\leq 0$.  Then,
 \begin{equation}
 x=d+\left( \left( x+(y-d)\right) -y\right) ,
@@ -1320,7 +1356,9 @@ D\cdot (E+F) & \coloneqq \left( D_0^+[E+F]_0^+\right) \cup 0 \\
 Because additive inverses distribute and by the definition of multiplication, we may without loss of generality assume that $0\leq D,E+F$.  Thus, either $0\leq E$ or $0\leq F$.  Without loss of generality assume the former.  We have already done the case $0\leq F$, so let us instead assume that $F<0$.  Then,
 \begin{equation}
 \begin{split}
-D\cdot E+D\cdot F & =D\cdot \left( (E+F)+(-F)\right) +D\cdot F \\
+\MoveEqLeft
+D\cdot E+D\cdot F \\
+& =D\cdot \left( (E+F)+(-F)\right) +D\cdot F \\
 & =D\cdot (E+F)+D\cdot (-F)+D\cdot F \\
 & \eqqcolon D\cdot (E+F)+D\cdot F+\left( -(D\cdot F)\right) \\
 & =D\cdot (E+F),
